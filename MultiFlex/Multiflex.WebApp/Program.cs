@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Miltflex.Webapp
+namespace Multiflex.Webapp
 {
     public class Program
     {
