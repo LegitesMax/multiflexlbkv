@@ -8,6 +8,9 @@
     <PackageReference Include="ElectronNET.API" Version="13.5.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Multiflex.Logic\Multiflex.Logic.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Update="electron.manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

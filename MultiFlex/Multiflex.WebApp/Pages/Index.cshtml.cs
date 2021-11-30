@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Multiflex.Logic;
 
 namespace Multiflex.WebApp.Pages
 {
@@ -14,7 +15,6 @@ namespace Multiflex.WebApp.Pages
 
         public void OnGet()
         {
-
         }
     }
 }
