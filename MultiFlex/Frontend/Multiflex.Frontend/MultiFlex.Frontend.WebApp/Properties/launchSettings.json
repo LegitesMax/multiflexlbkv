@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:61566",
-      "sslPort": 44392
+      "applicationUrl": "http://localhost:24113",
+      "sslPort": 44335
     }
   },
   "profiles": {
@@ -15,11 +15,11 @@
       "workingDirectory": "."
     },
 
-    "Multiflex.WebApp": {
+    "MultiFlex.Frontend.WebApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7281;http://localhost:5281",
+      "applicationUrl": "https://localhost:7107;http://localhost:5107",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

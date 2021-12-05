@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Multiflex.Webapp
+namespace Multiflex.Frontend.Webapp
 {
     public class Startup
     {
