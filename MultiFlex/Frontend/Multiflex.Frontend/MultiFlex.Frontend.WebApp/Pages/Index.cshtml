@@ -6,17 +6,22 @@
 
 <div class="text-center">
     <h1>@ViewData["Title"]</h1>
-    <p>Welcome to the overview</p>
 
 
-    <div class="d-flex justify-content-end">
-        <a class="text-dark btn btn-primary" asp-page="/Add">Add</a>
+    <div class="d-flex justify-content-center pt-3 pb-2">
+        <a class="btn btn-dark" asp-page="/Add">Reagal hinzufüge</a>
     </div>
 
-    <div class="card w-25">
-        <canvas id="chart"></canvas>
+    <div class="d-flex pt-4">
+        <div class="card w-50 mx-4">
+            <canvas id="chart"></canvas>
+        </div>
+        <div class="card w-50 mx-4">
+            <canvas id="chart1"></canvas>
+        </div>
     </div>
-    
+
     <!--ät foreach(var item in regal Regal)-->
+
 
 </div>

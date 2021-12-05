@@ -45,23 +45,25 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="w-100">
+        <main role="main" class="pb-3 w-100">
             @RenderBody()
         </main>
     </div>
 
+    <!--
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - Multiflex.WebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
+    -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-        <script>
+    <script>
             const ctx = document.getElementById("chart").getContext('2d');
             const myChart = new Chart(ctx, {
               type: 'bar',
@@ -85,7 +87,31 @@
                 }
               },
             });
-        </script>
+
+            const ctx2 = document.getElementById("chart1").getContext('2d');
+            const myChart2 = new Chart(ctx2, {
+              type: 'bar',
+              data: {
+                labels: ["BA", "yam", "tomato", "potato",
+                "beans", "maize", "oil", "gugarutz"],
+                datasets: [{
+                  label: 'RegalName',
+                  backgroundColor: 'rgba(161, 198, 247, 1)',
+                  borderColor: 'rgb(47, 128, 237)',
+                  data: [10, 2, 4, 7, 3, 3, 2, 9],
+                }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true,
+                    }
+                  }]
+                }
+              },
+            });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
