@@ -1,4 +1,5 @@
 using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -53,7 +54,8 @@ namespace Multiflex.Frontend.Webapp
                 endpoints.MapRazorPages();
             });
             // Open the Electron-Window here
-            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
+            var browserWindowOptions = new BrowserWindowOptions { Width = 1200, Height = 600 };
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync(browserWindowOptions));
         }
     }
 }
