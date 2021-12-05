@@ -1,14 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>6fa9b8aa-8edc-4360-b03a-abc5fe35ea2f</UserSecretsId>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="13.5.1" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Content Update="electron.manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
