@@ -1,10 +1,15 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Overview";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>@ViewData["Title"]</h1>
+    <p>Welcome to the overview</p>
+
+    <a class="text-dark btn btn-primary" asp-page="/Privacy">Privacy</a>
+    <a class="text-dark btn btn-primary" asp-page="/Add">Add</a>
+    <!--ät foreach(var item in regal Regal)-->
+
 </div>
