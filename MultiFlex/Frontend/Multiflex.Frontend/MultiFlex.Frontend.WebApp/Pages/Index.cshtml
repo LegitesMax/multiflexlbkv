@@ -8,8 +8,15 @@
     <h1>@ViewData["Title"]</h1>
     <p>Welcome to the overview</p>
 
-    <a class="text-dark btn btn-primary" asp-page="/Privacy">Privacy</a>
-    <a class="text-dark btn btn-primary" asp-page="/Add">Add</a>
+
+    <div class="d-flex justify-content-end">
+        <a class="text-dark btn btn-primary" asp-page="/Add">Add</a>
+    </div>
+
+    <div class="card w-25">
+        <canvas id="chart"></canvas>
+    </div>
+    
     <!--ät foreach(var item in regal Regal)-->
 
 </div>
