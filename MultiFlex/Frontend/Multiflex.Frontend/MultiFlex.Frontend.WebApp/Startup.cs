@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Multiflex.Frontend.Webapp
+namespace Multiflex.Frontend.WebApp
 {
     public class Startup
     {
@@ -25,7 +25,7 @@ namespace Multiflex.Frontend.Webapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,11 +37,10 @@ namespace Multiflex.Frontend.Webapp
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -51,11 +50,46 @@ namespace Multiflex.Frontend.Webapp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            // Open the Electron-Window here
-            var browserWindowOptions = new BrowserWindowOptions { Width = 1200, Height = 600 };
-            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync(browserWindowOptions));
+
+            Bootstrap();
+        }
+
+        public async void Bootstrap()
+        {
+            var options = new BrowserWindowOptions
+            {
+                Width = 1200,
+                Height = 600,
+                Show = false
+            };
+            var mainWindow = await Electron.WindowManager.CreateWindowAsync(options);
+            mainWindow.Maximize();
+            mainWindow.OnReadyToShow += () =>
+            {
+                mainWindow.Show();
+            };
+
+            var menu = new MenuItem[]
+            {
+
+                new MenuItem()
+                {
+                    Label = "File",
+                    Submenu = new MenuItem[]
+                    {
+                        new MenuItem()
+                        {
+                            Label = "Exit",
+                            Click = () => {Electron.App.Exit();  }
+                        }
+                    }
+                }
+            };
+            Electron.Menu.SetApplicationMenu(menu);
         }
     }
 }

@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Overview";
+}
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+
+
+    <div class="d-flex justify-content-center pt-3 pb-2">
+        <!--<h2 id="async-reply">Test</h2>-->
+        <a class="btn btn-light" asp-page="/Add">Reagal hinzufügen</a>
+        <!--<button id="async-msg">Click Me</button>-->
+    </div>
+
+    <div class="d-flex pt-4">
+        <div class="card w-50 mx-4">
+            <canvas id="chart"></canvas>
+        </div>
+        <div class="card w-50 mx-4">
+            <canvas id="chart1"></canvas>
+        </div>
+    </div>
+
+    <!--ät foreach(var item in regal Regal)-->
+
+</div>
+<!--
+<script>
+    const { ipcRenderer } = require("electron");
+
+    document.getElementById("async-msg").addEventListener("click", () => {
+        ipcRenderer.send("async-msg", 'ping');
+    });
+
+    ipcRenderer.on('asynchronous-reply', (event, arg) => {
+        const message = `Asynchronous message reply: ${arg}`;
+        document.getElementById('async-reply').innerHTML = message;
+    });
+</script>-->

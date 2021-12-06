@@ -1,15 +1,15 @@
 {
-  "executable": "MultiFlex.Frontend.WebApp",
+  "executable": "Multiflex.Frontend.WebApp",
   "splashscreen": {
     "imageFile": ""
   },
-  "name": "MultiFlex.Frontend.WebApp",
+  "name": "Multiflex.Frontend.WebApp",
   "author": "",
   "singleInstance": false,
   "environment": "Production",
   "build": {
-    "appId": "com.MultiFlex.Frontend.WebApp.app",
-    "productName": "MultiFlex.Frontend.WebApp",
+    "appId": "com.Multiflex.Frontend.WebApp.app",
+    "productName": "Multiflex.Frontend.WebApp",
     "copyright": "Copyright © 2020",
     "buildVersion": "1.0.0",
     "compression": "maximum",
