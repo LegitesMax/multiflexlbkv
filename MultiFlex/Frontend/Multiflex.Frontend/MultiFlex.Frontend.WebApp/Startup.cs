@@ -50,12 +50,20 @@ namespace Multiflex.Frontend.WebApp
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapBlazorHub();
+                //endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Add}/{id?}");
             });
-
-            Bootstrap();
+            if (HybridSupport.IsElectronActive)
+            {
+                Bootstrap();
+            }
+            
         }
 
         public async void Bootstrap()
@@ -79,14 +87,15 @@ namespace Multiflex.Frontend.WebApp
                 new MenuItem()
                 {
                     Label = "File",
-                    Submenu = new MenuItem[]
-                    {
-                        new MenuItem()
-                        {
-                            Label = "Exit",
-                            Click = () => {Electron.App.Exit();  }
-                        }
-                    }
+                    Click = () => {Electron.App.Exit();  }
+                    //Submenu = new MenuItem[]
+                    //{
+                    //    new MenuItem()
+                    //    {
+                    //        Label = "Exit",
+                    //        Click = () => {Electron.App.Exit();  }
+                    //    }
+                    //},
                 }
             };
             Electron.Menu.SetApplicationMenu(menu);

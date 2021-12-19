@@ -22,6 +22,7 @@ namespace Multiflex.Frontend.WebApp
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseElectron(args);
+                    webBuilder.UseEnvironment("Development");
                     webBuilder.UseStartup<Startup>();
                 });
     }
