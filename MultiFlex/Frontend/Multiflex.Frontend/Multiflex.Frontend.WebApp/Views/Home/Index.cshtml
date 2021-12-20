@@ -9,11 +9,10 @@
 
     <div class="d-flex justify-content-center pt-3 pb-2">
         <!--<h2 id="async-reply">Test</h2>-->
-<<<<<<< Updated upstream
-        <a class="btn btn-light" href="Add.cshtml">Reagal Erstellen</a>
-=======
-        <a id="open-add-window" class="btn btn-light" <!--href="Add.cshtml">-->>Reagal hinzufügen</a>
->>>>>>> Stashed changes
+        <a id="open-add-window" class="btn btn-light">Reagal erstellen</a>
+        
+        <a id="reload-window" class="btn btn-light">Reload</a>
+        <a id="reload-window" class="btn btn-light">Reload</a>
         <!--<button id="async-msg">Click Me</button>-->
     </div>
 
@@ -46,16 +45,12 @@
     const { ipcRenderer } = require("electron");
 
     document.getElementById("open-add-window").addEventListener("click", () => {
-        ipcRenderer.send("open-add-window", "Add");
-        //const win = new BrowserWindow({ show: false })
-        //win.loadFile('Add.cshtml')
-        //win.show()
+        ipcRenderer.send("open-add-window");
     });
 
-    //ipcRenderer.on('open-add-window', (event, arg) => {
-    //    const message = `Asynchronous message reply: ${arg}`;
-    //    document.getElementById('async-reply').innerHTML = message;
-    //});
+    document.getElementById("reload-window").addEventListener("click", () => {
+        ipcRenderer.send("reload-window");
+    });
 </script>
 
 

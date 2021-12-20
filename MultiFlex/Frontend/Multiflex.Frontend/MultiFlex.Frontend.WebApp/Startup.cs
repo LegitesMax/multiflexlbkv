@@ -50,8 +50,6 @@ namespace Multiflex.Frontend.WebApp
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapBlazorHub();
-                //endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -84,19 +82,39 @@ namespace Multiflex.Frontend.WebApp
             var menu = new MenuItem[]
             {
 
+                //new MenuItem()
+                //{
+                //    Label = "File",
+                //    Click = () => {Electron.App.Exit();  },
+                //    Submenu = new MenuItem[]
+                //    {
+                //        new MenuItem()
+                //        {
+                //            Label = "Exit",
+                //            Click = () => {Electron.App.Exit();  },
+                //        },
+                //        new MenuItem()
+                //        {
+                //            Label = "Reload",
+                //            Click = () => {Electron.App.Relaunch();}
+                //        }
+                //    },
+                    
+                //}
                 new MenuItem()
                 {
-                    Label = "File",
-                    Click = () => {Electron.App.Exit();  }
-                    //Submenu = new MenuItem[]
-                    //{
-                    //    new MenuItem()
-                    //    {
-                    //        Label = "Exit",
-                    //        Click = () => {Electron.App.Exit();  }
-                    //    }
-                    //},
-                }
+                    Label = "Exit",
+                    Click = () => {Electron.App.Exit();  },
+                },
+                //new MenuItem()
+                //{
+                //    Label = "Reload",
+                //    Click = () => 
+                //    {
+                //        Electron.App.Relaunch();
+                //        Electron.App.Exit();
+                //    }
+                //}
             };
             Electron.Menu.SetApplicationMenu(menu);
         }

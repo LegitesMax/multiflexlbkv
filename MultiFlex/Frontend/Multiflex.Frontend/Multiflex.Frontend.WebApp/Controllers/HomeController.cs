@@ -43,9 +43,12 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 };
                 BrowserWindow win = await AddWindow("/Home/Add", options);
                 win.Show();
-                
-                //browserWindow.OnMove += UpdateReply;
-                //browserWindow.OnResize += UpdateReply;
+            });
+            Electron.IpcMain.On("reload-window", async (args) =>
+            {
+                var mainWindow = Electron.WindowManager.BrowserWindows.First();
+                mainWindow.Minimize();
+                mainWindow.Reload();
             });
 
             return View();
@@ -78,16 +81,6 @@ namespace Multiflex.Frontend.WebApp.Controllers
             //browserWindow.Show();
 
             return browserWindow;
-        }
-        private async void UpdateReply()
-        {
-            var browserWindow = Electron.WindowManager.BrowserWindows.Last();
-            var size = await browserWindow.GetSizeAsync();
-            var position = await browserWindow.GetPositionAsync();
-            string message = $"Size: {size[0]},{size[1]} Position: {position[0]},{position[1]}";
-
-            var mainWindow = Electron.WindowManager.BrowserWindows.First();
-            Electron.IpcMain.Send(mainWindow, "add-window-reply", message);
         }
     }
 }
