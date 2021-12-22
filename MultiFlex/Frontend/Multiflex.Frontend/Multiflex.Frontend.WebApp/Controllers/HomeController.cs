@@ -23,12 +23,12 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
         public IActionResult Index()
         {
-            Electron.IpcMain.On("async-msg", (args) =>
+            /*Electron.IpcMain.On("async-msg", (args) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 Electron.IpcMain.Send(mainWindow, "asynchronous-reply", "pong");
-            });
-            Electron.IpcMain.On("open-add-window", async (args) =>
+            });*/
+            Electron.IpcMain.On("open-add-window", async (arg) =>
             {
                 //var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 //var browserWindow = await Electron.WindowManager.CreateWindowAsync();
@@ -44,11 +44,10 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 BrowserWindow win = await AddWindow("/Home/Add", options);
                 win.Show();
             });
-            Electron.IpcMain.On("reload-window", async (args) =>
+            Electron.IpcMain.On("loadFinished", (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                mainWindow.Minimize();
-                mainWindow.Reload();
+                Electron.IpcMain.Send(mainWindow, "getRegal-reply", "test");
             });
 
             return View();

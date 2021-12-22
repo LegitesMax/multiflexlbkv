@@ -10,9 +10,7 @@
     <div class="d-flex justify-content-center pt-3 pb-2">
         <!--<h2 id="async-reply">Test</h2>-->
         <a id="open-add-window" class="btn btn-light">Reagal erstellen</a>
-        
-        <a id="reload-window" class="btn btn-light">Reload</a>
-        <a id="reload-window" class="btn btn-light">Reload</a>
+
         <!--<button id="async-msg">Click Me</button>-->
     </div>
 
@@ -20,16 +18,10 @@
         <div class="card w-50 mx-4">
             <canvas id="chart"></canvas>
         </div>
-        <div class="card w-50 mx-4">
-            <canvas id="chart1"></canvas>
-        </div>
     </div>
-
-    <!--ät foreach(var item in regal Regal)-->
-
 </div>
-<!--
-<script>
+
+<!--<script>
     const { ipcRenderer } = require("electron");
 
     document.getElementById("async-msg").addEventListener("click", () => {
@@ -41,16 +33,5 @@
         document.getElementById('async-reply').innerHTML = message;
     });
 </script>-->
-<script>
-    const { ipcRenderer } = require("electron");
-
-    document.getElementById("open-add-window").addEventListener("click", () => {
-        ipcRenderer.send("open-add-window");
-    });
-
-    document.getElementById("reload-window").addEventListener("click", () => {
-        ipcRenderer.send("reload-window");
-    });
-</script>
 
 

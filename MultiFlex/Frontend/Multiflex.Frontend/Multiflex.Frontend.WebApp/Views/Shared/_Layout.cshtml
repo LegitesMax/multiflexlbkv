@@ -61,55 +61,45 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script>
-            const ctx = document.getElementById("chart").getContext('2d');
-            const myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: ["BaLebens", "BuLebens", "GesTas", "HzHo",
-                "KlHe", "LoBl", "SoMoSte", "GebHzBox"],
-                datasets: [{
-                  label: 'Waren-Inventar',
-                  backgroundColor: 'rgba(161, 198, 247, 1)',
-                  borderColor: 'rgb(47, 128, 237)',
-                  data: [3, 5, 4, 6, 1, 12, 7, 2],
-                }]
-              },
-              options: {
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      beginAtZero: true,
-                    }
-                  }]
-                }
-              },
-            });
+        const { ipcRenderer } = require("electron");
+        document.addEventListener('DOMContentLoaded', pageLoaded);
 
-            const ctx2 = document.getElementById("chart1").getContext('2d');
-            const myChart2 = new Chart(ctx2, {
-              type: 'bar',
-              data: {
-                labels: ["49", "BA4951", "BA4925", "39",
-                "Pap"],
-                datasets: [{
-                  label: 'Lager-Bestand',
-                  backgroundColor: 'rgba(161, 198, 247, 1)',
-                  borderColor: 'rgb(47, 128, 237)',
-                  data: [10, 15, 4, 17, 30],
-                }]
-              },
-              options: {
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      beginAtZero: true,
+         function pageLoaded(){
+             ipcRenderer.send('loadFinished');
+         }
+
+         ipcRenderer.on('getRegal-reply', (event, arg) => {
+             const ctx = document.getElementById("chart").getContext('2d');
+                const myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: ["BaLebens", "BuLebens", "GesTas", "HzHo",
+                    "KlHe", "LoBl", "SoMoSte", "GebHzBox"],
+                    datasets: [{
+                      label: arg,
+                      backgroundColor: 'rgba(161, 198, 247, 1)',
+                      borderColor: 'rgb(47, 128, 237)',
+                      data: [3, 5, 4, 6, 1, 12, 7, 2],
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true,
+                        }
+                      }]
                     }
-                  }]
-                }
-              },
-            });
+                  },
+                });
+        });
+
+        document.getElementById("open-add-window").addEventListener("click", () => {
+            ipcRenderer.send("open-add-window");
+        });
+
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
