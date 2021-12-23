@@ -3,12 +3,13 @@ using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Multiflex.Frontend.WebApp.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace Multiflex.Frontend.WebApp.Controllers
 {
@@ -44,10 +45,34 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 BrowserWindow win = await AddWindow("/Home/Add", options);
                 win.Show();
             });
-            Electron.IpcMain.On("loadFinished", (arg) =>
+            Electron.IpcMain.On("loadFinished", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                Electron.IpcMain.Send(mainWindow, "getRegal-reply", "test");
+                var httpCliet = new HttpClient();
+
+                var request = await httpCliet.GetStringAsync("http://localhost:8080/regal-overview");
+                var json = JArray.Parse(request);
+                Console.WriteLine("string erfolgreich gepares");
+
+                Console.WriteLine(json);
+                /*var regalList = new List<Regal>();
+
+                foreach (JObject root in json)
+                {
+                    Console.WriteLine("test1");
+                    foreach (KeyValuePair<String, JToken> app in root)
+                    {
+                        Console.WriteLine("test2");
+                        var regal = new Regal();
+                        regal.Name = (string)app.Value["Name"];
+                        regal.Max_anzahl_faecher = (int)app.Value["Max_anzahl_faecher"];
+                        regalList.Add(regal);
+                        Console.WriteLine("regal hinzugefügt");
+                    }
+                }*/
+                Console.WriteLine("regale werden versendet");
+                Electron.IpcMain.Send(mainWindow, "getRegal-reply", json.ToString());
+
             });
 
             return View();

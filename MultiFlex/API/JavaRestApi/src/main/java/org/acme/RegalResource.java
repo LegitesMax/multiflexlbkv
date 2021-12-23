@@ -22,20 +22,18 @@ public class RegalResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<Regal> getAll() {
+        setRegals();
         return entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
     }
 
     @GET
     @Path("/{name}")
     public Regal getOne(@PathParam String name) {
-        return findByName(name);
-    }
-
-    public Regal findByName(String name){
         return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult();
     }
 
-    public void getAllRegals(){
+    @Transactional
+    public void setRegals(){
         var r1 = new Regal();
         r1.setName("Test1");
         r1.setMax_anzahl_fächer(10);
