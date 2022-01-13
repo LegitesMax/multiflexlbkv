@@ -50,29 +50,24 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 var httpCliet = new HttpClient();
 
-                var request = await httpCliet.GetStringAsync("http://localhost:8080/regal-overview");
-                var json = JArray.Parse(request);
-                Console.WriteLine("string erfolgreich gepares");
+                var requestRegal = await httpCliet.GetStringAsync("http://localhost:8080/regal-overview");
+                var json1 = JArray.Parse(requestRegal);
 
-                Console.WriteLine(json);
-                /*var regalList = new List<Regal>();
+                var requestWare = await httpCliet.GetStringAsync("http://localhost:8080/ware");
+                var json2 = JArray.Parse(requestWare);
 
-                foreach (JObject root in json)
-                {
-                    Console.WriteLine("test1");
-                    foreach (KeyValuePair<String, JToken> app in root)
-                    {
-                        Console.WriteLine("test2");
-                        var regal = new Regal();
-                        regal.Name = (string)app.Value["Name"];
-                        regal.Max_anzahl_faecher = (int)app.Value["Max_anzahl_faecher"];
-                        regalList.Add(regal);
-                        Console.WriteLine("regal hinzugefügt");
-                    }
-                }*/
+                var requestFach = await httpCliet.GetStringAsync("http://localhost:8080/fach");
+                var json3 = JArray.Parse(requestFach);
+                Console.WriteLine("strings erfolgreich gepares");
+
+                Console.WriteLine(json1);
+                Console.WriteLine();
+                Console.WriteLine(json2);
+                Console.WriteLine();
+                Console.WriteLine(json3);
+
                 Console.WriteLine("regale werden versendet");
-                Electron.IpcMain.Send(mainWindow, "getRegal-reply", json.ToString());
-
+                Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
 
             return View();

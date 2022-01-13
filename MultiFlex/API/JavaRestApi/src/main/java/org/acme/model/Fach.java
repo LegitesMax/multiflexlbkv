@@ -10,11 +10,15 @@ public class Fach {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long fach_id;
     @Column
-    private String position;
+    private int position;
     @Column
     private long regal_id;
+
     @Column
     private long ware_id;
+    @Column
+    private int maxbestand;
+
 
     public long getFach_id() {
         return fach_id;
@@ -24,11 +28,11 @@ public class Fach {
         this.fach_id = fach_id;
     }
 
-    public String getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 
@@ -47,4 +51,13 @@ public class Fach {
     public void setWare_id(long ware_id) {
         this.ware_id = ware_id;
     }
+
+    public int getMaxbestand() {
+        return maxbestand;
+    }
+
+    public void setMaxbestand(int maxbestand) {
+        this.maxbestand = maxbestand;
+    }
+
 }

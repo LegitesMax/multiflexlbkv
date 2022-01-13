@@ -71,11 +71,11 @@
             ipcRenderer.send('loadFinished');
         }
 
-        ipcRenderer.on('getRegal-reply', (event, arg) => {
-            alert(arg)
-            let regal = JSON.parse(arg);
-            alert(regal.length);
-
+        ipcRenderer.on('getRegal-reply', (event, arg1, arg2, arg3) => {
+            //alert("geht");
+            let regal = JSON.parse(arg1);
+            let ware = JSON.parse(arg2);
+            let fach = JSON.parse(arg3);
 
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawVisualization);
@@ -83,16 +83,21 @@
             function drawVisualization() {
                   // Some raw data (not necessarily accurate)
                for (var i = 0; i < regal.length; i++){
-                  var data = google.visualization.arrayToDataTable([
-                    ['Month', 'Max-Bestand', 'Min-Bestand', 'Bestand'],
-                    ['2004/05',  20,      1, 			12],
-                    ['2005/06',  15,      2, 			13],
-                    ['2006/07',  15,      4, 			6],
-                    ['2007/08',  20,      6, 			8],
-                    ['2007/09',  19,      6, 			8],
-                    ['2007/10',  19,      6, 			8],
-                    ['2008/11',  17,      3, 			17]
-                  ]);
+
+                   var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
+                   var dataResult;
+                   for (var j = 0; j < ware.length; j++) {
+
+                       for(var k = 0; k < fach.length; k++) {
+                           if(fach[k]["ware_id"] == ware[j]["ware_id"] && regal[i]["regal_id"] == fach[k]["regal_id"]){
+                                var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
+                                fächer.push(data);
+                           }
+                       }
+                   }
+       
+                   console.log(fächer);
+                   var dataResult = google.visualization.arrayToDataTable(fächer);
 
                   var options = {
                     title : regal[i]["name"],
@@ -100,13 +105,14 @@
                     //hAxis: {title: 'Bestand'},
                     seriesType: 'bars',
                     series: {
-                      0:{color: 'orange', visibleInLegend: true, type: 'line'},
-                      1:{color: 'red', visibleInLegend: true, type: 'line'}
+                      0:{color: 'green', visibleInLegend: true, type: 'line'},
+                      1:{color: 'red', visibleInLegend: true, type: 'line'},
+                      2:{color: 'orange', visibleInLegend: true}
                     }
                   };
                   
                   var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
-                  chart.draw(data, options);
+                  chart.draw(dataResult, options);
                }
             }
         });

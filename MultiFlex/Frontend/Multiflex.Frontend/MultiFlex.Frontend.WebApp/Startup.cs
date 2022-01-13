@@ -79,7 +79,7 @@ namespace Multiflex.Frontend.WebApp
                 mainWindow.Show();
             };
 
-            var menu = new MenuItem[]
+            /*var menu = new MenuItem[]
             {
 
                 //new MenuItem()
@@ -116,7 +116,7 @@ namespace Multiflex.Frontend.WebApp
                 //    }
                 //}
             };
-            Electron.Menu.SetApplicationMenu(menu);
+            Electron.Menu.SetApplicationMenu(menu);*/
         }
     }
 }

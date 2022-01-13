@@ -1,7 +1,9 @@
 package org.acme;
 
 import io.smallrye.mutiny.Uni;
+import org.acme.model.Fach;
 import org.acme.model.Regal;
+import org.acme.model.Ware;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
@@ -14,17 +16,17 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/regal-overview")
-public class RegalResource {
-
-    @Inject
-    EntityManager entityManager;
+public class RegalResource extends EntitiyManagerObject{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<Regal> getAll() {
         setRegals();
+        //entityManager.createQuery("select r from Regal r join Fach f on r.regal_id = f.regal_id", Regal.class).getResultList();
+        //return entityManager.createQuery("select r from Regal r join Fach f on r.regal_id = f.regal_id").getResultList();
         return entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
     }
+
 
     @GET
     @Path("/{name}")
@@ -35,11 +37,11 @@ public class RegalResource {
     @Transactional
     public void setRegals(){
         var r1 = new Regal();
-        r1.setName("Test1");
-        r1.setMax_anzahl_fächer(10);
+        r1.setName("Regal-1");
+        r1.setMax_anzahl_fächer(15);
 
         var r2 = new Regal();
-        r2.setName("Test2");
+        r2.setName("Regal-2");
         r2.setMax_anzahl_fächer(20);
 
         entityManager.persist(r1);
