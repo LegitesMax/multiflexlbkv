@@ -15,7 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/regal-overview")
+@Path("/regal")
 public class RegalResource extends EntitiyManagerObject{
 
     @GET
@@ -38,11 +38,11 @@ public class RegalResource extends EntitiyManagerObject{
     public void setRegals(){
         var r1 = new Regal();
         r1.setName("Regal-1");
-        r1.setMax_anzahl_fächer(15);
+        r1.setMax_anzahl_faecher(15);
 
         var r2 = new Regal();
         r2.setName("Regal-2");
-        r2.setMax_anzahl_fächer(20);
+        r2.setMax_anzahl_faecher(20);
 
         entityManager.persist(r1);
         entityManager.persist(r2);

@@ -16,7 +16,7 @@ public class Regal {
 
     @Positive(message = "can not have a negative value ")
     @Column(nullable = false)
-    private int max_anzahl_fächer;
+    private int max_anzahl_faecher;
 
     public long getRegal_id() {
         return regal_id;
@@ -34,11 +34,11 @@ public class Regal {
         this.name = name;
     }
 
-    public int getMax_anzahl_fächer() {
-        return max_anzahl_fächer;
+    public int getMax_anzahl_faecher() {
+        return max_anzahl_faecher;
     }
 
-    public void setMax_anzahl_fächer(int max_anzahl_fächer) {
-        this.max_anzahl_fächer = max_anzahl_fächer;
+    public void setMax_anzahl_faecher(int max_anzahl_faecher) {
+        this.max_anzahl_faecher = max_anzahl_faecher;
     }
 }
