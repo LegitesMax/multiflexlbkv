@@ -62,6 +62,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         const { ipcRenderer } = require("electron");
         document.addEventListener('DOMContentLoaded', pageLoaded);
@@ -73,32 +74,40 @@
         ipcRenderer.on('getRegal-reply', (event, arg) => {
             alert(arg)
             let regal = JSON.parse(arg);
-            //Hier muss noch eine schleife eingefügt werden um mehrere reagel ausgeben zu können
-            const ctx = document.getElementById("chart").getContext('2d');
-                const myChart = new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                    labels: ["BaLebens", "BuLebens", "GesTas", "HzHo",
-                    "KlHe", "LoBl", "SoMoSte", "GebHzBox"],
-                    datasets: [{
-                      label: regal[0]["name"],
-                      backgroundColor: 'rgba(161, 198, 247, 1)',
-                      borderColor: 'rgb(47, 128, 237)',
-                      data: [3, 5, 4, 6, 1, 12, 7, 2],
-                    }]
-                  },
-                  options: {
-                    scales: {
-                      yAxes: [{
-                        ticks: {
-                          beginAtZero: true,
-                        }
-                      }]
-                    }
-                  },
-                });
+            alert(regal.length);
 
-            for (var i = 0; i < arg.lenght; i++){
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawVisualization);
+
+            function drawVisualization() {
+                  // Some raw data (not necessarily accurate)
+               for (var i = 0; i < regal.length; i++){
+                  var data = google.visualization.arrayToDataTable([
+                    ['Month', 'Max-Bestand', 'Min-Bestand', 'Bestand'],
+                    ['2004/05',  20,      1, 			12],
+                    ['2005/06',  15,      2, 			13],
+                    ['2006/07',  15,      4, 			6],
+                    ['2007/08',  20,      6, 			8],
+                    ['2007/09',  19,      6, 			8],
+                    ['2007/10',  19,      6, 			8],
+                    ['2008/11',  17,      3, 			17]
+                  ]);
+
+                  var options = {
+                    title : regal[i]["name"],
+                    vAxis: {title: regal[i]["regal_id"]},
+                    //hAxis: {title: 'Bestand'},
+                    seriesType: 'bars',
+                    series: {
+                      0:{color: 'orange', visibleInLegend: true, type: 'line'},
+                      1:{color: 'red', visibleInLegend: true, type: 'line'}
+                    }
+                  };
+                  
+                  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
+                  chart.draw(data, options);
+               }
             }
         });
 
