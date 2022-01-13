@@ -1,6 +1,8 @@
 package org.acme.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Benutzer")
@@ -10,7 +12,9 @@ public class Benutzer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @NotEmpty
+    @NotNull
+    @Column(nullable = false, unique = true, length = 32)
     private String benutzername;
 
     @Column

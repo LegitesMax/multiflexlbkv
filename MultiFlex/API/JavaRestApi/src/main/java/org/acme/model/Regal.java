@@ -1,6 +1,7 @@
 package org.acme.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "Regal")
@@ -13,7 +14,8 @@ public class Regal {
     @Column
     private String name;
 
-    @Column
+    @Positive(message = "can not have a negative value ")
+    @Column(nullable = false)
     private int max_anzahl_fächer;
 
     public long getRegal_id() {

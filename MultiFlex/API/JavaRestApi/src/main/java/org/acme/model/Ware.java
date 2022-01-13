@@ -1,6 +1,8 @@
 package org.acme.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "Ware")
@@ -10,12 +12,16 @@ public class Ware {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ware_id;
 
-    @Column
+    @NotNull(message = "ware must have a Name")
+    @Column(nullable = false, length = 64)
     private String name;
-    @Column
+    @PositiveOrZero(message = "stock can not be negative")
+    @Column(nullable = false)
     private int bestand;
+    @PositiveOrZero(message = "min stock can not be negative")
     @Column
     private int minbestand;
+    @PositiveOrZero(message = "max stock can not be negative")
     @Column
     private int maxbestand;
 

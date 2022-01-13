@@ -1,6 +1,8 @@
 package org.acme.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "Lieferant")
@@ -10,13 +12,15 @@ public class Lieferant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long lieferant_id;
 
-    @Column
+    @NotNull
+    @Column(nullable = false, length = 64)
     private String name;
 
     @Column
     private String weblink;
 
-    @Column
+    @PositiveOrZero
+    @Column(nullable = false)
     private int lieferzeit;
 
     public long getLieferant_id() {

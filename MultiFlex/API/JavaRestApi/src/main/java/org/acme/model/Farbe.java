@@ -1,6 +1,7 @@
 package org.acme.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,8 @@ public class Farbe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long farbe_id;
 
-    @Column
+    @Column(nullable = false, unique = true, length = 32)
+    @NotNull(message = "Color must have a Name")
     private String name;
 
     @OneToMany(mappedBy = "farbe")

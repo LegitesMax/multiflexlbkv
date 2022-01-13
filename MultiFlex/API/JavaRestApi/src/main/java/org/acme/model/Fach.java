@@ -11,7 +11,7 @@ public class Fach {
     private long fach_id;
     @Column
     private int position;
-    @Column
+    @Column(nullable = false)
     private long regal_id;
 
     @Column
