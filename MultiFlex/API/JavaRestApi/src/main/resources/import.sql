@@ -1,7 +1,20 @@
 -- This file allow to write SQL commands that will be emitted in test and dev.
 -- The commands are commented as their support depends of the database
-insert into Regal (id, max_anzahl_faecher, name) values(nextval('hibernate_sequence'), 10, 'test1');
-insert into Regal (id, max_anzahl_faecher, name) values(nextval('hibernate_sequence'), 12, 'test2');
-insert into Fach (fach_id, position, regal_id, ware_id) values(nextval('hibernate_sequence'), 1, 1, 1);
-insert into Fach (fach_id, position, regal_id, ware_id) values(nextval('hibernate_sequence'), 1, 2, 1);
-insert into Ware (ware_id, bestand, mindestbestand, name) values(nextval('hibernate_sequence'), 10, 4, 'BAXXXX');
+
+--Regale
+insert into Regal (max_anzahl_faecher, name) values(10, 'Regal-1');
+insert into Regal (max_anzahl_faecher, name) values( 12, 'Regal-2');
+
+--Fächer
+insert into Fach (position, regal_id, ware_id, maxbestand) values(1, 1, 1, 20);
+insert into Fach (position, regal_id, ware_id, maxbestand) values(2, 1, 2, 20);
+insert into Fach (position, regal_id, ware_id, maxbestand) values(3, 1, 5, 20);
+insert into Fach (position, regal_id, ware_id, maxbestand) values(1, 2, 3, 20);
+insert into Fach (position, regal_id, ware_id, maxbestand) values(2, 2, 4, 20);
+
+--Waren
+insert into Ware (bestand, maxbestand, minbestand, name) values(8, 15, 5,'BAXXXX');
+insert into Ware (bestand, maxbestand, minbestand, name) values(2, 10, 1,'LÖXXXX');
+insert into Ware (bestand, maxbestand, minbestand, name) values(10, 15, 5,'LOXXXX');
+insert into Ware (bestand, maxbestand, minbestand, name) values(4, 15, 2,'TAXXXX');
+insert into Ware (bestand, maxbestand, minbestand, name) values(7, 10, 3,'HEXXXX');

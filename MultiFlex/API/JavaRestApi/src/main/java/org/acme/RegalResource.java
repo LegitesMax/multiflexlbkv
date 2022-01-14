@@ -21,31 +21,12 @@ public class RegalResource extends EntitiyManagerObject{
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<Regal> getAll() {
-        setRegals();
-        //entityManager.createQuery("select r from Regal r join Fach f on r.regal_id = f.regal_id", Regal.class).getResultList();
-        //return entityManager.createQuery("select r from Regal r join Fach f on r.regal_id = f.regal_id").getResultList();
         return entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
     }
-
 
     @GET
     @Path("/{name}")
     public Regal getOne(@PathParam String name) {
         return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult();
     }
-
-    @Transactional
-    public void setRegals(){
-        var r1 = new Regal();
-        r1.setName("Regal-1");
-        r1.setMax_anzahl_faecher(15);
-
-        var r2 = new Regal();
-        r2.setName("Regal-2");
-        r2.setMax_anzahl_faecher(20);
-
-        entityManager.persist(r1);
-        entityManager.persist(r2);
-    }
-
 }
