@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -28,5 +29,17 @@ public class RegalResource extends EntitiyManagerObject{
     @Path("/{name}")
     public Regal getOne(@PathParam String name) {
         return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult();
+    }
+    
+    @POST
+    @Path("/{reganame}/{max_anzahl_faecher}")
+    public void createRegal(@PathParam String regalName, @PathParam int max_anzahl_faecher){
+
+        if(regalName == null || max_anzahl_faecher < 1){
+            throw new NullPointerException("Null or < 1");
+        }
+
+        var newRegal = new Regal(regalName, max_anzahl_faecher);
+        entityManager.persist(newRegal);
     }
 }
