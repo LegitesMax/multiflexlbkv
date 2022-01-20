@@ -45,16 +45,40 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 BrowserWindow win = await AddWindow("/Home/Add", options);
                 win.Show();
             });
+
+            Electron.IpcMain.On("searchRegal", async (arg) =>
+            {
+                var mainWindow = Electron.WindowManager.BrowserWindows.First();
+                var httpCliet = new HttpClient();
+
+                var requestRegal = await Task.Run(() =>
+                {
+                    return httpCliet.GetStringAsync($"http://localhost:8080/regal/{arg}");
+                });
+
+                var requestWare = await Task.Run(() =>
+                {
+                    return httpCliet.GetStringAsync("http://localhost:8080/ware");
+                });
+
+                var requestFach = await Task.Run(() =>
+                {
+                    return httpCliet.GetStringAsync("http://localhost:8080/fach");
+                });
+
+                var json1 = JArray.Parse(requestRegal);
+                var json2 = JArray.Parse(requestWare);
+                var json3 = JArray.Parse(requestFach);
+                
+                Electron.IpcMain.Send(mainWindow, "getSearchedRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
+            });
+
             Electron.IpcMain.On("loadFinished", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 var httpCliet = new HttpClient();
 
-                var stopwatch = new Stopwatch();
-
-                stopwatch.Start();
-
-               var requestRegal = await Task.Run(() =>
+                var requestRegal = await Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/regal");
                 });
@@ -72,16 +96,6 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);
-
-                stopwatch.Stop();
-                Console.WriteLine(stopwatch.Elapsed);
-
-                Console.WriteLine("strings erfolgreich gepares");
-                Console.WriteLine(json1);
-                Console.WriteLine();
-                Console.WriteLine(json2);
-                Console.WriteLine();
-                Console.WriteLine(json3);
                 
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });

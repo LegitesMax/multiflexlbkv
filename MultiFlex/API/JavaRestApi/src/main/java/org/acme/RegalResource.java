@@ -27,8 +27,9 @@ public class RegalResource extends EntitiyManagerObject{
 
     @GET
     @Path("/{name}")
-    public Regal getOne(@PathParam String name) {
-        return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult();
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public List<Regal> getOne(@PathParam String name) {
+        return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getResultList();
     }
     
     @POST

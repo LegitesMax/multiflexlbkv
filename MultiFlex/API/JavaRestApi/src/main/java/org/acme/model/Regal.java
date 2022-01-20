@@ -18,6 +18,9 @@ public class Regal {
     @Column(nullable = false)
     private int max_anzahl_faecher;
 
+    public Regal() {
+    }
+
     public Regal(String name, int max_anzahl_faecher) {
         this.name = name;
         this.max_anzahl_faecher = max_anzahl_faecher;
