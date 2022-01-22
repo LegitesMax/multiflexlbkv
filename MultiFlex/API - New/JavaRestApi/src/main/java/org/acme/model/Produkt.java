@@ -23,7 +23,7 @@ public class Produkt {
     private Farbe farbe;
  */
     @OneToOne
-    @JoinColumn(name = "wareId")
+    @JoinColumn(name = "id")
     private Ware ware;
 
     @OneToMany(mappedBy = "produkt")

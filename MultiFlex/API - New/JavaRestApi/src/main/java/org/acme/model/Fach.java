@@ -21,11 +21,11 @@ public class Fach {
     @Column
     private int maxbestand;
 
-    @OneToMany
-    @JoinColumn(name = "wareId")
+    @ManyToOne
+    @MapsId("id")
     private Ware ware;
     @ManyToOne
-    @JoinColumn(name = "fachId")
+    @MapsId("id")
     private Regal regal;
 
 }

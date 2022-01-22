@@ -30,15 +30,15 @@ public class Material {
     private int produkt_id;
  */
     @OneToOne
-    @JoinColumn(name = "wareId")
+    @JoinColumn(name = "id")
     private Ware ware;
 
     @ManyToOne
-    @MapsId("materialId")
-    private Material material;
+    @MapsId("id")
+    private Lieferant lieferant;
 
     @ManyToOne
-    @MapsId("farbeId")
+    @MapsId("id")
     private Farbe farbe;
 
     @OneToMany(mappedBy = "material")
