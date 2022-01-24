@@ -10,24 +10,25 @@ public class Regal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column
     private String name;
 
     @Positive(message = "can not have a negative value ")
     @Column(nullable = false)
-    private int max_anzahl_faecher;
+    private Integer max_anzahl_faecher;
 
     @OneToMany(mappedBy = "regal")
     private Set<Fach> fächer;
 
-    public long getId() {
-        return id;
+    public Regal(String name, Integer max_anzahl_faecher, Set<Fach> fächer) {
+        this.name = name;
+        this.max_anzahl_faecher = max_anzahl_faecher;
+        this.fächer = fächer;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Regal() {
     }
 
     public String getName() {
@@ -38,11 +39,19 @@ public class Regal {
         this.name = name;
     }
 
-    public int getMax_anzahl_faecher() {
+    public Integer getMax_anzahl_faecher() {
         return max_anzahl_faecher;
     }
 
-    public void setMax_anzahl_faecher(int max_anzahl_faecher) {
+    public void setMax_anzahl_faecher(Integer max_anzahl_faecher) {
         this.max_anzahl_faecher = max_anzahl_faecher;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Set<Fach> getFächer() {
+        return fächer;
     }
 }

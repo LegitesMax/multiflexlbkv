@@ -22,8 +22,37 @@ public class Farbe {
     @JoinColumn(name = "produktId")
     private Produkt produkt;
  */
-    @OneToMany(mappedBy = "farbe")
-    private Set<FarbeProdukt> produkte = new HashSet<>();
+    @ManyToMany
+    private Set<Produkt> produkte = new HashSet<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Farbe() {
+    }
+
+    public Farbe(String name, Set<Produkt> produkte, Set<Material> materials) {
+        this.name = name;
+        this.produkte = produkte;
+        this.materials = materials;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Set<Produkt> getProdukte() {
+        return produkte;
+    }
+
+    public Set<Material> getMaterials() {
+        return materials;
+    }
 
     @OneToMany(mappedBy = "farbe")
     private Set<Material> materials = new HashSet<>();

@@ -10,22 +10,26 @@ public class Benutzer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @NotEmpty
     @NotNull
     @Column(nullable = false, unique = true, length = 32)
     private String benutzername;
 
+    public Benutzer(String benutzername, String hash_pass) {
+        this.benutzername = benutzername;
+        this.hash_pass = hash_pass;
+    }
+
+    public Benutzer() {
+    }
+
     @Column
     private String hash_pass;
 
-    public long getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getBenutzername() {

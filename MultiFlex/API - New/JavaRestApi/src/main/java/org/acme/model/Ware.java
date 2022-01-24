@@ -11,30 +11,33 @@ public class Ware {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @NotNull(message = "ware must have a Name")
     @Column(nullable = false, length = 64)
     private String name;
     @PositiveOrZero(message = "stock can not be negative")
     @Column(nullable = false)
-    private int bestand;
+    private Integer bestand;
     @PositiveOrZero(message = "min stock can not be negative")
     @Column
-    private int minbestand;
+    private Integer minbestand;
     @PositiveOrZero(message = "max stock can not be negative")
     @Column
-    private int maxbestand;
+    private Integer maxbestand;
 
     @OneToMany(mappedBy = "ware")
     private Set<Fach> fächer;
 
-    public long getId() {
-        return id;
+    public Ware() {
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Ware(String name, Integer bestand, Integer minbestand, Integer maxbestand, Set<Fach> fächer) {
+        this.name = name;
+        this.bestand = bestand;
+        this.minbestand = minbestand;
+        this.maxbestand = maxbestand;
+        this.fächer = fächer;
     }
 
     public String getName() {
@@ -45,27 +48,35 @@ public class Ware {
         this.name = name;
     }
 
-    public int getBestand() {
+    public Integer getBestand() {
         return bestand;
     }
 
-    public void setBestand(int bestand) {
+    public void setBestand(Integer bestand) {
         this.bestand = bestand;
     }
 
-    public int getMinbestand() {
+    public Integer getId() {
+        return id;
+    }
+
+    public Set<Fach> getFächer() {
+        return fächer;
+    }
+
+    public Integer getMinbestand() {
         return minbestand;
     }
 
-    public void setMinbestand(int minbestand) {
+    public void setMinbestand(Integer minbestand) {
         this.minbestand = minbestand;
     }
 
-    public int getMaxbestand() {
+    public Integer getMaxbestand() {
         return maxbestand;
     }
 
-    public void setMaxbestand(int maxbestand) {
+    public void setMaxbestand(Integer maxbestand) {
         this.maxbestand = maxbestand;
     }
 }

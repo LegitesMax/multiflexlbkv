@@ -18,7 +18,7 @@ public class Material {
     private String name;
 
     @Column(nullable = false)
-    private int dimension;
+    private Integer dimension;
 /*
     @Column(nullable = false)
     private int farbe_id;
@@ -41,18 +41,54 @@ public class Material {
     @MapsId("id")
     private Farbe farbe;
 
-    @OneToMany(mappedBy = "material")
-    private Set<ProduktMaterial> produkts = new HashSet<>();
+    @ManyToMany
+    private Set<Produkt> produkte = new HashSet<>();
 
-    public Ware getWare() {
-        return ware;
+    public Material(String name, Integer dimension, Ware ware, Lieferant lieferant, Farbe farbe, Set<Produkt> produkte) {
+        this.name = name;
+        this.dimension = dimension;
+        this.ware = ware;
+        this.lieferant = lieferant;
+        this.farbe = farbe;
+        this.produkte = produkte;
+    }
+
+    public Material() {
     }
 
     public String getName() {
         return name;
     }
 
-    public int getDimension() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getDimension() {
         return dimension;
+    }
+
+    public void setDimension(Integer dimension) {
+        this.dimension = dimension;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Ware getWare() {
+        return ware;
+    }
+
+    public Lieferant getLieferant() {
+        return lieferant;
+    }
+
+    public Farbe getFarbe() {
+        return farbe;
+    }
+
+    public Set<Produkt> getProdukte() {
+        return produkte;
     }
 }

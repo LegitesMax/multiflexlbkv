@@ -80,9 +80,18 @@
             let fach = JSON.parse(arg3);
 
             google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawVisualization);
+            google.charts.setOnLoadCallback(drawVisualization(regal, ware, fach));
 
-            function drawVisualization() {
+            
+        });
+
+        function changeInput() {
+            document.getElementById('regale').innerHTML = '';
+            var input = document.getElementById("myInput");
+            ipcRenderer.send('searchRegal', input.value);
+        }
+
+        function drawVisualization(regal, fach, ware) {
                   // Some raw data (not necessarily accurate)
                for (var i = 0; i < regal.length; i++){
 
@@ -91,7 +100,7 @@
                    for (var j = 0; j < ware.length; j++) {
 
                        for(var k = 0; k < fach.length; k++) {
-                           if(fach[k]["ware_id"] == ware[j]["ware_id"] && regal[i]["regal_id"] == fach[k]["regal_id"]){
+                           if(fach[k]["ware_id"] == ware[j]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
                                 var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
                                 fächer.push(data);
                            }
@@ -103,7 +112,7 @@
 
                    var options = {
                      title : regal[i]["name"],
-                     vAxis: {title: regal[i]["regal_id"]},
+                     vAxis: {title: regal[i]["id"]},
                      //hAxis: {title: 'Bestand'},
                      seriesType: 'bars',
                      series: {
@@ -118,13 +127,6 @@
                   chart.draw(dataResult, options);
                }
             }
-        });
-
-        function changeInput() {
-            document.getElementById('regale').innerHTML = '';
-            var input = document.getElementById("myInput");
-            ipcRenderer.send('searchRegal', input.value);
-        }
 
         ipcRenderer.on('getSearchedRegal-reply', (event, arg1, arg2, arg3) => {
         
@@ -133,45 +135,9 @@
             let fach = JSON.parse(arg3);
 
             google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawVisualization);
+            google.charts.setOnLoadCallback(drawVisualization(regal, fach, ware));
 
-            function drawVisualization() {
-
-               for (var i = 0; i < regal.length; i++){
-           
-                   var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
-                   var dataResult;
-                   for (var j = 0; j < ware.length; j++) {
-                       
-                       for(var k = 0; k < fach.length; k++) {
-                           
-                           if(fach[k]["ware_id"] == ware[j]["ware_id"] && regal[i]["regal_id"] == fach[k]["regal_id"]){
-                                var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
-                                fächer.push(data);
-                           }
-                       }
-                   }
-       
-                   console.log(fächer);
-                   var dataResult = google.visualization.arrayToDataTable(fächer);
-
-                  var options = {
-                    title : regal[i]["name"],
-                    vAxis: {title: regal[i]["regal_id"]},
-                    //hAxis: {title: 'Bestand'},
-                    seriesType: 'bars',
-                    series: {
-                      0:{color: 'green', visibleInLegend: true, type: 'line'},
-                      1:{color: 'red', visibleInLegend: true, type: 'line'},
-                      2:{color: 'orange', visibleInLegend: true}
-                    }
-                  };
-
-                  document.getElementById('regale').innerHTML += '<div class="card w-50 mx-4" id="regale"> <div id="chart_div' + i + '" style="height: 450px;"> </div></div>';
-                  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
-                  chart.draw(dataResult, options);
-               }
-            }
+            //drawVisualization(regal, fach, ware)
         });
 
         document.getElementById("open-add-window").addEventListener("click", () => {

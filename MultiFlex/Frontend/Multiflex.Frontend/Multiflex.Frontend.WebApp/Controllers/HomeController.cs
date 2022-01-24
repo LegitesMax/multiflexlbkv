@@ -66,10 +66,17 @@ namespace Multiflex.Frontend.WebApp.Controllers
                     return httpCliet.GetStringAsync("http://localhost:8080/fach");
                 });
 
+                Console.WriteLine(requestRegal);
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);
-                
+                Console.WriteLine("Json1");
+                Console.WriteLine(json1);
+                Console.WriteLine("Json2");
+                Console.WriteLine(json2);
+                Console.WriteLine("Json3");
+                Console.WriteLine(json3);
+
                 Electron.IpcMain.Send(mainWindow, "getSearchedRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
 
@@ -92,10 +99,16 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/fach");
                 });
-
+                Console.WriteLine(requestRegal);
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);
+                Console.WriteLine("Json1");
+                Console.WriteLine(json1);
+                Console.WriteLine("Json2");
+                Console.WriteLine(json2);
+                Console.WriteLine("Json3");
+                Console.WriteLine(json3);
                 
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });

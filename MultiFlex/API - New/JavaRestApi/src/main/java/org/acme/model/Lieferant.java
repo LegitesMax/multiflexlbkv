@@ -22,17 +22,19 @@ public class Lieferant {
 
     @PositiveOrZero
     @Column(nullable = false)
-    private int lieferzeit;
+    private Integer lieferzeit;
 
     @OneToMany(mappedBy = "lieferant")
     private Set<Material> materials;
 
-    public Integer getId() {
-        return id;
+    public Lieferant() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Lieferant(String name, String weblink, Integer lieferzeit, Set<Material> materials) {
+        this.name = name;
+        this.weblink = weblink;
+        this.lieferzeit = lieferzeit;
+        this.materials = materials;
     }
 
     public String getName() {
@@ -43,19 +45,27 @@ public class Lieferant {
         this.name = name;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setLieferzeit(Integer lieferzeit) {
+        this.lieferzeit = lieferzeit;
+    }
+
+    public Integer getLieferzeit() {
+        return lieferzeit;
+    }
+
+    public Set<Material> getMaterials() {
+        return materials;
+    }
+
     public String getWeblink() {
         return weblink;
     }
 
     public void setWeblink(String weblink) {
         this.weblink = weblink;
-    }
-
-    public int getLieferzeit() {
-        return lieferzeit;
-    }
-
-    public void setLieferzeit(int lieferzeit) {
-        this.lieferzeit = lieferzeit;
     }
 }

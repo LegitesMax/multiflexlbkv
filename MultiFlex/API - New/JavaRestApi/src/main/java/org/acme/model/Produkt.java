@@ -13,7 +13,7 @@ public class Produkt {
     private Integer id;
 
     @Column
-    private int preis;
+    private Integer preis;
 /*
     @OneToMany(mappedBy = "produkt")
     private Set<Farbe> myProdukts = new HashSet<>();
@@ -26,13 +26,39 @@ public class Produkt {
     @JoinColumn(name = "id")
     private Ware ware;
 
-    @OneToMany(mappedBy = "produkt")
-    private Set<FarbeProdukt> farben = new HashSet<>();
+    @ManyToMany
+    private Set<Farbe> farben = new HashSet<>();
 
-    @OneToMany(mappedBy = "produkt")
-    private Set<ProduktMaterial> materials = new HashSet<>();
+    @ManyToMany
+    private Set<Material> materialien = new HashSet<>();
+
+    public Produkt() {
+    }
+
+    public Produkt(Integer preis, Ware ware, Set<Farbe> farben, Set<Material> materialien) {
+        this.preis = preis;
+        this.ware = ware;
+        this.farben = farben;
+        this.materialien = materialien;
+    }
+
+    public Integer getPreis() {
+        return preis;
+    }
+
+    public Set<Farbe> getFarben() {
+        return farben;
+    }
 
     public Ware getWare() {
         return ware;
+    }
+
+    public Set<Material> getMaterialien() {
+        return materialien;
+    }
+
+    public void setPreis(Integer preis) {
+        this.preis = preis;
     }
 }
