@@ -80,7 +80,7 @@
             let fach = JSON.parse(arg3);
 
             google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawVisualization(regal, ware, fach));
+            google.charts.setOnLoadCallback(drawVisualization(regal, fach, ware));
 
             
         });
@@ -106,7 +106,6 @@
                            }
                        }
                    }
-       
                    console.log(fächer);
                    var dataResult = google.visualization.arrayToDataTable(fächer);
 
@@ -128,21 +127,21 @@
                }
             }
 
-        ipcRenderer.on('getSearchedRegal-reply', (event, arg1, arg2, arg3) => {
+        //ipcRenderer.on('getSearchedRegal-reply', (event, arg1, arg2, arg3) => {
         
-            let regal = JSON.parse(arg1);
-            let ware = JSON.parse(arg2);
-            let fach = JSON.parse(arg3);
+        //    let regal = JSON.parse(arg1);
+        //    let ware = JSON.parse(arg2);
+        //    let fach = JSON.parse(arg3);
 
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawVisualization(regal, fach, ware));
+        //    google.charts.load('current', {'packages':['corechart']});
+        //    google.charts.setOnLoadCallback(drawVisualization(regal, fach, ware));
 
-            //drawVisualization(regal, fach, ware)
-        });
+        //    //drawVisualization(regal, fach, ware)
+        //});
 
-        document.getElementById("open-add-window").addEventListener("click", () => {
-            ipcRenderer.send("open-add-window");
-        });
+        //document.getElementById("open-add-window").addEventListener("click", () => {
+        //    ipcRenderer.send("open-add-window");
+        //});
 
     </script>
 
