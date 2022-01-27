@@ -17,7 +17,7 @@ public class RegalMap {
         for (var fach : regal.getFaecher()){
             idList.add(fach.getId());
         }
-        regalDto.setFachIds(idList);
+        regalDto.setFach_ids(idList);
         return regalDto;
     }
     public List<RegalDto> setIds(List<Regal> regale){
@@ -28,7 +28,7 @@ public class RegalMap {
             for (var fach : regal.getFaecher()) {
                 idList.add(fach.getId());
             }
-            regalDto.setFachIds(idList);
+            regalDto.setFach_ids(idList);
             regalDtos.add(regalDto);
         }
         return regalDtos;

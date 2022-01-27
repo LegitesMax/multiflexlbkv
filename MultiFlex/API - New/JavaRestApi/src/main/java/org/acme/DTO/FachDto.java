@@ -3,9 +3,6 @@ package org.acme.DTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.acme.model.Ware;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,14 +22,14 @@ public class FachDto {
 
     //private WareDto ware;
 
-    Integer wareIds;
-    Integer regalIds;
+    Integer ware_id;
+    Integer regal_id;
 
-    public FachDto(Integer id, Integer position, Integer maxbestand, Integer wareIds, Integer regalIds) {
+    public FachDto(Integer id, Integer position, Integer maxbestand, Integer ware_id, Integer regal_id) {
         this.id = id;
         this.position = position;
         this.maxbestand = maxbestand;
-        this.wareIds = wareIds;
-        this.regalIds = regalIds;
+        this.ware_id = ware_id;
+        this.regal_id = regal_id;
     }
 }
