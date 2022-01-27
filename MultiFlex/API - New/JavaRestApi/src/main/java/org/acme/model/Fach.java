@@ -1,6 +1,7 @@
 package org.acme.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Fach")

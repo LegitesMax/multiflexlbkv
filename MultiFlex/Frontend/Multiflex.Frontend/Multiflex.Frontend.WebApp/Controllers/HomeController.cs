@@ -55,18 +55,20 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 {
                     return httpCliet.GetStringAsync($"http://localhost:8080/regal/{arg}");
                 });
+                Console.WriteLine(requestRegal);
 
                 var requestWare = await Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/ware");
                 });
 
+                Console.WriteLine(requestWare);
                 var requestFach = await Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/fach");
                 });
 
-                Console.WriteLine(requestRegal);
+                Console.WriteLine(requestWare);
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);
@@ -89,17 +91,17 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/regal");
                 });
-
+                Console.WriteLine(requestRegal);
                 var requestWare = await Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/ware");
                 });
-
+                Console.WriteLine(requestWare);
                 var requestFach = await Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/fach");
                 });
-                Console.WriteLine(requestRegal);
+                Console.WriteLine(requestFach);
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);

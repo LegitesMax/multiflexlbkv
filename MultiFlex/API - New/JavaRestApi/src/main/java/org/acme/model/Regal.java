@@ -20,12 +20,11 @@ public class Regal {
     private Integer max_anzahl_faecher;
 
     @OneToMany(mappedBy = "regal")
-    private Set<Fach> fächer;
+    private Set<Fach> faecher;
 
-    public Regal(String name, Integer max_anzahl_faecher, Set<Fach> fächer) {
+    public Regal(String name, Integer max_anzahl_faecher) {
         this.name = name;
         this.max_anzahl_faecher = max_anzahl_faecher;
-        this.fächer = fächer;
     }
 
     public Regal() {
@@ -51,7 +50,7 @@ public class Regal {
         return id;
     }
 
-    public Set<Fach> getFächer() {
-        return fächer;
+    public Set<Fach> getFaecher() {
+        return faecher;
     }
 }
