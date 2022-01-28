@@ -78,7 +78,7 @@
             let regal = JSON.parse(arg1);
             let ware = JSON.parse(arg2);
             let fach = JSON.parse(arg3);
-
+            //drawVisualization(regal, fach, ware);
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawVisualization(regal, fach, ware));
 
@@ -94,12 +94,16 @@
         function drawVisualization(regal, fach, ware) {
                   // Some raw data (not necessarily accurate)
                for (var i = 0; i < regal.length; i++){
-
+                   //alert(i);
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    var dataResult;
                    for (var j = 0; j < ware.length; j++) {
+                       //alert(j);
                        for(var k = 0; k < fach.length; k++) {
-                           for(var l = 0; l < ware["fach_ids"].length; l++){
+                           //alert(k);
+                           for(var l = 0; l < ware[j]["fach_ids"].length; l++){
+                               //alert(l);
+                               //var wareFachId = ware["fach_ids"];
                                    if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
                                        var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
                                        fächer.push(data);
@@ -114,9 +118,13 @@
                            
                        }
                    }
-                   console.log(fächer);
+                   //WORKING
+                   //alert(fächer);
+                   //console.log(fächer);
+                   //ERROR HERE
                    var dataResult = google.visualization.arrayToDataTable(fächer);
-
+                   //SUCCESSFULLY CRASHED
+                   alert(fächer);
                    var options = {
                      title : regal[i]["name"],
                      vAxis: {title: regal[i]["id"]},
