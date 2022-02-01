@@ -19,14 +19,17 @@ import java.util.List;
 
 @Path("/regal")
 public class RegalResource extends EntitiyManagerObject{
-/*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Regal> getAll() {
-        return entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
-    }
+
+    @Inject
+    RegalService regalService;
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public RegalDto getAll() {
+        return regalMapper.toResource(regalService.loadAllRegal());
+    }
+
+    /*@GET
     @Path("/{name}")
     public Regal getOne(@PathParam String name) {
         return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult();
@@ -35,15 +38,37 @@ public class RegalResource extends EntitiyManagerObject{
  */
     //@Inject
     //RegalMapper regalMapper;
-    RegalMap regalMap = new RegalMap();
+    //private RegalMap regalMap = new RegalMap();
 
-    @GET
+   /* @GET
     @Path("/{name}")
     public RegalDto getOne(@PathParam String name) {
         var regal = (entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult());
         //RegalMap regalMap = new RegalMap();
         return regalMap.setIds(regal);
-    }
+    }*/
+
+    /*@GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public List<RegalDto> getAll() {
+        var regalDtos = new LinkedList<RegalDto>();
+        var regale = entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
+        for(var regal : regale){
+            //RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), );
+            //regalDto.setId(regal.getId());
+            //regalDto.setName(regal.getName());
+            //regalDto.setMax_anzahl_faecher(regal.getMax_anzahl_faecher());
+            var fachSet = regal.getFaecher();
+            List<Integer> fachIds = new LinkedList<>();
+            for (var fach : fachSet){
+                fachIds.add(fach.getId());
+            }
+            Collections.sort(fachIds);
+            RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(),  fachIds);
+            regalDtos.add(regalDto);
+        }
+        return regalDtos;
+    }*/
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -75,25 +100,4 @@ public class RegalResource extends EntitiyManagerObject{
     }
  
  */
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<RegalDto> getAll() {
-        var regalDtos = new LinkedList<RegalDto>();
-        var regale = entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
-        for(var regal : regale){
-            //RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), );
-            //regalDto.setId(regal.getId());
-            //regalDto.setName(regal.getName());
-            //regalDto.setMax_anzahl_faecher(regal.getMax_anzahl_faecher());
-            var fachSet = regal.getFaecher();
-            List<Integer> fachIds = new LinkedList<>();
-            for (var fach : fachSet){
-                fachIds.add(fach.getId());
-            }
-            Collections.sort(fachIds);
-            RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(),  fachIds);
-            regalDtos.add(regalDto);
-        }
-        return regalDtos;
-    }
 }

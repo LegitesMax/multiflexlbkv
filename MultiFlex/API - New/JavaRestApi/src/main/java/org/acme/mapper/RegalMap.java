@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RegalMap {
-    @Inject
+    /*@Inject
     RegalMapper regalMapper;
 
     public RegalDto setIds(Regal regal){
@@ -32,5 +32,5 @@ public class RegalMap {
             regalDtos.add(regalDto);
         }
         return regalDtos;
-    }
+    }*/
 }

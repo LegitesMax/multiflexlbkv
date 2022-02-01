@@ -1,4 +1,14 @@
 package org.acme;
 
-public class RegalService {
+import org.acme.model.Regal;
+import org.mapstruct.Mapping;
+
+import java.util.List;
+
+public class RegalService extends EntitiyManagerObject{
+
+    public List<Regal> loadAllRegal() {
+        return entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
+    }
+
 }
