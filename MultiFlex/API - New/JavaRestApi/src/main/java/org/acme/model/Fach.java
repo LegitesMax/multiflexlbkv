@@ -1,7 +1,6 @@
 package org.acme.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "Fach")
@@ -26,20 +25,9 @@ public class Fach {
     @MapsId("id")
     private Ware ware;
 
-    public Integer getPosition() {
-        return position;
-    }
-
-    public void setPosition(Integer position) {
-        this.position = position;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Fach() {
-    }
+    @ManyToOne
+    @MapsId("id")
+    private Regal regal;
 
     public Fach(Integer position, Integer maxbestand, Ware ware, Regal regal) {
         this.position = position;
@@ -48,12 +36,23 @@ public class Fach {
         this.regal = regal;
     }
 
-    public Ware getWare() {
-        return ware;
+    public Fach() {
     }
 
-    public Regal getRegal() {
-        return regal;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 
     public Integer getMaxbestand() {
@@ -64,8 +63,19 @@ public class Fach {
         this.maxbestand = maxbestand;
     }
 
-    @ManyToOne
-    @MapsId("id")
-    private Regal regal;
+    public Ware getWare() {
+        return ware;
+    }
 
+    public void setWare(Ware ware) {
+        this.ware = ware;
+    }
+
+    public Regal getRegal() {
+        return regal;
+    }
+
+    public void setRegal(Regal regal) {
+        this.regal = regal;
+    }
 }

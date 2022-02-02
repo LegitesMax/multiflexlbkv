@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 @Path("/regal")
 public class RegalResource extends EntityManagerObject {
 
-
     @Inject RegalMapper regalMapper;
 
-    RegalService regalService = new RegalService();
+    @Inject
+    RegalService regalService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

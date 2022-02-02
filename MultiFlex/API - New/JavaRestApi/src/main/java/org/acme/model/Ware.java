@@ -16,12 +16,15 @@ public class Ware {
     @NotNull(message = "ware must have a Name")
     @Column(nullable = false, length = 64)
     private String name;
+
     @PositiveOrZero(message = "stock can not be negative")
     @Column(nullable = false)
     private Integer bestand;
+
     @PositiveOrZero(message = "min stock can not be negative")
     @Column
     private Integer minbestand;
+
     @PositiveOrZero(message = "max stock can not be negative")
     @Column
     private Integer maxbestand;

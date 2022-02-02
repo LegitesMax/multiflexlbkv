@@ -1,16 +1,17 @@
 package org.acme.mapper;
 
-import org.acme.DTO.RegalDto;
-import org.acme.model.Regal;
+import org.acme.DTO.FachDto;
+import org.acme.model.Fach;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "cdi")
-public interface RegalMapper {
+public interface FachMapper {
 
     @Mapping(target = "id")
-    RegalDto toDTO(Regal regal);
+    FachDto toDTO(Fach fach);
 
     @Mapping(target = "id", ignore = true)
-    Regal dtoToRegal(RegalDto regal);
+    Fach dtoToFach(FachDto fach);
+
 }

@@ -1,12 +1,6 @@
 package org.acme.DTO;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public class FachDto {
 
     private Integer id;
@@ -31,5 +25,32 @@ public class FachDto {
         this.maxbestand = maxbestand;
         this.ware_id = ware_id;
         this.regal_id = regal_id;
+    }
+
+    public FachDto() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
+
+    public Integer getMaxbestand() {
+        return maxbestand;
+    }
+
+    public void setMaxbestand(Integer maxbestand) {
+        this.maxbestand = maxbestand;
     }
 }

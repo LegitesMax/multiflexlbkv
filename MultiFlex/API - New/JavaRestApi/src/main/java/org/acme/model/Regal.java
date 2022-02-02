@@ -30,6 +30,14 @@ public class Regal {
     public Regal() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,11 +54,11 @@ public class Regal {
         this.max_anzahl_faecher = max_anzahl_faecher;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public Set<Fach> getFaecher() {
         return faecher;
+    }
+
+    public void setFaecher(Set<Fach> faecher) {
+        this.faecher = faecher;
     }
 }
