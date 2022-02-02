@@ -4,13 +4,16 @@ import org.acme.DTO.RegalDto;
 import org.acme.model.Regal;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "cdi")
 public interface RegalMapper {
-    @Mapping(target = "faecher", ignore = true)
-    @Mapping(target = "fachIds", ignore = true)
-    RegalDto toResource(List<Regal> regal);
-    //RegalDto regalToDto(Regal regal);
+
+    @Mapping(target = "name")
+    RegalDto toDTO(Regal regal);
+
+    @Mapping(target = "id", ignore = true)
+    Regal dtoToRegal(RegalDto regal);
 }

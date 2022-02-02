@@ -2,32 +2,46 @@ package org.acme;
 
 import org.acme.DTO.RegalDto;
 //import org.acme.mapper.RegalMapper;
-import org.acme.mapper.RegalMap;
 import org.acme.mapper.RegalMapper;
 import org.acme.model.Regal;
-import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Path("/regal")
-public class RegalResource extends EntitiyManagerObject{
+public class RegalResource extends EntityManagerObject {
 
-    @Inject
-    RegalService regalService;
+
+    @Inject RegalMapper regalMapper;
+
+    RegalService regalService = new RegalService();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public RegalDto getAll() {
-        return regalMapper.toResource(regalService.loadAllRegal());
+    public List<Regal> getAll() {
+        List<Regal> regalList = new ArrayList<>();
+
+        List<RegalDto> regals = regalService.loadAllRegal()
+                .stream()
+                .map(regal -> regalMapper.toDTO(regal))
+                .collect(Collectors.toList());
+
+        regals.forEach(x -> regalList.add(regalMapper.dtoToRegal(x)));
+        return regalList;
     }
+
+    /*@GET
+    @Path("/{name}")
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public RegalDto getOne(@PathParam String name) {
+        var regal = regalMapper.toDTO(regalService.loadOneRegal(name));
+        return regal;
+    }*/
 
     /*@GET
     @Path("/{name}")

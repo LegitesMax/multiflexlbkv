@@ -12,7 +12,7 @@ public class RegalMap {
     RegalMapper regalMapper;
 
     public RegalDto setIds(Regal regal){
-        var regalDto = regalMapper.regalToDto(regal);
+        var regalDto = regalMapper.toDTO(regal);
         var idList = new LinkedList<Integer>();
         for (var fach : regal.getFaecher()){
             idList.add(fach.getId());
@@ -23,7 +23,7 @@ public class RegalMap {
     public List<RegalDto> setIds(List<Regal> regale){
         var regalDtos = new LinkedList<RegalDto>();
         for (var regal : regale) {
-            var regalDto = regalMapper.regalToDto(regal);
+            var regalDto = regalMapper.toDTO(regal);
             var idList = new LinkedList<Integer>();
             for (var fach : regal.getFaecher()) {
                 idList.add(fach.getId());

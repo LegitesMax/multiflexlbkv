@@ -1,21 +1,9 @@
 package org.acme;
 
-import org.acme.DTO.RegalDto;
-import org.acme.DTO.WareDto;
-import org.acme.model.Regal;
-import org.acme.model.Ware;
-
-import javax.transaction.Transactional;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 @Path("/ware")
-public class WareResource extends EntitiyManagerObject{
+public class WareResource extends EntityManagerObject {
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -23,7 +11,7 @@ public class WareResource extends EntitiyManagerObject{
     //    return entityManager.createQuery("select w from Ware w", Ware.class).getResultList();
     //}
 
-    @GET
+   /* @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<WareDto> getAll() {
         var wareDtos = new LinkedList<WareDto>();
@@ -43,6 +31,6 @@ public class WareResource extends EntitiyManagerObject{
             wareDtos.add(wareDto);
         }
         return wareDtos;
-    }
+    }*/
 
 }

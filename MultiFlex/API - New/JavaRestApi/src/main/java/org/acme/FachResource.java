@@ -1,24 +1,11 @@
 package org.acme;
 
-import org.acme.DTO.FachDto;
 //import org.acme.mapper.FachMapper;
-import org.acme.DTO.RegalDto;
-import org.acme.model.Fach;
-import org.acme.model.Regal;
-import org.hibernate.Incubating;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 @Path("/fach")
-public class FachResource extends EntitiyManagerObject {
+public class FachResource extends EntityManagerObject {
 
     //@Inject
     //FachMapper fachMapper;
@@ -41,7 +28,7 @@ public class FachResource extends EntitiyManagerObject {
     //    }
     //    return fachDtos;
     //}
-    @GET
+    /*@GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<FachDto> getAll() {
         var fachDtos = new LinkedList<FachDto>();
@@ -56,5 +43,5 @@ public class FachResource extends EntitiyManagerObject {
             fachDtos.add(fachDto);
         }
         return fachDtos;
-    }
+    }*/
 }
