@@ -11,7 +11,7 @@ public interface WareMapper {
     @Mapping(target = "id")
     WareDto toDTO(Ware ware);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id")
     Ware dtoToWare(WareDto ware);
 
 }

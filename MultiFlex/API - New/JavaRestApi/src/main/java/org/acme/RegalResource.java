@@ -2,6 +2,7 @@ package org.acme;
 
 import org.acme.DTO.RegalDto;
 //import org.acme.mapper.RegalMapper;
+import org.acme.mapper.RegalMap;
 import org.acme.mapper.RegalMapper;
 import org.acme.model.Regal;
 
@@ -32,6 +33,13 @@ public class RegalResource extends EntityManagerObject {
                 .collect(Collectors.toList());
 
         regals.forEach(x -> regalList.add(regalMapper.dtoToRegal(x)));
+        for (var regal : regalList){
+            for(var regalDto : regals){
+                if(regalDto.getId() == regal.getId()){
+                        regalDto.setFach_ids(regalMap.setIds(regal));
+                }
+            }
+        }
         return regalList;
     }
 
@@ -52,7 +60,7 @@ public class RegalResource extends EntityManagerObject {
  */
     //@Inject
     //RegalMapper regalMapper;
-    //private RegalMap regalMap = new RegalMap();
+    private RegalMap regalMap = new RegalMap();
 
    /* @GET
     @Path("/{name}")

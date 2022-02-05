@@ -11,7 +11,7 @@ public interface FachMapper {
     @Mapping(target = "id")
     FachDto toDTO(Fach fach);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id")
     Fach dtoToFach(FachDto fach);
 
 }

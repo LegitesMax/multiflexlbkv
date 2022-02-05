@@ -11,6 +11,6 @@ public interface RegalMapper {
     @Mapping(target = "id")
     RegalDto toDTO(Regal regal);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id")
     Regal dtoToRegal(RegalDto regal);
 }
