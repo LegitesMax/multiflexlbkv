@@ -22,26 +22,26 @@ public class RegalResource extends EntityManagerObject {
     @Inject
     RegalService regalService;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Regal> getAll() {
-        List<Regal> regalList = new ArrayList<>();
-
-        List<RegalDto> regals = regalService.loadAllRegal()
-                .stream()
-                .map(regal -> regalMapper.toDTO(regal))
-                .collect(Collectors.toList());
-
-        regals.forEach(x -> regalList.add(regalMapper.dtoToRegal(x)));
-        for (var regal : regalList){
-            for(var regalDto : regals){
-                if(regalDto.getId() == regal.getId()){
-                        regalDto.setFach_ids(regalMap.setIds(regal));
-                }
-            }
-        }
-        return regalList;
-    }
+    //@GET
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //public List<Regal> getAll() {
+    //    List<Regal> regalList = new ArrayList<>();
+//
+    //    List<RegalDto> regals = regalService.loadAllRegal()
+    //            .stream()
+    //            .map(regal -> regalMapper.toDTO(regal))
+    //            .collect(Collectors.toList());
+//
+    //    regals.forEach(x -> regalList.add(regalMapper.dtoToRegal(x)));
+    //    for (var regal : regalList){
+    //        for(var regalDto : regals){
+    //            if(regalDto.getId() == regal.getId()){
+    //                    regalDto.setFach_ids(regalMap.setIds(regal));
+    //            }
+    //        }
+    //    }
+    //    return regalList;
+    //}
 
     /*@GET
     @Path("/{name}")
@@ -70,7 +70,7 @@ public class RegalResource extends EntityManagerObject {
         return regalMap.setIds(regal);
     }*/
 
-    /*@GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<RegalDto> getAll() {
         var regalDtos = new LinkedList<RegalDto>();
@@ -90,7 +90,7 @@ public class RegalResource extends EntityManagerObject {
             regalDtos.add(regalDto);
         }
         return regalDtos;
-    }*/
+    }
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

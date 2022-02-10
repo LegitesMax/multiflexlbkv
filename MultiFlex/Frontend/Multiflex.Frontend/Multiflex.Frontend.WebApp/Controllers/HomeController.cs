@@ -3,13 +3,12 @@ using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Multiflex.Frontend.WebApp.Models;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Multiflex.Frontend.WebApp.Controllers
 {
@@ -111,7 +110,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 Console.WriteLine(json2);
                 Console.WriteLine("Json3: Fach");
                 Console.WriteLine(json3);
-                
+
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
 

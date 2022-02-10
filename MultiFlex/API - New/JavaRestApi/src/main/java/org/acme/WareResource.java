@@ -25,23 +25,23 @@ public class WareResource extends EntityManagerObject {
 
     WareService wareService = new WareService();
 
+    //@GET
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //public List<Ware> getAll() {
+    //    List<Ware> wareList = new ArrayList<>();
+//
+    //    List<WareDto> regals = wareService.loadAllWare()
+    //            .stream()
+    //            .map(ware -> wareMapper.toDTO(ware))
+    //            .collect(Collectors.toList());
+//
+    //    regals.forEach(x -> wareList.add(wareMapper.dtoToWare(x)));
+    //    return wareList;
+    //}
+
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Ware> getAll() {
-        List<Ware> wareList = new ArrayList<>();
-
-        List<WareDto> regals = wareService.loadAllWare()
-                .stream()
-                .map(ware -> wareMapper.toDTO(ware))
-                .collect(Collectors.toList());
-
-        regals.forEach(x -> wareList.add(wareMapper.dtoToWare(x)));
-        return wareList;
-    }
-
-   /* @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<WareDto> getAll1() {
+    public List<WareDto> getAll() {
         var wareDtos = new ArrayList<WareDto>();
         var waren = entityManager.createQuery("select w from Ware w", Ware.class).getResultList();
         for(var ware : waren){
@@ -59,6 +59,6 @@ public class WareResource extends EntityManagerObject {
             wareDtos.add(wareDto);
         }
         return wareDtos;
-    }*/
+    }
 
 }
