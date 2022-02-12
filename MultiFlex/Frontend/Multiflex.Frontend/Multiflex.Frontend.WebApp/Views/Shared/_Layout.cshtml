@@ -12,12 +12,6 @@
             <script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    @{
-        if (@ViewData.Equals("Add"))
-        {
-            Write("sad");
-        }
-    }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -73,39 +67,29 @@
         document.getElementById("myInput").oninput = function() {changeInput()};
 
         ipcRenderer.on('getRegal-reply', (event, arg1, arg2, arg3) => {
-            
             let regal = JSON.parse(arg1);
             let ware = JSON.parse(arg2);
             let fach = JSON.parse(arg3);
-
             google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawVisualization);
 
             function drawVisualization() {
                for (var i = 0; i < regal.length; i++){
-                   //alert(i);
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    for (var j = 0; j < ware.length; j++) {
-                       //alert(j);
                        for(var k = 0; k < fach.length; k++) {
-                           //alert(k);
                            for(var l = 0; l < ware[j]["fach_ids"].length; l++){
-                               alert("gehtNed");
-                               //var wareFachId = ware["fach_ids"];
                                    if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
                                        var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
-                                       alert("geht0");
-                                       alert(data);
                                        fächer.push(data);
                                }
                            }
                            
                        }
                    }
-
-                   alert("geht1");
-                   alert(fächer);
                    var dataResult = google.visualization.arrayToDataTable(fächer);
+
+            
 
                    var options = {
                      title : regal[i]["name"],
@@ -119,77 +103,19 @@
                      }
                    };
                   
-                   //neues item für eine chart wird erstellt
                    document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 48%"> <div class="card w-100" id="regale"> <div class="w-100" id="chart_div' + i + '" style="height: 400px;"> </div> </div> </div> ';
-                   //hier wird jeweils das chart für das oben erstellte item hinzugefügt
                    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
-                   //hier wird dan das chart erstellt/"gezeichnet"
                    chart.draw(dataResult, options);
                }
             }
         });
+
 
         function changeInput() {
             document.getElementById('regale').innerHTML = '';
             var input = document.getElementById("myInput");
             ipcRenderer.send('searchRegal', input.value);
         }
-
-            /*function drawVisualization(regal, fach, ware) {
-                  // Some raw data (not necessarily accurate)
-               for (var i = 0; i < regal.length; i++){
-                   //alert(i);
-                   var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
-                   for (var j = 0; j < ware.length; j++) {
-                       //alert(j);
-                       for(var k = 0; k < fach.length; k++) {
-                           //alert(k);
-                           for(var l = 0; l < ware[j]["fach_ids"].length; l++){
-                               //alert(l);
-                               //var wareFachId = ware["fach_ids"];
-                                   if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
-                                       var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
-                                       alert(data);
-                                       fächer.push(data);
-                                       alert(fächer);
-                               }
-                               //if(fach[k]["ware_id"] == ware[j]["id"]){
-                               //    if (regal[i]["id"] == fach[k]["regal_id"]){
-                               //         var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
-                               //         fächer.push(data);
-                               //    }
-                               //}
-                           }
-                           
-                       }
-                   }
-                   //WORKING
-                   //alert(fächer);
-                   alert(fächer);
-                   //ERROR HERE
-                   var dataResult = google.visualization.arrayToDataTable(fächer);
-
-
-                   var options = {
-                     title : regal[i]["name"],
-                     vAxis: {title: regal[i]["id"]},
-                     //hAxis: {title: 'Bestand'},
-                     seriesType: 'bars',
-                     series: {
-                       0:{color: 'green', visibleInLegend: true, type: 'line'},
-                       1:{color: 'red', visibleInLegend: true, type: 'line'},
-                       2:{color: 'orange', visibleInLegend: true}
-                     }
-                   };
-                  
-                   //neues item für eine chart wird erstellt
-                   document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 49%"> <div class="card w-100" id="regale"> <div class="w-100" id="chart_div' + i + '" style="height: 400px;"> </div> </div> </div> ';
-                   //hier wird jeweils das chart für das oben erstellte item hinzugefügt
-                   var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
-                   //hier wird dan das chart erstellt/"gezeichnet"
-                   chart.draw(dataResult, options);
-               }
-            }*/
 
         ipcRenderer.on('getSearchedRegal-reply', (event, arg1, arg2, arg3) => {
         
@@ -202,27 +128,19 @@
 
             function drawVisualization() {
                for (var i = 0; i < regal.length; i++){
-                   //alert(i);
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    for (var j = 0; j < ware.length; j++) {
-                       //alert(j);
                        for(var k = 0; k < fach.length; k++) {
-                           //alert(k);
                            for(var l = 0; l < ware[j]["fach_ids"].length; l++){
-                               //alert(l);
-                               //var wareFachId = ware["fach_ids"];
                                    if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
                                        var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
-                                       alert(data);
                                        fächer.push(data);
-                                       alert(fächer);
                                }
                            }
                            
                        }
                    }
 
-                   alert(fächer);
                    var dataResult = google.visualization.arrayToDataTable(fächer);
 
                    var options = {

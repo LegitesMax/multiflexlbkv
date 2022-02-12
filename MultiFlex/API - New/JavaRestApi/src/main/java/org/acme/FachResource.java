@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,19 +23,19 @@ public class FachResource extends EntityManagerObject {
 
     FachService fachService = new FachService();
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Fach> getAll() {
-        List<Fach> fachList = new ArrayList<>();
-
-        List<FachDto> fachs = fachService.loadAllFach()
-                .stream()
-                .map(fach -> fachMapper.toDTO(fach))
-                .collect(Collectors.toList());
-
-        fachs.forEach(x -> fachList.add(fachMapper.dtoToFach(x)));
-        return fachList;
-    }
+    ///@GET
+    ///@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    ///public List<Fach> getAll() {
+    ///    List<Fach> fachList = new ArrayList<>();
+///
+    ///    List<FachDto> fachs = fachService.loadAllFach()
+    ///            .stream()
+    ///            .map(fach -> fachMapper.toDTO(fach))
+    ///            .collect(Collectors.toList());
+///
+    ///    fachs.forEach(x -> fachList.add(fachMapper.dtoToFach(x)));
+    ///    return fachList;
+    ///}
 
  /*
     //@GET
@@ -47,8 +48,8 @@ public class FachResource extends EntityManagerObject {
     //        //fachDtos.add(fachMapper.toResource(fach));
     //    }
     //    return fachDtos;
-    //}
-    /*@GET
+    //}*/
+    @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<FachDto> getAll() {
         var fachDtos = new LinkedList<FachDto>();
@@ -58,10 +59,11 @@ public class FachResource extends EntityManagerObject {
             //regalDto.setId(fach.getId());
             //regalDto.setName(fach.getName());
             //regalDto.setMax_anzahl_faecher(fach.getMax_anzahl_faecher());
-            var fachSet = fach.getWare().getId();
+            //var fachSet = fach.getWare().getId();
+            //System.out.println(fach.getRegal().getId());
             FachDto fachDto = new FachDto(fach.getId(), fach.getPosition(), fach.getMaxbestand(), fach.getWare().getId(), fach.getRegal().getId());
             fachDtos.add(fachDto);
         }
         return fachDtos;
-    }*/
+    }
 }

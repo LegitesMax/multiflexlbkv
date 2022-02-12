@@ -7,7 +7,7 @@ public class FachDto {
     private Integer position;
     /*
     @Column(nullable = false)
-    private long regal_id;
+    Integer regal_id;
 
     @Column
     private long ware_id;
@@ -16,8 +16,8 @@ public class FachDto {
 
     //private WareDto ware;
 
-    Integer ware_id;
-    Integer regal_id;
+    private Integer ware_id;
+    private Integer regal_id;
 
     public FachDto(Integer id, Integer position, Integer maxbestand, Integer ware_id, Integer regal_id) {
         this.id = id;
@@ -52,5 +52,21 @@ public class FachDto {
 
     public void setMaxbestand(Integer maxbestand) {
         this.maxbestand = maxbestand;
+    }
+
+    public Integer getWare_id() {
+        return ware_id;
+    }
+
+    public void setWare_id(Integer ware_id) {
+        this.ware_id = ware_id;
+    }
+
+    public Integer getRegal_id() {
+        return regal_id;
+    }
+
+    public void setRegal_id(Integer regal_id) {
+        this.regal_id = regal_id;
     }
 }
