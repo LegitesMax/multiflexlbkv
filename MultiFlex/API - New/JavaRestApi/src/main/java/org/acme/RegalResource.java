@@ -5,9 +5,11 @@ import org.acme.DTO.RegalDto;
 import org.acme.mapper.RegalMap;
 import org.acme.mapper.RegalMapper;
 import org.acme.model.Regal;
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -51,16 +53,41 @@ public class RegalResource extends EntityManagerObject {
         return regal;
     }*/
 
-    /*@GET
+    @GET
     @Path("/{name}")
-    public Regal getOne(@PathParam String name) {
-        return entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult();
+    public List<RegalDto> getOne(@PathParam String name) {
+        System.out.println(name);
+        var regalDtos = new LinkedList<RegalDto>();
+        var regale = entityManager.createQuery("select r from Regal r where r.name like lower(concat('%', concat(:name, '%')))", Regal.class).setParameter("name", name).getResultList();
+        for(var regal : regale){
+            //RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), );
+            //regalDto.setId(regal.getId());
+            //regalDto.setName(regal.getName());
+            //regalDto.setMax_anzahl_faecher(regal.getMax_anzahl_faecher());
+            var fachSet = regal.getFaecher();
+            List<Integer> fachIds = new LinkedList<>();
+            for (var fach : fachSet){
+                fachIds.add(fach.getId());
+            }
+            Collections.sort(fachIds);
+            RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(),  fachIds);
+            regalDtos.add(regalDto);
+        }
+        return regalDtos;
+    }
+    EntityManagerAdd entityManagerAdd;
+
+    @POST
+    @Path("/addRegal")
+    public Set<String> add(String[] input) {
+        Regal regal = new Regal(input[0], Integer.parseInt(input[1]));
+        entityManagerAdd.add(regal);
+        return null;
     }
 
- */
     //@Inject
     //RegalMapper regalMapper;
-    private RegalMap regalMap = new RegalMap();
+   // private RegalMap regalMap = new RegalMap();
 
    /* @GET
     @Path("/{name}")
@@ -91,6 +118,12 @@ public class RegalResource extends EntityManagerObject {
         }
         return regalDtos;
     }
+    Regal regal;
+    @POST
+    public Regal newRegal() {
+        return regal;
+    }
+
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

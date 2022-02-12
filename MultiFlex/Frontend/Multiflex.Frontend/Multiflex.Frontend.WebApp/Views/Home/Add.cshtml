@@ -1,5 +1,8 @@
 @{
     ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AddLayout.cshtml";
+
+    var test = new List<string>();
 }
 
 <div>
@@ -19,11 +22,23 @@
             <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalMaxFaecherInput" placeholder="Der standart Wert wird auf 20 gesezt">
           </div>
 
-          <button type="submit" class="btn btn-primary">Erstellen</button>
+          <button id="add-regal" type="submit" class="btn btn-primary">Erstellen</button>
           </center>
        </form>
     </div>
+    <script>
+        const { ipcRenderer } = require("electron");
+                
+        var regalName = document.getElementById("regalNameInput").value; 
+        //var input = document.getElementById("myInput");
+        var regalMaxFaecher = document.getElementById("regalMaxFaecherInput").value; 
+        //var result = [regalName, regalMaxFaecher];
 
+        document.getElementById("add-regal").addEventListener("click", () => {
+            ipcRenderer.send("add-regal", regalName);
+        });
+
+    </script>
 </div>
 
 

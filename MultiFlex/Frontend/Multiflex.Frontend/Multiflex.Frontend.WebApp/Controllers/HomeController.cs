@@ -3,11 +3,14 @@ using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Multiflex.Frontend.WebApp.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Multiflex.Frontend.WebApp.Controllers
@@ -44,7 +47,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 BrowserWindow win = await AddWindow("/Home/Add", options);
                 win.Show();
             });
-
+            
             Electron.IpcMain.On("searchRegal", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -73,10 +76,10 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var json3 = JArray.Parse(requestFach);
                 Console.WriteLine("Json1");
                 Console.WriteLine(json1);
-                Console.WriteLine("Json2");
-                Console.WriteLine(json2);
-                Console.WriteLine("Json3");
-                Console.WriteLine(json3);
+                //Console.WriteLine("Json2");
+                //Console.WriteLine(json2);
+                //Console.WriteLine("Json3");
+                //Console.WriteLine(json3);
 
                 Electron.IpcMain.Send(mainWindow, "getSearchedRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
@@ -123,6 +126,20 @@ namespace Multiflex.Frontend.WebApp.Controllers
         }
         public IActionResult Add()
         {
+            Electron.IpcMain.On("add-regal", async (arg) =>
+            {
+                //Console.WriteLine(arg);
+                var httpCliet = new HttpClient();
+                var path = $"http://localhost:{BridgeSettings.WebPort}";
+                httpCliet.BaseAddress = new Uri(path);
+                var input = new string[] { "Regal-3", "20" };
+                //var json = JsonConvert.SerializeObject(arg);
+                var json = JsonConvert.SerializeObject(input);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var result = httpCliet.PostAsync("/regal/addRegal", data);
+                //await httpCliet.SendAsync(arg);
+
+            });
             return View();
         }
 
