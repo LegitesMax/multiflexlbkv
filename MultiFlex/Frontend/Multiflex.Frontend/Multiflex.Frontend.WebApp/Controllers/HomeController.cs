@@ -126,7 +126,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
         }
         public IActionResult Add()
         {
-            Electron.IpcMain.On("add-regal", async (arg) =>
+            Electron.IpcMain.On("add-regal", (arg) =>
             {
                 //Console.WriteLine(arg);
                 var httpCliet = new HttpClient();

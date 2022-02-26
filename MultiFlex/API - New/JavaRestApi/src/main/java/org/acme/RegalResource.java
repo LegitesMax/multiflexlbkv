@@ -2,27 +2,34 @@ package org.acme;
 
 import org.acme.DTO.RegalDto;
 //import org.acme.mapper.RegalMapper;
+import org.acme.dao.RegalDao;
 import org.acme.mapper.RegalMap;
 import org.acme.mapper.RegalMapper;
 import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Path("/regal")
+@Transactional
 public class RegalResource extends EntityManagerObject {
 
     @Inject RegalMapper regalMapper;
 
     @Inject
     RegalService regalService;
+
+    @Inject
+    RegalDao regalDao;
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -75,27 +82,14 @@ public class RegalResource extends EntityManagerObject {
         }
         return regalDtos;
     }
-    EntityManagerAdd entityManagerAdd;
 
     @POST
-    @Path("/addRegal")
-    public Set<String> add(String[] input) {
-        Regal regal = new Regal(input[0], Integer.parseInt(input[1]));
-        entityManagerAdd.add(regal);
-        return null;
+    @Path("/addregal")
+    public Response add(RegalDto regalDto) {
+        var regal = regalMapper.dtoToRegal(regalDto);
+        regalDao.add(regal);
+        return Response.status(Response.Status.CREATED).build();
     }
-
-    //@Inject
-    //RegalMapper regalMapper;
-   // private RegalMap regalMap = new RegalMap();
-
-   /* @GET
-    @Path("/{name}")
-    public RegalDto getOne(@PathParam String name) {
-        var regal = (entityManager.createQuery("select r from Regal r where r.name = :name", Regal.class).setParameter("name", name).getSingleResult());
-        //RegalMap regalMap = new RegalMap();
-        return regalMap.setIds(regal);
-    }*/
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

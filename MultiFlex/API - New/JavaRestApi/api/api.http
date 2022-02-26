@@ -1,0 +1,15 @@
+GET http://localhost:8080/regal/Regal-1
+
+###
+POST http://localhost:8080/regal/addregal
+Content-Type: application/json
+
+  {
+    "name": "Regal-52344",
+    "max_anzahl_faecher": 10,
+    "fach_ids": [
+      1,
+      2,
+      3
+    ]
+  }
