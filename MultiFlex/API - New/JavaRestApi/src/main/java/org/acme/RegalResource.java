@@ -26,9 +26,6 @@ public class RegalResource extends EntityManagerObject {
     @Inject RegalMapper regalMapper;
 
     @Inject
-    RegalService regalService;
-
-    @Inject
     RegalDao regalDao;
 
     //@GET
@@ -87,6 +84,7 @@ public class RegalResource extends EntityManagerObject {
     @Path("/addregal")
     public Response add(RegalDto regalDto) {
         var regal = regalMapper.dtoToRegal(regalDto);
+        System.out.println(regal.toString());
         regalDao.add(regal);
         return Response.status(Response.Status.CREATED).build();
     }

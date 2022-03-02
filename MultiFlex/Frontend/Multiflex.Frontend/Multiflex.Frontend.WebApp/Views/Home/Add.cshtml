@@ -1,8 +1,6 @@
 @{
     ViewData["Title"] = "Add";
-    Layout = "~/Views/Shared/_AddLayout.cshtml";
-
-    var test = new List<string>();
+    //Layout = "~/Views/Shared/_AddLayout.cshtml";
 }
 
 <div>
@@ -12,7 +10,7 @@
         <form>
           <center>
           <div class="mb-5">
-            <label for="regalNameInput" class="form-label">Regalname</label>
+            <label class="form-label">Regalname</label>
             <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalNameInput" placeholder="Der regalName muss eindeuig sein und nur einmalig">
 
           </div>
@@ -29,14 +27,27 @@
     <script>
         const { ipcRenderer } = require("electron");
                 
-        var regalName = document.getElementById("regalNameInput").value; 
+        //var regalName = document.getElementById("regalNameInput").value; 
         //var input = document.getElementById("myInput");
-        var regalMaxFaecher = document.getElementById("regalMaxFaecherInput").value; 
+        //var regalMaxFaecher = document.getElementById("regalMaxFaecherInput"); 
         //var result = [regalName, regalMaxFaecher];
-
-        document.getElementById("add-regal").addEventListener("click", () => {
-            ipcRenderer.send("add-regal", regalName);
+        
+        //console.log(result);
+        //console.log(regalName);
+        //console.log(regalMaxFaecher);
+        document.getElementById('add-regal').addEventListener('click', () => {
+            ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
+            ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
+            ipcRenderer.send("add-regal");
         });
+
+        //document.getElementById('add-regal').addEventListener('click', () => {
+        //    ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
+        //});
+
+        //document.getElementById('add-regal').addEventListener('click', () => {
+        //    ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalNameInput").value);
+        //});
 
     </script>
 </div>

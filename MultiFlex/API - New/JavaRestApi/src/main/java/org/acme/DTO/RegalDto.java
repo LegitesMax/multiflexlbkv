@@ -1,8 +1,9 @@
 package org.acme.DTO;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RegalDto {
+public class RegalDto implements Serializable {
 
     private Integer id;
 

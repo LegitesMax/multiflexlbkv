@@ -21,8 +21,6 @@ public class FachResource extends EntityManagerObject {
     @Inject
     FachMapper fachMapper;
 
-    FachService fachService = new FachService();
-
     ///@GET
     ///@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     ///public List<Fach> getAll() {

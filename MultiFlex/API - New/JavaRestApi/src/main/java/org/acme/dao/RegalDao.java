@@ -13,7 +13,6 @@ public class RegalDao {
     @Inject
     EntityManager entityManager;
 
-
     public void add(Regal r) {
         entityManager.persist(r);
     }
