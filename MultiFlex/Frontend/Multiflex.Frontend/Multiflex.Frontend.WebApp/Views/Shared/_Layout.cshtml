@@ -34,7 +34,7 @@
                                 <a class="nav-link text-dark" href="../Home/Privacy">Bestellung/Versand</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="../Home/Lieferanten">Lieferanten</a>
+                                <a class="nav-link text-dark" href="../Lieferanten/Index">Lieferanten</a>
                             </li>
                         </ul>
                         <li class="navbar-nav nav-item">
@@ -132,9 +132,11 @@
                    for (var j = 0; j < ware.length; j++) {
                        for(var k = 0; k < fach.length; k++) {
                            for(var l = 0; l < ware[j]["fach_ids"].length; l++){
+                               if(ware[j]["fach_ids"][l] != 0 && fach[k]["id"] != 0 && regal[i]["id"] != 0 && fach[k]["regal_id"]){
                                    if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
                                        var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
                                        fächer.push(data);
+                                       }
                                }
                            }
                            

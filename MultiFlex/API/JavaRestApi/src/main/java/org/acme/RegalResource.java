@@ -84,9 +84,26 @@ public class RegalResource extends EntityManagerObject {
     @Path("/addregal")
     public Response add(RegalDto regalDto) {
         var regal = regalMapper.dtoToRegal(regalDto);
-        System.out.println(regal.toString());
+        //System.out.println(regal.toString());
+
+        //var valid = checkRegalName(regal.getName());
+        //if(valid){
+        //    regalDao.add(regal);
+        //}
         regalDao.add(regal);
         return Response.status(Response.Status.CREATED).build();
+    }
+    public boolean checkRegalName(String name){
+        boolean result = true;
+        var regale = entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
+
+        for (var regal : regale){
+            if (regal.getName() == name){
+                result = false;
+            }
+        }
+
+        return result;
     }
 
     @GET
@@ -99,23 +116,19 @@ public class RegalResource extends EntityManagerObject {
             //regalDto.setId(regal.getId());
             //regalDto.setName(regal.getName());
             //regalDto.setMax_anzahl_faecher(regal.getMax_anzahl_faecher());
+            if(regal.getFaecher().size() > 0) {
             var fachSet = regal.getFaecher();
-            List<Integer> fachIds = new LinkedList<>();
-            for (var fach : fachSet){
-                fachIds.add(fach.getId());
+                List<Integer> fachIds = new LinkedList<>();
+                for (var fach : fachSet) {
+                    fachIds.add(fach.getId());
+                }
+                Collections.sort(fachIds);
+                RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), fachIds);
+                regalDtos.add(regalDto);
             }
-            Collections.sort(fachIds);
-            RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(),  fachIds);
-            regalDtos.add(regalDto);
         }
         return regalDtos;
     }
-    Regal regal;
-    @POST
-    public Regal newRegal() {
-        return regal;
-    }
-
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

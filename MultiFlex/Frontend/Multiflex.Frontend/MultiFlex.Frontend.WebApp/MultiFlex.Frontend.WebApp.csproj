@@ -13,7 +13,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\NotShared\" />
-  </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ public class Regal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Positive(message = "can not have a negative value ")

@@ -119,11 +119,16 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
             return View();
         }
+        public IActionResult Lieferanten()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
             return View();
         }
+        
         //[HttpPost()]
         public IActionResult Add()
         {
@@ -131,34 +136,21 @@ namespace Multiflex.Frontend.WebApp.Controllers
             Electron.IpcMain.On("add-regal-input-name", (arg) =>
             {
                 regal.name = arg.ToString();
-                Console.WriteLine(arg.ToString());
+                //Console.WriteLine(arg.ToString());
             });
             Electron.IpcMain.On("add-regal-input-max-value", (arg) =>
             {
                 regal.max_anzahl_faecher = Convert.ToInt32(arg.ToString());
-                Console.WriteLine(arg.ToString());
+                //Console.WriteLine(arg.ToString());
             });
-            Electron.IpcMain.On("add-regal", (arg) =>
+            Electron.IpcMain.On("add-regal", async (arg) =>
             {
-                ////Console.WriteLine(arg);
-                //var httpCliet = new HttpClient();
-                //var path = $"http://localhost:{BridgeSettings.WebPort}";
-                //httpCliet.BaseAddress = new Uri(path);
-                //var input = new string[] { "Regal-3", "20" };
-                ////var json = JsonConvert.SerializeObject(arg);
-                //var json = JsonConvert.SerializeObject(new string[] { "Regal-3", "20" });
-                //Console.WriteLine("Test " + arg.ToString());
-                //var json = JsonConvert.SerializeObject(new RegalDto {/*Id=5,*/ name="Regal5", max_anzahl_faecher=5, });
                 var json = JsonConvert.SerializeObject(regal);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                //var result = httpCliet.PostAsync("/regal/addRegal", data);
-                //Console.WriteLine("geht");
-                ////await httpCliet.SendAsync(arg);
-
                 var httpCliet = new HttpClient();
-                //Console.WriteLine(data.ToString());
-                httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
-                Console.WriteLine("test2");
+                await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
+                
+                //Console.WriteLine("test2");
             });
             return View();
         }
