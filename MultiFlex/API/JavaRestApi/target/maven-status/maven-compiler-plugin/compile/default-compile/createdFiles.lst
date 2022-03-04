@@ -9,7 +9,6 @@ org\acme\mapper\LieferantMapperImpl.class
 org\acme\WareService.class
 org\acme\DTO\FachDto.class
 org\acme\mapper\WareMapper.class
-META-INF\panache-archive.marker
 org\acme\dao\RegalDao.class
 org\acme\model\Fach.class
 org\acme\FachResource.class
