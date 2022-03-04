@@ -1,8 +1,11 @@
+org\acme\dao\LieferantDao.class
+org\acme\DTO\LieferantDto.class
 org\acme\DTO\WareDto.class
 org\acme\model\Produkt.class
 org\acme\EntityManagerAdd.class
 org\acme\model\Ware.class
 org\acme\mapper\RegalMapperImpl.class
+org\acme\mapper\LieferantMapperImpl.class
 org\acme\WareService.class
 org\acme\DTO\FachDto.class
 org\acme\mapper\WareMapper.class
@@ -23,4 +26,4 @@ org\acme\mapper\RegalMapper.class
 org\acme\DTO\RegalDto.class
 org\acme\mapper\WareMapperImpl.class
 org\acme\EntityManagerObject.class
-org\acme\RegalResource.class
+org\acme\mapper\LieferantMapper.class
