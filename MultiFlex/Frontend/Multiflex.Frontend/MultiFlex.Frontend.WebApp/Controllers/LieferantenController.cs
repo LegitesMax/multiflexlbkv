@@ -18,17 +18,19 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 var httpCliet = new HttpClient();
 
-                var requestRegal = await Task.Run(() =>
+                var requestlieferant = Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/Lieferant");
                 });
-                Console.WriteLine(requestRegal);
-                var json = JArray.Parse(requestRegal);
+
+                Console.WriteLine(requestlieferant);
+                var json = JArray.Parse(await requestlieferant);
                 Console.WriteLine("Json1: Lieferant");
                 Console.WriteLine(json);
 
                 Electron.IpcMain.Send(mainWindow, "getLieferant-reply", json.ToString());
             });
+
             return View();
         }
     }
