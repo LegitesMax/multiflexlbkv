@@ -18,3 +18,11 @@ insert into Fach (position, regal_id, ware_id, maxbestand) values(2, 1, 2, 20);
 insert into Fach (position, regal_id, ware_id, maxbestand) values(3, 1, 5, 20);
 insert into Fach (position, regal_id, ware_id, maxbestand) values(1, 2, 3, 20);
 insert into Fach (position, regal_id, ware_id, maxbestand) values(2, 2, 4, 20);
+
+--Material
+--insert into Material (name, dimension) values ('Schrott', 3);
+
+--Lieferant
+insert into Lieferant (name, weblink, lieferzeit) values('Amazon', 'https://www.amazon.de/', 3);
+insert into Lieferant (name, weblink, lieferzeit) values('Amazon2', 'https://www.amazon.de/', 3);
+insert into Lieferant (name, weblink, lieferzeit) values('Amazon3', 'https://www.amazon.de/', 3);

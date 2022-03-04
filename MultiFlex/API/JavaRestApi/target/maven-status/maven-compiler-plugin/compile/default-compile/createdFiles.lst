@@ -14,7 +14,6 @@ org\acme\dao\RegalDao.class
 org\acme\model\Fach.class
 org\acme\FachResource.class
 org\acme\mapper\FachMapper.class
-org\acme\mapper\RegalMap.class
 org\acme\WareResource.class
 org\acme\model\Benutzer.class
 org\acme\model\Farbe.class
