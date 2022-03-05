@@ -1,9 +1,6 @@
 GET http://localhost:8080/regal/Regal-1
 
 ###
-GET http://localhost:8080/lieferant
-
-###
 POST http://localhost:8080/regal/addregal
 Content-Type: application/json
 

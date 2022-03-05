@@ -7,9 +7,9 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "cdi")
 public interface LieferantMapper {
-    @Mapping(target = "id")
+    //@Mapping(target = "id")
     LieferantDto toDTO(Lieferant lieferant);
 
-    @Mapping(target = "id")
+    //@Mapping(target = "id")
     Lieferant dtoToRegal(LieferantDto lieferant);
 }

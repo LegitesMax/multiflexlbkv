@@ -1,16 +1,15 @@
 package org.acme.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.acme.model.Material;
+
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class LieferantDto {
     private Integer id;
 
@@ -21,4 +20,15 @@ public class LieferantDto {
     private Integer lieferzeit;
 
     private List<Integer> material_ids;
+
+    public LieferantDto() {
+    }
+
+    public LieferantDto(Integer id, String name, String weblink, Integer lieferzeit, List<Integer> material_ids) {
+        this.id = id;
+        this.name = name;
+        this.weblink = weblink;
+        this.lieferzeit = lieferzeit;
+        this.material_ids = material_ids;
+    }
 }

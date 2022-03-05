@@ -26,3 +26,4 @@ insert into Fach (position, regal_id, ware_id, maxbestand) values(2, 2, 4, 20);
 insert into Lieferant (name, weblink, lieferzeit) values('Amazon', 'https://www.amazon.de/', 3);
 insert into Lieferant (name, weblink, lieferzeit) values('Amazon2', 'https://www.amazon.de/', 3);
 insert into Lieferant (name, weblink, lieferzeit) values('Amazon3', 'https://www.amazon.de/', 3);
+--insert into Lieferant (name, weblink, lieferzeit) values('Holzgruber', 'https://www.holzgruber.com/', 3);

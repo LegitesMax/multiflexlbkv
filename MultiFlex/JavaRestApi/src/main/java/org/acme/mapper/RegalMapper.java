@@ -7,6 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "cdi")
 public interface RegalMapper {
+
     @Mapping(target = "id")
     RegalDto toDTO(Regal regal);
 
