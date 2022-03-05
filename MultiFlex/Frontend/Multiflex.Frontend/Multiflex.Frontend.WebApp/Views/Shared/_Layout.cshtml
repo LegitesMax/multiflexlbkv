@@ -171,8 +171,12 @@
             ipcRenderer.send("open-add-window");
         });
 
+        ipcRenderer.on('getLieferant-reply', (arg) => {
+            for (var j = 0; j < arg.length; j++) {
+                document.getElementById('createRow').innerHTML += '<div class="col">'+ +'</div> <div class="col">'+ +'</div> <div class="col">'+ +'</div> <div class="col">ändern</div>';
+            }
+        });
     </script>
-
    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

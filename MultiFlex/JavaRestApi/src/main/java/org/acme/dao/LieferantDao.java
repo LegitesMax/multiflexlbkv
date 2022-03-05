@@ -1,11 +1,8 @@
 package org.acme.dao;
 
 import org.acme.DTO.LieferantDto;
-import org.acme.DTO.RegalDto;
 import org.acme.mapper.LieferantMapper;
-import org.acme.mapper.RegalMapper;
 import org.acme.model.Lieferant;
-import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -48,7 +45,7 @@ public class LieferantDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<LieferantDto> getAll() {
-        var lieferantsDto = new LinkedList<>();
+        var lieferantsDto = new LinkedList<LieferantDto>();
         var lieferants = loadAllRegal();
         for (var lieferant : lieferants){
             lieferantsDto.add(lieferantMapper.toDTO(lieferant));

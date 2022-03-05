@@ -68,4 +68,8 @@ public class Lieferant {
     public void setWeblink(String weblink) {
         this.weblink = weblink;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
