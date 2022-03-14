@@ -1,6 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
+import org.acme.mapper.ObjectMapper;
 import org.acme.mapper.RegalMapper;
 import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -25,11 +26,8 @@ public class RegalDao {
     @Inject
     EntityManager entityManager;
 
-    //@Inject
-    //RegalDao regalDao;
-
     @Inject
-    RegalMapper regalMapper;
+    ObjectMapper objectMapper;
 
     public void add(Regal r) {
         entityManager.persist(r);
@@ -64,13 +62,7 @@ public class RegalDao {
     @POST
     @Path("/addregal")
     public Response add(RegalDto regalDto) {
-        var regal = regalMapper.dtoToRegal(regalDto);
-        //System.out.println(regal.toString());
-
-        //var valid = checkRegalName(regal.getName());
-        //if(valid){
-        //    regalDao.add(regal);
-        //}
+        var regal = objectMapper.fromDto(regalDto);
         add(regal);
         return Response.status(Response.Status.CREATED).build();
     }

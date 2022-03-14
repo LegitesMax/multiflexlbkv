@@ -2,6 +2,7 @@ org\acme\dao\LieferantDao.class
 org\acme\DTO\LieferantDto.class
 org\acme\DTO\WareDto.class
 org\acme\model\Produkt.class
+org\acme\Main.class
 org\acme\model\Ware.class
 org\acme\mapper\RegalMapperImpl.class
 org\acme\mapper\LieferantMapperImpl.class

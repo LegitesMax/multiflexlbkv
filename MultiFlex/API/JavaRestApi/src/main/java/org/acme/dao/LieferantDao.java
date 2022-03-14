@@ -1,7 +1,9 @@
 package org.acme.dao;
 
 import org.acme.DTO.LieferantDto;
+import org.acme.DTO.MaterialDto;
 import org.acme.mapper.LieferantMapper;
+import org.acme.mapper.ObjectMapper;
 import org.acme.model.Lieferant;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -9,9 +11,11 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +29,7 @@ public class LieferantDao {
     //RegalDao regalDao;
 
     @Inject
-    LieferantMapper lieferantMapper;
+    ObjectMapper objectMapper;
 
     public void add(Lieferant l) {
         entityManager.persist(l);
@@ -48,8 +52,18 @@ public class LieferantDao {
         var lieferantsDto = new LinkedList<LieferantDto>();
         var lieferants = loadAllRegal();
         for (var lieferant : lieferants){
-            lieferantsDto.add(lieferantMapper.toDTO(lieferant));
+            lieferantsDto.add(objectMapper.toDTO(lieferant));
         }
         return lieferantsDto;
+    }
+
+    @POST
+    @Path("/addlieferant")
+    public Response add(LieferantDto lieferantDto) {
+        var lieferant = objectMapper.fromDto(lieferantDto);
+
+        add(lieferant);
+
+        return Response.status(Response.Status.CREATED).build();
     }
 }
