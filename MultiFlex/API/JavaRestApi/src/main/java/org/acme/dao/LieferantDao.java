@@ -2,9 +2,11 @@ package org.acme.dao;
 
 import org.acme.DTO.LieferantDto;
 import org.acme.DTO.MaterialDto;
+import org.acme.DTO.RegalDto;
 import org.acme.mapper.LieferantMapper;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Lieferant;
+import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -16,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,5 +68,22 @@ public class LieferantDao {
         add(lieferant);
 
         return Response.status(Response.Status.CREATED).build();
+    }
+
+    public List<LieferantDto> lieferantToDto(List<Lieferant> lieferanten){
+        var lieferantDtos = new LinkedList<LieferantDto>();
+        for(var lieferant : lieferanten){
+            if(lieferant.getMaterialien().size() > 0) {
+                var materialSet = lieferant.getMaterialien();
+                List<Integer> matherialIds = new LinkedList<>();
+                for (var lieferant2 : materialSet) {
+                    matherialIds.add(lieferant2.getId());
+                }
+                Collections.sort(matherialIds);
+                LieferantDto lieferantDto = new LieferantDto(lieferant.getId(), lieferant.getName(), lieferant.getWeblink(), lieferant.getLieferzeit(),matherialIds);
+                lieferantDtos.add(lieferantDto);
+            }
+        }
+        return lieferantDtos;
     }
 }

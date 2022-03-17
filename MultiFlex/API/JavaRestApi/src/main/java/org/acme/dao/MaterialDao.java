@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,5 +67,22 @@ public class MaterialDao {
 
         add(material);
         return Response.status(Response.Status.CREATED).build();
+    }
+
+    public List<MaterialDto> materialToDto(List<Material> materialien){
+        var materialDtos = new LinkedList<MaterialDto>();
+        for(var material : materialien){
+            if(material.getLieferanten().size() > 0) {
+                var lieferantenSet = material.getLieferanten();
+                List<Integer> lieferantenIds = new LinkedList<>();
+                for (var material2 : lieferantenSet) {
+                    lieferantenIds.add(material2.getId());
+                }
+                Collections.sort(lieferantenIds);
+                MaterialDto materialDto = new MaterialDto(material.getId(), material.getName(), material.getDimension(),lieferantenIds);
+                materialDtos.add(materialDto);
+            }
+        }
+        return materialDtos;
     }
 }
