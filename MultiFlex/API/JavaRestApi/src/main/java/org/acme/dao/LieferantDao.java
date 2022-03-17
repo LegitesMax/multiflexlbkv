@@ -1,12 +1,9 @@
 package org.acme.dao;
 
 import org.acme.DTO.LieferantDto;
-import org.acme.DTO.MaterialDto;
-import org.acme.DTO.RegalDto;
-import org.acme.mapper.LieferantMapper;
+import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Lieferant;
-import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -28,15 +25,10 @@ public class LieferantDao {
     @Inject
     EntityManager entityManager;
 
-    //@Inject
-    //RegalDao regalDao;
-
     @Inject
     ObjectMapper objectMapper;
 
-    public void add(Lieferant l) {
-        entityManager.persist(l);
-    }
+    InsertManager insertManager;
 
     public List<Lieferant> loadAllRegal() {
         return entityManager.createQuery("select l from Lieferant l", Lieferant.class).getResultList();
@@ -52,11 +44,9 @@ public class LieferantDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<LieferantDto> getAll() {
-        var lieferantsDto = new LinkedList<LieferantDto>();
+        //var lieferantsDto = new LinkedList<LieferantDto>();
         var lieferants = loadAllRegal();
-        for (var lieferant : lieferants){
-            lieferantsDto.add(objectMapper.toDTO(lieferant));
-        }
+        var lieferantsDto = lieferantToDto(lieferants);
         return lieferantsDto;
     }
 
@@ -65,7 +55,7 @@ public class LieferantDao {
     public Response add(LieferantDto lieferantDto) {
         var lieferant = objectMapper.fromDto(lieferantDto);
 
-        add(lieferant);
+        insertManager.add(lieferant);
 
         return Response.status(Response.Status.CREATED).build();
     }

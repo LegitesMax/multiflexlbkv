@@ -1,10 +1,6 @@
 package org.acme;
 
-import org.acme.DTO.RegalDto;
 import org.acme.DTO.WareDto;
-import org.acme.mapper.RegalMapper;
-import org.acme.mapper.WareMapper;
-import org.acme.model.Regal;
 import org.acme.model.Ware;
 
 import javax.inject.Inject;
@@ -15,15 +11,14 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("/ware")
 public class WareResource extends EntityManagerObject {
 
-    @Inject
-    WareMapper wareMapper;
+    //@Inject
+    //WareMapper wareMapper;
 
-    WareService wareService = new WareService();
+    //WareService wareService = new WareService();
 
     //@GET
     //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

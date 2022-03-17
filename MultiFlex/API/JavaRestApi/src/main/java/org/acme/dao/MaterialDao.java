@@ -1,11 +1,8 @@
 package org.acme.dao;
 
-import org.acme.DTO.LieferantDto;
 import org.acme.DTO.MaterialDto;
-import org.acme.DTO.RegalDto;
-import org.acme.mapper.LieferantMapper;
+import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
-import org.acme.model.Lieferant;
 import org.acme.model.Material;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -28,15 +25,10 @@ public class MaterialDao {
     @Inject
     EntityManager entityManager;
 
-    //@Inject
-    //RegalDao regalDao;
-
     @Inject
     ObjectMapper objectMapper;
 
-    public void add(Material m) {
-        entityManager.persist(m);
-    }
+    InsertManager insertManager;
 
     public List<Material> loadAllRegal() {
         return entityManager.createQuery("select m from Material m", Material.class).getResultList();
@@ -52,11 +44,9 @@ public class MaterialDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<MaterialDto> getAll() {
-        var materialDto = new LinkedList<MaterialDto>();
+        //var materialDto = new LinkedList<MaterialDto>();
         var materials = loadAllRegal();
-        for (var material : materials){
-            materialDto.add(objectMapper.toDTO(material));
-        }
+        var materialDto = materialToDto(materials);
         return materialDto;
     }
 
@@ -65,7 +55,7 @@ public class MaterialDao {
     public Response add(MaterialDto materialDto) {
         var material = objectMapper.fromDto(materialDto);
 
-        add(material);
+        insertManager.add(material);
         return Response.status(Response.Status.CREATED).build();
     }
 

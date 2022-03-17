@@ -1,15 +1,14 @@
 package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
+import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
-import org.acme.mapper.RegalMapper;
 import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,9 +29,7 @@ public class RegalDao {
     @Inject
     ObjectMapper objectMapper;
 
-    public void add(Regal r) {
-        entityManager.persist(r);
-    }
+    InsertManager insertManager;
 
     public List<Regal> loadAllRegal() {
         return entityManager.createQuery("select r from Regal r", Regal.class).getResultList();
@@ -62,9 +59,9 @@ public class RegalDao {
 
     @POST
     @Path("/addregal")
-    public Response add(RegalDto regalDto) {
+    public Response addRegal(RegalDto regalDto) {
         var regal = objectMapper.fromDto(regalDto);
-        add(regal);
+        insertManager.add(regal);
         return Response.status(Response.Status.CREATED).build();
     }
 

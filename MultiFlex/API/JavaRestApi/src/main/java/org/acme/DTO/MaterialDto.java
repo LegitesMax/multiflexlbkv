@@ -26,7 +26,7 @@ public class MaterialDto {
 
     private Integer dimension;
 
-    private List<Integer> ware_ids;
+    private List<Integer> lieferant_ids;
 
     //private Ware ware;
 //
