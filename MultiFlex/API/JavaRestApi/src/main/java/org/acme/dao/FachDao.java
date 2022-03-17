@@ -68,6 +68,6 @@ public class FachDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-        entityManager.remove(entity);
+        insertManager.remove(entity);
     }
 }
