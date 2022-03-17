@@ -12,6 +12,7 @@ import org.acme.model.Ware;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -25,11 +26,13 @@ public class MaterialDto {
 
     private Integer dimension;
 
-    private Ware ware;
+    private List<Integer> ware_ids;
 
-    private Lieferant lieferant;
-
-    private Farbe farbe;
-
-    private Set<Produkt> produkte = new HashSet<>();
+    //private Ware ware;
+//
+    //private Lieferant lieferant;
+//
+    //private Farbe farbe;
+//
+    //private Set<Produkt> produkte = new HashSet<>();
 }
