@@ -1,8 +1,15 @@
 package org.acme.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "Fach")
 public class Fach {
 
@@ -33,49 +40,6 @@ public class Fach {
         this.position = position;
         this.maxbestand = maxbestand;
         this.ware = ware;
-        this.regal = regal;
-    }
-
-    public Fach() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getPosition() {
-        return position;
-    }
-
-    public void setPosition(Integer position) {
-        this.position = position;
-    }
-
-    public Integer getMaxbestand() {
-        return maxbestand;
-    }
-
-    public void setMaxbestand(Integer maxbestand) {
-        this.maxbestand = maxbestand;
-    }
-
-    public Ware getWare() {
-        return ware;
-    }
-
-    public void setWare(Ware ware) {
-        this.ware = ware;
-    }
-
-    public Regal getRegal() {
-        return regal;
-    }
-
-    public void setRegal(Regal regal) {
         this.regal = regal;
     }
 }

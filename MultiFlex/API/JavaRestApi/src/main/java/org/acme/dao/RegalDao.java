@@ -9,6 +9,7 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -66,6 +67,7 @@ public class RegalDao {
         add(regal);
         return Response.status(Response.Status.CREATED).build();
     }
+
 
     public List<RegalDto> regalToDto(List<Regal> regale){
         var regalDtos = new LinkedList<RegalDto>();
