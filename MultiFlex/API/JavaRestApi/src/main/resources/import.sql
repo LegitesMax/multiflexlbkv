@@ -19,10 +19,13 @@ insert into Fach (position, regal_id, ware_id, maxbestand) values(3, 1, 5, 20);
 insert into Fach (position, regal_id, ware_id, maxbestand) values(1, 2, 3, 20);
 insert into Fach (position, regal_id, ware_id, maxbestand) values(2, 2, 4, 20);
 
---Material
---insert into Material (name, dimension) values ('Schrott', 3);
-
 --Lieferant
 insert into Lieferant (name, weblink, lieferzeit) values('Amazon', 'https://www.amazon.de/', 3);
-insert into Lieferant (name, weblink, lieferzeit) values('Amazon2', 'https://www.amazon.de/', 3);
-insert into Lieferant (name, weblink, lieferzeit) values('Amazon3', 'https://www.amazon.de/', 3);
+insert into Lieferant (name, weblink, lieferzeit) values('Obi', 'https://www.obi.at ', 3);
+insert into Lieferant (name, weblink, lieferzeit) values('Bauhaus', 'https://www.bauhaus.at/', 3);
+
+--Material
+insert into Material (name, dimension, lieferant_id) values ('Schrott', 3, 1);
+insert into Material (name, bestand, dimension, lieferant_id) values ('Holzplatte-Schwarz', 50, 2, 2);
+insert into Material (name, bestand, dimension, lieferant_id) values ('Holzplatte-Braun', 50, 2, 2);
+insert into Material (name, bestand, dimension, lieferant_id) values ('Holzplatte-Braun', 50, 2, 1);

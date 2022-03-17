@@ -7,6 +7,7 @@ import org.acme.model.Fach;
 import org.acme.model.Material;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.LinkedList;
 import java.util.List;
+
 
 public class FachDao {
     @Inject

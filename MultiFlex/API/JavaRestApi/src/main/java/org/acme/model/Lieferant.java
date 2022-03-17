@@ -24,7 +24,7 @@ public class Lieferant {
     @Column(nullable = false)
     private Integer lieferzeit;
 
-    @OneToMany(mappedBy = "lieferant")
+    @ManyToMany
     private Set<Material> materials;
 
     public Lieferant() {

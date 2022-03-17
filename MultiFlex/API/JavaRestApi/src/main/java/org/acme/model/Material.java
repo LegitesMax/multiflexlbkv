@@ -1,13 +1,20 @@
 package org.acme.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Material")
-public class Material {
+public class Material{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,23 +26,13 @@ public class Material {
 
     @Column(nullable = false)
     private Integer dimension;
-/*
-    @Column(nullable = false)
-    private int farbe_id;
 
-    @Column
-    private int lieferant_id;
+    //@OneToOne
+    //@JoinColumn(name = "id")
+    //private Ware ware;
 
-    @Column
-    private int produkt_id;
- */
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Ware ware;
-
-    @ManyToOne
-    @MapsId("id")
-    private Lieferant lieferant;
+    @ManyToMany
+    private Set<Lieferant> lieferanten;
 
     @ManyToOne
     @MapsId("id")
@@ -44,51 +41,11 @@ public class Material {
     @ManyToMany
     private Set<Produkt> produkte = new HashSet<>();
 
-    public Material(String name, Integer dimension, Ware ware, Lieferant lieferant, Farbe farbe, Set<Produkt> produkte) {
+    public Material(String name, Integer dimension, Lieferant lieferant, Farbe farbe) {
         this.name = name;
         this.dimension = dimension;
-        this.ware = ware;
-        this.lieferant = lieferant;
+        //this.ware = ware;
         this.farbe = farbe;
         this.produkte = produkte;
-    }
-
-    public Material() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getDimension() {
-        return dimension;
-    }
-
-    public void setDimension(Integer dimension) {
-        this.dimension = dimension;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Ware getWare() {
-        return ware;
-    }
-
-    public Lieferant getLieferant() {
-        return lieferant;
-    }
-
-    public Farbe getFarbe() {
-        return farbe;
-    }
-
-    public Set<Produkt> getProdukte() {
-        return produkte;
     }
 }

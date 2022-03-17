@@ -32,5 +32,32 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
             return View();
         }
+        public IActionResult Material()
+        {
+            Electron.IpcMain.On("loadMaterialAndLieferanten", async (arg) =>
+            {
+                var mainWindow = Electron.WindowManager.BrowserWindows.First();
+                var httpCliet = new HttpClient();
+                //Console.WriteLine("geht");
+                var requestlieferant = Task.Run(() =>
+                {
+                    return httpCliet.GetStringAsync("http://localhost:8080/lieferant");
+                });
+                var requestMaterial = Task.Run(() =>
+                {
+                    return httpCliet.GetStringAsync("http://localhost:8080/material");
+                });
+                //Console.WriteLine(requestlieferant);
+                var json = JArray.Parse(await requestlieferant);
+                var json2 = JArray.Parse(await requestMaterial);
+                Console.WriteLine("Json: Lieferant");
+                Console.WriteLine(json);
+                Console.WriteLine("Json: Material");
+                Console.WriteLine(json2);
+
+                Electron.IpcMain.Send(mainWindow, "getloadMaterialAndLieferanten-reply", json.ToString(), json2.ToString());
+            });
+            return View();
+        }
     }
 }

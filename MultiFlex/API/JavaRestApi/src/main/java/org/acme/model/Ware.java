@@ -5,8 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Set;
 
+//@Table(name = "Ware")
+//@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@Table(name = "Ware")
 public class Ware {
 
     @Id

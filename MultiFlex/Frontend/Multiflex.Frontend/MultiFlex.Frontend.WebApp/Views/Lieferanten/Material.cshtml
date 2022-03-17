@@ -17,21 +17,27 @@
         const { ipcRenderer } = require("electron");
         document.addEventListener('DOMContentLoaded', pageLoaded);
 
-        ipcRenderer.on('getLieferant-reply', (event, arg) => {
+        ipcRenderer.on('getloadMaterialAndLieferanten-reply', (event, arg, arg2) => {
             let lieferant = JSON.parse(arg);
+            let material = JSON.parse(arg2);
             //alert("geht");
             google.charts.load('current', {'packages':['table']});
             google.charts.setOnLoadCallback(drawTable);
 
             function drawTable() {
                 var lieferanten = [];
-                for (var i = 0; i < lieferant.length; i++){
-                   var data = [lieferant[i]["name"], lieferant[i]["weblink"], lieferant[i]["lieferzeit"]];
-                   lieferanten.push(data);
+                for (var j = 0; j < material.length; j++){
+                    for (var i = 0; i < lieferant.length; i++){
+                        if(material[j]["lieferanten_id" == lieferant[i]["id"]]){
+                            var data = [material[j]["name"], lieferant[i]["name"], lieferant[i]["weblink"], lieferant[i]["lieferzeit"]];
+                            lieferanten.push(data);
+                        }
+                    }
                 }
                 //alert("geht");
                 var data = new google.visualization.DataTable();
-                data.addColumn('string', 'Name');
+                data.addColumn('string', 'Material');
+                data.addColumn('string', 'Lieferant');
                 data.addColumn('string', 'Weblink');
                 data.addColumn('number', 'Lieferzeit');
                 //alert("geht1.5");
@@ -53,7 +59,7 @@
       });
 
         function pageLoaded(){
-            ipcRenderer.send('loadLieferanten');
+            ipcRenderer.send('loadMaterialAndLieferanten');
         }
     </script>
 
