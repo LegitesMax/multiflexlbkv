@@ -24,8 +24,17 @@ insert into Lieferant (name, weblink, lieferzeit) values('Amazon', 'https://www.
 insert into Lieferant (name, weblink, lieferzeit) values('Obi', 'https://www.obi.at ', 3);
 insert into Lieferant (name, weblink, lieferzeit) values('Bauhaus', 'https://www.bauhaus.at/', 3);
 
+--Farbe
+insert into Farbe (name) values ('Schwarz');
+
 --Material
-insert into Material (name, dimension, lieferant_id) values ('Schrott', 3, 1);
-insert into Material (name, bestand, dimension, lieferant_id) values ('Holzplatte-Schwarz', 50, 2, 2);
-insert into Material (name, bestand, dimension, lieferant_id) values ('Holzplatte-Braun', 50, 2, 2);
-insert into Material (name, bestand, dimension, lieferant_id) values ('Holzplatte-Braun', 50, 2, 1);
+insert into Material (name, dimension, farbe_id) values ('Schrott', 3, 1);
+insert into Material (name, dimension, farbe_id) values ('Holzplatte-Schwarz', 2, 1);
+insert into Material (name, dimension, farbe_id) values ('Holzplatte-Braun', 2, 1);
+
+insert into Lieferant_Material (lieferanten_id, materialien_id) values (1 , 1);
+insert into Lieferant_Material (lieferanten_id, materialien_id) values (1 , 2);
+insert into Lieferant_Material (lieferanten_id, materialien_id) values (1 , 3);
+insert into Lieferant_Material (lieferanten_id, materialien_id) values (2 , 1);
+insert into Lieferant_Material (lieferanten_id, materialien_id) values (3 , 1);
+insert into Lieferant_Material (lieferanten_id, materialien_id) values (3 , 2);

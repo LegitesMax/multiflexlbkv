@@ -1,10 +1,17 @@
 package org.acme.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Lieferant")
 public class Lieferant {
@@ -25,51 +32,11 @@ public class Lieferant {
     private Integer lieferzeit;
 
     @ManyToMany
-    private Set<Material> materials;
+    private Set<Material> materialien;
 
-    public Lieferant() {
-    }
-
-    public Lieferant(String name, String weblink, Integer lieferzeit, Set<Material> materials) {
+    public Lieferant(String name, String weblink, Integer lieferzeit) {
         this.name = name;
         this.weblink = weblink;
         this.lieferzeit = lieferzeit;
-        this.materials = materials;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setLieferzeit(Integer lieferzeit) {
-        this.lieferzeit = lieferzeit;
-    }
-
-    public Integer getLieferzeit() {
-        return lieferzeit;
-    }
-
-    public Set<Material> getMaterials() {
-        return materials;
-    }
-
-    public String getWeblink() {
-        return weblink;
-    }
-
-    public void setWeblink(String weblink) {
-        this.weblink = weblink;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

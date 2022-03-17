@@ -31,7 +31,7 @@ public class Material{
     //@JoinColumn(name = "id")
     //private Ware ware;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "materialien")
     private Set<Lieferant> lieferanten;
 
     @ManyToOne
@@ -41,7 +41,7 @@ public class Material{
     @ManyToMany
     private Set<Produkt> produkte = new HashSet<>();
 
-    public Material(String name, Integer dimension, Lieferant lieferant, Farbe farbe) {
+    public Material(Integer dimension, Lieferant lieferant, Farbe farbe) {
         this.name = name;
         this.dimension = dimension;
         //this.ware = ware;
