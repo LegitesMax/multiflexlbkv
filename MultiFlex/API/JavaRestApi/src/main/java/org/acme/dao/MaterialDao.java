@@ -9,10 +9,8 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
@@ -23,42 +21,27 @@ import java.util.List;
 @Path("/material")
 public class MaterialDao {
     @Inject
-    EntityManager entityManager;
+    EntityManager em;
 
     @Inject
     ObjectMapper objectMapper;
 
-    InsertManager insertManager;
-
-    public List<Material> loadAllRegal() {
-        return entityManager.createQuery("select m from Material m", Material.class).getResultList();
+    @Transactional
+    public void add(Material material){
+        em.persist(material);}
+    @Transactional
+    public void remove(Material material){
+        em.remove(material);
     }
-
-    public Material loadOneRegal(String name){
-        return entityManager.createQuery("select m from Material m where m.name = :name", Material.class).setParameter("name", name).getSingleResult();
+    @Transactional
+    public List<Material> loadAll() {
+        return em.createQuery("select m from Material m", Material.class).getResultList();
     }
-    public List<Material> loadSpecificRegal(@PathParam String name){
-        return entityManager.createQuery("select m from Material m where m.name like lower(concat('%', concat(:name, '%')))", Material.class).setParameter("name", name).getResultList();
+    @Transactional
+    public Material findById(Integer id){
+        return em.createQuery("select m from Material m where m.id = :id", Material.class).setParameter("id", id).getSingleResult();
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<MaterialDto> getAll() {
-        //var materialDto = new LinkedList<MaterialDto>();
-        var materials = loadAllRegal();
-        var materialDto = materialToDto(materials);
-        return materialDto;
-    }
-
-    @POST
-    @Path("/addmaterial")
-    public Response add(MaterialDto materialDto) {
-        var material = objectMapper.fromDto(materialDto);
-
-        insertManager.add(material);
-        return Response.status(Response.Status.CREATED).build();
-    }
-
+    @Transactional
     public List<MaterialDto> materialToDto(List<Material> materialien){
         var materialDtos = new LinkedList<MaterialDto>();
         for(var material : materialien){
@@ -74,5 +57,34 @@ public class MaterialDao {
             }
         }
         return materialDtos;
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Transactional
+    public List<MaterialDto> getAll() {
+        //var materialDto = new LinkedList<MaterialDto>();
+        //var materials = loadAllRegal();
+        var materials = loadAll();
+        var materialDto = materialToDto(materials);
+        return materialDto;
+    }
+
+    @POST
+    @Path("/addmaterial")
+    public Response add(MaterialDto materialDto) {
+        var material = objectMapper.fromDto(materialDto);
+
+        add(material);
+        return Response.status(Response.Status.CREATED).build();
+    }
+    @Transactional
+    @DELETE
+    @Path("/delete/{id}")
+    public void delete(@PathParam("id") Integer id) {
+        var entity = findById(id);
+        if(entity == null) {
+            throw new NotFoundException();
+        }
+        remove(entity);
     }
 }

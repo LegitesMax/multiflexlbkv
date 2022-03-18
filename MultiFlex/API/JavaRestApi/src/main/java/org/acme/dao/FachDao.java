@@ -12,6 +12,7 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,29 +23,34 @@ import java.util.List;
 @Path("/fach")
 public class FachDao {
     @Inject
-    EntityManager entityManager;
+    EntityManager em;
 
     @Inject
     ObjectMapper objectMapper;
 
-    InsertManager insertManager;
-
-    //@Inject
-    //InsertManager insertManager;
-
-    public List<Fach> loadAllFaecher() {
-        return entityManager.createQuery("select f from Fach f", Fach.class).getResultList();
+    @Transactional
+    public void add(Fach fach){
+        em.persist(fach);}
+    @Transactional
+    public void remove(Fach fach){
+        em.remove(fach);
     }
-
-    public Fach loadOneFach(Integer id){
-        return entityManager.createQuery("select f from Fach f where f.id = :id", Fach.class).setParameter("id", id).getSingleResult();
+    @Transactional
+    public List<Fach> loadAll() {
+        return em.createQuery("select f from Fach f", Fach.class).getResultList();
+    }
+    @Transactional
+    public Fach findById(Integer id){
+        return em.createQuery("select f from Fach f where f.id = :id", Fach.class).setParameter("id", id).getSingleResult();
     }
 
     @GET
+    @Transactional
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<FachDto> getAll() {
         var fachDtos = new LinkedList<FachDto>();
-        var faecher = entityManager.createQuery("select f from Fach f", Fach.class).getResultList();
+        //var faecher = entityManager.createQuery("select f from Fach f", Fach.class).getResultList();
+        var faecher = loadAll();
         for(var fach : faecher){
             FachDto fachDto = new FachDto(fach.getId(), fach.getPosition(), fach.getMaxbestand(), fach.getWare().getId(), fach.getRegal().getId());
             fachDtos.add(fachDto);
@@ -57,17 +63,17 @@ public class FachDao {
     public Response add(FachDto fachDto) {
         var fach = objectMapper.fromDto(fachDto);
 
-        insertManager.add(fach);
+        add(fach);
         return Response.status(Response.Status.CREATED).build();
     }
-
+    @Transactional
     @DELETE
-    @Path("/{id}")
+    @Path("/delete/{id}")
     public void delete(@PathParam("id") Integer id) {
-        var entity = loadOneFach(id);
+        var entity = findById(id);
         if(entity == null) {
             throw new NotFoundException();
         }
-        insertManager.remove(entity);
+        remove(entity);
     }
 }

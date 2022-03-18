@@ -9,10 +9,8 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
@@ -23,43 +21,27 @@ import java.util.List;
 @Path("/lieferant")
 public class LieferantDao {
     @Inject
-    EntityManager entityManager;
+    EntityManager em;
 
     @Inject
     ObjectMapper objectMapper;
 
-    InsertManager insertManager;
-
-    public List<Lieferant> loadAllRegal() {
-        return entityManager.createQuery("select l from Lieferant l", Lieferant.class).getResultList();
+    @Transactional
+    public void add(Lieferant lieferant){
+        em.persist(lieferant);}
+    @Transactional
+    public void remove(Lieferant lieferant){
+        em.remove(lieferant);
     }
-
-    public Lieferant loadOneRegal(String name){
-        return entityManager.createQuery("select l from Lieferant l where l.name = :name", Lieferant.class).setParameter("name", name).getSingleResult();
+    @Transactional
+    public List<Lieferant> loadAll() {
+        return em.createQuery("select l from Lieferant l", Lieferant.class).getResultList();
     }
-    public List<Lieferant> loadSpecificRegal(@PathParam String name){
-        return entityManager.createQuery("select l from Lieferant l where l.name like lower(concat('%', concat(:name, '%')))", Lieferant.class).setParameter("name", name).getResultList();
+    @Transactional
+    public Lieferant findById(Integer id){
+        return em.createQuery("select l from Lieferant l where l.id = :id", Lieferant.class).setParameter("id", id).getSingleResult();
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<LieferantDto> getAll() {
-        //var lieferantsDto = new LinkedList<LieferantDto>();
-        var lieferants = loadAllRegal();
-        var lieferantsDto = lieferantToDto(lieferants);
-        return lieferantsDto;
-    }
-
-    @POST
-    @Path("/addlieferant")
-    public Response add(LieferantDto lieferantDto) {
-        var lieferant = objectMapper.fromDto(lieferantDto);
-
-        insertManager.add(lieferant);
-
-        return Response.status(Response.Status.CREATED).build();
-    }
-
+    @Transactional
     public List<LieferantDto> lieferantToDto(List<Lieferant> lieferanten){
         var lieferantDtos = new LinkedList<LieferantDto>();
         for(var lieferant : lieferanten){
@@ -75,5 +57,35 @@ public class LieferantDao {
             }
         }
         return lieferantDtos;
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Transactional
+    public List<LieferantDto> getAll() {
+        //var lieferantsDto = new LinkedList<LieferantDto>();
+        //var lieferants = loadAllRegal();
+        var lieferants = loadAll();
+        var lieferantsDto = lieferantToDto(lieferants);
+        return lieferantsDto;
+    }
+
+    @POST
+    @Path("/addlieferant")
+    public Response add(LieferantDto lieferantDto) {
+        var lieferant = objectMapper.fromDto(lieferantDto);
+
+        add(lieferant);
+
+        return Response.status(Response.Status.CREATED).build();
+    }
+    @Transactional
+    @DELETE
+    @Path("/delete/{id}")
+    public void delete(@PathParam("id") Integer id) {
+        var entity = findById(id);
+        if(entity == null) {
+            throw new NotFoundException();
+        }
+        remove(entity);
     }
 }

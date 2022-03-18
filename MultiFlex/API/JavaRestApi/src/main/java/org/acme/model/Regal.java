@@ -19,7 +19,7 @@ public class Regal {
     @Column(nullable = false)
     private Integer max_anzahl_faecher;
 
-    @OneToMany(mappedBy = "regal")
+    @OneToMany(mappedBy = "regal"/*, cascade = CascadeType.REMOVE*/)
     private Set<Fach> faecher;
 
     public Regal(String name, Integer max_anzahl_faecher) {

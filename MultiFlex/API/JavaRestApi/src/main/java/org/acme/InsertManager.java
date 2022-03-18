@@ -15,30 +15,21 @@ public class InsertManager {
     @Transactional
     public <T> void add(T entity){
         em.persist(entity);}
-    //@Transactional
-    //public void add(Benutzer benutzer){
-    //    em.persist(benutzer);}
-    //@Transactional
-    //public void add(Fach fach){
-    //    em.persist(fach);}
-    //@Transactional
-    //public void add(Farbe farbe){
-    //    em.persist(farbe);}
-    //@Transactional
-    //public void add(Lieferant lieferant){
-    //    em.persist(lieferant);}
-    //@Transactional
-    //public void add(Material material){
-    //    em.persist(material);}
-    //@Transactional
-    //public void add(Produkt produkt){
-    //    em.persist(produkt);}
-    //@Transactional
-    //public void add(Regal regal){
-    //    em.persist(regal);}
-    //@Transactional
-    //public void add(Ware ware){
-    //    em.persist(ware);}
+    @Transactional
+    public void add(Benutzer benutzer){
+        em.persist(benutzer);}
+    @Transactional
+    public void add(Farbe farbe){
+        em.persist(farbe);}
+    @Transactional
+    public void add(Produkt produkt){
+        em.persist(produkt);}
+    @Transactional
+    public void add(Regal regal){
+        em.persist(regal);}
+    @Transactional
+    public void add(Ware ware){
+        em.persist(ware);}
 
     @Transactional
     public void add(Fach f, Ware w){
@@ -121,34 +112,43 @@ public class InsertManager {
 
     @Transactional
     public <T> void remove(T object){
-        em.remove(object);}
+        em.remove(object);
+     }
+
 
     @Transactional
-    public List<Benutzer> loadAllBenuzer() {
+    public List<Benutzer> benutzerLoadAll() {
         return em.createQuery("select b from Benutzer b", Benutzer.class).getResultList();
     }
     @Transactional
-    public List<Fach> loadAllFaecher() {
-        return em.createQuery("select f from Fach f", Fach.class).getResultList();
-    }
-    @Transactional
-    public List<Farbe> loadAllFarben() {
+    public List<Farbe> farbenLoadAll() {
         return em.createQuery("select f from Farbe f", Farbe.class).getResultList();
     }
     @Transactional
-    public List<Lieferant> loadAllLieferanten() {
-        return em.createQuery("select l from Lieferant l", Lieferant.class).getResultList();
-    }
-    @Transactional
-    public List<Produkt> loadAllProdukte() {
+    public List<Produkt> produkteLoadAll() {
         return em.createQuery("select p from Produkt p", Produkt.class).getResultList();
     }
     @Transactional
-    public List<Regal> loadAllRegale() {
-        return em.createQuery("select r from Regal r", Regal.class).getResultList();
+    public List<Ware> warenLoadAll() {
+        return em.createQuery("select w from Ware w", Ware.class).getResultList();
+    }
+
+
+
+    @Transactional
+    public Benutzer benutzerFindById(Integer id){
+        return em.createQuery("select b from Benutzer b where b.id = :id", Benutzer.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Ware> loadAllWaren() {
-        return em.createQuery("select w from Ware w", Ware.class).getResultList();
+    public Farbe farbeFindById(Integer id){
+        return em.createQuery("select f from Farbe f where f.id = :id", Farbe.class).setParameter("id", id).getSingleResult();
+    }
+    @Transactional
+    public Produkt produktFindById(Integer id){
+        return em.createQuery("select p from Produkt p where p.id = :id", Produkt.class).setParameter("id", id).getSingleResult();
+    }
+    @Transactional
+    public Ware wareFindById(Integer id){
+        return em.createQuery("select w from Ware w where w.id = :id", Ware.class).setParameter("id", id).getSingleResult();
     }
 }
