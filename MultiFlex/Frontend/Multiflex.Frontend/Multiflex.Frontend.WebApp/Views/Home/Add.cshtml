@@ -3,29 +3,27 @@
     Layout = "~/Views/Shared/_NoNavBar.cshtml";
     
 }
+<div>
+    <p class="text-center">Erstellen eines neuen Regales</p>
 
-        <p class="text-center">Erstellen eines neuen Regales</p>
+    <div class="text-center w-100">
+        <form>
+          <center>
+          <div class="mb-5">
+            <label class="form-label">Regalname</label>
+            <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalNameInput" placeholder="Der regalName muss eindeuig sein und nur einmalig">
 
-         <div class="text-center w-100">
-            <form>
-              <center>
-              <div class="mb-5">
-                <label class="form-label">Regalname</label>
-                <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalNameInput" placeholder="Der regalName muss eindeuig sein und nur einmalig">
+          </div>
 
-              </div>
+          <div class="mt-5 mb-3">
+            <label for="regalMaxFaecherInput" class="form-label">Fach Anzahl</label>
+            <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalMaxFaecherInput" placeholder="Der standart Wert wird auf 20 gesezt">
+          </div>
 
-              <div class="mt-5 mb-3">
-                <label for="regalMaxFaecherInput" class="form-label">Fach Anzahl</label>
-                <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalMaxFaecherInput" placeholder="Der standart Wert wird auf 20 gesezt">
-              </div>
-
-              <div id="createButton"></div>
-
-              <div id="alelrtBox"> </div>
-              </center>
-           </form>
-        </div>
+          <button id="add-regal" type="submit" class="btn btn-primary">Erstellen</button>
+          </center>
+       </form>
+    </div>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -33,44 +31,37 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         const { ipcRenderer } = require("electron");
+
+         //document.getElementById('add-regal').addEventListener('click', () => {
+         //   function myFunction() {
+         //       //document.getElementById("add-regal").disabled = true;
+         //       var name = document.getElementById("regalNameInput").value;
+         //       var maxFaecher = document.getElementById("regalMaxFaecherInput").value;
+         //       alert("geht");
+         //       if (maxFaecher > 0 && maxFaecher < 100){
+         //           alert("geht2");
+         //           ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
+         //           ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
+         //           ipcRenderer.send("add-regal");
+         //       } else {
+         //           alert("Name oder max Anzahl ungültig");
+         //       }
+         //       myFunction();
+         //   }
+
+         //   //myFunction();
+         //   //ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
+         //   //ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
+         //   //ipcRenderer.send("add-regal");
+         //};
+          document.getElementById('add-regal').addEventListener('click', () => {
+            ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
+            ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
+            ipcRenderer.send("add-regal");
+          });
+          ipcRenderer.on('add-regal-reply', (event) => {
+            alert("Name oder max Anzahl ungültig");
+          });
                 
-   
-        document.getElementById("regalNameInput").addEventListener('change', () => {
-
-            if(document.getElementById("regalNameInput").value != ""){
-                document.getElementById("createButton").innerHTML = "";
-                document.getElementById("createButton").innerHTML = '<button id="add-regal" type="submit" class="btn btn-primary active" data-bs-toggle="button" aria-pressed="true">Erstellen</button>';
-            }
-
-            if(document.getElementById("").value > 100 || document.getElementById("").value <= 0){
-                document.getElementById("createButton").innerHTML = "";
-                document.getElementById("createButton").innerHTML = '<button id="add-regal" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true" data-bs-toggle="button">Erstellen</button>';
-            }
-        });
-
-            document.getElementById('add-regal').addEventListener('click', () => {
-                document.getElementById("alelrtBox").innerHTML = "";
-
-                if(document.getElementById("regalNameInput").value != null){
-                    ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
-                }
-                else {
-                    document.getElementById("alelrtBox").innerHTML += '<div class="alert alert-danger" role="alert">Das Regal muss einen Namen haben!</div>';
-                }
-
-                if( document.getElementById("regalMaxFaecherInput").value == null){
-                    ipcRenderer.send("add-regal-input-max-value", 20);
-                }
-                else {
-                    if(document.getElementById("regalMaxFaecherInput").value > 100){
-                        document.getElementById("alelrtBox").innerHTML += '<div class="alert alert-danger" role="alert">Das regal kann nicht mehr als 100 Fächer haben</div>';
-                    }
-                    else {
-                        ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
-                    }
-                }
-                
-                ipcRenderer.send("add-regal");
-             });
     </script>
 

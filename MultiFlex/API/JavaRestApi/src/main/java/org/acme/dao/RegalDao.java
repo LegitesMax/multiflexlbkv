@@ -86,6 +86,7 @@ public class RegalDao {
     @Path("/addregal")
     public Response addRegal(RegalDto regalDto) {
         var regal = objectMapper.fromDto(regalDto);
+        System.out.println(regalDto.getName());
         add(regal);
         return Response.status(Response.Status.CREATED).build();
     }

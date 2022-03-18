@@ -142,13 +142,31 @@ namespace Multiflex.Frontend.WebApp.Controllers
             {
                 regal.max_anzahl_faecher = Convert.ToInt32(arg.ToString());
                 //Console.WriteLine(arg.ToString());
+                //if (regal.max_anzahl_faecher < 0 || regal.max_anzahl_faecher > 100)
+                //{
+                //    Electron.IpcMain.Send(mainWindow, "get-regal-input-max-value-reply");
+                    
+                //}
             });
             Electron.IpcMain.On("add-regal", async (arg) =>
             {
+                var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 var json = JsonConvert.SerializeObject(regal);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
                 var httpCliet = new HttpClient();
-                await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
+                //Console.WriteLine("DATA");
+                //Console.WriteLine(regal.name);
+                if (regal.max_anzahl_faecher > 0 && regal.max_anzahl_faecher < 100)
+                    {
+                    //    Electron.IpcMain.Send(mainWindow, "get-regal-input-max-value-reply");
+                    await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
+
+                }
+                else
+                {
+                    Electron.IpcMain.Send(mainWindow, "add-regal-reply");
+                }
+                    //await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
                 
                 //Console.WriteLine("test2");
             });
