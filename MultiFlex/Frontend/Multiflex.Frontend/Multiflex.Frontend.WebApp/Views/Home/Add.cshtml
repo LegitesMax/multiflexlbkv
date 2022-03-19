@@ -11,8 +11,7 @@
           <center>
           <div class="mb-5">
             <label class="form-label">Regalname</label>
-            <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalNameInput" placeholder="Der regalName muss eindeuig sein und nur einmalig">
-
+            <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalNameInput" placeholder="Der regalName muss eindeuig sein und nur einmalig" required>
           </div>
 
           <div class="mt-5 mb-3">
@@ -54,14 +53,14 @@
          //   //ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
          //   //ipcRenderer.send("add-regal");
          //};
-          document.getElementById('add-regal').addEventListener('click', () => {
+        document.getElementById('add-regal').addEventListener('click', () => {
             ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
             ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
             ipcRenderer.send("add-regal");
-          });
-          ipcRenderer.on('add-regal-reply', (event) => {
+        });
+        ipcRenderer.on('add-regal-reply', (event) => {
             alert("Name oder max Anzahl ungültig");
-          });
+        });
                 
     </script>
 
