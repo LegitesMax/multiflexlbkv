@@ -1,5 +1,6 @@
 package org.acme.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Farbe {
     @Id
@@ -23,14 +25,9 @@ public class Farbe {
     private String name;
 
     @ManyToMany
-    private Set<Produkt> produkte = new HashSet<>();
+    private Set<Ware> waren = new HashSet<>();
 
-    @OneToMany(mappedBy = "farbe")
-    private Set<Material> materials = new HashSet<>();
-
-    public Farbe(String name, Set<Produkt> produkte, Set<Material> materials) {
+    public Farbe(String name) {
         this.name = name;
-        this.produkte = produkte;
-        this.materials = materials;
     }
 }

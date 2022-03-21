@@ -22,9 +22,6 @@ public class InsertManager {
     public void add(Farbe farbe){
         em.persist(farbe);}
     @Transactional
-    public void add(Produkt produkt){
-        em.persist(produkt);}
-    @Transactional
     public void add(Regal regal){
         em.persist(regal);}
     @Transactional
@@ -57,58 +54,6 @@ public class InsertManager {
         em.persist(r);
         em.persist(f);
     }
-    @Transactional
-    public void add(Farbe f, Produkt p){
-        if (f.getId() == null)
-            add(f);
-        if (p.getId() == null)
-            add(p);
-
-        p.getFarben().add(f);
-        f.getProdukte().add(p);
-
-        em.persist(p);
-        em.persist(f);
-    }
-    @Transactional
-    public void add(Material m, Farbe f){
-        if (m.getId() == null)
-            add(m);
-        if (f.getId() == null)
-            add(f);
-
-        f.getMaterials().add(m);
-        m.setFarbe(f);
-
-        em.persist(f);
-        em.persist(m);
-    }
-    @Transactional
-    public void add(Material m, Lieferant f){
-        if (m.getId() == null)
-            add(m);
-        if (f.getId() == null)
-            add(f);
-
-        f.getMaterialien().add(m);
-        m.getLieferanten().add(f);
-
-        em.persist(f);
-        em.persist(m);
-    }
-    @Transactional
-    public void add(Material m, Produkt p){
-        if (m.getId() == null)
-            add(m);
-        if (p.getId() == null)
-            add(p);
-
-        p.getMaterialien().add(m);
-        m.getProdukte().add(p);
-
-        em.persist(p);
-        em.persist(m);
-    }
 
     @Transactional
     public <T> void remove(T object){
@@ -125,10 +70,6 @@ public class InsertManager {
         return em.createQuery("select f from Farbe f", Farbe.class).getResultList();
     }
     @Transactional
-    public List<Produkt> produkteLoadAll() {
-        return em.createQuery("select p from Produkt p", Produkt.class).getResultList();
-    }
-    @Transactional
     public List<Ware> warenLoadAll() {
         return em.createQuery("select w from Ware w", Ware.class).getResultList();
     }
@@ -142,10 +83,6 @@ public class InsertManager {
     @Transactional
     public Farbe farbeFindById(Integer id){
         return em.createQuery("select f from Farbe f where f.id = :id", Farbe.class).setParameter("id", id).getSingleResult();
-    }
-    @Transactional
-    public Produkt produktFindById(Integer id){
-        return em.createQuery("select p from Produkt p where p.id = :id", Produkt.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
     public Ware wareFindById(Integer id){

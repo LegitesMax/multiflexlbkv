@@ -52,7 +52,7 @@ public class LieferantDao {
                     matherialIds.add(lieferant2.getId());
                 }
                 Collections.sort(matherialIds);
-                LieferantDto lieferantDto = new LieferantDto(lieferant.getId(), lieferant.getName(), lieferant.getWeblink(), lieferant.getLieferzeit(),matherialIds);
+                var lieferantDto = new LieferantDto(lieferant.getId(), lieferant.getName(), lieferant.getWeblink(), lieferant.getLieferzeit(),matherialIds);
                 lieferantDtos.add(lieferantDto);
             }
         }

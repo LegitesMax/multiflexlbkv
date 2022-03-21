@@ -1,6 +1,7 @@
 package org.acme.model;
 
 import io.quarkus.arc.All;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Set;
 @All
 @Setter
 @Getter
+@AllArgsConstructor
 @Entity
 public class Typ {
     @Id

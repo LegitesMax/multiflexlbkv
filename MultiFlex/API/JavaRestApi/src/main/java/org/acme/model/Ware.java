@@ -5,6 +5,7 @@ import org.hibernate.annotations.ManyToAny;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.HashSet;
 import java.util.Set;
 
 //@Table(name = "Ware")
@@ -40,6 +41,9 @@ public class Ware {
 
     @ManyToMany
     private Set<Lieferant> lieferanten;
+
+    @ManyToMany
+    private Set<Farbe> farben = new HashSet<>();
 
     public Ware() {
     }
