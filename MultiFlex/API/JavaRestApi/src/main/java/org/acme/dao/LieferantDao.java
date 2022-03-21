@@ -45,8 +45,8 @@ public class LieferantDao {
     public List<LieferantDto> lieferantToDto(List<Lieferant> lieferanten){
         var lieferantDtos = new LinkedList<LieferantDto>();
         for(var lieferant : lieferanten){
-            if(lieferant.getMaterialien().size() > 0) {
-                var materialSet = lieferant.getMaterialien();
+            if(lieferant.getWaren().size() > 0) {
+                var materialSet = lieferant.getWaren();
                 List<Integer> matherialIds = new LinkedList<>();
                 for (var lieferant2 : materialSet) {
                     matherialIds.add(lieferant2.getId());

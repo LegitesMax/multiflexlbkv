@@ -1,7 +1,9 @@
 package org.acme.DTO;
 
 
-public class FachDto {
+import java.io.Serializable;
+
+public class FachDto implements Serializable {
 
     private Integer id;
     private Integer position;

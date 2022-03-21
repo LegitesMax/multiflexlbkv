@@ -1,5 +1,7 @@
 package org.acme.model;
 
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -32,6 +34,12 @@ public class Ware {
 
     @OneToMany(mappedBy = "ware")
     private Set<Fach> fächer;
+
+    @ManyToOne
+    private Typ typ;
+
+    @ManyToMany
+    private Set<Lieferant> lieferanten;
 
     public Ware() {
     }

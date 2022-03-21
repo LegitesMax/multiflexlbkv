@@ -37,8 +37,8 @@ public interface ObjectMapper {
 
     //Material
     @Mapping(target = "id")
-    MaterialDto toDTO(Material material);
+    TypDto toDTO(Typ typ);
 
     @Mapping(target = "id")
-    Material fromDto(MaterialDto materialDto);
+    Typ fromDto(TypDto typDto);
 }

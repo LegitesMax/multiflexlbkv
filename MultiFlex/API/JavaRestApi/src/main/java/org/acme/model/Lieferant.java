@@ -32,7 +32,7 @@ public class Lieferant {
     private Integer lieferzeit;
 
     @ManyToMany
-    private Set<Material> materialien;
+    private Set<Ware> waren;
 
     public Lieferant(String name, String weblink, Integer lieferzeit) {
         this.name = name;

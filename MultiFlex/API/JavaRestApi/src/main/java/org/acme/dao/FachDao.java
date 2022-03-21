@@ -1,12 +1,8 @@
 package org.acme.dao;
 
 import org.acme.DTO.FachDto;
-import org.acme.DTO.MaterialDto;
-import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Fach;
-import org.acme.model.Material;
-import org.acme.model.Regal;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;

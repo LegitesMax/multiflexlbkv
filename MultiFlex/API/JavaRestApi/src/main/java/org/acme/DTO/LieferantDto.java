@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LieferantDto {
+public class LieferantDto implements Serializable {
     private Integer id;
 
     private String name;
@@ -20,5 +21,5 @@ public class LieferantDto {
 
     private Integer lieferzeit;
 
-    private List<Integer> material_ids;
+    private List<Integer> waren_ids;
 }
