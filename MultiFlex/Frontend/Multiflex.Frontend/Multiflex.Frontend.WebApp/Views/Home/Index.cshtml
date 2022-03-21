@@ -19,7 +19,8 @@
     <div class="d-flex justify-content-center w-100">
         <div class="row w-100" id="regale"> </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @section Scripts{
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
@@ -31,7 +32,7 @@
         function pageLoaded(){
             ipcRenderer.send('loadFinished');
         }
-
+        var x = false;
         document.getElementById("myInput").oninput = function() {changeInput()};
 
         ipcRenderer.on('getRegal-reply', (event, arg1, arg2, arg3) => {
@@ -42,7 +43,9 @@
             google.charts.setOnLoadCallback(drawVisualization);
 
             function drawVisualization() {
-               for (var i = 0; i < regal.length; i++){
+                if(regal.length > 0 && ware.length > 0 && fach.length > 0 && x == false){
+                    x = true;
+                    for (var i = 0; i < regal.length; i++){
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    for (var j = 0; j < ware.length; j++) {
                        for(var k = 0; k < fach.length; k++) {
@@ -60,6 +63,8 @@
             
 
                    var options = {
+                       selectionMode: 'multiple',
+                       tooltip: {trigger: 'selection'},
                      title : regal[i]["name"],
                      vAxis: {title: regal[i]["id"]},
                      //hAxis: {title: 'Bestand'},
@@ -71,10 +76,12 @@
                      }
                    };
                   
-                   document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 48%"> <div class="card w-100" id="regale"> <div class="w-100" id="chart_div' + i + '" style="height: 400px;"> </div> </div> </div> ';
-                   var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
+                   document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 48%"> <div class="card w-100" id="regale"> <div class="w-100" id="regale' + i + '" style="height: 400px;"> </div> </div> </div> ';
+                   var chart = new google.visualization.ComboChart(document.getElementById('regale'+i));
                    chart.draw(dataResult, options);
                }
+                }
+               
             }
         });
 
@@ -95,25 +102,28 @@
             google.charts.setOnLoadCallback(drawVisualization);
 
             function drawVisualization() {
-               for (var i = 0; i < regal.length; i++){
+               if(regal.length > 0 && ware.length > 0 && fach.length > 0){
+                    
+                    for (var i = 0; i < regal.length; i++){
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    for (var j = 0; j < ware.length; j++) {
                        for(var k = 0; k < fach.length; k++) {
                            for(var l = 0; l < ware[j]["fach_ids"].length; l++){
-                               if(ware[j]["fach_ids"][l] != 0 && fach[k]["id"] != 0 && regal[i]["id"] != 0 && fach[k]["regal_id"]){
                                    if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
                                        var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
                                        fächer.push(data);
-                                       }
                                }
                            }
                            
                        }
                    }
-
                    var dataResult = google.visualization.arrayToDataTable(fächer);
 
+            
+
                    var options = {
+                       selectionMode: 'multiple',
+                       tooltip: {trigger: 'selection'},
                      title : regal[i]["name"],
                      vAxis: {title: regal[i]["id"]},
                      //hAxis: {title: 'Bestand'},
@@ -125,13 +135,11 @@
                      }
                    };
                   
-                   //neues item für eine chart wird erstellt
-                   document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 48%"> <div class="card w-100" id="regale"> <div class="w-100" id="chart_div' + i + '" style="height: 400px;"> </div> </div> </div> ';
-                   //hier wird jeweils das chart für das oben erstellte item hinzugefügt
-                   var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
-                   //hier wird dan das chart erstellt/"gezeichnet"
+                   document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 48%"> <div class="card w-100" id="regale"> <div class="w-100" id="regale' + i + '" style="height: 400px;"> </div> </div> </div> ';
+                   var chart = new google.visualization.ComboChart(document.getElementById('regale'+i));
                    chart.draw(dataResult, options);
                }
+                }
             }
         });
 
@@ -140,4 +148,5 @@
         });
 
     </script>
+    }
 </div>

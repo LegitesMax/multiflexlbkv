@@ -16,7 +16,7 @@
 
           <div class="mt-5 mb-3">
             <label for="regalMaxFaecherInput" class="form-label">Fach Anzahl</label>
-            <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalMaxFaecherInput" placeholder="Der standart Wert wird auf 20 gesezt">
+            <input type="text" class="form-control w-50 d-flex justify-content-center" id="regalMaxFaecherInput" placeholder="Der standart Wert wird auf 20 gesezt" required>
           </div>
 
           <button id="add-regal" type="submit" class="btn btn-primary">Erstellen</button>
@@ -24,7 +24,7 @@
        </form>
     </div>
 
-
+    @section scripts{
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -54,13 +54,19 @@
          //   //ipcRenderer.send("add-regal");
          //};
         document.getElementById('add-regal').addEventListener('click', () => {
+            if(document.getElementById("regalMaxFaecherInput").value > 0 && document.getElementById("regalMaxFaecherInput").value <= 100){
             ipcRenderer.send("add-regal-input-name", document.getElementById("regalNameInput").value);
             ipcRenderer.send("add-regal-input-max-value", document.getElementById("regalMaxFaecherInput").value);
             ipcRenderer.send("add-regal");
+            }else{
+                alert("Max Anzahl zu Groß oder zu Klein");
+            }
+            
         });
         ipcRenderer.on('add-regal-reply', (event) => {
             alert("Name oder max Anzahl ungültig");
         });
                 
     </script>
+    }
 

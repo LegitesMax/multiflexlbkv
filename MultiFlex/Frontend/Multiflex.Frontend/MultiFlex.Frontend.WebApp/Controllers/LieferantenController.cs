@@ -16,7 +16,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             Electron.IpcMain.On("loadLieferanten", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                var httpCliet = new HttpClient();
+                using var httpCliet = new HttpClient();
                 //Console.WriteLine("geht");
                 var requestlieferant = Task.Run(() =>
                 {
@@ -37,7 +37,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             Electron.IpcMain.On("loadMaterialAndLieferanten", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                var httpCliet = new HttpClient();
+                using var httpCliet = new HttpClient();
                 //Console.WriteLine("geht");
                 var requestlieferant = Task.Run(() =>
                 {

@@ -51,7 +51,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             Electron.IpcMain.On("searchRegal", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                var httpCliet = new HttpClient();
+                using var httpCliet = new HttpClient();
 
                 var requestRegal = await Task.Run(() =>
                 {
@@ -87,7 +87,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             Electron.IpcMain.On("loadFinished", async (arg) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                var httpCliet = new HttpClient();
+                using var httpCliet = new HttpClient();
 
                 var requestRegal = await Task.Run(() =>
                 {
@@ -153,7 +153,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
                 var json = JsonConvert.SerializeObject(regal);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var httpCliet = new HttpClient();
+                using var httpCliet = new HttpClient();
                 //Console.WriteLine("DATA");
                 //Console.WriteLine(regal.name);
                 if (regal.max_anzahl_faecher > 0 && regal.max_anzahl_faecher < 100)

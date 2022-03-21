@@ -28,9 +28,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>io.quarkiverse.lucene</groupId>
-      <artifactId>quarkus-lucene</artifactId>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-bom</artifactId>
       <version>RELEASE</version>
+      <type>pom</type>
+      <scope>import</scope>
     </dependency>
     <dependency>
       <groupId>org.mapstruct</groupId>
