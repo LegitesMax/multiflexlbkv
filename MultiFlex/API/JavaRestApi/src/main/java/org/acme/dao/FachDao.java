@@ -1,6 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.FachDto;
+import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Fach;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -23,6 +24,9 @@ public class FachDao {
 
     @Inject
     ObjectMapper objectMapper;
+
+    @Inject
+    InsertManager im;
 
     @Transactional
     public void add(Fach fach){
@@ -55,7 +59,7 @@ public class FachDao {
     }
 
     @POST
-    @Path("/addfach")
+    @Path("/add")
     public Response add(FachDto fachDto) {
         var fach = objectMapper.fromDto(fachDto);
 

@@ -2,6 +2,7 @@ package org.acme.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class Regal {
     private Integer max_anzahl_faecher;
 
     @OneToMany(mappedBy = "regal"/*, cascade = CascadeType.REMOVE*/)
-    private Set<Fach> faecher;
+    private Set<Fach> faecher = new HashSet<>();
 
     public Regal(String name, Integer max_anzahl_faecher) {
         this.name = name;

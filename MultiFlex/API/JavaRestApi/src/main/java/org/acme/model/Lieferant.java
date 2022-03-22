@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -34,7 +35,7 @@ public class Lieferant {
     private Integer lieferzeit;
 
     @ManyToMany
-    private Set<Ware> waren;
+    private Set<Ware> waren = new HashSet<>();
 
     public Lieferant(String name, String weblink, Integer lieferzeit) {
         this.name = name;

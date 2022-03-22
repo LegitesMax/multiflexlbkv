@@ -3,6 +3,10 @@ GET http://localhost:8080/regal/Regal-1
 ###
 GET http://localhost:8080/regal
 ###
+
+###
+GET http://localhost:8080/ware
+###
 DELETE http://localhost:8080/lieferant/delete/1
 ###
 DELETE http://localhost:8080/regal/delete/1

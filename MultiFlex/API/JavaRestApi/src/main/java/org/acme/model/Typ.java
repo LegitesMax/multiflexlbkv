@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -22,5 +23,5 @@ public class Typ {
     @Column
     private String typ;
     @OneToMany
-    private Set<Ware> waren;
+    private Set<Ware> waren = new HashSet<>();
 }

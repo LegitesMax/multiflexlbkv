@@ -70,7 +70,7 @@ public class LieferantDao {
     }
 
     @POST
-    @Path("/addlieferant")
+    @Path("/add")
     public Response add(LieferantDto lieferantDto) {
         var lieferant = objectMapper.fromDto(lieferantDto);
 

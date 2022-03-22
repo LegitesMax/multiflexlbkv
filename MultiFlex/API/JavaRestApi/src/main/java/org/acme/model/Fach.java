@@ -20,13 +20,7 @@ public class Fach {
     private Integer id;
     @Column
     private Integer position;
-    /*
-    @Column(nullable = false)
-    private long regal_id;
 
-    @Column
-    private long ware_id;
-     */
     @Column
     private Integer maxbestand;
 

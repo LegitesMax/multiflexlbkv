@@ -83,7 +83,7 @@ public class WareDao {
     }
 
     @POST
-    @Path("/addregal")
+    @Path("/add")
     public Response addRegal(WareDto wareDto) {
         var ware = objectMapper.fromDto(wareDto);
         System.out.println(wareDto.getName());
