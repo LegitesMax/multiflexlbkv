@@ -43,13 +43,16 @@ public class LieferantDao {
         for(var lieferant : lieferanten){
             if(lieferant.getWaren().size() > 0) {
                 var materialSet = lieferant.getWaren();
-                List<Integer> matherialIds = new LinkedList<>();
+                List<Integer> warenIds = new LinkedList<>();
                 for (var lieferant2 : materialSet) {
-                    matherialIds.add(lieferant2.getId());
+                    warenIds.add(lieferant2.getId());
                 }
-                Collections.sort(matherialIds);
-                var lieferantDto = new LieferantDto(lieferant.getId(), lieferant.getName(), lieferant.getWeblink(), lieferant.getLieferzeit(),matherialIds);
+                Collections.sort(warenIds);
+                var lieferantDto = new LieferantDto(lieferant.getId(), lieferant.getName(), lieferant.getWeblink(), lieferant.getLieferzeit(),warenIds);
                 lieferantDtos.add(lieferantDto);
+            }
+            else{
+                lieferantDtos.add(objectMapper.toDTO(lieferant));
             }
         }
         return lieferantDtos;

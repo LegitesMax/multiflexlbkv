@@ -37,17 +37,12 @@ insert into Ware (bestand, maxbestand, minbestand, name, typ_id) values (7, 10, 
 insert into Ware (bestand, maxbestand, minbestand, name, typ_id) values (7, 10, 3,'Holzplatte-Braun', 2);
 
 --Typ-Ware
---insert into Typ_Ware (Typ_id, waren_id) values (2, 4);
---insert into Typ_Ware (Typ_id, waren_id) values (2, 3);
---insert into Typ_Ware (Typ_id, waren_id) values (2, 2);
---
---insert into Typ_Ware (Typ_id, waren_id) values (1, 1);
---insert into Typ_Ware (Typ_id, waren_id) values (1, 5);
---insert into Typ_Ware (Typ_id, waren_id) values (1, 4);
---insert into Typ_Ware (Typ_id, waren_id) values (1, 3);
---insert into Typ_Ware (Typ_id, waren_id) values (1, 2);
---
---insert into Typ_Ware (Typ_id, waren_id) values (2, 6);
---insert into Typ_Ware (Typ_id, waren_id) values (2, 7);
---insert into Typ_Ware (Typ_id, waren_id) values (2, 8);
+insert into Lieferant_Ware (lieferant_id, waren_id) values (1, 6);
+insert into Lieferant_Ware (lieferant_id, waren_id) values (1, 7);
+insert into Lieferant_Ware (lieferant_id, waren_id) values (1, 8);
+insert into Lieferant_Ware (lieferant_id, waren_id) values (2, 7);
+insert into Lieferant_Ware (lieferant_id, waren_id) values (3, 6);
+insert into Lieferant_Ware (lieferant_id, waren_id) values (3, 7);
+
+
 

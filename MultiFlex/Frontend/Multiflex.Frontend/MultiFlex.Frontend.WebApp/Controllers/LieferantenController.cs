@@ -45,7 +45,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 });
                 var requestMaterial = Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/material");
+                    return httpCliet.GetStringAsync("http://localhost:8080/ware/material");
                 });
                 //Console.WriteLine(requestlieferant);
                 var json = JArray.Parse(await requestlieferant);

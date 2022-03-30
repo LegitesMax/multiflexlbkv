@@ -28,9 +28,9 @@
                 var lieferanten = [];
                 for (var j = 0; j < material.length; j++){
                     for (var i = 0; i < lieferant.length; i++){
-                        for (var k = 0; k < lieferant[i]["material_ids"].length; k++){
+                        for (var k = 0; k < lieferant[i]["waren_ids"].length; k++){
                             //for (var l = 0; l < lieferant[j]["material_ids"].length; k++){
-                                if(material[j]["id"] == lieferant[i]["material_ids"][k]){
+                                if(material[j]["id"] == lieferant[i]["waren_ids"][k]){
                                     var data = [material[j]["name"], lieferant[i]["name"], lieferant[i]["weblink"], lieferant[i]["lieferzeit"]];
                                     lieferanten.push(data);
                                 }
