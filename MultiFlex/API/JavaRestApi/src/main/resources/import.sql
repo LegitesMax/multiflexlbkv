@@ -5,8 +5,12 @@
 insert into Regal (max_anzahl_faecher, name) values(10, 'Regal-1');
 insert into Regal (max_anzahl_faecher, name) values( 12, 'Regal-2');
 
+--Typ
+insert into Typ (typ) values ('Produkt');
+insert into Typ (typ)  values ('Material');
+
 --Waren
-insert into Ware (bestand, maxbestand, minbestand, name) values(8, 15, 5,'BAXXXX');
+insert into Ware (bestand, maxbestand, minbestand, name, typ_id) values(8, 15, 5,'BAXXXX', 1);
 insert into Ware (bestand, maxbestand, minbestand, name) values(2, 10, 1,'LÖXXXX');
 insert into Ware (bestand, maxbestand, minbestand, name) values(10, 15, 5,'LOXXXX');
 insert into Ware (bestand, maxbestand, minbestand, name) values(4, 15, 2,'TAXXXX');
@@ -27,14 +31,23 @@ insert into Lieferant (name, weblink, lieferzeit) values('Bauhaus', 'https://www
 --Farbe
 insert into Farbe (name) values ('Schwarz');
 
---Material
-insert into Material (name, dimension, farbe_id) values ('Schrott', 3, 1);
-insert into Material (name, dimension, farbe_id) values ('Holzplatte-Schwarz', 2, 1);
-insert into Material (name, dimension, farbe_id) values ('Holzplatte-Braun', 2, 1);
 
-insert into Lieferant_Material (lieferanten_id, materialien_id) values (1 , 1);
-insert into Lieferant_Material (lieferanten_id, materialien_id) values (1 , 2);
-insert into Lieferant_Material (lieferanten_id, materialien_id) values (1 , 3);
-insert into Lieferant_Material (lieferanten_id, materialien_id) values (2 , 1);
-insert into Lieferant_Material (lieferanten_id, materialien_id) values (3 , 1);
-insert into Lieferant_Material (lieferanten_id, materialien_id) values (3 , 2);
+insert into Ware (bestand, maxbestand, minbestand, name, typ_id) values (7, 10, 3,'Schrott', 2);
+insert into Ware (bestand, maxbestand, minbestand, name, typ_id) values (7, 10, 3,'Holzplatte-Schwarz', 2);
+insert into Ware (bestand, maxbestand, minbestand, name, typ_id) values (7, 10, 3,'Holzplatte-Braun', 2);
+
+--Typ-Ware
+--insert into Typ_Ware (Typ_id, waren_id) values (2, 4);
+--insert into Typ_Ware (Typ_id, waren_id) values (2, 3);
+--insert into Typ_Ware (Typ_id, waren_id) values (2, 2);
+--
+--insert into Typ_Ware (Typ_id, waren_id) values (1, 1);
+--insert into Typ_Ware (Typ_id, waren_id) values (1, 5);
+--insert into Typ_Ware (Typ_id, waren_id) values (1, 4);
+--insert into Typ_Ware (Typ_id, waren_id) values (1, 3);
+--insert into Typ_Ware (Typ_id, waren_id) values (1, 2);
+--
+--insert into Typ_Ware (Typ_id, waren_id) values (2, 6);
+--insert into Typ_Ware (Typ_id, waren_id) values (2, 7);
+--insert into Typ_Ware (Typ_id, waren_id) values (2, 8);
+

@@ -29,6 +29,8 @@ public class WareDto implements Serializable {
 
     private List<FachDto> fächer;
 
+    private String type;
+
     public WareDto(Integer id, String name, Integer bestand, Integer minbestand, Integer maxbestand, List<Integer> fach_ids) {
         this.id = id;
         this.name = name;

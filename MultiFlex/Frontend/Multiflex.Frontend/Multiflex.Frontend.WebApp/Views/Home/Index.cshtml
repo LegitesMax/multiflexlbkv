@@ -9,6 +9,7 @@
 
     <div class="d-flex justify-content-center pt-3 pb-2">
         <a id="open-add-window" class="btn btn-light">Regal erstellen</a>
+        @*<button onClick="location.reload();">Refresh Page</button>*@
     </div>
     <div class="d-flex justify-content-center">
         <div class="input-group mb-3 w-25">
@@ -34,7 +35,7 @@
         }
         var x = false;
         document.getElementById("myInput").oninput = function() {changeInput()};
-
+        
         ipcRenderer.on('getRegal-reply', (event, arg1, arg2, arg3) => {
             let regal = JSON.parse(arg1);
             let ware = JSON.parse(arg2);
@@ -84,7 +85,40 @@
                
             }
         });
+        
+       //ipcRenderer.on('getRegal-reply', (event, arg1) => {
+       //     let regalFachWare = JSON.parse(arg1);
+       //     google.charts.load('current', {'packages':['corechart']});
+       //     google.charts.setOnLoadCallback(drawVisualization);
 
+       //     function drawVisualization() {
+       //            for (var i = 0; i < regalFachWare.length; i++){
+       //            var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
+                   
+       //            var dataResult = google.visualization.arrayToDataTable(fächer);
+       //            var data = [regalFachWare["name"], regalFachWare["maxbestand"], regalFachWare["minbestand"], regalFachWare["bestand"]];
+
+       //            var options = {
+       //                selectionMode: 'multiple',
+       //                tooltip: {trigger: 'selection'},
+       //              title : regal[i]["name"],
+       //              vAxis: {title: regal[i]["id"]},
+       //              //hAxis: {title: 'Bestand'},
+       //              seriesType: 'bars',
+       //              series: {
+       //                0:{color: 'green', visibleInLegend: true, type: 'line'},
+       //                1:{color: 'red', visibleInLegend: true, type: 'line'},
+       //                2:{color: 'orange', visibleInLegend: true}
+       //              }
+       //            };
+                  
+       //            document.getElementById('regale').innerHTML += '<div class=" mt-2 mr-2 mb-2 ml-2" style="width: 48%"> <div class="card w-100" id="regale"> <div class="w-100" id="regale' + i + '" style="height: 400px;"> </div> </div> </div> ';
+       //            var chart = new google.visualization.ComboChart(document.getElementById('regale'+i));
+       //            chart.draw(dataResult, options);
+       //         }
+               
+       //     }
+       // });
 
         function changeInput() {
             document.getElementById('regale').innerHTML = '';
@@ -93,7 +127,7 @@
         }
 
         ipcRenderer.on('getSearchedRegal-reply', (event, arg1, arg2, arg3) => {
-        
+            //location.reload();
             let regal = JSON.parse(arg1);
             let ware = JSON.parse(arg2);
             let fach = JSON.parse(arg3);
@@ -122,8 +156,7 @@
             
 
                    var options = {
-                       selectionMode: 'multiple',
-                       tooltip: {trigger: 'selection'},
+                       enableInteractivity: false,
                      title : regal[i]["name"],
                      vAxis: {title: regal[i]["id"]},
                      //hAxis: {title: 'Bestand'},

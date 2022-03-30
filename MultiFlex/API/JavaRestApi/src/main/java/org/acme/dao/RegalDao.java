@@ -1,9 +1,13 @@
 package org.acme.dao;
 
+import org.acme.DTO.QueryModels.RegalFach;
+import org.acme.DTO.QueryModels.RegalFachWare;
 import org.acme.DTO.RegalDto;
 import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
+import org.acme.model.Fach;
 import org.acme.model.Regal;
+import org.acme.model.Ware;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -27,13 +31,9 @@ public class RegalDao {
     @Inject
     ObjectMapper objectMapper;
 
-    @Transactional
-    public void add(Regal regal){
-        em.persist(regal);}
-    @Transactional
-    public void remove(Regal regal){
-        em.remove(regal);
-    }
+    @Inject
+    InsertManager im;
+
     @Transactional
     public List<Regal> loadAll() {
         return em.createQuery("select r from Regal r", Regal.class).getResultList();
@@ -87,7 +87,7 @@ public class RegalDao {
     public Response addRegal(RegalDto regalDto) {
         var regal = objectMapper.fromDto(regalDto);
         System.out.println(regalDto.getName());
-        add(regal);
+        im.add(regal);
         return Response.status(Response.Status.CREATED).build();
     }
     @Transactional
@@ -98,6 +98,36 @@ public class RegalDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-        remove(entity);
+        im.remove(entity);
     }
+    /*
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/queries/regal-fach")
+    @Transactional
+    public List<RegalFachWare> getAllWithFach() {
+        var regale = em.createQuery("select r from Regal r", Regal.class).getResultList();
+        var waren = em.createQuery("select w from Ware w", Ware.class).getResultList();
+        var regalefachwaren = new LinkedList<RegalFachWare>();
+        for (var regal: regale) {
+            var faecherregal = regal.getFaecher();
+            //var faecher = em.createQuery("select f from Regal r join r.faecher f", Fach.class).getResultList();
+            for(var fachregal : faecherregal){
+                for (var ware : waren){
+                    var fachwaren = ware.getFächer();
+                    for (var fachware : fachwaren){
+                        if (fachware.getId() == fachregal.getId()){
+                            var regalfachware = new RegalFachWare(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), ware.getName(), ware.getBestand(), ware.getMinbestand(), ware.getMaxbestand());
+                            regalefachwaren.add(regalfachware);
+                        }
+                    }
+                }
+                //var regalfach = new RegalFach(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), fach.getMaxbestand());
+            }
+        }
+        //var regale = em.createQuery("select r from Fach f join f.regal r", Regal.class).getResultList();
+
+        //var regalDtos = regalToDto(regale);
+        return regalefachwaren;
+    }*/
 }

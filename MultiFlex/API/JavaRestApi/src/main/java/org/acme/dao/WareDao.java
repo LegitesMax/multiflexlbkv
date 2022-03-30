@@ -2,6 +2,8 @@ package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
 import org.acme.DTO.WareDto;
+import org.acme.InsertManager;
+import org.acme.mapper.MappingHelper;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Regal;
 import org.acme.model.Ware;
@@ -27,16 +29,23 @@ public class WareDao {
     @Inject
     ObjectMapper objectMapper;
 
-    @Transactional
-    public void add(Ware ware){
-        em.persist(ware);}
-    @Transactional
-    public void remove(Ware ware){
-        em.remove(ware);
-    }
+    @Inject
+    MappingHelper mh;
+
+    @Inject
+    InsertManager im;
+
     @Transactional
     public List<Ware> loadAll() {
         return em.createQuery("select w from Ware w", Ware.class).getResultList();
+    }
+    @Transactional
+    public List<Ware> loadAllProduct() {
+        return em.createQuery("select w from Typ t join t.waren w where t.typ = 'Produkt'", Ware.class).getResultList();
+    }
+    @Transactional
+    public List<Ware> loadAllMaterials() {
+        return em.createQuery("select w from Typ t join t.waren w where t.typ = 'Material'", Ware.class).getResultList();
     }
     @Transactional
     public Ware findById(Integer id){
@@ -74,20 +83,42 @@ public class WareDao {
         return wareDtos;
     }
     @GET
-    @Path("/{name}")
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("material")
     @Transactional
-    public List<WareDto> getOne(String name) {
-        var waren = loadByName(name);
+    public List<WareDto> getAllMaterials() {
+        //var regale = loadAllRegal();
+        var waren = loadAllMaterials();
+        //var wareDtos = regalToDto(waren);
+        //return wareDtos;
+        return mh.toDto(waren);
+        //return loadAllMaterials();
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("product")
+    @Transactional
+    public List<WareDto> getAllProducts() {
+        //var regale = loadAllRegal();
+        var waren = loadAllProduct();
         var wareDtos = regalToDto(waren);
         return wareDtos;
     }
+    //@GET
+    //@Path("/{name}")
+    //@Transactional
+    //public List<WareDto> getOne(String name) {
+    //    var waren = loadByName(name);
+    //    var wareDtos = regalToDto(waren);
+    //    return wareDtos;
+    //}
 
     @POST
     @Path("/add")
     public Response addRegal(WareDto wareDto) {
         var ware = objectMapper.fromDto(wareDto);
         System.out.println(wareDto.getName());
-        add(ware);
+        im.add(ware);
         return Response.status(Response.Status.CREATED).build();
     }
     @Transactional
@@ -98,6 +129,6 @@ public class WareDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-        remove(entity);
+        im.remove(entity);
     }
 }

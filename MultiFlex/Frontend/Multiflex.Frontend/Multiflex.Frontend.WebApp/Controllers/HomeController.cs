@@ -113,7 +113,12 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 Console.WriteLine(json2);
                 Console.WriteLine("Json3: Fach");
                 Console.WriteLine(json3);
-
+                //var requestRegalFachWare = await Task.Run(() =>
+                //{
+                //    return httpCliet.GetStringAsync("http://localhost:8080/regal/queries/regal-fach");
+                //});
+                //var json1 = JArray.Parse(requestRegalFachWare);
+                //Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString());
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
 

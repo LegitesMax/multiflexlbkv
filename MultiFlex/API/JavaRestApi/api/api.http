@@ -7,12 +7,19 @@ GET http://localhost:8080/regal
 ###
 GET http://localhost:8080/ware
 ###
+GET http://localhost:8080/ware/product
+###
+GET http://localhost:8080/ware/material
+###
 DELETE http://localhost:8080/lieferant/delete/1
 ###
 DELETE http://localhost:8080/regal/delete/1
 ###
 GET http://localhost:8080/lieferant
-
+###
+GET http://localhost:8080/regal/queries/regal-fach
+###
+GET http://localhost:8080/fach/queries/regal-fach-ware
 ###
 POST http://localhost:8080/regal/addregal
 Content-Type: application/json

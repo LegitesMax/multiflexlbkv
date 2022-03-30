@@ -26,13 +26,9 @@ public class LieferantDao {
     @Inject
     ObjectMapper objectMapper;
 
-    @Transactional
-    public void add(Lieferant lieferant){
-        em.persist(lieferant);}
-    @Transactional
-    public void remove(Lieferant lieferant){
-        em.remove(lieferant);
-    }
+    @Inject
+    InsertManager im;
+
     @Transactional
     public List<Lieferant> loadAll() {
         return em.createQuery("select l from Lieferant l", Lieferant.class).getResultList();
@@ -62,8 +58,6 @@ public class LieferantDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     public List<LieferantDto> getAll() {
-        //var lieferantsDto = new LinkedList<LieferantDto>();
-        //var lieferants = loadAllRegal();
         var lieferants = loadAll();
         var lieferantsDto = lieferantToDto(lieferants);
         return lieferantsDto;
@@ -74,7 +68,7 @@ public class LieferantDao {
     public Response add(LieferantDto lieferantDto) {
         var lieferant = objectMapper.fromDto(lieferantDto);
 
-        add(lieferant);
+        im.add(lieferant);
 
         return Response.status(Response.Status.CREATED).build();
     }
@@ -86,6 +80,6 @@ public class LieferantDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-        remove(entity);
+        im.remove(entity);
     }
 }

@@ -5,6 +5,9 @@ import org.acme.model.*;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.Produces;
@@ -119,20 +122,22 @@ public class InsertManager {
     }
 
 
+        //    return em.createQuery("select b from Benutzer b", Benutzer.class).getResultList();
+        //}
 
 
-    //@Transactional
-    //public List<Benutzer> benutzerLoadAll() {
-    //    return em.createQuery("select b from Benutzer b", Benutzer.class).getResultList();
-    //}
-    //@Transactional
-    //public List<Farbe> farbenLoadAll() {
-    //    return em.createQuery("select f from Farbe f", Farbe.class).getResultList();
-    //}
-    //@Transactional
-    //public List<Ware> warenLoadAll() {
-    //    return em.createQuery("select w from Ware w", Ware.class).getResultList();
-    //}
+    @Transactional
+    public List<Benutzer> loadAll(Benutzer b) {
+        return em.createQuery("select b from Benutzer b", Benutzer.class).getResultList();
+    }
+    @Transactional
+    public List<Farbe> loadAll(Farbe f) {
+        return em.createQuery("select f from Farbe f", Farbe.class).getResultList();
+    }
+    @Transactional
+    public List<Ware> loadAll(Ware w) {
+        return em.createQuery("select w from Ware w", Ware.class).getResultList();
+    }
 
 
 

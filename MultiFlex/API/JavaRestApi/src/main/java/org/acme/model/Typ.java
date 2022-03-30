@@ -22,6 +22,6 @@ public class Typ {
     private Integer id;
     @Column
     private String typ;
-    @OneToMany
+    @OneToMany(mappedBy = "typ")
     private Set<Ware> waren = new HashSet<>();
 }
