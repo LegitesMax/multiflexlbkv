@@ -1,5 +1,7 @@
 ﻿using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Multiflex.Frontend.WebApp.Controllers.Commom;
 using Multiflex.Frontend.WebApp.Models;
 using Newtonsoft.Json.Linq;
 using System;
@@ -30,33 +32,48 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 Electron.IpcMain.Send(mainWindow, "getLieferant-reply", json.ToString());
             });
 
-            return View();
-        }
-        public IActionResult Material()
-        {
-            Electron.IpcMain.On("loadMaterialAndLieferanten", async (arg) =>
+            Electron.IpcMain.On("open-add-window", async (arg) =>
             {
-                var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                using var httpCliet = new HttpClient();
-                //Console.WriteLine("geht");
-                var requestlieferant = Task.Run(() =>
-                {
-                    return httpCliet.GetStringAsync("http://localhost:8080/lieferant");
-                });
-                var requestMaterial = Task.Run(() =>
-                {
-                    return httpCliet.GetStringAsync("http://localhost:8080/ware/material");
-                });
-                //Console.WriteLine(requestlieferant);
-                var json = JArray.Parse(await requestlieferant);
-                var json2 = JArray.Parse(await requestMaterial);
-                Console.WriteLine("Json: Lieferant");
-                Console.WriteLine(json);
-                Console.WriteLine("Json: Material");
-                Console.WriteLine(json2);
-
-                Electron.IpcMain.Send(mainWindow, "getloadMaterialAndLieferanten-reply", json.ToString(), json2.ToString());
+                //var logic = new Logic();
+                //BrowserWindow win = await logic.AddWindow("/Lieferanten/Add");
+                //win.Show();
+                var path = "/Lieferanten/Add";
+                var options = new BrowserWindowOptions();
+                //{
+                //    Fullscreenable = false,
+                //    Minimizable = false,
+                //    SkipTaskbar = false,
+                //    EnableLargerThanScreen = false,
+                //    AutoHideMenuBar = true,
+                //    TitleBarStyle = TitleBarStyle.hiddenInset
+                //};
+                options.Show = false;
+                path = $"http://localhost:{BridgeSettings.WebPort}{path}";
+                var browserWindow = await Electron.WindowManager.CreateWindowAsync(options, path);
+                browserWindow.Show();
             });
+
+            Electron.IpcMain.On("open-delete-window", async (arg) =>
+            {
+                //var logic = new Logic();
+                //BrowserWindow win = await logic.AddWindow("/Lieferanten/Delete");
+                var path = "/Lieferanten/Delete";
+                var options = new BrowserWindowOptions
+                {
+                    Fullscreenable = false,
+                    Minimizable = false,
+                    SkipTaskbar = false,
+                    EnableLargerThanScreen = false,
+                    AutoHideMenuBar = true,
+                    TitleBarStyle = TitleBarStyle.hiddenInset
+                };
+                options.Show = false;
+                path = $"http://localhost:{BridgeSettings.WebPort}{path}";
+                var browserWindow = await Electron.WindowManager.CreateWindowAsync(options, path);
+                browserWindow.Show();
+                //win.Show();
+            });
+
             return View();
         }
     }

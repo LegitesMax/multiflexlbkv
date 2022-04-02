@@ -7,7 +7,11 @@
 <div class="text-center">
     <h1>@ViewData["Title"]</h1>
 
-    <center><div class="w-75" id="table_div"></div></center>
+    <center>
+        <div class="w-75" id="table_div"></div>
+        <button id="open-add-window" type="submit" class="btn btn-primary">Erstellen</button>
+        <button id="open-delete-window" type="submit" class="btn btn-primary">Löschen</button>    
+    </center>
 
     <div class="d-flex justify-content-center pt-3 pb-2">
     </div>
@@ -65,6 +69,12 @@
         function pageLoaded(){
             ipcRenderer.send('loadMaterialAndLieferanten');
         }
+        document.getElementById("open-add-window").addEventListener("click", () => {
+            ipcRenderer.send("open-add-window");
+        });
+        document.getElementById("open-delete-window").addEventListener("click", () => {
+            ipcRenderer.send("open-add-window");
+        });
     </script>
 
 </div>

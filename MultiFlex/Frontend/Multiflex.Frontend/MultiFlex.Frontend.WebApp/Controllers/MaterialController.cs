@@ -1,5 +1,6 @@
 ﻿using ElectronNET.API;
 using Microsoft.AspNetCore.Mvc;
+using Multiflex.Frontend.WebApp.Controllers.Commom;
 using Multiflex.Frontend.WebApp.Models;
 using Newtonsoft.Json.Linq;
 using System;
@@ -35,6 +36,19 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 Console.WriteLine(json2);
 
                 Electron.IpcMain.Send(mainWindow, "getloadMaterialAndLieferanten-reply", json.ToString(), json2.ToString());
+            });
+            Electron.IpcMain.On("open-add-window", async (arg) =>
+            {
+                var logic = new Logic();
+                BrowserWindow win = await logic.AddWindow("/Material/Add");
+                win.Show();
+            });
+
+            Electron.IpcMain.On("open-delete-window", async (arg) =>
+            {
+                var logic = new Logic();
+                BrowserWindow win = await logic.AddWindow("/Material/Delete");
+                win.Show();
             });
             return View();
         }

@@ -13,7 +13,9 @@
 
     <div class="d-flex justify-content-center pt-3 pb-2">
         <a href="../Material/Index" class="btn btn-light">Materialien mit Lieferanten anzeigen</a>
-        <button id="add-lieferant" type="submit" class="btn btn-primary">Erstellen</button>
+        <button id="open-add-window" type="submit" class="btn btn-primary">Erstellen</button>
+        <button id="open-delete-window" type="submit" class="btn btn-primary">Loeschen</button>
+
     </div>
 
 
@@ -60,7 +62,12 @@
         function pageLoaded(){
             ipcRenderer.send('loadLieferanten');
         }
-
+        document.getElementById("open-add-window").addEventListener("click", () => {
+            ipcRenderer.send("open-add-window");
+        });
+        document.getElementById("open-delete-window").addEventListener("click", () => {
+            ipcRenderer.send("open-add-window");
+        });
     </script>
 
 </div>
