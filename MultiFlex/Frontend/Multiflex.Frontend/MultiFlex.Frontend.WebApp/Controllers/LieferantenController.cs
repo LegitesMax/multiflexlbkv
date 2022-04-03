@@ -92,11 +92,6 @@ namespace Multiflex.Frontend.WebApp.Controllers
             var json = JArray.Parse(await requestlieferant);
             var items = System.Text.Json.JsonSerializer.Deserialize<Models.LieferantDto[]>(json.ToString());
 
-            foreach (var item in items)
-            {
-                System.Console.WriteLine(item);
-            }
-
             lieferanten.AddRange(items);
 
             var models = await GetAllAsync();
@@ -125,11 +120,18 @@ namespace Multiflex.Frontend.WebApp.Controllers
         {
             try
             {
-                System.Console.WriteLine(model.id + model.name + model.weblink + model.lieferzeit);
-                using var httpCliet = new HttpClient();
+                var lieferant = new Models.LieferantDao();
 
-                var json = JsonConvert.SerializeObject(model);
+                lieferant.name = model.name;
+                lieferant.weblink = model.weblink; 
+                lieferant.lieferzeit = model.lieferzeit;
+
+                using var httpCliet = new HttpClient();
+                var json = JsonConvert.SerializeObject(lieferant);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                System.Console.WriteLine(data.ToString());
+
                 await httpCliet.PostAsync("http://localhost:8080/lieferant/add", data);
 
                 return RedirectToAction(nameof(Index));
@@ -153,13 +155,10 @@ namespace Multiflex.Frontend.WebApp.Controllers
         public async Task<ActionResult> Delete(int id, Models.LieferantDto model)
         {
             try
-            {
+            { 
                 using var httpCliet = new HttpClient();
 
-                var json = JsonConvert.SerializeObject(model);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-                await httpCliet.PostAsync("http://localhost:8080/lieferant/delete/" + model.id, data);
+                await httpCliet.DeleteAsync("http://localhost:8080/lieferant/delete/" + model.id);
 
                 return RedirectToAction(nameof(Index));
             }

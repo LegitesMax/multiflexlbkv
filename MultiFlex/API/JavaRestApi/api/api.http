@@ -33,3 +33,17 @@ Content-Type: application/json
       3
     ]
   }
+
+###
+POST http://localhost:8080/lieferant/add
+Content-Type: application/json
+
+  {
+    "id": 2,
+    "name": "lolsdf",
+    "weblink": "asd",
+    "lieferzeit" : 2
+  }
+
+###
+DELETE http://localhost:8080/lieferant/delete/4
