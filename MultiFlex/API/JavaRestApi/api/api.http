@@ -46,4 +46,8 @@ Content-Type: application/json
   }
 
 ###
-DELETE http://localhost:8080/lieferant/delete/4
+DELETE http://localhost:8080/lieferant/delete/3
+
+
+###
+DELETE http://localhost:8080/lieferant/delete/3

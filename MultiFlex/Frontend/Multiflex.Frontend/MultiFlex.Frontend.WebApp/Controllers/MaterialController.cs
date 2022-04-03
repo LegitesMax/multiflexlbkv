@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Multiflex.Frontend.WebApp.Controllers.Commom;
 using Multiflex.Frontend.WebApp.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Multiflex.Frontend.WebApp.Controllers
@@ -57,6 +59,10 @@ namespace Multiflex.Frontend.WebApp.Controllers
             //    win.Show();
             //});
             #endregion crap
+
+            material = new();
+            lieferatnen = new();
+            lfmt = new();
 
             using var httpCliet = new HttpClient();
 
@@ -111,5 +117,67 @@ namespace Multiflex.Frontend.WebApp.Controllers
         {
             return Task.Run(() => lfmt.FirstOrDefault(s => s.id == Id));
         }
+
+        #region Add
+        //public ActionResult Add()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Add(Models.MaterialDto model)
+        //{
+        //    try
+        //    {
+        //        var lieferant = new Models.MaterialDao();
+
+        //        lieferant.name = model.name;
+        //        lieferant.weblink = model.weblink;
+        //        lieferant.lieferzeit = model.lieferzeit;
+
+        //        using var httpCliet = new HttpClient();
+        //        var json = JsonConvert.SerializeObject(lieferant);
+        //        var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //        System.Console.WriteLine(data.ToString());
+
+        //        await httpCliet.PostAsync("http://localhost:8080/lieferant/add", data);
+
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+        #endregion Add
+
+        #region delete
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var model = await GetByIdAsync(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(int id, Models.LieferantMaterial model)
+        {
+            try
+            {
+                using var httpCliet = new HttpClient();
+
+                await httpCliet.DeleteAsync("http://localhost:8080/lieferant/delete/" + model.id);
+                await httpCliet.DeleteAsync("http://localhost:8080/lieferant/delete/" + model.id);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
+        #endregion delete
     }
 }
