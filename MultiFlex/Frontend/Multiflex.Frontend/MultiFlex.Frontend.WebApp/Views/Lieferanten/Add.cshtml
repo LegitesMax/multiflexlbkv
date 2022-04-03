@@ -4,10 +4,12 @@
     ViewData["Title"] = "Add";
 }
 
-<p class="text-center">Füge einen neuen Lieferanten Hinzu</p>
 
-<div class="row d-flex justify-content-center w-50">
-    <div class="col-md-4">
+<p class="text-center">F&uuml;ge einen neuen Lieferanten Hinzu</p>
+<div class="row w-100 d-flex justify-content-center">
+
+@*<div class="row w-50">*@
+    <div class="col-md-4 ">
         <form asp-action="Add">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -34,7 +36,7 @@
         </form>
     </div>
 </div>
-
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
