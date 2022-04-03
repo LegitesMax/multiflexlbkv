@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -79,30 +80,49 @@ namespace Multiflex.Frontend.WebApp.Controllers
             //    //win.Show();
             //});
             #endregion crap
-
-            lieferanten = new();
+            Stopwatch stopWatch1 = new Stopwatch();
+            stopWatch1.Start();
+            //lieferanten = new();
             using var httpCliet = new HttpClient();
 
+            Stopwatch stopWatch = new Stopwatch();
+
+            stopWatch.Start();
             var requestlieferant = Task.Run(() =>
                 {
                     return httpCliet.GetStringAsync("http://localhost:8080/lieferant");
                 });
+            stopWatch.Stop();
 
+            System.Console.WriteLine(stopWatch.Elapsed);
 
-            var json = JArray.Parse(await requestlieferant);
-            var items = System.Text.Json.JsonSerializer.Deserialize<Models.LieferantDto[]>(json.ToString());
+            stopWatch.Reset();
+            stopWatch.Start();
+            var items = Task.Run(() =>
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<Models.LieferantDto[]>(requestlieferant.Result.ToString());
+            });
+            stopWatch.Stop();
+            System.Console.WriteLine(stopWatch.Elapsed);
 
-            lieferanten.AddRange(items);
+            stopWatch.Reset();
+            stopWatch.Start();
+            _ = Task.Run(() =>
+            {
+                lieferanten.AddRange(items.Result);
+            });
+            stopWatch.Stop();
+            System.Console.WriteLine(stopWatch.Elapsed);
 
-            var models = await GetAllAsync();
-            return View(models);
+            stopWatch1.Stop();
+            System.Console.WriteLine(stopWatch1.Elapsed);
+            return View(items.Result);
         }
 
         public static Task<Models.LieferantDto[]> GetAllAsync()
         {
             return Task.Run(() => lieferanten.ToArray());
         }
-
         public static Task<Models.LieferantDto?> GetByIdAsync(int id)
         {
             return Task.Run(() => lieferanten.FirstOrDefault(s => s.id == id));
@@ -123,7 +143,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var lieferant = new Models.LieferantDao();
 
                 lieferant.name = model.name;
-                lieferant.weblink = model.weblink; 
+                lieferant.weblink = model.weblink;
                 lieferant.lieferzeit = model.lieferzeit;
 
                 using var httpCliet = new HttpClient();
@@ -155,7 +175,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
         public async Task<ActionResult> Delete(int id, Models.LieferantDto model)
         {
             try
-            { 
+            {
                 using var httpCliet = new HttpClient();
 
                 await httpCliet.DeleteAsync("http://localhost:8080/lieferant/delete/" + model.id);
