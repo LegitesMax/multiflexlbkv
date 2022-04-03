@@ -14,42 +14,43 @@
         <a asp-action="Add" id="open-add-window" class="btn btn-primary">Erstellen</a>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <table class="table w-75" >
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Weblink</th>
+                    <th scope="col">Lieferzeit</th>
+                    <th scope="col">L&ouml;schen</th>
+                </tr>
+            </thead>
 
-    <table class="table w-75">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Weblink</th>
-                <th scope="col">Lieferzeit</th>
-                <th scope="col">L&ouml;schen</th>
-            </tr>
-        </thead>
 
-
-        <tbody>
+            <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
+                    <tr>
+                        <td>
                         @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                         @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                         @Html.DisplayFor(modelItem => item.weblink)
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                         @Html.DisplayFor(modelItem => item.lieferzeit)
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                         @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
 
 

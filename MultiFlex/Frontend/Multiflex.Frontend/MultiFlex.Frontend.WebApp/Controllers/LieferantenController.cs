@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Multiflex.Frontend.WebApp.Controllers
@@ -111,6 +113,26 @@ namespace Multiflex.Frontend.WebApp.Controllers
         public ActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Add(Models.LieferantDto model)
+        {
+            try
+            {
+                using var httpCliet = new HttpClient();
+
+                var json = JsonConvert.SerializeObject(model);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
