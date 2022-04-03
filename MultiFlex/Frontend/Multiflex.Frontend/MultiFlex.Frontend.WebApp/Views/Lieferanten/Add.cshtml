@@ -1,3 +1,5 @@
+@model Multiflex.Frontend.WebApp.Models.LieferantDto
+
 @{
     ViewData["Title"] = "Add";
 }
@@ -9,20 +11,20 @@
 
 
     <div class="w-75">
-        <form>
+        <form asp-action="Add">
             <center>
                 <div class="mb-5">
-                    <label class="form-label">LieferantenName</label>
-                    <input type="text" class="form-control w-50 d-flex justify-content-center" id="lieferatenNameInput" placeholder="LieferantenName" required>
+                    <label asp-for="name" class="form-label">LieferantenName</label>
+                    <input asp-for="name" type="text" class="form-control w-50 d-flex justify-content-center" id="lieferatenNameInput" placeholder="LieferantenName" required>
                 </div>
 
                 <div class="mt-5 mb-3">
-                    <label class="form-label">WebLink</label>
-                    <input type="text" class="form-control w-50 d-flex justify-content-center" id="webLinqImput" placeholder="WebLink" required>
+                    <label asp-for="weblink" class="form-label">WebLink</label>
+                    <input asp-for="weblink" type="text" class="form-control w-50 d-flex justify-content-center" id="webLinqImput" placeholder="WebLink" required>
                 </div>
                 <div class="mt-5 mb-3">
-                    <label class="form-label">Lieferzeit</label>
-                    <input type="text" class="form-control w-50 d-flex justify-content-center" id="lieferzeitImput" placeholder="Lieferzeit" required>
+                    <label asp-for="lieferzeit" class="form-label">Lieferzeit</label>
+                    <input asp-for="lieferzeit" type="text" class="form-control w-50 d-flex justify-content-center" id="lieferzeitImput" placeholder="Lieferzeit" required>
                 </div>
 
                 <button id="add-lieferanten" type="submit" class="btn btn-primary">Erstellen</button>
