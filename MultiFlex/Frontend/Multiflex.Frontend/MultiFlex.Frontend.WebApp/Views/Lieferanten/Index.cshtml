@@ -1,73 +1,69 @@
+@model IEnumerable<Multiflex.Frontend.WebApp.Models.LieferantDto>
+
 @{
     ViewData["Title"] = "Lieferanten";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    //Controller = "LieferantenController";
-
-    var test = new List<string>();
 }
 
-<div class="text-center">
+<div class="text-center " align="center">
     <h1>@ViewData["Title"]</h1>
 
     <center><div class="w-75" id="table_div"></div></center>
 
     <div class="d-flex justify-content-center pt-3 pb-2">
         <a href="../Material/Index" class="btn btn-light">Materialien mit Lieferanten anzeigen</a>
-        <button id="open-add-window" type="submit" class="btn btn-primary">Erstellen</button>
-        <button id="open-delete-window" type="submit" class="btn btn-primary">Loeschen</button>
-
+        <a asp-action="Add" id="open-add-window" class="btn btn-primary">Erstellen</a>
     </div>
+
+
+    <table class="table w-75">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Weblink</th>
+                <th scope="col">Lieferzeit</th>
+                <th scope="col">L&ouml;schen</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.weblink)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lieferzeit)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        const { ipcRenderer } = require("electron");
-        document.addEventListener('DOMContentLoaded', pageLoaded);
-
-        ipcRenderer.on('getLieferant-reply', (event, arg) => {
-            let lieferant = JSON.parse(arg);
-            //alert("geht");
-            google.charts.load('current', {'packages':['table']});
-            google.charts.setOnLoadCallback(drawTable);
-
-            function drawTable() {
-                var lieferanten = [];
-                for (var i = 0; i < lieferant.length; i++){
-                   var data = [lieferant[i]["name"], lieferant[i]["weblink"], lieferant[i]["lieferzeit"]];
-                   lieferanten.push(data);
-                }
-                //alert("geht");
-                var data = new google.visualization.DataTable();
-                data.addColumn('string', 'Name');
-                data.addColumn('string', 'Weblink');
-                data.addColumn('number', 'Lieferzeit');
-                //alert("geht1.5");
-                data.addRows(lieferanten);
-
-                //data.addRows([
-                //  ['Mike',  {v: 10000, f: '$10,000'}, 1],
-                //  ['Jim',   {v:8000,   f: '$8,000'},  1],
-                //  ['Alice', {v: 12500, f: '$12,500'}, 1],
-                //  ['Bob',   {v: 7000,  f: '$7,000'},  1]
-                //]);
-
-
-                var table = new google.visualization.Table(document.getElementById('table_div'));
-
-                table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-                //alert("geht2");
-          }
-      });
-
-        function pageLoaded(){
-            ipcRenderer.send('loadLieferanten');
-        }
-        document.getElementById("open-add-window").addEventListener("click", () => {
-            ipcRenderer.send("open-add-window");
-        });
-        document.getElementById("open-delete-window").addEventListener("click", () => {
-            ipcRenderer.send("open-add-window");
-        });
+        //function pageLoaded(){
+        //ipcRenderer.send('loadLieferanten');
+        //}
+        //document.getElementById("open-add-window").addEventListener("click", () => {
+        //ipcRenderer.send("open-add-window");
+        //});
+        //document.getElementById("open-delete-window").addEventListener("click", () => {
+        //ipcRenderer.send("open-add-window");
+        //});
     </script>
 
 </div>
