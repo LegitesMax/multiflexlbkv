@@ -1,9 +1,9 @@
 package org.acme.dao;
 
-import org.acme.DTO.LieferantDto;
+import org.acme.DTO.SupplierDto;
 import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
-import org.acme.model.Lieferant;
+import org.acme.model.Supplier;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -30,25 +30,25 @@ public class LieferantDao {
     InsertManager im;
 
     @Transactional
-    public List<Lieferant> loadAll() {
-        return em.createQuery("select l from Lieferant l", Lieferant.class).getResultList();
+    public List<Supplier> loadAll() {
+        return em.createQuery("select l from Supplier l", Supplier.class).getResultList();
     }
     @Transactional
-    public Lieferant findById(Integer id){
-        return em.createQuery("select l from Lieferant l where l.id = :id", Lieferant.class).setParameter("id", id).getSingleResult();
+    public Supplier findById(Integer id){
+        return em.createQuery("select l from Supplier l where l.id = :id", Supplier.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<LieferantDto> lieferantToDto(List<Lieferant> lieferanten){
-        var lieferantDtos = new LinkedList<LieferantDto>();
+    public List<SupplierDto> lieferantToDto(List<Supplier> lieferanten){
+        var lieferantDtos = new LinkedList<SupplierDto>();
         for(var lieferant : lieferanten){
-            if(lieferant.getWaren().size() > 0) {
-                var materialSet = lieferant.getWaren();
+            if(lieferant.getWares().size() > 0) {
+                var materialSet = lieferant.getWares();
                 List<Integer> warenIds = new LinkedList<>();
                 for (var lieferant2 : materialSet) {
                     warenIds.add(lieferant2.getId());
                 }
                 Collections.sort(warenIds);
-                var lieferantDto = new LieferantDto(lieferant.getId(), lieferant.getName(), lieferant.getWeblink(), lieferant.getLieferzeit(),warenIds);
+                var lieferantDto = new SupplierDto(lieferant.getId(), lieferant.getName(), lieferant.getLink(), lieferant.getDeliveryTime(),warenIds);
                 lieferantDtos.add(lieferantDto);
             }
             else{
@@ -60,7 +60,7 @@ public class LieferantDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
-    public List<LieferantDto> getAll() {
+    public List<SupplierDto> getAll() {
         var lieferants = loadAll();
         var lieferantsDto = lieferantToDto(lieferants);
         return lieferantsDto;
@@ -68,8 +68,8 @@ public class LieferantDao {
 
     @POST
     @Path("/add")
-    public Response add(LieferantDto lieferantDto) {
-        var lieferant = objectMapper.fromDto(lieferantDto);
+    public Response add(SupplierDto supplierDto) {
+        var lieferant = objectMapper.fromDto(supplierDto);
 
         im.add(lieferant);
 

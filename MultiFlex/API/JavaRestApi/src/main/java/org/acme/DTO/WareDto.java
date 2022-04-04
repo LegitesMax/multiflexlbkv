@@ -17,26 +17,26 @@ public class WareDto implements Serializable {
 
     private String name;
 
-    private Integer bestand;
+    private Integer stock;
 
-    private Integer minbestand;
+    private Integer minAmount;
 
-    private Integer maxbestand;
+    private Integer maxAmount;
 
-    //private Set<FachDto> fächer;
+    //private Set<ShelfDto> fächer;
 
-    private List<Integer> fach_ids;
+    private List<Integer> shelf_ids;
 
-    private List<FachDto> fächer;
+    private List<ShelfDto> shelfs;
 
-    private String type;
+    //private String type;
 
-    public WareDto(Integer id, String name, Integer bestand, Integer minbestand, Integer maxbestand, List<Integer> fach_ids) {
+    public WareDto(Integer id, String name, Integer stock, Integer minAmount, Integer maxAmount, List<Integer> shelf_ids) {
         this.id = id;
         this.name = name;
-        this.bestand = bestand;
-        this.minbestand = minbestand;
-        this.maxbestand = maxbestand;
-        this.fach_ids = fach_ids;
+        this.stock = stock;
+        this.minAmount = minAmount;
+        this.maxAmount = maxAmount;
+        this.shelf_ids = shelf_ids;
     }
 }

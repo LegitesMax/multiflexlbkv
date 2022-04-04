@@ -1,13 +1,9 @@
 package org.acme.dao;
 
-import org.acme.DTO.FachDto;
-import org.acme.DTO.QueryModels.RegalFach;
-import org.acme.DTO.QueryModels.RegalFachWare;
+import org.acme.DTO.ShelfDto;
 import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
-import org.acme.model.Fach;
-import org.acme.model.Regal;
-import org.acme.model.Ware;
+import org.acme.model.Shelf;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -33,23 +29,23 @@ public class FachDao {
     InsertManager im;
 
     @Transactional
-    public List<Fach> loadAll() {
-        return em.createQuery("select f from Fach f", Fach.class).getResultList();
+    public List<Shelf> loadAll() {
+        return em.createQuery("select s from Shelf s", Shelf.class).getResultList();
     }
     @Transactional
-    public Fach findById(Integer id){
-        return em.createQuery("select f from Fach f where f.id = :id", Fach.class).setParameter("id", id).getSingleResult();
+    public Shelf findById(Integer id){
+        return em.createQuery("select s from Shelf s where s.id = :id", Shelf.class).setParameter("id", id).getSingleResult();
     }
 
     @GET
     @Transactional
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<FachDto> getAll() {
-        var fachDtos = new LinkedList<FachDto>();
-        //var faecher = entityManager.createQuery("select f from Fach f", Fach.class).getResultList();
+    public List<ShelfDto> getAll() {
+        var fachDtos = new LinkedList<ShelfDto>();
+        //var faecher = entityManager.createQuery("select f from Shelf f", Shelf.class).getResultList();
         var faecher = loadAll();
         for(var fach : faecher){
-            FachDto fachDto = new FachDto(fach.getId(), fach.getPosition(), fach.getMaxbestand(), fach.getWare().getId(), fach.getRegal().getId());
+            ShelfDto fachDto = new ShelfDto(fach.getId(), fach.getPosition(), fach.getMaxAmount(), fach.getWare().getId(), fach.getRegal().getId());
             fachDtos.add(fachDto);
         }
         return fachDtos;
@@ -57,7 +53,7 @@ public class FachDao {
 
     @POST
     @Path("/add")
-    public Response add(FachDto fachDto) {
+    public Response add(ShelfDto fachDto) {
         var fach = objectMapper.fromDto(fachDto);
 
         im.add(fach);
@@ -79,17 +75,17 @@ public class FachDao {
     //@Path("/queries/regal-fach-ware")
     //@Transactional
     //public List<RegalFachWare> getAllWithFach() {
-    //    var faecher = em.createQuery("select f from Fach f", Fach.class).getResultList();
+    //    var faecher = em.createQuery("select f from Shelf f", Shelf.class).getResultList();
     //    var regalfachwaren = new LinkedList<RegalFachWare>();
     //    for (var fach : faecher) {
-    //        //var regal = em.createQuery("select f.regal from Fach f", Regal.class).getSingleResult();
-    //        var waren  = fach.getWare(); //= em.createQuery("select w from Fach f join f.ware w", Ware.class).getResultList();
+    //        //var regal = em.createQuery("select f.regal from Shelf f", Regal.class).getSingleResult();
+    //        var waren  = fach.getWare(); //= em.createQuery("select w from Shelf f join f.ware w", Ware.class).getResultList();
     //        for(var ware : waren){
     //            var regalfachware = new RegalFachWare(fach.getRegal().getName(), fach.getRegal().getMax_anzahl_faecher(), fach.getId(), ware.getName(), ware.getBestand(), ware.getMinbestand(), ware.getMaxbestand());
     //            regalfachwaren.add(regalfachware);
     //        }
     //    }
-    //    //var regale = em.createQuery("select r from Fach f join f.regal r", Regal.class).getResultList();
+    //    //var regale = em.createQuery("select r from Shelf f join f.regal r", Regal.class).getResultList();
 //
     //    //var regalDtos = regalToDto(regale);
     //    return regalfachwaren;

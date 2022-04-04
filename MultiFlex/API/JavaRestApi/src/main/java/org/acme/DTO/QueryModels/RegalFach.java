@@ -17,6 +17,6 @@ public class RegalFach {
 
     private Integer max_anzahl_faecher;
 
-    //Fach
+    //Shelf
     private Integer maxbestand;
 }

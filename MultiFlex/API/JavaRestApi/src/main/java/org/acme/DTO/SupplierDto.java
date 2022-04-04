@@ -12,13 +12,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegalDto implements Serializable {
-
+public class SupplierDto implements Serializable {
     private Integer id;
 
     private String name;
 
-    private Integer maxAmountShelfs;
+    private String link;
 
-    private List<Integer> shelf_ids;
+    private Integer deliveryTime;
+
+    private List<Integer> ware_ids;
 }

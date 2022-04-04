@@ -1,13 +1,9 @@
 package org.acme.dao;
 
-import org.acme.DTO.QueryModels.RegalFach;
-import org.acme.DTO.QueryModels.RegalFachWare;
 import org.acme.DTO.RegalDto;
 import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
-import org.acme.model.Fach;
 import org.acme.model.Regal;
-import org.acme.model.Ware;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -50,14 +46,14 @@ public class RegalDao {
     public List<RegalDto> regalToDto(List<Regal> regale){
         var regalDtos = new LinkedList<RegalDto>();
         for(var regal : regale){
-            if(regal.getFaecher().size() > 0) {
-                var fachSet = regal.getFaecher();
+            if(regal.getShelfs().size() > 0) {
+                var fachSet = regal.getShelfs();
                 List<Integer> fachIds = new LinkedList<>();
                 for (var fach : fachSet) {
                     fachIds.add(fach.getId());
                 }
                 Collections.sort(fachIds);
-                RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), fachIds);
+                RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMaxAmountShelfs(), fachIds);
                 regalDtos.add(regalDto);
             }
         }
@@ -111,7 +107,7 @@ public class RegalDao {
         var regalefachwaren = new LinkedList<RegalFachWare>();
         for (var regal: regale) {
             var faecherregal = regal.getFaecher();
-            //var faecher = em.createQuery("select f from Regal r join r.faecher f", Fach.class).getResultList();
+            //var faecher = em.createQuery("select f from Regal r join r.faecher f", Shelf.class).getResultList();
             for(var fachregal : faecherregal){
                 for (var ware : waren){
                     var fachwaren = ware.getFächer();
@@ -125,7 +121,7 @@ public class RegalDao {
                 //var regalfach = new RegalFach(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), fach.getMaxbestand());
             }
         }
-        //var regale = em.createQuery("select r from Fach f join f.regal r", Regal.class).getResultList();
+        //var regale = em.createQuery("select r from Shelf f join f.regal r", Regal.class).getResultList();
 
         //var regalDtos = regalToDto(regale);
         return regalefachwaren;

@@ -1,12 +1,20 @@
 package org.acme.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Regal")
 public class Regal {
 
     @Id
@@ -18,48 +26,13 @@ public class Regal {
 
     @Positive(message = "can not have a negative value ")
     @Column(nullable = false)
-    private Integer max_anzahl_faecher;
+    private Integer maxAmountShelfs;
 
     @OneToMany(mappedBy = "regal"/*, cascade = CascadeType.REMOVE*/)
-    private Set<Fach> faecher = new HashSet<>();
+    private Set<Shelf> shelfs = new HashSet<>();
 
-    public Regal(String name, Integer max_anzahl_faecher) {
+    public Regal(String name, Integer maxAmountShelfs) {
         this.name = name;
-        this.max_anzahl_faecher = max_anzahl_faecher;
-    }
-
-    public Regal() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getMax_anzahl_faecher() {
-        return max_anzahl_faecher;
-    }
-
-    public void setMax_anzahl_faecher(Integer max_anzahl_faecher) {
-        this.max_anzahl_faecher = max_anzahl_faecher;
-    }
-
-    public Set<Fach> getFaecher() {
-        return faecher;
-    }
-
-    public void setFaecher(Set<Fach> faecher) {
-        this.faecher = faecher;
+        this.maxAmountShelfs = maxAmountShelfs;
     }
 }

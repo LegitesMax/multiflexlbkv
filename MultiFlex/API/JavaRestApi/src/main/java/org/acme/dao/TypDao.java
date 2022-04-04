@@ -1,11 +1,8 @@
 package org.acme.dao;
 
-import org.acme.DTO.TypDto;
-import org.acme.DTO.WareDto;
+import org.acme.DTO.Type;
 import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
-import org.acme.model.Typ;
-import org.acme.model.Ware;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -15,7 +12,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,26 +29,26 @@ public class TypDao {
     InsertManager im;
 
     @Transactional
-    public List<Typ> loadAll() {
-        return em.createQuery("select t from Typ t", Typ.class).getResultList();
+    public List<org.acme.model.Type> loadAll() {
+        return em.createQuery("select t from Type t", org.acme.model.Type.class).getResultList();
     }
-    public List<Typ> loadAllWare() {
-        return em.createQuery("select t from Typ t where t.typ like 'Ware'", Typ.class).getResultList();
+    public List<org.acme.model.Type> loadAllWare() {
+        return em.createQuery("select t from Type t where t.typ like 'Ware'", org.acme.model.Type.class).getResultList();
     }
-    public List<Typ> loadAllProduct() {
-        return em.createQuery("select t from Typ t where t.typ like 'Produkt'", Typ.class).getResultList();
+    public List<org.acme.model.Type> loadAllProduct() {
+        return em.createQuery("select t from Type t where t.typ like 'Produkt'", org.acme.model.Type.class).getResultList();
     }
 
     @Transactional
-    public Typ findById(Integer id){
-        return em.createQuery("select t from Typ t where t.id = :id", Typ.class).setParameter("id", id).getSingleResult();
+    public org.acme.model.Type findById(Integer id){
+        return em.createQuery("select t from Type t where t.id = :id", org.acme.model.Type.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Typ> loadByName(@PathParam String name){
-        return em.createQuery("select t from Typ t where t.typ like lower(concat('%', concat(:name, '%')))", Typ.class).setParameter("name", name).getResultList();
+    public List<org.acme.model.Type> loadByName(@PathParam String name){
+        return em.createQuery("select t from Type t where t.typ like lower(concat('%', concat(:name, '%')))", org.acme.model.Type.class).setParameter("name", name).getResultList();
     }
     //@Transactional
-    //public List<TypDto> regalToDto(List<Typ> waren){
+    //public List<Type> regalToDto(List<Type> waren){
     //    var wareDtos = new LinkedList<WareDto>();
     //    for(var ware : waren){
     //        if(ware.getFächer().size() > 0) {
@@ -72,9 +68,9 @@ public class TypDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
-    public List<TypDto> getAll() {
+    public List<Type> getAll() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<TypDto>();
+        var typDtos = new LinkedList<Type>();
         var typen = loadAll();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -85,9 +81,9 @@ public class TypDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     @Path("/Ware")
-    public List<TypDto> getAllWare() {
+    public List<Type> getAllWare() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<TypDto>();
+        var typDtos = new LinkedList<Type>();
         var typen = loadAllWare();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -98,9 +94,9 @@ public class TypDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Product")
     @Transactional
-    public List<TypDto> getAllProduct() {
+    public List<Type> getAllProduct() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<TypDto>();
+        var typDtos = new LinkedList<Type>();
         var typen = loadAllProduct();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -111,8 +107,8 @@ public class TypDao {
     @GET
     @Path("/{name}")
     @Transactional
-    public List<TypDto> getOne(String name) {
-        var typDtos = new LinkedList<TypDto>();
+    public List<Type> getOne(String name) {
+        var typDtos = new LinkedList<Type>();
         var typen = loadAll();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -123,9 +119,9 @@ public class TypDao {
 
     @POST
     @Path("/add")
-    public Response addRegal(TypDto typDto) {
-        var typ = objectMapper.fromDto(typDto);
-        //System.out.println(typDto.getName());
+    public Response addRegal(Type type) {
+        var typ = objectMapper.fromDto(type);
+        //System.out.println(type.getName());
         im.add(typ);
         return Response.status(Response.Status.CREATED).build();
     }

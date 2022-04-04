@@ -1,11 +1,10 @@
 package org.acme.mapper;
 
 import org.acme.DTO.*;
+import org.acme.DTO.Type;
 import org.acme.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-import java.util.List;
 
 @Mapper(componentModel = "cdi")
 public interface ObjectMapper {
@@ -16,12 +15,12 @@ public interface ObjectMapper {
     @Mapping(target = "id")
     Regal fromDto(RegalDto regal);
 
-    //Fach
+    //Shelf
     @Mapping(target = "id")
-    FachDto toDTO(Fach fach);
+    ShelfDto toDTO(Shelf fach);
 
     @Mapping(target = "id")
-    Fach fromDto(FachDto fach);
+    Shelf fromDto(ShelfDto fach);
 
     //Ware
     @Mapping(target = "id")
@@ -30,17 +29,17 @@ public interface ObjectMapper {
     @Mapping(target = "id")
     Ware fromDto(WareDto ware);
 
-    //Lieferant
+    //Supplier
     @Mapping(target = "id")
-    LieferantDto toDTO(Lieferant lieferant);
+    SupplierDto toDTO(Supplier lieferant);
 
     @Mapping(target = "id")
-    Lieferant fromDto(LieferantDto lieferant);
+    Supplier fromDto(SupplierDto lieferant);
 
     //Material
     @Mapping(target = "id")
-    TypDto toDTO(Typ typ);
+    Type toDTO(org.acme.model.Type typ);
 
     @Mapping(target = "id")
-    Typ fromDto(TypDto typDto);
+    org.acme.model.Type fromDto(Type type);
 }

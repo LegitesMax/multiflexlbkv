@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,19 +16,30 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Farbe {
+@Table(name = "Supplier")
+public class Supplier {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 32)
-    @NotNull(message = "Color must have a Name")
+    @NotNull
+    @Column(nullable = false, length = 64)
     private String name;
 
-    @ManyToMany
-    private Set<Ware> waren = new HashSet<>();
+    @Column
+    private String link;
 
-    public Farbe(String name) {
+    @PositiveOrZero
+    @Column(nullable = false)
+    private Integer deliveryTime;
+
+    @ManyToMany
+    private Set<Ware> wares = new HashSet<>();
+
+    public Supplier(String name, String link, Integer deliveryTime) {
         this.name = name;
+        this.link = link;
+        this.deliveryTime = deliveryTime;
     }
 }

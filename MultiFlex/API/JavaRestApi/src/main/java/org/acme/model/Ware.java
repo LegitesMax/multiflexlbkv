@@ -3,7 +3,6 @@ package org.acme.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,32 +28,32 @@ public class Ware {
 
     @PositiveOrZero(message = "stock can not be negative")
     @Column(nullable = false)
-    private Integer bestand;
+    private Integer stock;
 
     @PositiveOrZero(message = "min stock can not be negative")
     @Column
-    private Integer minbestand;
+    private Integer minAmount;
 
     @PositiveOrZero(message = "max stock can not be negative")
     @Column
-    private Integer maxbestand;
+    private Integer maxAmount;
 
     @OneToMany(mappedBy = "ware")
-    private Set<Fach> fächer = new HashSet<>();
+    private Set<Shelf> shelfs = new HashSet<>();
 
     @ManyToOne
-    private Typ typ;
+    private Type type;
 
     @ManyToMany
-    private Set<Lieferant> lieferanten = new HashSet<>();
+    private Set<Supplier> suppliers = new HashSet<>();
 
     @ManyToMany
-    private Set<Farbe> farben = new HashSet<>();
+    private Set<Color> colors = new HashSet<>();
 
-    public Ware(String name, Integer bestand, Integer minbestand, Integer maxbestand) {
+    public Ware(String name, Integer stock, Integer minAmount, Integer maxAmount) {
         this.name = name;
-        this.bestand = bestand;
-        this.minbestand = minbestand;
-        this.maxbestand = maxbestand;
+        this.stock = stock;
+        this.minAmount = minAmount;
+        this.maxAmount = maxAmount;
     }
 }

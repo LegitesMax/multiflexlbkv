@@ -41,11 +41,11 @@ public class WareDao {
     }
     @Transactional
     public List<Ware> loadAllProduct() {
-        return em.createQuery("select w from Typ t join t.waren w where t.typ = 'Produkt'", Ware.class).getResultList();
+        return em.createQuery("select w from Type t join t.wares w where t.type = 'Produkt'", Ware.class).getResultList();
     }
     @Transactional
     public List<Ware> loadAllMaterials() {
-        return em.createQuery("select w from Typ t join t.waren w where t.typ = 'Material'", Ware.class).getResultList();
+        return em.createQuery("select w from Type t join t.wares w where t.type = 'Material'", Ware.class).getResultList();
     }
     @Transactional
     public Ware findById(Integer id){
@@ -59,14 +59,14 @@ public class WareDao {
     public List<WareDto> regalToDto(List<Ware> waren){
         var wareDtos = new LinkedList<WareDto>();
         for(var ware : waren){
-            if(ware.getFächer().size() > 0) {
-                var fachSet = ware.getFächer();
+            if(ware.getShelfs().size() > 0) {
+                var fachSet = ware.getShelfs();
                 List<Integer> fachIds = new LinkedList<>();
                 for (var fach : fachSet) {
                     fachIds.add(fach.getId());
                 }
                 Collections.sort(fachIds);
-                var wareDto = new WareDto(ware.getId(), ware.getName(), ware.getBestand(), ware.getMinbestand(), ware.getMaxbestand(), fachIds);
+                var wareDto = new WareDto(ware.getId(), ware.getName(), ware.getStock(), ware.getMinAmount(), ware.getMaxAmount(), fachIds);
                 wareDtos.add(wareDto);
             }
         }

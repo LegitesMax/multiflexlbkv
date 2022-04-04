@@ -5,12 +5,7 @@ import org.acme.model.*;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.Produces;
 import java.util.List;
 
 @ApplicationScoped
@@ -29,7 +24,7 @@ public class InsertManager {
     //public void add(Benutzer benutzer){
     //    em.persist(benutzer);}
     //@Transactional
-    //public void add(Farbe farbe){
+    //public void add(Color farbe){
     //    em.persist(farbe);}
     //@Transactional
     //public void add(Regal regal){
@@ -38,86 +33,86 @@ public class InsertManager {
     //public void add(Ware ware){
     //    em.persist(ware);}
     @Transactional
-    public void add(Fach f, Ware w){
+    public void add(Shelf f, Ware w){
         if (f.getId() == null)
             add(f);
         if (w.getId() == null)
             add(w);
 
-        w.getFächer().add(f);
+        w.getShelfs().add(f);
         f.setWare(w);
 
         em.persist(w);
         em.persist(f);
     }
     @Transactional
-    public void add(Ware w, Fach f){
+    public void add(Ware w, Shelf f){
         add(f, w);
     }
     @Transactional
-    public void add(Fach f, Regal r){
+    public void add(Shelf f, Regal r){
         if (f.getId() == null)
             add(f);
         if (r.getId() == null)
             add(r);
 
-        r.getFaecher().add(f);
+        r.getShelfs().add(f);
         f.setRegal(r);
 
         em.persist(r);
         em.persist(f);
     }
     @Transactional
-    public void add(Regal r, Fach f){
+    public void add(Regal r, Shelf f){
         add(f, r);
     }
     @Transactional
-    public void add(Farbe f, Ware w){
+    public void add(Color f, Ware w){
         if (f.getId() == null)
             add(f);
         if (w.getId() == null)
             add(w);
 
-        w.getFarben().add(f);
-        f.getWaren().add(w);
+        w.getColors().add(f);
+        f.getWares().add(w);
 
         em.persist(w);
         em.persist(f);
     }
     @Transactional
-    public void add(Ware w, Farbe f){
+    public void add(Ware w, Color f){
         add(f, w);
     }
     @Transactional
-    public void add(Lieferant l, Ware w){
+    public void add(Supplier l, Ware w){
         if (l.getId() == null)
             add(l);
         if (w.getId() == null)
             add(w);
 
-        w.getLieferanten().add(l);
-        l.getWaren().add(w);
+        w.getSuppliers().add(l);
+        l.getWares().add(w);
 
         em.persist(w);
         em.persist(l);
     }
     @Transactional
-    public void add(Ware w, Lieferant l){
+    public void add(Ware w, Supplier l){
         add(l, w);
     }
-    public void add(Ware w, Typ t){
+    public void add(Ware w, Type t){
         if (w.getId() == null)
             add(w);
         if (t.getId() == null)
             add(t);
 
-        t.getWaren().add(w);
-        w.setTyp(t);
+        t.getWares().add(w);
+        w.setType(t);
 
         em.persist(t);
         em.persist(w);
     }
-    public void add(Typ t, Ware w){
+    public void add(Type t, Ware w){
         add(w, t);
     }
 
@@ -127,12 +122,12 @@ public class InsertManager {
 
 
     @Transactional
-    public List<Benutzer> loadAll(Benutzer b) {
-        return em.createQuery("select b from Benutzer b", Benutzer.class).getResultList();
+    public List<User> loadAll(User b) {
+        return em.createQuery("select b from User b", User.class).getResultList();
     }
     @Transactional
-    public List<Farbe> loadAll(Farbe f) {
-        return em.createQuery("select f from Farbe f", Farbe.class).getResultList();
+    public List<Color> loadAll(Color f) {
+        return em.createQuery("select f from Color f", Color.class).getResultList();
     }
     @Transactional
     public List<Ware> loadAll(Ware w) {
@@ -146,8 +141,8 @@ public class InsertManager {
     //    return em.createQuery("select b from Benutzer b where b.id = :id", Benutzer.class).setParameter("id", id).getSingleResult();
     //}
     //@Transactional
-    //public Farbe farbeFindById(Integer id){
-    //    return em.createQuery("select f from Farbe f where f.id = :id", Farbe.class).setParameter("id", id).getSingleResult();
+    //public Color farbeFindById(Integer id){
+    //    return em.createQuery("select f from Color f where f.id = :id", Color.class).setParameter("id", id).getSingleResult();
     //}
     //@Transactional
     //public Ware wareFindById(Integer id){

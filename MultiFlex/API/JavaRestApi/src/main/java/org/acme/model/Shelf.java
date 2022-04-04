@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Fach")
-public class Fach {
+@Table(name = "Shelf")
+public class Shelf {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Fach {
     private Integer position;
 
     @Column
-    private Integer maxbestand;
+    private Integer maxAmount;
 
     @ManyToOne
     @MapsId("id")
@@ -32,9 +32,9 @@ public class Fach {
     @MapsId("id")
     private Regal regal;
 
-    public Fach(Integer position, Integer maxbestand, Ware ware, Regal regal) {
+    public Shelf(Integer position, Integer maxAmount, Ware ware, Regal regal) {
         this.position = position;
-        this.maxbestand = maxbestand;
+        this.maxAmount = maxAmount;
         this.ware = ware;
         this.regal = regal;
     }
