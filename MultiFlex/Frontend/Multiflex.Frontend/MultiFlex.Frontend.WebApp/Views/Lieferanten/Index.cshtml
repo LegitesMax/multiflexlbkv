@@ -3,52 +3,113 @@
 @{
     ViewData["Title"] = "Lieferanten";
 }
-<div class="text-center " align="center">
-    <h1>@ViewData["Title"]</h1>
-
-    <center><div class="w-75" id="table_div"></div></center>
+@*<h1>@ViewData["Title"]</h1>
 
     <div class="d-flex justify-content-center pt-3 pb-2">
-        <a href="../Material/Index" class="btn btn-light">Materialien mit Lieferanten anzeigen</a>
-        <a asp-action="Add" id="open-add-window" class="btn btn-primary">Erstellen</a>
-    </div>
+    <a href="../Material/Index" class="btn btn-light">Materialien mit Lieferanten anzeigen</a>
+    <a asp-action="Add" id="open-add-window" class="btn btn-primary">Erstellen</a>
+    </div>*@
 
-    <div class="d-flex justify-content-center">
-        <table class="table w-75" >
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufügen</a></center>
+
+
+<div class="w-100 d-flex">
+    @*<table class="table w-75" >
+        <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Weblink</th>
+        <th scope="col">Lieferzeit</th>
+        <th scope="col">L&ouml;schen</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+        <td>
+        @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.weblink)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.lieferzeit)
+        </td>
+        <td>
+        @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
+        </td>
+        </tr>
+        }
+        </tbody>
+        </table>*@
+
+    <div class="w-75 bg-light m-4">
+
+        <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
+                <tr class="bg-dark">
                     <th scope="col">Name</th>
                     <th scope="col">Weblink</th>
                     <th scope="col">Lieferzeit</th>
-                    <th scope="col">L&ouml;schen</th>
+                    <th scope="col">Aktion</th>
                 </tr>
             </thead>
-
-
             <tbody>
-            @foreach (var item in Model)
-            {
+                @foreach (var item in Model)
+                {
                     <tr>
+                        <td>@Html.DisplayFor(modelItem => item.name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.weblink)</td>
+                        <td>@Html.DisplayFor(modelItem => item.lieferzeit)</td>
                         <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.weblink)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.lieferzeit)
-                        </td>
-                        <td>
-                        @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
+                            <a>@Html.ActionLink("Delete", "Delete", new {  id=item.id  }, new{ @class="btn btn-danger"})</a>
                         </td>
                     </tr>
-            }
+                }
             </tbody>
         </table>
     </div>
+
+    <div class="class=" w-25 bg-dark m-4">
+
+        <h3>Nächst ankommende Ware</h3>
+
+        <div class="w-100 bg-light pt-3">
+            <div class="card mt-1 ">
+                <div class="card-body">
+                    <h5 class="card-title">Amazon</h5>
+                    <p class="card-text">Die bestellte Ware kommt in ..h an</p>
+                    <a href="#" class="btn btn-primary">Erhalten und Entfernen</a>
+                </div>
+            </div>
+
+            <div class="card mt-1">
+                <div class="card-body">
+                    <h5 class="card-title">Obi</h5>
+                    <p class="card-text">Die bestellte Ware kommt in ..h an</p>
+                    <a href="#" class="btn btn-primary">Erhalten und Entfernen</a>
+                </div>
+            </div>
+
+            <div class="card mt-1">
+                <div class="card-body">
+                    <h5 class="card-title">Bauhaus</h5>
+                    <p class="card-text">Die bestellte Ware kommt in ..h an</p>
+                    <a href="#" class="btn btn-primary">Erhalten und Entfernen</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
 
