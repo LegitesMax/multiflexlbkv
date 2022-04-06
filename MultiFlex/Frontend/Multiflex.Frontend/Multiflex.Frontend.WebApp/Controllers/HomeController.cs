@@ -101,7 +101,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 Console.WriteLine(requestWare);
                 var requestFach = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/fach");
+                    return httpCliet.GetStringAsync("http://localhost:8080/shelf");
                 });
                 Console.WriteLine(requestFach);
                 var json1 = JArray.Parse(requestRegal);
@@ -164,14 +164,14 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 if (regal.maxAmountShelfs > 0 && regal.maxAmountShelfs < 100)
                     {
                     //    Electron.IpcMain.Send(mainWindow, "get-regal-input-max-value-reply");
-                    await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
+                    await httpCliet.PostAsync("http://localhost:8080/regal/add", data);
 
                 }
                 else
                 {
                     Electron.IpcMain.Send(mainWindow, "add-regal-reply");
                 }
-                    //await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);
+                    //await httpCliet.PostAsync("http://localhost:8080/regal/add", data);
                 
                 //Console.WriteLine("test2");
             });
