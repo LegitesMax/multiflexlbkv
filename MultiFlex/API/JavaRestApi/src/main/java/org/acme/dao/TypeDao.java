@@ -18,7 +18,7 @@ import java.util.List;
 
 @Dependent
 @Path("/typ")
-public class TypDao {
+public class TypeDao {
     @Inject
     EntityManager em;
 
@@ -32,11 +32,11 @@ public class TypDao {
     public List<org.acme.model.Type> loadAll() {
         return em.createQuery("select t from Type t", org.acme.model.Type.class).getResultList();
     }
-    public List<org.acme.model.Type> loadAllWare() {
-        return em.createQuery("select t from Type t where t.typ like 'Ware'", org.acme.model.Type.class).getResultList();
+    public List<org.acme.model.Type> loadAllMaterial() {
+        return em.createQuery("select t from Type t where t.name like 'Material'", org.acme.model.Type.class).getResultList();
     }
     public List<org.acme.model.Type> loadAllProduct() {
-        return em.createQuery("select t from Type t where t.typ like 'Produkt'", org.acme.model.Type.class).getResultList();
+        return em.createQuery("select t from Type t where t.name like 'Produkt'", org.acme.model.Type.class).getResultList();
     }
 
     @Transactional
@@ -80,11 +80,11 @@ public class TypDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
-    @Path("/Ware")
-    public List<Type> getAllWare() {
+    @Path("/material")
+    public List<Type> getAllMaterial() {
         //var regale = loadAllRegal();
         var typDtos = new LinkedList<Type>();
-        var typen = loadAllWare();
+        var typen = loadAllMaterial();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
         }
@@ -92,7 +92,7 @@ public class TypDao {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/Product")
+    @Path("/product")
     @Transactional
     public List<Type> getAllProduct() {
         //var regale = loadAllRegal();

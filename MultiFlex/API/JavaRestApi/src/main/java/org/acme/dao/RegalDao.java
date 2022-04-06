@@ -79,7 +79,7 @@ public class RegalDao {
     }
 
     @POST
-    @Path("/addregal")
+    @Path("/add")
     public Response addRegal(RegalDto regalDto) {
         var regal = objectMapper.fromDto(regalDto);
         System.out.println(regalDto.getName());
