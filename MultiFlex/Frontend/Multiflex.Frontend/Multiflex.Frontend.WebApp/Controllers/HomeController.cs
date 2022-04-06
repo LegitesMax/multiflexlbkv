@@ -145,7 +145,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             });
             Electron.IpcMain.On("add-regal-input-max-value", (arg) =>
             {
-                regal.max_anzahl_faecher = Convert.ToInt32(arg.ToString());
+                regal.maxAmountShelfs = Convert.ToInt32(arg.ToString());
                 //Console.WriteLine(arg.ToString());
                 //if (regal.max_anzahl_faecher < 0 || regal.max_anzahl_faecher > 100)
                 //{
@@ -161,7 +161,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 using var httpCliet = new HttpClient();
                 //Console.WriteLine("DATA");
                 //Console.WriteLine(regal.name);
-                if (regal.max_anzahl_faecher > 0 && regal.max_anzahl_faecher < 100)
+                if (regal.maxAmountShelfs > 0 && regal.maxAmountShelfs < 100)
                     {
                     //    Electron.IpcMain.Send(mainWindow, "get-regal-input-max-value-reply");
                     await httpCliet.PostAsync("http://localhost:8080/regal/addregal", data);

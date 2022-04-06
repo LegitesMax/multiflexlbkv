@@ -1,7 +1,7 @@
 package org.acme.mapper;
 
 import org.acme.DTO.*;
-import org.acme.DTO.Type;
+import org.acme.DTO.TypeDto;
 import org.acme.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -38,8 +38,8 @@ public interface ObjectMapper {
 
     //Material
     @Mapping(target = "id")
-    Type toDTO(org.acme.model.Type typ);
+    TypeDto toDTO(org.acme.model.Type typ);
 
     @Mapping(target = "id")
-    org.acme.model.Type fromDto(Type type);
+    org.acme.model.Type fromDto(TypeDto type);
 }

@@ -1,4 +1,4 @@
-﻿@model Multiflex.Frontend.WebApp.Models.LieferantMaterial
+﻿@model Multiflex.Frontend.WebApp.Models.SupplierMaterial
 
 @{
     ViewData["Title"] = "Delete";
@@ -22,22 +22,22 @@
                 @Html.DisplayFor(model => model.ware_name)
             </dd>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.lieferat_name)
+                @Html.DisplayFor(model => model.supplier_name)
             </dd>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.lieferat_name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.weblink)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.weblink)
+                @Html.DisplayFor(model => model.supplier_name)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.lieferzeit)
+                @Html.DisplayNameFor(model => model.link)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.lieferzeit)
+                @Html.DisplayFor(model => model.link)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.deliveryTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.deliveryTime)
             </dd>
         </dl>
 

@@ -13,7 +13,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
     public class LieferantenController : Controller
     {
 
-        private static List<Models.LieferantDto> lieferanten = new();
+        private static List<Models.SupplierDto> lieferanten = new();
 
         public async Task<ActionResult> Index()
         {
@@ -100,7 +100,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             stopWatch.Start();
             var items = Task.Run(() =>
             {
-                return System.Text.Json.JsonSerializer.Deserialize<Models.LieferantDto[]>(requestlieferant.Result.ToString());
+                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestlieferant.Result.ToString());
             });
             stopWatch.Stop();
             System.Console.WriteLine(stopWatch.Elapsed);
@@ -119,11 +119,11 @@ namespace Multiflex.Frontend.WebApp.Controllers
             return View(items.Result);
         }
 
-        public static Task<Models.LieferantDto[]> GetAllAsync()
+        public static Task<Models.SupplierDto[]> GetAllAsync()
         {
             return Task.Run(() => lieferanten.ToArray());
         }
-        public static Task<Models.LieferantDto?> GetByIdAsync(int id)
+        public static Task<Models.SupplierDto?> GetByIdAsync(int id)
         {
             return Task.Run(() => lieferanten.FirstOrDefault(s => s.id == id));
         }
@@ -136,15 +136,15 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Add(Models.LieferantDto model)
+        public async Task<ActionResult> Add(Models.SupplierDto model)
         {
             try
             {
-                var lieferant = new Models.LieferantDao();
+                var lieferant = new Models.SupplierDao();
 
                 lieferant.name = model.name;
-                lieferant.weblink = model.weblink;
-                lieferant.lieferzeit = model.lieferzeit;
+                lieferant.link = model.weblink;
+                lieferant.deliveryTime = model.lieferzeit;
 
                 using var httpCliet = new HttpClient();
                 var json = JsonConvert.SerializeObject(lieferant);
@@ -172,7 +172,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Models.LieferantDto model)
+        public async Task<ActionResult> Delete(int id, Models.SupplierDto model)
         {
             try
             {

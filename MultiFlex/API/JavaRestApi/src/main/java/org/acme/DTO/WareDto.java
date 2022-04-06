@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.acme.model.Type;
 
 import java.io.Serializable;
 import java.util.List;
@@ -30,6 +31,7 @@ public class WareDto implements Serializable {
     private List<ShelfDto> shelfs;
 
     //private String type;
+    private TypeDto type;
 
     public WareDto(Integer id, String name, Integer stock, Integer minAmount, Integer maxAmount, List<Integer> shelf_ids) {
         this.id = id;

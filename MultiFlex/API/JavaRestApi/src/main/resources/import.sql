@@ -5,12 +5,12 @@
 insert into Regal (maxAmountShelfs, name) values(10, 'Regal-1');
 insert into Regal (maxAmountShelfs, name) values( 12, 'Regal-2');
 
---Type
+--TypeDto
 insert into Type (name) values ('Produkt');
 insert into Type (name)  values ('Material');
 
 --Waren
-insert into Ware (stock, maxAmount, minAmount, name, typ_id) values(8, 15, 5,'BAXXXX', 1);
+insert into Ware (stock, maxAmount, minAmount, name, type_id) values(8, 15, 5,'BAXXXX', 1);
 insert into Ware (stock, maxAmount, minAmount, name) values(2, 10, 1,'LÖXXXX');
 insert into Ware (stock, maxAmount, minAmount, name) values(10, 15, 5,'LOXXXX');
 insert into Ware (stock, maxAmount, minAmount, name) values(4, 15, 2,'TAXXXX');
@@ -36,7 +36,7 @@ insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'
 insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'Holzplatte-Schwarz', 2);
 insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'Holzplatte-Braun', 2);
 
---Type-Ware
+--TypeDto-Ware
 insert into Ware_Supplier (Suppliers_id, ware_id) values (1, 6);
 insert into Ware_Supplier (Suppliers_id, ware_id) values (1, 7);
 insert into Ware_Supplier (Suppliers_id, ware_id) values (1, 8);

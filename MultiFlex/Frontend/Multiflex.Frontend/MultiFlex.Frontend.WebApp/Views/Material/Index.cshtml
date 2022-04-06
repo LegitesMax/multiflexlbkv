@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Multiflex.Frontend.WebApp.Models.LieferantMaterial>
+﻿@model IEnumerable<Multiflex.Frontend.WebApp.Models.SupplierMaterial>
 
 @{
     ViewData["Title"] = "Lieferanten inkl. Ware";
@@ -36,13 +36,13 @@
                             @Html.DisplayFor(modelItem => item.ware_name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.lieferat_name)
+                            @Html.DisplayFor(modelItem => item.supplier_name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.weblink)
+                            @Html.DisplayFor(modelItem => item.link)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.lieferzeit)
+                            @Html.DisplayFor(modelItem => item.deliveryTime)
                         </td>
                         <td>
                             @Html.ActionLink("Delete", "Delete", new {  id=item.id  })

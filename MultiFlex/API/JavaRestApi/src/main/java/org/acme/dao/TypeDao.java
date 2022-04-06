@@ -1,6 +1,6 @@
 package org.acme.dao;
 
-import org.acme.DTO.Type;
+import org.acme.DTO.TypeDto;
 import org.acme.InsertManager;
 import org.acme.mapper.ObjectMapper;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Dependent
-@Path("/typ")
+@Path("/type")
 public class TypeDao {
     @Inject
     EntityManager em;
@@ -45,10 +45,10 @@ public class TypeDao {
     }
     @Transactional
     public List<org.acme.model.Type> loadByName(@PathParam String name){
-        return em.createQuery("select t from Type t where t.typ like lower(concat('%', concat(:name, '%')))", org.acme.model.Type.class).setParameter("name", name).getResultList();
+        return em.createQuery("select t from Type t where t.name like lower(concat('%', concat(:name, '%')))", org.acme.model.Type.class).setParameter("name", name).getResultList();
     }
     //@Transactional
-    //public List<Type> regalToDto(List<Type> waren){
+    //public List<TypeDto> regalToDto(List<TypeDto> waren){
     //    var wareDtos = new LinkedList<WareDto>();
     //    for(var ware : waren){
     //        if(ware.getFächer().size() > 0) {
@@ -68,9 +68,9 @@ public class TypeDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
-    public List<Type> getAll() {
+    public List<TypeDto> getAll() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<Type>();
+        var typDtos = new LinkedList<TypeDto>();
         var typen = loadAll();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -81,9 +81,9 @@ public class TypeDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     @Path("/material")
-    public List<Type> getAllMaterial() {
+    public List<TypeDto> getAllMaterial() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<Type>();
+        var typDtos = new LinkedList<TypeDto>();
         var typen = loadAllMaterial();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -94,9 +94,9 @@ public class TypeDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/product")
     @Transactional
-    public List<Type> getAllProduct() {
+    public List<TypeDto> getAllProduct() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<Type>();
+        var typDtos = new LinkedList<TypeDto>();
         var typen = loadAllProduct();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -107,8 +107,8 @@ public class TypeDao {
     @GET
     @Path("/{name}")
     @Transactional
-    public List<Type> getOne(String name) {
-        var typDtos = new LinkedList<Type>();
+    public List<TypeDto> getOne(String name) {
+        var typDtos = new LinkedList<TypeDto>();
         var typen = loadAll();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
@@ -119,7 +119,7 @@ public class TypeDao {
 
     @POST
     @Path("/add")
-    public Response addRegal(Type type) {
+    public Response addRegal(TypeDto type) {
         var typ = objectMapper.fromDto(type);
         //System.out.println(type.getName());
         im.add(typ);

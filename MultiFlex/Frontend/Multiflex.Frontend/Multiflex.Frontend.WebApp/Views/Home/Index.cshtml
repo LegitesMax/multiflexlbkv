@@ -50,9 +50,9 @@
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    for (var j = 0; j < ware.length; j++) {
                        for(var k = 0; k < fach.length; k++) {
-                           for(var l = 0; l < ware[j]["fach_ids"].length; l++){
-                                   if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
-                                       var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
+                           for(var l = 0; l < ware[j]["shelf_ids"].length; l++){
+                                   if(ware[j]["shelf_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
+                                       var data = [ware[j]["name"], ware[j]["maxAmount"], ware[j]["minAmount"], ware[j]["stock"]];
                                        fächer.push(data);
                                }
                            }
@@ -142,9 +142,9 @@
                    var fächer = [['Name', 'Max-Bestand', 'Min-Bestand', 'Bestand']];
                    for (var j = 0; j < ware.length; j++) {
                        for(var k = 0; k < fach.length; k++) {
-                           for(var l = 0; l < ware[j]["fach_ids"].length; l++){
-                                   if(ware[j]["fach_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
-                                       var data = [ware[j]["name"], ware[j]["maxbestand"], ware[j]["minbestand"], ware[j]["bestand"]];
+                           for(var l = 0; l < ware[j]["shelf_ids"].length; l++){
+                                   if(ware[j]["shelf_ids"][l] == fach[k]["id"] && regal[i]["id"] == fach[k]["regal_id"]){
+                                       var data = [ware[j]["name"], ware[j]["maxAmount"], ware[j]["minAmount"], ware[j]["stock"]];
                                        fächer.push(data);
                                }
                            }

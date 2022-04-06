@@ -41,11 +41,11 @@ public class WareDao {
     }
     @Transactional
     public List<Ware> loadAllProduct() {
-        return em.createQuery("select w from Type t join t.wares w where t.type = 'Produkt'", Ware.class).getResultList();
+        return em.createQuery("select w from Type t join t.wares w where t.name = 'Produkt'", Ware.class).getResultList();
     }
     @Transactional
     public List<Ware> loadAllMaterials() {
-        return em.createQuery("select w from Type t join t.wares w where t.type = 'Material'", Ware.class).getResultList();
+        return em.createQuery("select w from Type t join t.wares w where t.name = 'Material'", Ware.class).getResultList();
     }
     @Transactional
     public Ware findById(Integer id){

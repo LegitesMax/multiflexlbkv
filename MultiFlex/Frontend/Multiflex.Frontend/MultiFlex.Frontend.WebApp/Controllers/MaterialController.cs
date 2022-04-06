@@ -16,8 +16,8 @@ namespace Multiflex.Frontend.WebApp.Controllers
     public class MaterialController : Controller
     {
         private static List<Models.MaterialDto> material = new();
-        private static List<Models.LieferantDto> lieferatnen = new();
-        private static List<Models.LieferantMaterial> lfmt = new();
+        private static List<Models.SupplierDto> lieferatnen = new();
+        private static List<Models.SupplierMaterial> lfmt = new();
 
         public async Task<ActionResult> Index()
         {
@@ -79,7 +79,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             var json1 = JArray.Parse(await requestlieferant);
             var json2 = JArray.Parse(await requestMaterial);
 
-            var items1 = System.Text.Json.JsonSerializer.Deserialize<Models.LieferantDto[]>(json1.ToString());
+            var items1 = System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(json1.ToString());
             var items2 = System.Text.Json.JsonSerializer.Deserialize<Models.MaterialDto[]>(json2.ToString());
 
             lieferatnen.AddRange(items1);
@@ -92,12 +92,12 @@ namespace Multiflex.Frontend.WebApp.Controllers
                     if (item2.waren_ids.Contains(item.id))
                     {
                         lfmt.Add(
-                            new Models.LieferantMaterial
+                            new Models.SupplierMaterial
                             {
                                 ware_name = item.name,
-                                lieferzeit = item2.lieferzeit,
-                                lieferat_name = item2.name,
-                                weblink = item2.weblink
+                                deliveryTime = item2.lieferzeit,
+                                supplier_name = item2.name,
+                                link = item2.weblink
                             }
                         );
                     }
@@ -108,12 +108,12 @@ namespace Multiflex.Frontend.WebApp.Controllers
             return View(models);
         }
 
-        public static Task<Models.LieferantMaterial[]> GetAllAsync()
+        public static Task<Models.SupplierMaterial[]> GetAllAsync()
         {
             return Task.Run(() => lfmt.ToArray());
         }
 
-        public static Task<Models.LieferantMaterial?> GetByIdAsync(int Id)
+        public static Task<Models.SupplierMaterial?> GetByIdAsync(int Id)
         {
             return Task.Run(() => lfmt.FirstOrDefault(s => s.id == Id));
         }
@@ -162,7 +162,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Models.LieferantMaterial model)
+        public async Task<ActionResult> Delete(int id, Models.SupplierMaterial model)
         {
             try
             {
