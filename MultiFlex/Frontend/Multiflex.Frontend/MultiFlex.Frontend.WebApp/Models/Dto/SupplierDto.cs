@@ -2,7 +2,7 @@
 
 namespace Multiflex.Frontend.WebApp.Models
 {
-    public class SupplierDto
+    public class SupplierDto : IdentityModel
     {
         public string name { get; set; }
         public string link { get; set; }

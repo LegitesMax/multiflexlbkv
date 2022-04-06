@@ -1,8 +1,12 @@
+@using System.Diagnostics
 @model IEnumerable<Multiflex.Frontend.WebApp.Models.SupplierDto>
 
 @{
     ViewData["Title"] = "Lieferanten";
-}
+
+    Stopwatch stopWatch = new Stopwatch();
+    stopWatch.Start();
+
 @*<h1>@ViewData["Title"]</h1>
 
     <div class="d-flex justify-content-center pt-3 pb-2">
@@ -53,7 +57,6 @@
         </table>*@
 
     <div class="w-75 bg-light m-4">
-
         <table class="table">
             <thead>
                 <tr class="bg-dark">
@@ -68,8 +71,8 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.weblink)</td>
-                        <td>@Html.DisplayFor(modelItem => item.lieferzeit)</td>
+                        <td>@Html.DisplayFor(modelItem => item.link)</td>
+                        <td>@Html.DisplayFor(modelItem => item.deliveryTime)</td>
                         <td>
                             <a>@Html.ActionLink("Delete", "Delete", new {  id=item.id  }, new{ @class="btn btn-danger"})</a>
                         </td>
@@ -110,6 +113,7 @@
 
         </div>
     </div>
-</div>
-
-
+    </div>
+    stopWatch.Stop();
+    Console.WriteLine("Index.cshtml: " + stopWatch.Elapsed);
+}

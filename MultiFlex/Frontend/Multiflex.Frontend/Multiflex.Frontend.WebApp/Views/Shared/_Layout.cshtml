@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using System.Diagnostics
+
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +10,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Multiflex.WebApp.styles.css" asp-append-version="true" />
     <script src="../contrast-bootstrap-pro/js/cdb.js"></script>
-            <script src="../contrast-bootstrap-pro/js/bootstrap.min.js"></script>
-            <script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
+    <script src="../contrast-bootstrap-pro/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -34,7 +36,7 @@
                                 <a class="nav-link text-dark" href="../Home/Privacy">Bestellung/Versand</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="../Lieferanten/Index">Lieferanten</a>
+                                <a asp-controller="Lieferanten" asp-action="Index" class="nav-link text-dark" >Lieferanten</a>
                             </li>
                         </ul>
                         <li class="navbar-nav nav-item">
@@ -46,9 +48,17 @@
     </header>
     <div class="w-100">
         <main role="main" class="pb-3 w-100">
-            @RenderBody()
+            @{
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                @RenderBody()
+
+                stopWatch.Stop();
+                Console.WriteLine($"Render: {stopWatch.Elapsed}");
+            }
         </main>
     </div>
-   @await RenderSectionAsync("Scripts", required: false)
+       @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

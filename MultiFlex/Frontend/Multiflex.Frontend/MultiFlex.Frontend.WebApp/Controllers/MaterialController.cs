@@ -68,7 +68,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
             var requestlieferant = Task.Run(() =>
             {
-                return httpCliet.GetStringAsync("http://localhost:8080/lieferant");
+                return httpCliet.GetStringAsync("http://localhost:8080/supplier");
             });
 
             var requestMaterial = Task.Run(() =>
@@ -89,15 +89,15 @@ namespace Multiflex.Frontend.WebApp.Controllers
             {
                 foreach (var item2 in lieferatnen)
                 {
-                    if (item2.waren_ids.Contains(item.id))
+                    if (item2.ware_ids.Contains(item.id))
                     {
                         lfmt.Add(
                             new Models.SupplierMaterial
                             {
                                 ware_name = item.name,
-                                deliveryTime = item2.lieferzeit,
+                                deliveryTime = item2.deliveryTime,
                                 supplier_name = item2.name,
-                                link = item2.weblink
+                                link = item2.link
                             }
                         );
                     }

@@ -90,11 +90,11 @@ namespace Multiflex.Frontend.WebApp.Controllers
             stopWatch.Start();
             var requestlieferant = Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/lieferant");
+                    return httpCliet.GetStringAsync("http://localhost:8080/supplier");
                 });
             stopWatch.Stop();
 
-            System.Console.WriteLine(stopWatch.Elapsed);
+            System.Console.WriteLine("Databse: " + stopWatch.Elapsed);
 
             stopWatch.Reset();
             stopWatch.Start();
@@ -103,19 +103,19 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestlieferant.Result.ToString());
             });
             stopWatch.Stop();
-            System.Console.WriteLine(stopWatch.Elapsed);
+            System.Console.WriteLine("JSONparse" + stopWatch.Elapsed);
 
-            stopWatch.Reset();
-            stopWatch.Start();
-            _ = Task.Run(() =>
-            {
-                lieferanten.AddRange(items.Result);
-            });
-            stopWatch.Stop();
-            System.Console.WriteLine(stopWatch.Elapsed);
+            //stopWatch.Reset();
+            //stopWatch.Start();
+            //_ = Task.Run(() =>
+            //{
+            //    lieferanten.AddRange(items.Result);
+            //});
+            //stopWatch.Stop();
+            //System.Console.WriteLine(stopWatch.Elapsed);
 
             stopWatch1.Stop();
-            System.Console.WriteLine(stopWatch1.Elapsed);
+            System.Console.WriteLine($"Gesammt: {stopWatch1.Elapsed}");
             return View(items.Result);
         }
 
@@ -143,8 +143,8 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var lieferant = new Models.SupplierDao();
 
                 lieferant.name = model.name;
-                lieferant.link = model.weblink;
-                lieferant.deliveryTime = model.lieferzeit;
+                lieferant.link = model.link;
+                lieferant.deliveryTime = model.deliveryTime;
 
                 using var httpCliet = new HttpClient();
                 var json = JsonConvert.SerializeObject(lieferant);
@@ -152,7 +152,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
                 System.Console.WriteLine(data.ToString());
 
-                await httpCliet.PostAsync("http://localhost:8080/lieferant/add", data);
+                await httpCliet.PostAsync("http://localhost:8080/supplier/add", data);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -178,7 +178,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             {
                 using var httpCliet = new HttpClient();
 
-                await httpCliet.DeleteAsync("http://localhost:8080/lieferant/delete/" + model.id);
+                await httpCliet.DeleteAsync("http://localhost:8080/supplier/delete/" + model.id);
 
                 return RedirectToAction(nameof(Index));
             }
