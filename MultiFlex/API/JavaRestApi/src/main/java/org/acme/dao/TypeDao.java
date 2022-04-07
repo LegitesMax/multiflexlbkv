@@ -1,13 +1,13 @@
 package org.acme.dao;
 
 import org.acme.DTO.TypeDto;
-import org.acme.InsertManager;
+import org.acme.repository.CRUDOperations;
 import org.acme.mapper.ObjectMapper;
+import org.acme.repository.TypeRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,50 +20,10 @@ import java.util.List;
 @Path("/type")
 public class TypeDao {
     @Inject
-    EntityManager em;
+    TypeRepository repository;
 
     @Inject
     ObjectMapper objectMapper;
-
-    @Inject
-    InsertManager im;
-
-    @Transactional
-    public List<org.acme.model.Type> loadAll() {
-        return em.createQuery("select t from Type t", org.acme.model.Type.class).getResultList();
-    }
-    public List<org.acme.model.Type> loadAllMaterial() {
-        return em.createQuery("select t from Type t where t.name like 'Material'", org.acme.model.Type.class).getResultList();
-    }
-    public List<org.acme.model.Type> loadAllProduct() {
-        return em.createQuery("select t from Type t where t.name like 'Produkt'", org.acme.model.Type.class).getResultList();
-    }
-
-    @Transactional
-    public org.acme.model.Type findById(Integer id){
-        return em.createQuery("select t from Type t where t.id = :id", org.acme.model.Type.class).setParameter("id", id).getSingleResult();
-    }
-    @Transactional
-    public List<org.acme.model.Type> loadByName(@PathParam String name){
-        return em.createQuery("select t from Type t where t.name like lower(concat('%', concat(:name, '%')))", org.acme.model.Type.class).setParameter("name", name).getResultList();
-    }
-    //@Transactional
-    //public List<TypeDto> regalToDto(List<TypeDto> waren){
-    //    var wareDtos = new LinkedList<WareDto>();
-    //    for(var ware : waren){
-    //        if(ware.getFächer().size() > 0) {
-    //            var fachSet = ware.getFächer();
-    //            List<Integer> fachIds = new LinkedList<>();
-    //            for (var fach : fachSet) {
-    //                fachIds.add(fach.getId());
-    //            }
-    //            Collections.sort(fachIds);
-    //            var wareDto = new WareDto(ware.getId(), ware.getName(), ware.getBestand(), ware.getMinbestand(), ware.getMaxbestand(), fachIds);
-    //            wareDtos.add(wareDto);
-    //        }
-    //    }
-    //    return wareDtos;
-    //}
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -71,7 +31,7 @@ public class TypeDao {
     public List<TypeDto> getAll() {
         //var regale = loadAllRegal();
         var typDtos = new LinkedList<TypeDto>();
-        var typen = loadAll();
+        var typen = repository.loadAll();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
         }
@@ -84,7 +44,7 @@ public class TypeDao {
     public List<TypeDto> getAllMaterial() {
         //var regale = loadAllRegal();
         var typDtos = new LinkedList<TypeDto>();
-        var typen = loadAllMaterial();
+        var typen = repository.loadAllMaterial();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
         }
@@ -97,42 +57,29 @@ public class TypeDao {
     public List<TypeDto> getAllProduct() {
         //var regale = loadAllRegal();
         var typDtos = new LinkedList<TypeDto>();
-        var typen = loadAllProduct();
+        var typen = repository.loadAllProduct();
         for (var typ: typen) {
             typDtos.add(objectMapper.toDTO(typ));
         }
         return typDtos;
     }
-    /*
-    @GET
-    @Path("/{name}")
-    @Transactional
-    public List<TypeDto> getOne(String name) {
-        var typDtos = new LinkedList<TypeDto>();
-        var typen = loadAll();
-        for (var typ: typen) {
-            typDtos.add(objectMapper.toDTO(typ));
-        }
-        return typDtos;
-    }
-     */
 
     @POST
     @Path("/add")
     public Response addRegal(TypeDto type) {
         var typ = objectMapper.fromDto(type);
         //System.out.println(type.getName());
-        im.add(typ);
+        repository.add(typ);
         return Response.status(Response.Status.CREATED).build();
     }
     @Transactional
     @DELETE
     @Path("/delete/{id}")
     public void delete(@PathParam("id") Integer id) {
-        var entity = findById(id);
+        var entity = repository.findById(id);
         if(entity == null) {
             throw new NotFoundException();
         }
-        im.remove(entity);
+        repository.remove(entity);
     }
 }

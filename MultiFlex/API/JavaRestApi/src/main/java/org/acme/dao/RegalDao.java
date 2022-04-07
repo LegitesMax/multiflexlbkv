@@ -1,14 +1,14 @@
 package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
-import org.acme.InsertManager;
+import org.acme.repository.CRUDOperations;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Regal;
+import org.acme.repository.RegalRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,26 +22,11 @@ import java.util.List;
 public class RegalDao {
 
     @Inject
-    EntityManager em;
+    RegalRepository repository;
 
     @Inject
     ObjectMapper objectMapper;
 
-    @Inject
-    InsertManager im;
-
-    @Transactional
-    public List<Regal> loadAll() {
-        return em.createQuery("select r from Regal r", Regal.class).getResultList();
-    }
-    @Transactional
-    public Regal findById(Integer id){
-        return em.createQuery("select r from Regal r where r.id = :id", Regal.class).setParameter("id", id).getSingleResult();
-    }
-    @Transactional
-    public List<Regal> loadByName(@PathParam String name){
-        return em.createQuery("select r from Regal r where r.name like lower(concat('%', concat(:name, '%')))", Regal.class).setParameter("name", name).getResultList();
-    }
     @Transactional
     public List<RegalDto> regalToDto(List<Regal> regale){
         var regalDtos = new LinkedList<RegalDto>();
@@ -65,7 +50,7 @@ public class RegalDao {
     @Transactional
     public List<RegalDto> getAll() {
         //var regale = loadAllRegal();
-        var regale = loadAll();
+        var regale = repository.loadAll();
         var regalDtos = regalToDto(regale);
         return regalDtos;
     }
@@ -73,7 +58,7 @@ public class RegalDao {
     @Path("/{name}")
     @Transactional
     public List<RegalDto> getOne(String name) {
-        var regale = loadByName(name);
+        var regale = repository.loadByName(name);
         var regalDtos = regalToDto(regale);
         return regalDtos;
     }
@@ -83,47 +68,17 @@ public class RegalDao {
     public Response addRegal(RegalDto regalDto) {
         var regal = objectMapper.fromDto(regalDto);
         System.out.println(regalDto.getName());
-        im.add(regal);
+        repository.add(regal);
         return Response.status(Response.Status.CREATED).build();
     }
     @Transactional
     @DELETE
     @Path("/delete/{id}")
     public void delete(@PathParam("id") Integer id) {
-        var entity = findById(id);
+        var entity = repository.findById(id);
         if(entity == null) {
             throw new NotFoundException();
         }
-        im.remove(entity);
+        repository.remove(entity);
     }
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/queries/regal-fach")
-    @Transactional
-    public List<RegalFachWare> getAllWithFach() {
-        var regale = em.createQuery("select r from Regal r", Regal.class).getResultList();
-        var waren = em.createQuery("select w from Ware w", Ware.class).getResultList();
-        var regalefachwaren = new LinkedList<RegalFachWare>();
-        for (var regal: regale) {
-            var faecherregal = regal.getFaecher();
-            //var faecher = em.createQuery("select f from Regal r join r.faecher f", Shelf.class).getResultList();
-            for(var fachregal : faecherregal){
-                for (var ware : waren){
-                    var fachwaren = ware.getFächer();
-                    for (var fachware : fachwaren){
-                        if (fachware.getId() == fachregal.getId()){
-                            var regalfachware = new RegalFachWare(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), ware.getName(), ware.getBestand(), ware.getMinbestand(), ware.getMaxbestand());
-                            regalefachwaren.add(regalfachware);
-                        }
-                    }
-                }
-                //var regalfach = new RegalFach(regal.getId(), regal.getName(), regal.getMax_anzahl_faecher(), fach.getMaxbestand());
-            }
-        }
-        //var regale = em.createQuery("select r from Shelf f join f.regal r", Regal.class).getResultList();
-
-        //var regalDtos = regalToDto(regale);
-        return regalefachwaren;
-    }*/
 }

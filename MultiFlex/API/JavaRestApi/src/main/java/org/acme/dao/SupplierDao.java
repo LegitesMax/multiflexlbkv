@@ -1,14 +1,14 @@
 package org.acme.dao;
 
 import org.acme.DTO.SupplierDto;
-import org.acme.InsertManager;
+import org.acme.repository.CRUDOperations;
 import org.acme.mapper.ObjectMapper;
 import org.acme.model.Supplier;
+import org.acme.repository.SupplierRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -21,22 +21,11 @@ import java.util.List;
 @Path("/supplier")
 public class SupplierDao {
     @Inject
-    EntityManager em;
+    SupplierRepository repository;
 
     @Inject
     ObjectMapper objectMapper;
 
-    @Inject
-    InsertManager im;
-
-    @Transactional
-    public List<Supplier> loadAll() {
-        return em.createQuery("select l from Supplier l", Supplier.class).getResultList();
-    }
-    @Transactional
-    public Supplier findById(Integer id){
-        return em.createQuery("select l from Supplier l where l.id = :id", Supplier.class).setParameter("id", id).getSingleResult();
-    }
     @Transactional
     public List<SupplierDto> lieferantToDto(List<Supplier> lieferanten){
         var lieferantDtos = new LinkedList<SupplierDto>();
@@ -61,7 +50,7 @@ public class SupplierDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     public List<SupplierDto> getAll() {
-        var lieferants = loadAll();
+        var lieferants = repository.loadAll();
         var lieferantsDto = lieferantToDto(lieferants);
         return lieferantsDto;
     }
@@ -71,7 +60,7 @@ public class SupplierDao {
     public Response add(SupplierDto supplierDto) {
         var lieferant = objectMapper.fromDto(supplierDto);
 
-        im.add(lieferant);
+        repository.add(lieferant);
 
         return Response.status(Response.Status.CREATED).build();
     }
@@ -79,10 +68,10 @@ public class SupplierDao {
     @DELETE
     @Path("/delete/{id}")
     public void delete(@PathParam("id") Integer id) {
-        var entity = findById(id);
+        var entity = repository.findById(id);
         if(entity == null) {
             throw new NotFoundException();
         }
-        im.remove(entity);
+        repository.remove(entity);
     }
 }

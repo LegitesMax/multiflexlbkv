@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.repository;
 
 import org.acme.model.*;
 
@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class InsertManager {
+public class CRUDOperations {
     @Inject
     EntityManager em;
 

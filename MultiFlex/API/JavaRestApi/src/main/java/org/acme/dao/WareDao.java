@@ -1,12 +1,11 @@
 package org.acme.dao;
 
-import org.acme.DTO.RegalDto;
 import org.acme.DTO.WareDto;
-import org.acme.InsertManager;
+import org.acme.repository.CRUDOperations;
 import org.acme.mapper.MappingHelper;
 import org.acme.mapper.ObjectMapper;
-import org.acme.model.Regal;
 import org.acme.model.Ware;
+import org.acme.repository.WareRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -24,7 +23,7 @@ import java.util.List;
 @Path("/ware")
 public class WareDao {
     @Inject
-    EntityManager em;
+    WareRepository repository;
 
     @Inject
     ObjectMapper objectMapper;
@@ -32,29 +31,6 @@ public class WareDao {
     @Inject
     MappingHelper mh;
 
-    @Inject
-    InsertManager im;
-
-    @Transactional
-    public List<Ware> loadAll() {
-        return em.createQuery("select w from Ware w", Ware.class).getResultList();
-    }
-    @Transactional
-    public List<Ware> loadAllProduct() {
-        return em.createQuery("select w from Type t join t.wares w where t.name = 'Produkt'", Ware.class).getResultList();
-    }
-    @Transactional
-    public List<Ware> loadAllMaterials() {
-        return em.createQuery("select w from Type t join t.wares w where t.name = 'Material'", Ware.class).getResultList();
-    }
-    @Transactional
-    public Ware findById(Integer id){
-        return em.createQuery("select w from Ware w where w.id = :id", Ware.class).setParameter("id", id).getSingleResult();
-    }
-    @Transactional
-    public List<Ware> loadByName(@PathParam String name){
-        return em.createQuery("select w from Ware w where w.name like lower(concat('%', concat(:name, '%')))", Ware.class).setParameter("name", name).getResultList();
-    }
     @Transactional
     public List<WareDto> regalToDto(List<Ware> waren){
         var wareDtos = new LinkedList<WareDto>();
@@ -78,7 +54,7 @@ public class WareDao {
     @Transactional
     public List<WareDto> getAll() {
         //var regale = loadAllRegal();
-        var waren = loadAll();
+        var waren = repository.loadAll();
         var wareDtos = regalToDto(waren);
         return wareDtos;
     }
@@ -88,7 +64,7 @@ public class WareDao {
     @Transactional
     public List<WareDto> getAllMaterials() {
         //var regale = loadAllRegal();
-        var waren = loadAllMaterials();
+        var waren = repository.loadAllMaterials();
         //var wareDtos = regalToDto(waren);
         //return wareDtos;
         return mh.toDto(waren);
@@ -100,7 +76,7 @@ public class WareDao {
     @Transactional
     public List<WareDto> getAllProducts() {
         //var regale = loadAllRegal();
-        var waren = loadAllProduct();
+        var waren = repository.loadAllProduct();
         var wareDtos = regalToDto(waren);
         return wareDtos;
     }
@@ -118,17 +94,17 @@ public class WareDao {
     public Response addRegal(WareDto wareDto) {
         var ware = objectMapper.fromDto(wareDto);
         System.out.println(wareDto.getName());
-        im.add(ware);
+        repository.add(ware);
         return Response.status(Response.Status.CREATED).build();
     }
     @Transactional
     @DELETE
     @Path("/delete/{id}")
     public void delete(@PathParam("id") Integer id) {
-        var entity = findById(id);
+        var entity = repository.findById(id);
         if(entity == null) {
             throw new NotFoundException();
         }
-        im.remove(entity);
+        repository.remove(entity);
     }
 }
