@@ -2,9 +2,11 @@ package org.acme.repository;
 
 import org.acme.model.Supplier;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@ApplicationScoped
 public class SupplierRepository extends CRUDOperations{
     @Transactional
     public List<Supplier> loadAll() {

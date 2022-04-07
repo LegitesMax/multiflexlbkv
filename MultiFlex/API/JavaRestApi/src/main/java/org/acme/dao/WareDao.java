@@ -1,16 +1,13 @@
 package org.acme.dao;
 
 import org.acme.DTO.WareDto;
-import org.acme.repository.CRUDOperations;
-import org.acme.mapper.MappingHelper;
-import org.acme.mapper.ObjectMapper;
+import org.acme.mapper.WareHelper;
 import org.acme.model.Ware;
 import org.acme.repository.WareRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,10 +23,7 @@ public class WareDao {
     WareRepository repository;
 
     @Inject
-    ObjectMapper objectMapper;
-
-    @Inject
-    MappingHelper mh;
+    WareHelper mappingHelper;
 
     @Transactional
     public List<WareDto> regalToDto(List<Ware> waren){
@@ -67,7 +61,7 @@ public class WareDao {
         var waren = repository.loadAllMaterials();
         //var wareDtos = regalToDto(waren);
         //return wareDtos;
-        return mh.toDto(waren);
+        return mappingHelper.toDto(waren);
         //return loadAllMaterials();
     }
     @GET
@@ -89,10 +83,11 @@ public class WareDao {
     //    return wareDtos;
     //}
 
+    @Transactional
     @POST
     @Path("/add")
-    public Response addRegal(WareDto wareDto) {
-        var ware = objectMapper.fromDto(wareDto);
+    public Response add(WareDto wareDto) {
+        var ware = mappingHelper.fromDto(wareDto);
         System.out.println(wareDto.getName());
         repository.add(ware);
         return Response.status(Response.Status.CREATED).build();

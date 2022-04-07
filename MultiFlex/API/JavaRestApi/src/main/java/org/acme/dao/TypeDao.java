@@ -1,8 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.TypeDto;
-import org.acme.repository.CRUDOperations;
-import org.acme.mapper.ObjectMapper;
+import org.acme.mapper.TypeHelper;
 import org.acme.repository.TypeRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -23,7 +22,7 @@ public class TypeDao {
     TypeRepository repository;
 
     @Inject
-    ObjectMapper objectMapper;
+    TypeHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -33,7 +32,7 @@ public class TypeDao {
         var typDtos = new LinkedList<TypeDto>();
         var typen = repository.loadAll();
         for (var typ: typen) {
-            typDtos.add(objectMapper.toDTO(typ));
+            typDtos.add(mappingHelper.toDto(typ));
         }
         return typDtos;
     }
@@ -46,7 +45,7 @@ public class TypeDao {
         var typDtos = new LinkedList<TypeDto>();
         var typen = repository.loadAllMaterial();
         for (var typ: typen) {
-            typDtos.add(objectMapper.toDTO(typ));
+            typDtos.add(mappingHelper.toDto(typ));
         }
         return typDtos;
     }
@@ -59,7 +58,7 @@ public class TypeDao {
         var typDtos = new LinkedList<TypeDto>();
         var typen = repository.loadAllProduct();
         for (var typ: typen) {
-            typDtos.add(objectMapper.toDTO(typ));
+            typDtos.add(mappingHelper.toDto(typ));
         }
         return typDtos;
     }
@@ -67,7 +66,7 @@ public class TypeDao {
     @POST
     @Path("/add")
     public Response addRegal(TypeDto type) {
-        var typ = objectMapper.fromDto(type);
+        var typ = mappingHelper.fromDto(type);
         //System.out.println(type.getName());
         repository.add(typ);
         return Response.status(Response.Status.CREATED).build();

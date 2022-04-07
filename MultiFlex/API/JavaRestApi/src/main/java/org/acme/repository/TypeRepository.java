@@ -3,9 +3,11 @@ package org.acme.repository;
 import org.acme.model.Type;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@ApplicationScoped
 public class TypeRepository extends CRUDOperations{
     @Transactional
     public List<Type> loadAll() {

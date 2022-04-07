@@ -2,11 +2,13 @@ package org.acme.repository;
 
 import org.acme.model.Shelf;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@ApplicationScoped
 public class ShelfRepository extends CRUDOperations{
     @Transactional
     public List<Shelf> loadAll() {

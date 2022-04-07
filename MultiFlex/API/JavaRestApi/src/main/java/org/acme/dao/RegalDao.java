@@ -1,9 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
-import org.acme.repository.CRUDOperations;
-import org.acme.mapper.ObjectMapper;
-import org.acme.model.Regal;
+import org.acme.mapper.RegalHelper;
 import org.acme.repository.RegalRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -13,8 +11,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 @Dependent
@@ -25,48 +21,30 @@ public class RegalDao {
     RegalRepository repository;
 
     @Inject
-    ObjectMapper objectMapper;
-
-    @Transactional
-    public List<RegalDto> regalToDto(List<Regal> regale){
-        var regalDtos = new LinkedList<RegalDto>();
-        for(var regal : regale){
-            if(regal.getShelfs().size() > 0) {
-                var fachSet = regal.getShelfs();
-                List<Integer> fachIds = new LinkedList<>();
-                for (var fach : fachSet) {
-                    fachIds.add(fach.getId());
-                }
-                Collections.sort(fachIds);
-                RegalDto regalDto = new RegalDto(regal.getId(), regal.getName(), regal.getMaxAmountShelfs(), fachIds);
-                regalDtos.add(regalDto);
-            }
-        }
-        return regalDtos;
-    }
+    RegalHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     public List<RegalDto> getAll() {
-        //var regale = loadAllRegal();
-        var regale = repository.loadAll();
-        var regalDtos = regalToDto(regale);
+        //var regals = loadAllRegal();
+        var regals = repository.loadAll();
+        var regalDtos = mappingHelper.toDto(regals);
         return regalDtos;
     }
     @GET
     @Path("/{name}")
     @Transactional
     public List<RegalDto> getOne(String name) {
-        var regale = repository.loadByName(name);
-        var regalDtos = regalToDto(regale);
+        var regals = repository.loadByName(name);
+        var regalDtos = mappingHelper.toDto(regals);
         return regalDtos;
     }
 
     @POST
     @Path("/add")
     public Response addRegal(RegalDto regalDto) {
-        var regal = objectMapper.fromDto(regalDto);
+        var regal = mappingHelper.fromDto(regalDto);
         System.out.println(regalDto.getName());
         repository.add(regal);
         return Response.status(Response.Status.CREATED).build();
