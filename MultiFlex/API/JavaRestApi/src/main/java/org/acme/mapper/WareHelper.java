@@ -4,6 +4,7 @@ import org.acme.DTO.WareDto;
 import org.acme.model.Ware;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +18,17 @@ public class WareHelper extends MappingHelper{
         return result;
     }
     public WareDto toDto(Ware ware){
-        return om.toDTO(ware);
+        var wareDto = om.toDTO(ware);
+        if(ware.getShelfs().size() > 0) {
+            var shelfSet = ware.getShelfs();
+            List<Integer> shelfIds = new LinkedList<>();
+            for (var shelf : shelfSet) {
+                shelfIds.add(shelf.getId());
+            }
+            Collections.sort(shelfIds);
+            wareDto.setShelf_ids(shelfIds);
+        }
+        return wareDto;
     }
 
     public Ware fromDto(WareDto dto){

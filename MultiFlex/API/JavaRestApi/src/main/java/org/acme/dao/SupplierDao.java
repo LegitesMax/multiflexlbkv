@@ -26,17 +26,17 @@ public class SupplierDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     public List<SupplierDto> getAll() {
-        var lieferants = repository.loadAll();
-        var lieferantsDto = mappingHelper.toDto(lieferants);
-        return lieferantsDto;
+        var suppliers = repository.loadAll();
+        var supplierDtos = mappingHelper.toDto(suppliers);
+        return supplierDtos;
     }
 
     @POST
     @Path("/add")
     public Response add(SupplierDto supplierDto) {
-        var lieferant = mappingHelper.fromDto(supplierDto);
+        var supplier = mappingHelper.fromDto(supplierDto);
 
-        repository.add(lieferant);
+        repository.add(supplier);
 
         return Response.status(Response.Status.CREATED).build();
     }

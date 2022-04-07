@@ -1,9 +1,13 @@
 GET http://localhost:8080/regal/Regal-1
 
 ###
+GET http://localhost:8080/regal
+###
 GET http://localhost:8080/shelf
 ###
-
+GET http://localhost:8080/supplier
+###
+GET http://localhost:8080/type
 ###
 GET http://localhost:8080/ware
 ###

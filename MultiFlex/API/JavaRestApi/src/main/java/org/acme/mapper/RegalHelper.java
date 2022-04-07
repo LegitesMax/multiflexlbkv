@@ -13,11 +13,11 @@ import java.util.List;
 @ApplicationScoped
 public class RegalHelper extends MappingHelper{
     public List<RegalDto> toDto(List<Regal> regale){
-        var regalDtos = new LinkedList<RegalDto>();
+        var result = new LinkedList<RegalDto>();
         for(var regal : regale){
-            toDto(regal);
+             result.add(toDto(regal));
         }
-        return regalDtos;
+        return result;
     }
     public RegalDto toDto(Regal regal){
         var regalDto = om.toDTO(regal);

@@ -15,8 +15,8 @@ import java.util.List;
 public class ShelfHelper extends MappingHelper{
     public ShelfDto toDto(Shelf shelf){
         var shelfDto = om.toDTO(shelf);
-        shelfDto.setRegal_id(shelf.getId());
-        shelfDto.setWare_id(shelfDto.getWare_id());
+        shelfDto.setRegal_id(shelf.getRegal().getId());
+        shelfDto.setWare_id(shelf.getWare().getId());
         return shelfDto;
     }
     public List<ShelfDto> toDto(List<Shelf> shelves){

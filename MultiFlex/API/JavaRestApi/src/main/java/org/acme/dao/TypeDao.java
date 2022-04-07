@@ -29,25 +29,24 @@ public class TypeDao {
     @Transactional
     public List<TypeDto> getAll() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<TypeDto>();
-        var typen = repository.loadAll();
-        for (var typ: typen) {
-            typDtos.add(mappingHelper.toDto(typ));
+        var typeDtos = new LinkedList<TypeDto>();
+        var types = repository.loadAll();
+        for (var typ: types) {
+            typeDtos.add(mappingHelper.toDto(typ));
         }
-        return typDtos;
+        return typeDtos;
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     @Path("/material")
     public List<TypeDto> getAllMaterial() {
-        //var regale = loadAllRegal();
-        var typDtos = new LinkedList<TypeDto>();
-        var typen = repository.loadAllMaterial();
-        for (var typ: typen) {
-            typDtos.add(mappingHelper.toDto(typ));
+        var typeDtos = new LinkedList<TypeDto>();
+        var types = repository.loadAllMaterial();
+        for (var typ: types) {
+            typeDtos.add(mappingHelper.toDto(typ));
         }
-        return typDtos;
+        return typeDtos;
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -55,20 +54,15 @@ public class TypeDao {
     @Transactional
     public List<TypeDto> getAllProduct() {
         //var regale = loadAllRegal();
-        var typDtos = new LinkedList<TypeDto>();
-        var typen = repository.loadAllProduct();
-        for (var typ: typen) {
-            typDtos.add(mappingHelper.toDto(typ));
-        }
-        return typDtos;
+        var types = repository.loadAllProduct();
+        return mappingHelper.toDto(types);
     }
 
     @POST
     @Path("/add")
-    public Response addRegal(TypeDto type) {
-        var typ = mappingHelper.fromDto(type);
-        //System.out.println(type.getName());
-        repository.add(typ);
+    public Response addRegal(TypeDto typeDto) {
+        var type = mappingHelper.fromDto(typeDto);
+        repository.add(type);
         return Response.status(Response.Status.CREATED).build();
     }
     @Transactional

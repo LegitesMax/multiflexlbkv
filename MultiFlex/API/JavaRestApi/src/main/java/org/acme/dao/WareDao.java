@@ -25,31 +25,13 @@ public class WareDao {
     @Inject
     WareHelper mappingHelper;
 
-    @Transactional
-    public List<WareDto> regalToDto(List<Ware> waren){
-        var wareDtos = new LinkedList<WareDto>();
-        for(var ware : waren){
-            if(ware.getShelfs().size() > 0) {
-                var fachSet = ware.getShelfs();
-                List<Integer> fachIds = new LinkedList<>();
-                for (var fach : fachSet) {
-                    fachIds.add(fach.getId());
-                }
-                Collections.sort(fachIds);
-                var wareDto = new WareDto(ware.getId(), ware.getName(), ware.getStock(), ware.getMinAmount(), ware.getMaxAmount(), fachIds);
-                wareDtos.add(wareDto);
-            }
-        }
-        return wareDtos;
-    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Transactional
     public List<WareDto> getAll() {
         //var regale = loadAllRegal();
-        var waren = repository.loadAll();
-        var wareDtos = regalToDto(waren);
+        var wares = repository.loadAll();
+        var wareDtos = mappingHelper.toDto(wares);
         return wareDtos;
     }
     @GET
@@ -58,10 +40,10 @@ public class WareDao {
     @Transactional
     public List<WareDto> getAllMaterials() {
         //var regale = loadAllRegal();
-        var waren = repository.loadAllMaterials();
-        //var wareDtos = regalToDto(waren);
+        var wares = repository.loadAllMaterials();
+        //var wareDtos = regalToDto(wares);
         //return wareDtos;
-        return mappingHelper.toDto(waren);
+        return mappingHelper.toDto(wares);
         //return loadAllMaterials();
     }
     @GET
@@ -70,8 +52,8 @@ public class WareDao {
     @Transactional
     public List<WareDto> getAllProducts() {
         //var regale = loadAllRegal();
-        var waren = repository.loadAllProduct();
-        var wareDtos = regalToDto(waren);
+        var wares = repository.loadAllProduct();
+        var wareDtos = mappingHelper.toDto(wares);
         return wareDtos;
     }
     //@GET

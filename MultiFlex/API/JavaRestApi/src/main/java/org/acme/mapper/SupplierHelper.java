@@ -28,11 +28,11 @@ public class SupplierHelper extends MappingHelper{
     }
 
     public List<SupplierDto> toDto(List<Supplier> suppliers){
-        var lieferantDtos = new LinkedList<SupplierDto>();
+        var supplierDtos = new LinkedList<SupplierDto>();
         for(var supplier : suppliers){
-            toDto(supplier);
+            supplierDtos.add(toDto(supplier));
         }
-        return lieferantDtos;
+        return supplierDtos;
     }
 
     public Supplier fromDto(SupplierDto dto){
