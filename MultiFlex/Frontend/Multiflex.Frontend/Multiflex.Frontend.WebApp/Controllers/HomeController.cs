@@ -15,6 +15,10 @@ using System.Threading.Tasks;
 
 namespace Multiflex.Frontend.WebApp.Controllers
 {
+    //private static List<Models.WareDto> ware = new();
+    //private static List<Models.ShelfDto> shelf = new();
+    //private static List<Models.RegalDto> rsw = new();
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -24,8 +28,57 @@ namespace Multiflex.Frontend.WebApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public Task<ActionResult> Index()
         {
+
+            Stopwatch stopWatch1 = new Stopwatch();
+            stopWatch1.Start();
+            //lieferanten = new();
+            using var httpCliet = new HttpClient();
+
+            Stopwatch stopWatch = new Stopwatch();
+
+            stopWatch.Start();
+            var requestRegal = Task.Run(() =>
+            {
+                return httpCliet.GetStringAsync("http://localhost:8080/regal");
+            });
+
+            var requestFach = Task.Run(() =>
+            {
+                return httpCliet.GetStringAsync("http://localhost:8080/shelf");
+            });
+
+            var requestWare = Task.Run(() =>
+            {
+                return httpCliet.GetStringAsync("http://localhost:8080/ware");
+            });
+
+            stopWatch.Stop();
+
+            System.Console.WriteLine("Databse: " + stopWatch.Elapsed);
+
+            stopWatch.Reset();
+            stopWatch.Start();
+            var itemsRegal = Task.Run(() =>
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestRegal.Result.ToString());
+            });
+            var itemsShelf = Task.Run(() =>
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestFach.Result.ToString());
+            });
+            var itemsWare = Task.Run(() =>
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestWare.Result.ToString());
+            });
+            stopWatch.Stop();
+            System.Console.WriteLine("JSONparse" + stopWatch.Elapsed);
+
+            stopWatch1.Stop();
+            System.Console.WriteLine($"Gesammt: {stopWatch1.Elapsed}");
+            return View(itemsRegal.Result, itemsShelf.Result, itemsWare.Result);
+
             /*Electron.IpcMain.On("async-msg", (args) =>
             {
                 var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -107,12 +160,12 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);
-                Console.WriteLine("Json1: Regal");
-                Console.WriteLine(json1);
-                Console.WriteLine("Json2: Ware");
-                Console.WriteLine(json2);
-                Console.WriteLine("Json3: Fach");
-                Console.WriteLine(json3);
+                //Console.WriteLine("Json1: Regal");
+                //Console.WriteLine(json1);
+                //Console.WriteLine("Json2: Ware");
+                //Console.WriteLine(json2);
+                //Console.WriteLine("Json3: Fach");
+                //Console.WriteLine(json3);
                 //var requestRegalFachWare = await Task.Run(() =>
                 //{
                 //    return httpCliet.GetStringAsync("http://localhost:8080/regal/queries/regal-fach");
@@ -121,8 +174,6 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 //Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString());
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
-
-            return View();
         }
         public IActionResult Lieferanten()
         {

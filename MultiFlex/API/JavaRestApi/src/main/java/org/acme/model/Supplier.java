@@ -34,7 +34,7 @@ public class Supplier {
     @Column(nullable = false)
     private Integer deliveryTime;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private Set<Ware> wares = new HashSet<>();
 
     public Supplier(String name, String link, Integer deliveryTime) {
