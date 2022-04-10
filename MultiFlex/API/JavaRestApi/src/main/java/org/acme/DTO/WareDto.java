@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class WareDto implements Serializable {
     private Integer id;
 
@@ -26,10 +26,10 @@ public class WareDto implements Serializable {
 
     private List<Integer> shelf_ids;
 
-    private List<ShelfDto> shelfs;
+    //private List<ShelfDto> shelfs;
 
     //private String type;
-    private TypeDto type;
+    //private TypeDto type;
 
     public WareDto(Integer id, String name, Integer stock, Integer minAmount, Integer maxAmount, List<Integer> shelf_ids) {
         this.id = id;
