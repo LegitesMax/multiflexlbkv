@@ -24,8 +24,6 @@ public class WareDto implements Serializable {
 
     private Integer maxAmount;
 
-    //private Set<ShelfDto> fächer;
-
     private List<Integer> shelf_ids;
 
     private List<ShelfDto> shelfs;
