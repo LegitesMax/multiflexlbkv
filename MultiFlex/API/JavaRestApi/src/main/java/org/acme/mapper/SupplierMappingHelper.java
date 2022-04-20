@@ -2,14 +2,20 @@ package org.acme.mapper;
 
 import org.acme.DTO.SupplierDto;
 import org.acme.model.Supplier;
+import org.acme.model.Ware;
+import org.acme.repository.WareRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
 public class SupplierMappingHelper extends MappingHelper{
+    @Inject
+    WareRepository wareRepository;
+
     public SupplierDto toDto(Supplier supplier){
         var supplierDto = om.toDTO(supplier);
         if(supplier.getWares().size() > 0) {
@@ -33,7 +39,14 @@ public class SupplierMappingHelper extends MappingHelper{
     }
 
     public Supplier fromDto(SupplierDto dto){
-        return om.fromDto(dto);
+        var entity = om.fromDto(dto);
+
+        dto.getWare_ids().forEach(id -> {
+            var shelf = wareRepository.findById(id);
+            entity.getWares().add(shelf);
+        });
+
+        return entity;
     }
 
     public List<Supplier> fromDto(List<SupplierDto> dtos){

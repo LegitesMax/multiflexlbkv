@@ -20,7 +20,9 @@ public class TypeMappingHelper extends MappingHelper{
         return om.toDTO(type);
     }
     public Type fromDto(TypeDto dto){
-        return om.fromDto(dto);
+        var entity = om.fromDto(dto);
+
+        return entity;
     }
 
     public List<Type> fromDto(List<TypeDto> dtos){

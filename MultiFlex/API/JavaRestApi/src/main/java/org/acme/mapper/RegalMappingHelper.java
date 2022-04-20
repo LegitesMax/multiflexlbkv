@@ -38,12 +38,12 @@ public class RegalMappingHelper extends MappingHelper{
     }
 
     public Regal fromDto(RegalDto dto){
-        var regal = om.fromDto(dto);
+        var entity = om.fromDto(dto);
         dto.getShelf_ids().forEach(id -> {
             var shelf = shelfRepository.findById(id);
-            regal.getShelfs().add(shelf);
+            entity.getShelfs().add(shelf);
         });
-        return regal;
+        return entity;
     }
 
     public List<Regal> fromDto(List<RegalDto> dtos){

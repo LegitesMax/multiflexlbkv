@@ -2,14 +2,19 @@ package org.acme.mapper;
 
 import org.acme.DTO.WareDto;
 import org.acme.model.Ware;
+import org.acme.repository.ShelfRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
 public class WareMappingHelper extends MappingHelper{
+    @Inject
+    ShelfRepository shelfRepository;
+
     public List<WareDto> toDto(List<Ware> wares){
         var result = new LinkedList<WareDto>();
         for (var ware : wares) {
@@ -32,7 +37,14 @@ public class WareMappingHelper extends MappingHelper{
     }
 
     public Ware fromDto(WareDto dto){
-        return om.fromDto(dto);
+        var entity = om.fromDto(dto);
+
+        dto.getShelf_ids().forEach(id -> {
+            var shelf = shelfRepository.findById(id);
+            entity.getShelfs().add(shelf);
+        });
+
+        return entity;
     }
 
     public List<Ware> fromDto(List<WareDto> dtos){
