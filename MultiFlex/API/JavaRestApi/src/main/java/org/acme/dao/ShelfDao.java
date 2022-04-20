@@ -1,7 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.ShelfDto;
-import org.acme.mapper.ShelfHelper;
+import org.acme.mapper.ShelfMappingHelper;
 import org.acme.repository.ShelfRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.List;
 
 @Dependent
@@ -20,7 +21,7 @@ public class ShelfDao {
     ShelfRepository repository;
 
     @Inject
-    ShelfHelper mappingHelper;
+    ShelfMappingHelper mappingHelper;
 
     @GET
     @Transactional

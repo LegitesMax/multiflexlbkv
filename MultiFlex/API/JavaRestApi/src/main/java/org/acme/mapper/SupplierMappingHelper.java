@@ -1,18 +1,15 @@
 package org.acme.mapper;
 
 import org.acme.DTO.SupplierDto;
-import org.acme.DTO.TypeDto;
 import org.acme.model.Supplier;
-import org.acme.model.Type;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
-public class SupplierHelper extends MappingHelper{
+public class SupplierMappingHelper extends MappingHelper{
     public SupplierDto toDto(Supplier supplier){
         var supplierDto = om.toDTO(supplier);
         if(supplier.getWares().size() > 0) {

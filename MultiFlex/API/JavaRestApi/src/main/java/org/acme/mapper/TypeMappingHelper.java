@@ -1,16 +1,14 @@
 package org.acme.mapper;
 
 import org.acme.DTO.TypeDto;
-import org.acme.DTO.WareDto;
 import org.acme.model.Type;
-import org.acme.model.Ware;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
-public class TypeHelper extends MappingHelper{
+public class TypeMappingHelper extends MappingHelper{
     public List<TypeDto> toDto(List<Type> types){
         var result = new LinkedList<TypeDto>();
         for (var type : types) {

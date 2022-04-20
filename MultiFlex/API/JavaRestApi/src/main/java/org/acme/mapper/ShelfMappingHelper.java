@@ -1,18 +1,14 @@
 package org.acme.mapper;
 
-import org.acme.DTO.RegalDto;
 import org.acme.DTO.ShelfDto;
-import org.acme.DTO.WareDto;
-import org.acme.model.Regal;
 import org.acme.model.Shelf;
-import org.acme.model.Ware;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
-public class ShelfHelper extends MappingHelper{
+public class ShelfMappingHelper extends MappingHelper{
     public ShelfDto toDto(Shelf shelf){
         var shelfDto = om.toDTO(shelf);
         shelfDto.setRegal_id(shelf.getRegal().getId());

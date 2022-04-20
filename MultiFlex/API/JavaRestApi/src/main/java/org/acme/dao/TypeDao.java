@@ -1,7 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.TypeDto;
-import org.acme.mapper.TypeHelper;
+import org.acme.mapper.TypeMappingHelper;
 import org.acme.repository.TypeRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -22,7 +22,7 @@ public class TypeDao {
     TypeRepository repository;
 
     @Inject
-    TypeHelper mappingHelper;
+    TypeMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

@@ -1,17 +1,21 @@
 package org.acme.mapper;
 
 import org.acme.DTO.RegalDto;
-import org.acme.DTO.ShelfDto;
 import org.acme.model.Regal;
-import org.acme.model.Shelf;
+import org.acme.repository.ShelfRepository;
+import org.testcontainers.shaded.org.apache.commons.lang.NullArgumentException;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
-public class RegalHelper extends MappingHelper{
+public class RegalMappingHelper extends MappingHelper{
+    @Inject
+    ShelfRepository shelfRepository;
+
     public List<RegalDto> toDto(List<Regal> regale){
         var result = new LinkedList<RegalDto>();
         for(var regal : regale){
@@ -34,7 +38,12 @@ public class RegalHelper extends MappingHelper{
     }
 
     public Regal fromDto(RegalDto dto){
-        return om.fromDto(dto);
+        var regal = om.fromDto(dto);
+        dto.getShelf_ids().forEach(id -> {
+            var shelf = shelfRepository.findById(id);
+            regal.getShelfs().add(shelf);
+        });
+        return regal;
     }
 
     public List<Regal> fromDto(List<RegalDto> dtos){

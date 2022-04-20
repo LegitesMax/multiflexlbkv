@@ -1,7 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.SupplierDto;
-import org.acme.mapper.SupplierHelper;
+import org.acme.mapper.SupplierMappingHelper;
 import org.acme.repository.SupplierRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
 import java.util.List;
 
 @Dependent
@@ -21,7 +20,7 @@ public class SupplierDao {
     SupplierRepository repository;
 
     @Inject
-    SupplierHelper mappingHelper;
+    SupplierMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

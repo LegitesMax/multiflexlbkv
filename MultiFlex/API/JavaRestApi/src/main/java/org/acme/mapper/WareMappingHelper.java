@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
-public class WareHelper extends MappingHelper{
+public class WareMappingHelper extends MappingHelper{
     public List<WareDto> toDto(List<Ware> wares){
         var result = new LinkedList<WareDto>();
         for (var ware : wares) {

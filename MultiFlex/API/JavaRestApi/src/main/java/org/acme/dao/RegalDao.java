@@ -1,8 +1,9 @@
 package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
-import org.acme.mapper.RegalHelper;
+import org.acme.mapper.RegalMappingHelper;
 import org.acme.repository.RegalRepository;
+import org.acme.repository.ShelfRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -11,7 +12,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 
 @Dependent
@@ -22,7 +23,10 @@ public class RegalDao {
     RegalRepository repository;
 
     @Inject
-    RegalHelper mappingHelper;
+    ShelfRepository shelfRepository;
+
+    @Inject
+    RegalMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -41,12 +45,24 @@ public class RegalDao {
         var regalDtos = mappingHelper.toDto(regals);
         return regalDtos;
     }
+    @PUT
+    @Path("/update")
+    public Response updateRegal(RegalDto regalDto) {
+        var oldRegal = repository.findById(regalDto.getId());
+        repository.remove(oldRegal);
+
+        var regal = mappingHelper.fromDto(regalDto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(regal);
+        return Response.status(Response.Status.CREATED).build();
+    }
 
     @POST
     @Path("/add")
     public Response addRegal(RegalDto regalDto) {
         var regal = mappingHelper.fromDto(regalDto);
-        System.out.println(regalDto.getName());
+        //System.out.println(regalDto.getName());
         repository.add(regal);
         return Response.status(Response.Status.CREATED).build();
     }
