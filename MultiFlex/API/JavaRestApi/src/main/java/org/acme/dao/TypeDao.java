@@ -1,7 +1,9 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.TypeDto;
 import org.acme.mapper.TypeMappingHelper;
+import org.acme.model.Type;
 import org.acme.repository.TypeRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -56,6 +58,22 @@ public class TypeDao {
         //var regale = loadAllRegal();
         var types = repository.loadAllProduct();
         return mappingHelper.toDto(types);
+    }
+    @GET
+    @Path("/get/{name}")
+    @Transactional
+    public List<TypeDto> getByName(String name) {
+        var entities = repository.loadByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public TypeDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST

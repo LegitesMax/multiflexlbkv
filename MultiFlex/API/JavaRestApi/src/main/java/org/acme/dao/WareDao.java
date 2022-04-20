@@ -1,5 +1,6 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.WareDto;
 import org.acme.mapper.WareMappingHelper;
 import org.acme.repository.WareRepository;
@@ -53,14 +54,22 @@ public class WareDao {
         var wareDtos = mappingHelper.toDto(wares);
         return wareDtos;
     }
-    //@GET
-    //@Path("/{name}")
-    //@Transactional
-    //public List<WareDto> getOne(String name) {
-    //    var waren = loadByName(name);
-    //    var wareDtos = regalToDto(waren);
-    //    return wareDtos;
-    //}
+    @GET
+    @Path("/get/{name}")
+    @Transactional
+    public List<WareDto> getByName(String name) {
+        var entities = repository.loadByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public WareDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
 
     @Transactional
     @POST

@@ -1,5 +1,6 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.SupplierDto;
 import org.acme.mapper.SupplierMappingHelper;
 import org.acme.repository.SupplierRepository;
@@ -29,6 +30,22 @@ public class SupplierDao {
         var suppliers = repository.loadAll();
         var supplierDtos = mappingHelper.toDto(suppliers);
         return supplierDtos;
+    }
+    @GET
+    @Path("/get/{name}")
+    @Transactional
+    public List<SupplierDto> getByName(String name) {
+        var entities = repository.loadByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public SupplierDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST

@@ -1,5 +1,6 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.ShelfDto;
 import org.acme.mapper.ShelfMappingHelper;
 import org.acme.repository.ShelfRepository;
@@ -31,6 +32,14 @@ public class ShelfDao {
         var shelves = repository.loadAll();
         var shelfDtos = mappingHelper.toDto(shelves);
         return shelfDtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public ShelfDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST

@@ -23,9 +23,6 @@ public class RegalDao {
     RegalRepository repository;
 
     @Inject
-    ShelfRepository shelfRepository;
-
-    @Inject
     RegalMappingHelper mappingHelper;
 
     @GET
@@ -38,24 +35,20 @@ public class RegalDao {
         return regalDtos;
     }
     @GET
-    @Path("/{name}")
+    @Path("/get/{name}")
     @Transactional
-    public List<RegalDto> getOne(String name) {
-        var regals = repository.loadByName(name);
-        var regalDtos = mappingHelper.toDto(regals);
-        return regalDtos;
+    public List<RegalDto> getByName(String name) {
+        var entities = repository.loadByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
-    @PUT
-    @Path("/update")
-    public Response updateRegal(RegalDto regalDto) {
-        var oldRegal = repository.findById(regalDto.getId());
-        repository.remove(oldRegal);
-
-        var regal = mappingHelper.fromDto(regalDto);
-        //System.out.println(regalDto.getName());
-
-        repository.add(regal);
-        return Response.status(Response.Status.CREATED).build();
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public RegalDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST
@@ -75,5 +68,22 @@ public class RegalDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response updateRegal(RegalDto regalDto) {
+        var oldEntity = repository.findById(regalDto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+
+        var regal = mappingHelper.fromDto(regalDto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(regal);
+        return Response.status(Response.Status.CREATED).build();
     }
 }
