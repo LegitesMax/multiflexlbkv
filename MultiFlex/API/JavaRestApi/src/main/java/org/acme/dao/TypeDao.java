@@ -3,7 +3,6 @@ package org.acme.dao;
 import org.acme.DTO.RegalDto;
 import org.acme.DTO.TypeDto;
 import org.acme.mapper.TypeMappingHelper;
-import org.acme.model.Type;
 import org.acme.repository.TypeRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -63,7 +62,7 @@ public class TypeDao {
     @Path("/get/{name}")
     @Transactional
     public List<TypeDto> getByName(String name) {
-        var entities = repository.loadByName(name);
+        var entities = repository.findByName(name);
         var dtos = mappingHelper.toDto(entities);
         return dtos;
     }
@@ -92,5 +91,21 @@ public class TypeDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(TypeDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

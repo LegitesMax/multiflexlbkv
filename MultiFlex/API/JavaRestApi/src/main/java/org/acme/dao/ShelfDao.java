@@ -59,4 +59,20 @@ public class ShelfDao {
         }
         repository.remove(entity);
     }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(ShelfDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
+    }
 }

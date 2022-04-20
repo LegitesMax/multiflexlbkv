@@ -35,7 +35,7 @@ public class SupplierDao {
     @Path("/get/{name}")
     @Transactional
     public List<SupplierDto> getByName(String name) {
-        var entities = repository.loadByName(name);
+        var entities = repository.findByName(name);
         var dtos = mappingHelper.toDto(entities);
         return dtos;
     }
@@ -66,5 +66,21 @@ public class SupplierDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(SupplierDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

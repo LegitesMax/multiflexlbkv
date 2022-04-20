@@ -26,7 +26,7 @@ public class WareRepository extends CRUDOperations {
         return em.createQuery("select w from Ware w where w.id = :id", Ware.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Ware> loadByName(@PathParam String name){
+    public List<Ware> findByName(@PathParam String name){
         return em.createQuery("select w from Ware w where w.name like lower(concat('%', concat(:name, '%')))", Ware.class).setParameter("name", name).getResultList();
     }
 }

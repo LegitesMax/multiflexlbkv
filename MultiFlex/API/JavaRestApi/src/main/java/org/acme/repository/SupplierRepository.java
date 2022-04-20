@@ -1,6 +1,5 @@
 package org.acme.repository;
 
-import org.acme.model.Regal;
 import org.acme.model.Supplier;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -19,7 +18,7 @@ public class SupplierRepository extends CRUDOperations{
         return em.createQuery("select l from Supplier l where l.id = :id", Supplier.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Supplier> loadByName(@PathParam String name){
+    public List<Supplier> findByName(@PathParam String name){
         return em.createQuery("select s from Supplier s where s.name like lower(concat('%', concat(:name, '%')))", Supplier.class).setParameter("name", name).getResultList();
     }
 }

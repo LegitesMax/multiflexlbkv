@@ -3,7 +3,6 @@ package org.acme.dao;
 import org.acme.DTO.RegalDto;
 import org.acme.mapper.RegalMappingHelper;
 import org.acme.repository.RegalRepository;
-import org.acme.repository.ShelfRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
@@ -12,7 +11,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Arrays;
 import java.util.List;
 
 @Dependent
@@ -38,7 +36,7 @@ public class RegalDao {
     @Path("/get/{name}")
     @Transactional
     public List<RegalDto> getByName(String name) {
-        var entities = repository.loadByName(name);
+        var entities = repository.findByName(name);
         var dtos = mappingHelper.toDto(entities);
         return dtos;
     }
@@ -53,7 +51,7 @@ public class RegalDao {
 
     @POST
     @Path("/add")
-    public Response addRegal(RegalDto regalDto) {
+    public Response add(RegalDto regalDto) {
         var regal = mappingHelper.fromDto(regalDto);
         //System.out.println(regalDto.getName());
         repository.add(regal);
@@ -73,17 +71,16 @@ public class RegalDao {
     @PUT
     @Path("/update")
     @Transactional
-    public Response updateRegal(RegalDto regalDto) {
-        var oldEntity = repository.findById(regalDto.getId());
+    public Response update(RegalDto dto) {
+        var oldEntity = repository.findById(dto.getId());
         if(oldEntity == null) {
             throw new NotFoundException();
         }
         repository.remove(oldEntity);
-
-        var regal = mappingHelper.fromDto(regalDto);
+        var model = mappingHelper.fromDto(dto);
         //System.out.println(regalDto.getName());
 
-        repository.add(regal);
+        repository.add(model);
         return Response.status(Response.Status.CREATED).build();
     }
 }
