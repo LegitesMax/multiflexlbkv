@@ -1,8 +1,8 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.WareDto;
-import org.acme.mapper.WareHelper;
-import org.acme.model.Ware;
+import org.acme.mapper.WareMappingHelper;
 import org.acme.repository.WareRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -12,8 +12,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 @Dependent
@@ -23,7 +21,7 @@ public class WareDao {
     WareRepository repository;
 
     @Inject
-    WareHelper mappingHelper;
+    WareMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -56,14 +54,22 @@ public class WareDao {
         var wareDtos = mappingHelper.toDto(wares);
         return wareDtos;
     }
-    //@GET
-    //@Path("/{name}")
-    //@Transactional
-    //public List<WareDto> getOne(String name) {
-    //    var waren = loadByName(name);
-    //    var wareDtos = regalToDto(waren);
-    //    return wareDtos;
-    //}
+    @GET
+    @Path("/get/{name}")
+    @Transactional
+    public List<WareDto> getByName(String name) {
+        var entities = repository.findByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public WareDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
 
     @Transactional
     @POST
@@ -83,5 +89,21 @@ public class WareDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(WareDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

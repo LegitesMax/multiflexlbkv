@@ -1,7 +1,8 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.ShelfDto;
-import org.acme.mapper.ShelfHelper;
+import org.acme.mapper.ShelfMappingHelper;
 import org.acme.repository.ShelfRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.List;
 
 @Dependent
@@ -20,7 +22,7 @@ public class ShelfDao {
     ShelfRepository repository;
 
     @Inject
-    ShelfHelper mappingHelper;
+    ShelfMappingHelper mappingHelper;
 
     @GET
     @Transactional
@@ -30,6 +32,14 @@ public class ShelfDao {
         var shelves = repository.loadAll();
         var shelfDtos = mappingHelper.toDto(shelves);
         return shelfDtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public ShelfDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST
@@ -48,5 +58,21 @@ public class ShelfDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(ShelfDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

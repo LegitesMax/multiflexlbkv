@@ -1,7 +1,7 @@
 package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
-import org.acme.mapper.RegalHelper;
+import org.acme.mapper.RegalMappingHelper;
 import org.acme.repository.RegalRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -21,7 +21,7 @@ public class RegalDao {
     RegalRepository repository;
 
     @Inject
-    RegalHelper mappingHelper;
+    RegalMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -33,19 +33,27 @@ public class RegalDao {
         return regalDtos;
     }
     @GET
-    @Path("/{name}")
+    @Path("/get/{name}")
     @Transactional
-    public List<RegalDto> getOne(String name) {
-        var regals = repository.loadByName(name);
-        var regalDtos = mappingHelper.toDto(regals);
-        return regalDtos;
+    public List<RegalDto> getByName(String name) {
+        var entities = repository.findByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public RegalDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST
     @Path("/add")
-    public Response addRegal(RegalDto regalDto) {
+    public Response add(RegalDto regalDto) {
         var regal = mappingHelper.fromDto(regalDto);
-        System.out.println(regalDto.getName());
+        //System.out.println(regalDto.getName());
         repository.add(regal);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -58,5 +66,21 @@ public class RegalDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(RegalDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

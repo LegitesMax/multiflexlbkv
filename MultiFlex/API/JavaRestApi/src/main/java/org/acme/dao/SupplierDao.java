@@ -1,7 +1,8 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.SupplierDto;
-import org.acme.mapper.SupplierHelper;
+import org.acme.mapper.SupplierMappingHelper;
 import org.acme.repository.SupplierRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -20,7 +21,7 @@ public class SupplierDao {
     SupplierRepository repository;
 
     @Inject
-    SupplierHelper mappingHelper;
+    SupplierMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -29,6 +30,22 @@ public class SupplierDao {
         var suppliers = repository.loadAll();
         var supplierDtos = mappingHelper.toDto(suppliers);
         return supplierDtos;
+    }
+    @GET
+    @Path("/get/{name}")
+    @Transactional
+    public List<SupplierDto> getByName(String name) {
+        var entities = repository.findByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public SupplierDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
     }
 
     @POST
@@ -49,5 +66,21 @@ public class SupplierDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(SupplierDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

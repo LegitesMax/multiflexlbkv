@@ -25,7 +25,7 @@ public class TypeRepository extends CRUDOperations{
         return em.createQuery("select t from Type t where t.id = :id", Type.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Type> loadByName(@PathParam String name){
+    public List<Type> findByName(@PathParam String name){
         return em.createQuery("select t from Type t where t.name like lower(concat('%', concat(:name, '%')))", Type.class).setParameter("name", name).getResultList();
     }
 }

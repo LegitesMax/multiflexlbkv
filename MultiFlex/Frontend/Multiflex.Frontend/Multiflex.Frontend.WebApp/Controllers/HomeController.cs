@@ -114,7 +114,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
                 var requestWare = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/ware");
+                    return httpCliet.GetStringAsync("http://localhost:8080/ware/product");
                 });
 
                 Console.WriteLine(requestWare);
@@ -149,7 +149,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 Console.WriteLine(requestRegal);
                 var requestWare = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/ware");
+                    return httpCliet.GetStringAsync("http://localhost:8080/ware/product");
                 });
                 Console.WriteLine(requestWare);
                 var requestFach = await Task.Run(() =>

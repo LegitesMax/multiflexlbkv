@@ -1,7 +1,8 @@
 package org.acme.dao;
 
+import org.acme.DTO.RegalDto;
 import org.acme.DTO.TypeDto;
-import org.acme.mapper.TypeHelper;
+import org.acme.mapper.TypeMappingHelper;
 import org.acme.repository.TypeRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
@@ -22,7 +23,7 @@ public class TypeDao {
     TypeRepository repository;
 
     @Inject
-    TypeHelper mappingHelper;
+    TypeMappingHelper mappingHelper;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -57,6 +58,22 @@ public class TypeDao {
         var types = repository.loadAllProduct();
         return mappingHelper.toDto(types);
     }
+    @GET
+    @Path("/get/{name}")
+    @Transactional
+    public List<TypeDto> getByName(String name) {
+        var entities = repository.findByName(name);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
+    @GET
+    @Path("/get/{id}")
+    @Transactional
+    public TypeDto getById(Integer id) {
+        var entities = repository.findById(id);
+        var dtos = mappingHelper.toDto(entities);
+        return dtos;
+    }
 
     @POST
     @Path("/add")
@@ -74,5 +91,21 @@ public class TypeDao {
             throw new NotFoundException();
         }
         repository.remove(entity);
+    }
+
+    @PUT
+    @Path("/update")
+    @Transactional
+    public Response update(TypeDto dto) {
+        var oldEntity = repository.findById(dto.getId());
+        if(oldEntity == null) {
+            throw new NotFoundException();
+        }
+        repository.remove(oldEntity);
+        var model = mappingHelper.fromDto(dto);
+        //System.out.println(regalDto.getName());
+
+        repository.add(model);
+        return Response.status(Response.Status.CREATED).build();
     }
 }

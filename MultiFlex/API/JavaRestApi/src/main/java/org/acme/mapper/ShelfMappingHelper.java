@@ -1,18 +1,22 @@
 package org.acme.mapper;
 
-import org.acme.DTO.RegalDto;
 import org.acme.DTO.ShelfDto;
-import org.acme.DTO.WareDto;
-import org.acme.model.Regal;
 import org.acme.model.Shelf;
-import org.acme.model.Ware;
+import org.acme.repository.RegalRepository;
+import org.acme.repository.WareRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import java.util.LinkedList;
 import java.util.List;
 
 @ApplicationScoped
-public class ShelfHelper extends MappingHelper{
+public class ShelfMappingHelper extends MappingHelper{
+    @Inject
+    RegalRepository regalRepository;
+    @Inject
+    WareRepository wareRepository;
+
     public ShelfDto toDto(Shelf shelf){
         var shelfDto = om.toDTO(shelf);
         shelfDto.setRegal_id(shelf.getRegal().getId());
@@ -29,7 +33,15 @@ public class ShelfHelper extends MappingHelper{
     }
 
     public Shelf fromDto(ShelfDto dto){
-        return om.fromDto(dto);
+        var entity = om.fromDto(dto);
+
+        var ware = wareRepository.findById(dto.getWare_id());
+        var regal = regalRepository.findById(dto.getRegal_id());
+
+        entity.setWare(ware);
+        entity.setRegal(regal);
+
+        return entity;
     }
 
     public List<Shelf> fromDto(List<ShelfDto> dtos){

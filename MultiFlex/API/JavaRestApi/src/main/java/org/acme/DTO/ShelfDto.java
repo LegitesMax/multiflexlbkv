@@ -17,15 +17,9 @@ public class ShelfDto implements Serializable {
 
     private Integer id;
     private Integer position;
-    /*
-    @Column(nullable = false)
-    Integer regal_id;
-
-    @Column
-    private long ware_id;
-     */
     private Integer maxAmount;
 
+    //private RegalDto regal;
     //private WareDto ware;
 
     private Integer ware_id;

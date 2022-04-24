@@ -11,10 +11,10 @@ insert into Type (name)  values ('Material');
 
 --Waren
 insert into Ware (stock, maxAmount, minAmount, name, type_id) values(8, 15, 5,'BAXXXX', 1);
-insert into Ware (stock, maxAmount, minAmount, name) values(2, 10, 1,'LÖXXXX');
-insert into Ware (stock, maxAmount, minAmount, name) values(10, 15, 5,'LOXXXX');
-insert into Ware (stock, maxAmount, minAmount, name) values(4, 15, 2,'TAXXXX');
-insert into Ware (stock, maxAmount, minAmount, name) values(7, 10, 3,'HEXXXX');
+insert into Ware (stock, maxAmount, minAmount, name, type_id) values(2, 10, 1,'LÖXXXX', 1);
+insert into Ware (stock, maxAmount, minAmount, name, type_id) values(10, 15, 5,'LOXXXX', 1);
+insert into Ware (stock, maxAmount, minAmount, name, type_id) values(4, 15, 2,'TAXXXX', 1);
+insert into Ware (stock, maxAmount, minAmount, name, type_id) values(7, 10, 3,'HEXXXX', 1);
 
 --Fächer
 insert into Shelf (maxAmount, position, regal_id, ware_id) values( 20, 1, 1, 1);
