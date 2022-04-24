@@ -28,62 +28,58 @@ namespace Multiflex.Frontend.WebApp.Controllers
             _logger = logger;
         }
 
-        public Task<ActionResult> Index()
+        public ActionResult Index()
         {
 
-            Stopwatch stopWatch1 = new Stopwatch();
-            stopWatch1.Start();
-            //lieferanten = new();
-            using var httpCliet = new HttpClient();
+            //Stopwatch stopWatch1 = new Stopwatch();
+            //stopWatch1.Start();
+            ////lieferanten = new();
+            //using var httpCliet = new HttpClient();
 
-            Stopwatch stopWatch = new Stopwatch();
+            //Stopwatch stopWatch = new Stopwatch();
 
-            stopWatch.Start();
-            var requestRegal = Task.Run(() =>
-            {
-                return httpCliet.GetStringAsync("http://localhost:8080/regal");
-            });
+            //stopWatch.Start();
+            //var requestRegal = Task.Run(() =>
+            //{
+            //    return httpCliet.GetStringAsync("http://localhost:8080/regal");
+            //});
 
-            var requestFach = Task.Run(() =>
-            {
-                return httpCliet.GetStringAsync("http://localhost:8080/shelf");
-            });
+            //var requestFach = Task.Run(() =>
+            //{
+            //    return httpCliet.GetStringAsync("http://localhost:8080/shelf");
+            //});
 
-            var requestWare = Task.Run(() =>
-            {
-                return httpCliet.GetStringAsync("http://localhost:8080/ware");
-            });
+            //var requestWare = Task.Run(() =>
+            //{
+            //    return httpCliet.GetStringAsync("http://localhost:8080/ware");
+            //});
 
-            stopWatch.Stop();
+            //stopWatch.Stop();
 
-            System.Console.WriteLine("Databse: " + stopWatch.Elapsed);
+            //System.Console.WriteLine("Databse: " + stopWatch.Elapsed);
 
-            stopWatch.Reset();
-            stopWatch.Start();
-            var itemsRegal = Task.Run(() =>
-            {
-                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestRegal.Result.ToString());
-            });
-            var itemsShelf = Task.Run(() =>
-            {
-                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestFach.Result.ToString());
-            });
-            var itemsWare = Task.Run(() =>
-            {
-                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestWare.Result.ToString());
-            });
-            stopWatch.Stop();
-            System.Console.WriteLine("JSONparse" + stopWatch.Elapsed);
+            //stopWatch.Reset();
+            //stopWatch.Start();
+            //var itemsRegal = Task.Run(() =>
+            //{
+            //    return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestRegal.Result.ToString());
+            //});
+            //var itemsShelf = Task.Run(() =>
+            //{
+            //    return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestFach.Result.ToString());
+            //});
+            //var itemsWare = Task.Run(() =>
+            //{
+            //    return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(requestWare.Result.ToString());
+            //});
+            //stopWatch.Stop();
+            //System.Console.WriteLine("JSONparse" + stopWatch.Elapsed);
 
-            stopWatch1.Stop();
-            System.Console.WriteLine($"Gesammt: {stopWatch1.Elapsed}");
-            return View(itemsRegal.Result, itemsShelf.Result, itemsWare.Result);
+            //stopWatch1.Stop();
+            //System.Console.WriteLine($"Gesammt: {stopWatch1.Elapsed}");
+            //return View(itemsRegal.Result, itemsShelf.Result, itemsWare.Result);
 
-            /*Electron.IpcMain.On("async-msg", (args) =>
-            {
-                var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                Electron.IpcMain.Send(mainWindow, "asynchronous-reply", "pong");
-            });*/
+    
             Electron.IpcMain.On("open-add-window", async (arg) =>
             {
                 //var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -174,6 +170,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 //Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString());
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
+            return View();
         }
         public IActionResult Lieferanten()
         {
