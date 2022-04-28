@@ -4,7 +4,6 @@ import org.acme.DTO.RegalDto;
 import org.acme.DTO.WareDto;
 import org.acme.mapper.WareMappingHelper;
 import org.acme.repository.WareRepository;
-import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -83,12 +82,13 @@ public class WareDao {
     @Transactional
     @DELETE
     @Path("/delete/{id}")
-    public void delete(@PathParam("id") Integer id) {
+    public Response delete(@PathParam("id") Integer id) {
         var entity = repository.findById(id);
         if(entity == null) {
             throw new NotFoundException();
         }
         repository.remove(entity);
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @PUT
@@ -99,6 +99,6 @@ public class WareDao {
         //System.out.println(regalDto.getName());
 
         repository.update(entity);
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.OK).build();
     }
 }

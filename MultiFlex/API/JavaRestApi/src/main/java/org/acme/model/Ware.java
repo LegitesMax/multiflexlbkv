@@ -44,7 +44,10 @@ public class Ware {
     @ManyToOne
     private Type type;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany()
+    @JoinTable(name = "Ware_Supplier",
+               joinColumns = @JoinColumn(name = "ware_id"),
+               inverseJoinColumns = @JoinColumn(name = "supplier_id"))
     private Set<Supplier> suppliers = new HashSet<>();
 
     @ManyToMany

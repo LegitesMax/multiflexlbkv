@@ -37,12 +37,12 @@ insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'
 insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'Holzplatte-Braun', 2);
 
 --TypeDto-Ware
-insert into Ware_Supplier (Suppliers_id, ware_id) values (1, 6);
-insert into Ware_Supplier (Suppliers_id, ware_id) values (1, 7);
-insert into Ware_Supplier (Suppliers_id, ware_id) values (1, 8);
-insert into Ware_Supplier (Suppliers_id, ware_id) values (2, 7);
-insert into Ware_Supplier (Suppliers_id, ware_id) values (3, 6);
-insert into Ware_Supplier (Suppliers_id, ware_id) values (3, 7);
+insert into Ware_Supplier (Supplier_id, ware_id) values (1, 6);
+insert into Ware_Supplier (Supplier_id, ware_id) values (1, 7);
+insert into Ware_Supplier (Supplier_id, ware_id) values (1, 8);
+insert into Ware_Supplier (Supplier_id, ware_id) values (2, 7);
+insert into Ware_Supplier (Supplier_id, ware_id) values (3, 6);
+insert into Ware_Supplier (Supplier_id, ware_id) values (3, 7);
 
 
 

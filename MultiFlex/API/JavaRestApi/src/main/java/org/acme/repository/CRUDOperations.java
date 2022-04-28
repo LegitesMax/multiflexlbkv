@@ -110,18 +110,4 @@ public class CRUDOperations {
         add(w, t);
     }
 
-    @Transactional
-    public void removeSupplier(Supplier s){
-        var waren = s.getWares();
-        for (var ware : waren) {
-            ware.getSuppliers().remove(s);
-            update(ware);
-        }
-        if (s.getWares() != null){
-            s.getWares().removeAll(s.getWares());
-        }
-        update(s);
-        em.flush();
-        em.remove(s);
-    }
 }

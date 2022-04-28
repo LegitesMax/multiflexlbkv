@@ -1,7 +1,6 @@
 package org.acme.repository;
 
 import org.acme.model.Ware;
-import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -26,7 +25,11 @@ public class WareRepository extends CRUDOperations {
         return em.createQuery("select w from Ware w where w.id = :id", Ware.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Ware> findByName(@PathParam String name){
+    public List<Ware> findByName(String name){
         return em.createQuery("select w from Ware w where w.name like lower(concat('%', concat(:name, '%')))", Ware.class).setParameter("name", name).getResultList();
+    }
+    @Transactional
+    public List<Ware> findBySupplier(String name){
+        return em.createQuery("select w from Supplier s join s.wares w where s.name like :name", Ware.class).setParameter("name", name).getResultList();
     }
 }

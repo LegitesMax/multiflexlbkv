@@ -1,6 +1,5 @@
 package org.acme.model;
 
-import io.quarkus.arc.All;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
-@All
 @Setter
 @Getter
 @AllArgsConstructor
