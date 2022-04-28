@@ -24,10 +24,10 @@ public class Supplier {
     private Integer id;
 
     @NotNull
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 64, unique = true)
     private String name;
 
-    @Column
+    @Column(unique = true)
     private String link;
 
     @PositiveOrZero

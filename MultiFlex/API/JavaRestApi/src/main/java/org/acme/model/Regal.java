@@ -28,7 +28,7 @@ public class Regal {
     @Column(nullable = false)
     private Integer maxAmountShelfs;
 
-    @OneToMany(mappedBy = "regal"/*, cascade = CascadeType.REMOVE*/)
+    @OneToMany(mappedBy = "regal", cascade = CascadeType.REMOVE)
     private Set<Shelf> shelfs = new HashSet<>();
 
     public Regal(String name, Integer maxAmountShelfs) {

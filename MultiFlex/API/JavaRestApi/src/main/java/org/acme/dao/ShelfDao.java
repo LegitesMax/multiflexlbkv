@@ -2,6 +2,7 @@ package org.acme.dao;
 
 import org.acme.DTO.RegalDto;
 import org.acme.DTO.ShelfDto;
+import org.acme.DTO.SupplierDto;
 import org.acme.mapper.ShelfMappingHelper;
 import org.acme.repository.ShelfRepository;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
@@ -64,15 +65,10 @@ public class ShelfDao {
     @Path("/update")
     @Transactional
     public Response update(ShelfDto dto) {
-        var oldEntity = repository.findById(dto.getId());
-        if(oldEntity == null) {
-            throw new NotFoundException();
-        }
-        repository.remove(oldEntity);
-        var model = mappingHelper.fromDto(dto);
+        var entity = mappingHelper.fromDto(dto);
         //System.out.println(regalDto.getName());
 
-        repository.add(model);
+        repository.update(entity);
         return Response.status(Response.Status.CREATED).build();
     }
 }

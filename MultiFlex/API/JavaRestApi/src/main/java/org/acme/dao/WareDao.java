@@ -95,15 +95,10 @@ public class WareDao {
     @Path("/update")
     @Transactional
     public Response update(WareDto dto) {
-        var oldEntity = repository.findById(dto.getId());
-        if(oldEntity == null) {
-            throw new NotFoundException();
-        }
-        repository.remove(oldEntity);
-        var model = mappingHelper.fromDto(dto);
+        var entity = mappingHelper.fromDto(dto);
         //System.out.println(regalDto.getName());
 
-        repository.add(model);
+        repository.update(entity);
         return Response.status(Response.Status.CREATED).build();
     }
 }

@@ -20,6 +20,10 @@ public class CRUDOperations {
     public <T> void remove(T object){
         em.remove(object);
     }
+    @Transactional
+    public <T> void update(T object){
+        em.merge(object);
+    }
 
     @Transactional
     public void add(Shelf f, Ware w){
@@ -100,8 +104,24 @@ public class CRUDOperations {
 
         em.persist(t);
         em.persist(w);
+
     }
     public void add(Type t, Ware w){
         add(w, t);
+    }
+
+    @Transactional
+    public void removeSupplier(Supplier s){
+        var waren = s.getWares();
+        for (var ware : waren) {
+            ware.getSuppliers().remove(s);
+            update(ware);
+        }
+        if (s.getWares() != null){
+            s.getWares().removeAll(s.getWares());
+        }
+        update(s);
+        em.flush();
+        em.remove(s);
     }
 }

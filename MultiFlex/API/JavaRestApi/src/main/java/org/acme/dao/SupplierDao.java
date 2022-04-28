@@ -65,22 +65,17 @@ public class SupplierDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-        repository.remove(entity);
+        repository.removeSupplier(entity);
     }
 
     @PUT
     @Path("/update")
     @Transactional
     public Response update(SupplierDto dto) {
-        var oldEntity = repository.findById(dto.getId());
-        if(oldEntity == null) {
-            throw new NotFoundException();
-        }
-        repository.remove(oldEntity);
-        var model = mappingHelper.fromDto(dto);
+        var entity = mappingHelper.fromDto(dto);
         //System.out.println(regalDto.getName());
 
-        repository.add(model);
+        repository.update(entity);
         return Response.status(Response.Status.CREATED).build();
     }
 }

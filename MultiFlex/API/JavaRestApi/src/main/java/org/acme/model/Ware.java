@@ -44,7 +44,7 @@ public class Ware {
     @ManyToOne
     private Type type;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private Set<Supplier> suppliers = new HashSet<>();
 
     @ManyToMany

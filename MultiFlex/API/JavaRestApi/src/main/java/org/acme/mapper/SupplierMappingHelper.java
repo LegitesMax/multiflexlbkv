@@ -41,10 +41,12 @@ public class SupplierMappingHelper extends MappingHelper{
     public Supplier fromDto(SupplierDto dto){
         var entity = om.fromDto(dto);
 
-        dto.getWare_ids().forEach(id -> {
-            var shelf = wareRepository.findById(id);
-            entity.getWares().add(shelf);
-        });
+        if (dto.getWare_ids() != null && dto.getWare_ids().size() > 0){
+            dto.getWare_ids().forEach(id -> {
+                var shelf = wareRepository.findById(id);
+                entity.getWares().add(shelf);
+            });
+        }
 
         return entity;
     }

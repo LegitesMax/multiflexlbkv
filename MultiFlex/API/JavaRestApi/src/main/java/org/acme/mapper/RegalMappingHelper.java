@@ -3,7 +3,6 @@ package org.acme.mapper;
 import org.acme.DTO.RegalDto;
 import org.acme.model.Regal;
 import org.acme.repository.ShelfRepository;
-import org.testcontainers.shaded.org.apache.commons.lang.NullArgumentException;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -25,7 +24,7 @@ public class RegalMappingHelper extends MappingHelper{
     }
     public RegalDto toDto(Regal regal){
         var regalDto = om.toDTO(regal);
-        if(regal.getShelfs().size() > 0) {
+        if(regal.getShelfs() != null) {
             var shelfSet = regal.getShelfs();
             List<Integer> shelfIds = new LinkedList<>();
             for (var shelf : shelfSet) {
@@ -39,10 +38,13 @@ public class RegalMappingHelper extends MappingHelper{
 
     public Regal fromDto(RegalDto dto){
         var entity = om.fromDto(dto);
-        dto.getShelf_ids().forEach(id -> {
-            var shelf = shelfRepository.findById(id);
-            entity.getShelfs().add(shelf);
-        });
+        if (dto.getShelf_ids()  != null){
+            dto.getShelf_ids().forEach(id -> {
+                var shelf = shelfRepository.findById(id);
+                entity.getShelfs().add(shelf);
+            });
+        }
+
         return entity;
     }
 
