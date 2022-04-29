@@ -44,7 +44,7 @@ public class Ware {
     @ManyToOne
     private Type type;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Ware_Supplier",
                joinColumns = @JoinColumn(name = "ware_id"),
                inverseJoinColumns = @JoinColumn(name = "supplier_id"))

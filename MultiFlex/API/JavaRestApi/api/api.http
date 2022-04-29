@@ -25,12 +25,12 @@ GET http://localhost:8080/regal/queries/regal-fach
 ###
 GET http://localhost:8080/fach/queries/regal-fach-ware
 ###
-POST http://localhost:8080/regal/addregal
+POST http://localhost:8080/regal/add
 Content-Type: application/json
 
   {
     "name": "Regal-52344",
-    "max_anzahl_faecher": 10,
+    "maxAmountShelfs" : 10,
     "fach_ids": [
       1,
       2,
@@ -43,8 +43,8 @@ POST http://localhost:8080/supplier/add
 Content-Type: application/json
 
   {
-    "name": "lolsdf",
-    "link": "asd",
+    "name": "lolsasfsddsddsf",
+    "link": "asssgsdsd",
     "deliveryTime" : 2
   }
 

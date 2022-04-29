@@ -34,7 +34,7 @@ public class Supplier {
     @Column(nullable = false)
     private Integer deliveryTime;
 
-    @ManyToMany(mappedBy = "suppliers")
+    @ManyToMany(mappedBy = "suppliers", cascade = CascadeType.ALL)
     private Set<Ware> wares = new HashSet<>();
 
     public Supplier(String name, String link, Integer deliveryTime) {
