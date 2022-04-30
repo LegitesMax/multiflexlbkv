@@ -7,113 +7,38 @@
     Stopwatch stopWatch = new Stopwatch();
     stopWatch.Start();
 
-@*<h1>@ViewData["Title"]</h1>
+    @*<h1>@ViewData["Title"]</h1>
 
-    <div class="d-flex justify-content-center pt-3 pb-2">
-    <a href="../Material/Index" class="btn btn-light">Materialien mit Lieferanten anzeigen</a>
-    <a asp-action="Add" id="open-add-window" class="btn btn-primary">Erstellen</a>
-    </div>*@
-
-
-<h1 class="text-center">@ViewData["Title"]</h1>
-<center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufügen</a></center>
+        <div class="d-flex justify-content-center pt-3 pb-2">
+        <a href="../Material/Index" class="btn btn-light">Materialien mit Lieferanten anzeigen</a>
+        <a asp-action="Add" id="open-add-window" class="btn btn-primary">Erstellen</a>
+        </div>*@
 
 
-<div class="w-100 d-flex">
-    @*<table class="table w-75" >
-        <thead>
-        <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Weblink</th>
-        <th scope="col">Lieferzeit</th>
-        <th scope="col">L&ouml;schen</th>
-        </tr>
-        </thead>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufügen</a></center>
 
 
-        <tbody>
+    <div class="accordion" id="accordionExample">
         @foreach (var item in Model)
         {
-        <tr>
-        <td>
-        @Html.DisplayFor(modelItem => item.id)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.weblink)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.lieferzeit)
-        </td>
-        <td>
-        @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
-        </td>
-        </tr>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading @Html.DisplayFor(modelItem => item.id)">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse @Html.DisplayFor(modelItem => item.id)" aria-expanded="true" aria-controls="collapse @Html.DisplayFor(modelItem => item.id)">
+                       @Html.DisplayFor(modelItem => item.name)
+                    </button>
+                </h2>
+                <div id="collapse @Html.DisplayFor(modelItem => item.id)" class="accordion-collapse collapse show" aria-labelledby="heading @Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
         }
-        </tbody>
-        </table>*@
-
-    <div class="w-75 bg-light m-4">
-        <table class="table">
-            <thead>
-                <tr class="bg-dark">
-                    <th scope="col">Name</th>
-                    <th scope="col">Weblink</th>
-                    <th scope="col">Lieferzeit</th>
-                    <th scope="col">Aktion</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.link)</td>
-                        <td>@Html.DisplayFor(modelItem => item.deliveryTime)</td>
-                        <td>
-                            <a>@Html.ActionLink("Delete", "Delete", new {  id=item.id  }, new{ @class="btn btn-danger"})</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
 
-    <div class="class=" w-25 bg-dark m-4">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        <h3>Nächst ankommende Ware</h3>
-
-        <div class="w-100 bg-light pt-3">
-            <div class="card mt-1 ">
-                <div class="card-body">
-                    <h5 class="card-title">Amazon</h5>
-                    <p class="card-text">Die bestellte Ware kommt in ..h an</p>
-                    <a href="#" class="btn btn-primary">Erhalten und Entfernen</a>
-                </div>
-            </div>
-
-            <div class="card mt-1">
-                <div class="card-body">
-                    <h5 class="card-title">Obi</h5>
-                    <p class="card-text">Die bestellte Ware kommt in ..h an</p>
-                    <a href="#" class="btn btn-primary">Erhalten und Entfernen</a>
-                </div>
-            </div>
-
-            <div class="card mt-1">
-                <div class="card-body">
-                    <h5 class="card-title">Bauhaus</h5>
-                    <p class="card-text">Die bestellte Ware kommt in ..h an</p>
-                    <a href="#" class="btn btn-primary">Erhalten und Entfernen</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    </div>
     stopWatch.Stop();
     Console.WriteLine("Index.cshtml: " + stopWatch.Elapsed);
 }
