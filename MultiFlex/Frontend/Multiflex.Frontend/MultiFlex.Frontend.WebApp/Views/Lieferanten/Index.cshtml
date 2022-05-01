@@ -17,25 +17,47 @@
 
     <h1 class="text-center">@ViewData["Title"]</h1>
     <center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufügen</a></center>
+    <center>
+        <div class="accordion w-75" id="accordionExample">
+            @foreach (var item in Model)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="@Html.DisplayFor(modelItem => item.id)">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@Html.DisplayFor(modelItem => item.name)" aria-expanded="false" aria-controls="@Html.DisplayFor(modelItem => item.name)">
+                            @Html.DisplayFor(modelItem => item.name)
+                        </button>
+                    </h2>
+                    <div id="@Html.DisplayFor(modelItem => item.name)" class="accordion-collapse collapse w-75" aria-labelledby="@Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
+                        <!-- 
+                            Hier muss eine for rein umm alle materialien des lieferanten anzeigen zu können fals es mehr als 1 ist dann von model holen und ausgeben
+                           <div class="container"> ... in die for
 
 
-    <div class="accordion" id="accordionExample">
-        @foreach (var item in Model)
-        {
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading @Html.DisplayFor(modelItem => item.id)">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse @Html.DisplayFor(modelItem => item.id)" aria-expanded="true" aria-controls="collapse @Html.DisplayFor(modelItem => item.id)">
-                       @Html.DisplayFor(modelItem => item.name)
-                    </button>
-                </h2>
-                <div id="collapse @Html.DisplayFor(modelItem => item.id)" class="accordion-collapse collapse show" aria-labelledby="heading @Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            Model muss noch um geändert werden (ein anderes mit waren - ist schon feertig in material controller programmiert worden) um die waren auch darstellen zu können um sich die zweite extra seite sparen zu können
+                            einfach de requests in Lieferanten controller kopieren oder material controller verwenden und/oder umbennenen dann sollte alles gehen wenn markus nix am datenmodel geändert hat
+                            
+                            Falls noch Zeit bleibt soll es etwas schöner gestalltet werden ich habe schon ein paar feinheiten gemacht so das man nicht sofort augenkrebs bekommt
+                        -->
+                         <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.link)
+                                </div>
+                                <div class="col">
+                                    @Html.DisplayFor(modelItem => item.deliveryTime)
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+    </center>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
