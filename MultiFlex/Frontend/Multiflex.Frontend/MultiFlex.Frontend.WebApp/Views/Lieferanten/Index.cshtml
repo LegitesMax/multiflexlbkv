@@ -23,8 +23,8 @@
         @*List<Multiflex.Frontend.WebApp.Models.SupplierMaterial> inuse = new List<Multiflex.Frontend.WebApp.Models.SupplierMaterial>();*@
             @foreach (var item in Model)
             {
-                //@if (item.supplier_name != "NotExisting")
-                //{
+                @if (item.supplier_name != "NotExisting")
+                {
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="@Html.DisplayFor(modelItem => item.id)">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@Html.DisplayFor(modelItem => item.supplier_name)" aria-expanded="false" aria-controls="@Html.DisplayFor(modelItem => item.supplier_name)">
@@ -93,7 +93,7 @@
 
                         </div>
                     </div>
-                //}
+                }
             }
         </div>
     </center>
