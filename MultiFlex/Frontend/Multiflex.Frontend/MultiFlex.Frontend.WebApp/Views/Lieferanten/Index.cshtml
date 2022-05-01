@@ -17,7 +17,7 @@
 
 
     <h1 class="text-center">@ViewData["Title"]</h1>
-    <center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufügen</a></center>
+    <center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufuegen</a></center>
     <center>
         <div class="accordion w-75" id="accordionExample">
         @*List<Multiflex.Frontend.WebApp.Models.SupplierMaterial> inuse = new List<Multiflex.Frontend.WebApp.Models.SupplierMaterial>();*@
@@ -31,7 +31,7 @@
                                 @Html.DisplayFor(modelItem => item.supplier_name)
                             </button>
                         </h2>
-                        <div id="@Html.DisplayFor(modelItem => item.supplier_name)" class="accordion-collapse collapse w-75" aria-labelledby="@Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
+                        <div id="@Html.DisplayFor(modelItem => item.supplier_name)" class="accordion-collapse collapse w-100" aria-labelledby="@Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
 
 
                             <!--
@@ -47,7 +47,7 @@
                         <div class="container">
                                 <div class="row">
                                     <div class="col">
-                                        Lieferant
+                                        Materialien
                                     </div>
                                     <div class="col">
                                         Webseite
@@ -56,23 +56,28 @@
                                         Lieferzeit
                                     </div>
                                 </div>
+                                
                                 <!--Das muss in eine For/foreach oben das darüber NICHT-->
-                            <div class="row">
+                            <!---<div class="row">
                                     <div class="col">
-                                        @Html.DisplayFor(modelItem => item.supplier_name)
+                                        @Html.//DisplayFor(modelItem => item.supplier_name)
                                     </div>
                                     <div class="col">
-                                        @Html.DisplayFor(modelItem => item.link)
+                                        @Html.//DisplayFor(modelItem => item.link)
                                     </div>
                                     <div class="col">
-                                        @Html.DisplayFor(modelItem => item.deliveryTime) Tage
+                                        @Html.//DisplayFor(modelItem => item.deliveryTime) Tage
                                     </div>
                              </div>
+
+                             <hr>--->
+
 
                                 @foreach (var waren in Model)
                                 {
                                     @if (waren.link == item.link)
                                     {
+                                        <hr>
                                         <!--Auflistung der Waren-->
                                         <div class="row">
                                             <div class="col">
@@ -85,6 +90,7 @@
                                                 @Html.DisplayFor(modelItem => waren.deliveryTime) Tage
                                             </div>
                                         </div>
+                                        
                                     }
                                 }
                          </div>
@@ -97,9 +103,10 @@
             }
         </div>
     </center>
-
+    <a href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    </a>
 
     stopWatch.Stop();
     Console.WriteLine("Index.cshtml: " + stopWatch.Elapsed);
