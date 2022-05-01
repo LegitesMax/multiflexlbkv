@@ -28,17 +28,29 @@
                         </button>
                     </h2>
                     <div id="@Html.DisplayFor(modelItem => item.name)" class="accordion-collapse collapse w-75" aria-labelledby="@Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
-                        <!-- 
+                        <!--
                             Hier muss eine for rein umm alle materialien des lieferanten anzeigen zu können fals es mehr als 1 ist dann von model holen und ausgeben
                            <div class="container"> ... in die for
 
 
                             Model muss noch um geändert werden (ein anderes mit waren - ist schon feertig in material controller programmiert worden) um die waren auch darstellen zu können um sich die zweite extra seite sparen zu können
                             einfach de requests in Lieferanten controller kopieren oder material controller verwenden und/oder umbennenen dann sollte alles gehen wenn markus nix am datenmodel geändert hat
-                            
+
                             Falls noch Zeit bleibt soll es etwas schöner gestalltet werden ich habe schon ein paar feinheiten gemacht so das man nicht sofort augenkrebs bekommt
                         -->
-                         <div class="container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    Lieferant
+                                </div>
+                                <div class="col">
+                                    Webseite
+                                </div>
+                                <div class="col">
+                                    Lieferzeit
+                                </div>
+                            </div>
+                            <!--Das muss in eine For/foreach oben das darüber NICHT-->
                             <div class="row">
                                 <div class="col">
                                     @Html.DisplayFor(modelItem => item.name)
@@ -47,7 +59,7 @@
                                     @Html.DisplayFor(modelItem => item.link)
                                 </div>
                                 <div class="col">
-                                    @Html.DisplayFor(modelItem => item.deliveryTime)
+                                    @Html.DisplayFor(modelItem => item.deliveryTime) Tage
                                 </div>
                             </div>
                         </div>
