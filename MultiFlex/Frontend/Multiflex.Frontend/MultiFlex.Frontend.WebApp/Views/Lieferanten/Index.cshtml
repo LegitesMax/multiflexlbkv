@@ -1,5 +1,6 @@
 @using System.Diagnostics
-@model IEnumerable<Multiflex.Frontend.WebApp.Models.SupplierDto>
+@*@model IEnumerable<Multiflex.Frontend.WebApp.Models.SupplierDto>*@
+@model IEnumerable<Multiflex.Frontend.WebApp.Models.SupplierMaterial>
 
 @{
     ViewData["Title"] = "Lieferanten";
@@ -19,53 +20,80 @@
     <center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufügen</a></center>
     <center>
         <div class="accordion w-75" id="accordionExample">
+        @*List<Multiflex.Frontend.WebApp.Models.SupplierMaterial> inuse = new List<Multiflex.Frontend.WebApp.Models.SupplierMaterial>();*@
             @foreach (var item in Model)
             {
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="@Html.DisplayFor(modelItem => item.id)">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@Html.DisplayFor(modelItem => item.name)" aria-expanded="false" aria-controls="@Html.DisplayFor(modelItem => item.name)">
-                            @Html.DisplayFor(modelItem => item.name)
-                        </button>
-                    </h2>
-                    <div id="@Html.DisplayFor(modelItem => item.name)" class="accordion-collapse collapse w-75" aria-labelledby="@Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
-                        <!--
+                //@if (item.supplier_name != "NotExisting")
+                //{
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="@Html.DisplayFor(modelItem => item.id)">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@Html.DisplayFor(modelItem => item.supplier_name)" aria-expanded="false" aria-controls="@Html.DisplayFor(modelItem => item.supplier_name)">
+                                @Html.DisplayFor(modelItem => item.supplier_name)
+                            </button>
+                        </h2>
+                        <div id="@Html.DisplayFor(modelItem => item.supplier_name)" class="accordion-collapse collapse w-75" aria-labelledby="@Html.DisplayFor(modelItem => item.id)" data-bs-parent="#accordionExample">
+
+
+                            <!--
                             Hier muss eine for rein umm alle materialien des lieferanten anzeigen zu können fals es mehr als 1 ist dann von model holen und ausgeben
-                           <div class="container"> ... in die for
+                            <div class="container"> ... in die for
 
 
                             Model muss noch um geändert werden (ein anderes mit waren - ist schon feertig in material controller programmiert worden) um die waren auch darstellen zu können um sich die zweite extra seite sparen zu können
                             einfach de requests in Lieferanten controller kopieren oder material controller verwenden und/oder umbennenen dann sollte alles gehen wenn markus nix am datenmodel geändert hat
 
                             Falls noch Zeit bleibt soll es etwas schöner gestalltet werden ich habe schon ein paar feinheiten gemacht so das man nicht sofort augenkrebs bekommt
-                        -->
+                            -->
                         <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        Lieferant
+                                    </div>
+                                    <div class="col">
+                                        Webseite
+                                    </div>
+                                    <div class="col">
+                                        Lieferzeit
+                                    </div>
+                                </div>
+                                <!--Das muss in eine For/foreach oben das darüber NICHT-->
                             <div class="row">
-                                <div class="col">
-                                    Lieferant
-                                </div>
-                                <div class="col">
-                                    Webseite
-                                </div>
-                                <div class="col">
-                                    Lieferzeit
-                                </div>
-                            </div>
-                            <!--Das muss in eine For/foreach oben das darüber NICHT-->
-                            <div class="row">
-                                <div class="col">
-                                    @Html.DisplayFor(modelItem => item.name)
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayFor(modelItem => item.link)
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayFor(modelItem => item.deliveryTime) Tage
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(modelItem => item.supplier_name)
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(modelItem => item.link)
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(modelItem => item.deliveryTime) Tage
+                                    </div>
+                             </div>
 
+                                @foreach (var waren in Model)
+                                {
+                                    @if (waren.link == item.link)
+                                    {
+                                        <!--Auflistung der Waren-->
+                                        <div class="row">
+                                            <div class="col">
+                                                @Html.DisplayFor(modelItem => waren.ware_name)
+                                            </div>
+                                            <div class="col">
+                                                @Html.DisplayFor(modelItem => waren.link)
+                                            </div>
+                                            <div class="col">
+                                                @Html.DisplayFor(modelItem => waren.deliveryTime) Tage
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                         </div>
+
+
+
+                        </div>
                     </div>
-                </div>
+                //}
             }
         </div>
     </center>
