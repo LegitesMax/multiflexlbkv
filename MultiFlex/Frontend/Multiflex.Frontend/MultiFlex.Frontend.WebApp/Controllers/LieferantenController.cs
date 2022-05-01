@@ -252,10 +252,10 @@ namespace Multiflex.Frontend.WebApp.Controllers
                             lfmt.Add(
                                 new Models.SupplierMaterial
                                 {
-                                ware_name = item.name,
-                                deliveryTime = item2.deliveryTime,
-                                supplier_name = item2.name,
-                                link = item2.link
+                                    ware_name = item.name,
+                                    deliveryTime = item2.deliveryTime,
+                                    supplier_name = item2.name,
+                                    link = item2.link
                                 }
                             );
                         }
