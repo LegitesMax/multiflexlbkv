@@ -17,7 +17,7 @@
 
 
     <h1 class="text-center">@ViewData["Title"]</h1>
-    <center><a asp-action="Add" id="open-add-window" class="btn btn-primary">Neu Hinzufuegen</a></center>
+    <center><a asp-action="Add" id="open-add-window" class="btn btn-primary p-1 m-1">Neu Hinzufuegen</a></center>
     <center>
         <div class="accordion w-75" id="accordionExample">
         @*List<Multiflex.Frontend.WebApp.Models.SupplierMaterial> inuse = new List<Multiflex.Frontend.WebApp.Models.SupplierMaterial>();*@
@@ -44,15 +44,15 @@
 
                             Falls noch Zeit bleibt soll es etwas schöner gestalltet werden ich habe schon ein paar feinheiten gemacht so das man nicht sofort augenkrebs bekommt
                             -->
-                        <div class="container">
-                                <div class="row">
-                                    <div class="col">
+                        <div class="container p-0 m-0">
+                                <div class="row p-0 m-0 bg-secondary text-white">
+                                    <div class="col p-0 m-0">
                                         Materialien
                                     </div>
-                                    <div class="col">
+                                    <div class="col p-0 m-0">
                                         Webseite
                                     </div>
-                                    <div class="col">
+                                    <div class="col p-0 m-0">
                                         Lieferzeit
                                     </div>
                                 </div>
@@ -77,16 +77,16 @@
                                 {
                                     @if (waren.link == item.link)
                                     {
-                                        <hr>
+                                        <hr class="p-0 m-0">
                                         <!--Auflistung der Waren-->
-                                        <div class="row">
-                                            <div class="col">
+                                        <div class="row p-0 m-0">
+                                            <div class="col p-0 m-0">
                                                 @Html.DisplayFor(modelItem => waren.ware_name)
                                             </div>
-                                            <div class="col">
+                                            <div class="col p-0 m-0">
                                                 @Html.DisplayFor(modelItem => waren.link)
                                             </div>
-                                            <div class="col">
+                                            <div class="col p-0 m-0">
                                                 @Html.DisplayFor(modelItem => waren.deliveryTime) Tage
                                             </div>
                                         </div>
