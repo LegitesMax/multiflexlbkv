@@ -18,6 +18,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
         private static List<Models.MaterialDto> material = new();
         private static List<Models.SupplierDto> lieferatnen = new();
         private static List<Models.SupplierMaterial> lfmt = new();
+        private static List<string> alreadyadded = new List<string>();
 
         #region crap
         //public async Task<ActionResult> Index()
@@ -196,48 +197,92 @@ namespace Multiflex.Frontend.WebApp.Controllers
         }
         #endregion delete
 
-
-
-
-
         /////
         public async Task<ActionResult> Index()
         {
+            Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch2 = new Stopwatch();
+            stopWatch2.Start();
+            stopWatch.Start();
+
             lfmt.Clear();
             material.Clear();
             lieferatnen.Clear();
-
-            //material = new();
-            //lieferatnen = new();
-            //lfmt = new();
+            alreadyadded.Clear();
 
             using var httpCliet = new HttpClient();
-
-            var requestlieferant = Task.Run(() =>
+            
+            stopWatch.Start();
             {
-                return httpCliet.GetStringAsync("http://localhost:8080/supplier");
+                var x1 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/supplier");
+                var y1 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/material");
+
+            }
+            System.Console.WriteLine($"http: {stopWatch.ElapsedMilliseconds} ");
+            {
+                var x2 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/supplier");
+                var y2 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/material");
+
+            }
+            System.Console.WriteLine($"http: {stopWatch.ElapsedMilliseconds} ");
+            {
+                var x3 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/supplier");
+                var y3 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/material");
+
+            }
+            System.Console.WriteLine($"http: {stopWatch.ElapsedMilliseconds} ");
+            {
+                var x4 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/supplier");
+                var y4 = await httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/material");
+
+            }
+            System.Console.WriteLine($"http: {stopWatch.ElapsedMilliseconds} ");
+
+            var supplier = await httpCliet.GetStringAsync("http://127.0.0.1:8080/supplier");
+                var materialData = await httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/material");
+
+            
+            stopWatch.Stop();
+            System.Console.WriteLine("Database: " + stopWatch.Elapsed);
+            stopWatch.Reset();
+
+            //stopWatch.Start();
+            //var json1 = JArray.Parse(await requestlieferant);
+            //var json2 = JArray.Parse(await requestMaterial);
+            //stopWatch.Stop();
+            //System.Console.WriteLine("JSON-Parse: " + stopWatch.Elapsed);
+            //stopWatch.Reset();
+
+            stopWatch.Start();
+            var items1 = Task.Run(() =>
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(supplier);
+            });
+            var items2 = Task.Run(() =>
+            {
+                return System.Text.Json.JsonSerializer.Deserialize<Models.MaterialDto[]>(materialData);
             });
 
-            var requestMaterial = Task.Run(() =>
-            {
-                return httpCliet.GetStringAsync("http://localhost:8080/ware/material");
-            });
+            stopWatch.Stop();
+            System.Console.WriteLine("JSON-Deserialize: " + stopWatch.Elapsed);
+            stopWatch.Reset();
 
-            var json1 = JArray.Parse(await requestlieferant);
-            var json2 = JArray.Parse(await requestMaterial);
+            stopWatch.Start();
 
-            var items1 = System.Text.Json.JsonSerializer.Deserialize<Models.SupplierDto[]>(json1.ToString());
-            var items2 = System.Text.Json.JsonSerializer.Deserialize<Models.MaterialDto[]>(json2.ToString());
+            lieferatnen.AddRange(items1.Result);
+            material.AddRange(items2.Result);
 
-            lieferatnen.AddRange(items1);
-            material.AddRange(items2);
-            List<string> alreadyadded= new List<string>();
-            alreadyadded.Clear();
+            stopWatch.Stop();
+            System.Console.WriteLine("AddRange: " + stopWatch.Elapsed);
+            stopWatch.Reset();
+
+            stopWatch.Start();
+
             bool notaddedyet = false;
 
-            foreach (var item in material)
+            foreach (var item in items2.Result)
             {
-                foreach (var item2 in lieferatnen)
+                foreach (var item2 in items1.Result)
                 {
                     if (item2.ware_ids.Contains(item.id))
                     {
@@ -282,8 +327,11 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 }
             }
 
-            var models = await GetAllAsync();
-            return View(models);
+           // var models = await GetAllAsync();
+            stopWatch.Stop();
+            System.Console.WriteLine("Add to List: " + stopWatch.Elapsed);
+            System.Console.WriteLine("Gesamt: " + stopWatch2.Elapsed);
+            return View(lfmt);
         }
 
         public static Task<Models.SupplierMaterial[]> GetAllAsync()

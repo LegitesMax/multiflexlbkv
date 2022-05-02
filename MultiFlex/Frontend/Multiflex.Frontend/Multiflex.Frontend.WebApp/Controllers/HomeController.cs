@@ -104,19 +104,19 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
                 var requestRegal = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync($"http://localhost:8080/regal/{arg}");
+                    return httpCliet.GetStringAsync($"http://127.0.0.1:8080/regal/{arg}");
                 });
                 Console.WriteLine(requestRegal);
 
                 var requestWare = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/ware/product");
+                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/product");
                 });
 
                 Console.WriteLine(requestWare);
                 var requestFach = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/fach");
+                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/fach");
                 });
 
                 Console.WriteLine(requestWare);
@@ -140,17 +140,17 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
                 var requestRegal = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/regal");
+                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/regal");
                 });
                 Console.WriteLine(requestRegal);
                 var requestWare = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/ware/product");
+                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/product");
                 });
                 Console.WriteLine(requestWare);
                 var requestFach = await Task.Run(() =>
                 {
-                    return httpCliet.GetStringAsync("http://localhost:8080/shelf");
+                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/shelf");
                 });
                 Console.WriteLine(requestFach);
                 var json1 = JArray.Parse(requestRegal);
@@ -164,7 +164,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 //Console.WriteLine(json3);
                 //var requestRegalFachWare = await Task.Run(() =>
                 //{
-                //    return httpCliet.GetStringAsync("http://localhost:8080/regal/queries/regal-fach");
+                //    return httpCliet.GetStringAsync("http://127.0.0.1:8080/regal/queries/regal-fach");
                 //});
                 //var json1 = JArray.Parse(requestRegalFachWare);
                 //Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString());
@@ -212,15 +212,15 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 if (regal.maxAmountShelfs > 0 && regal.maxAmountShelfs < 100)
                     {
                     //    Electron.IpcMain.Send(mainWindow, "get-regal-input-max-value-reply");
-                    await httpCliet.PostAsync("http://localhost:8080/regal/add", data);
+                    await httpCliet.PostAsync("http://127.0.0.1:8080/regal/add", data);
 
                 }
                 else
                 {
                     Electron.IpcMain.Send(mainWindow, "add-regal-reply");
                 }
-                    //await httpCliet.PostAsync("http://localhost:8080/regal/add", data);
-                
+                //await httpCliet.PostAsync("http://127.0.0.1:8080/regal/add", data);
+
                 //Console.WriteLine("test2");
             });
             return View();
