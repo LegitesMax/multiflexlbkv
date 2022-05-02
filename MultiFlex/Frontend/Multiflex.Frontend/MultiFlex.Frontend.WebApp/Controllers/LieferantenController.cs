@@ -200,7 +200,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
         /////
         public async Task<ActionResult> Index()
         {
-          
+            lfmt.Clear();
 
             //material = new();
             //lieferatnen = new();

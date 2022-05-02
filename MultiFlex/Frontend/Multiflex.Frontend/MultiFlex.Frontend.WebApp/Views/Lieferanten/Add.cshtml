@@ -1,5 +1,5 @@
-@model Multiflex.Frontend.WebApp.Models.SupplierDto
-@*@model Multiflex.Frontend.WebApp.Models.SupplierMaterial*@
+@*@model Multiflex.Frontend.WebApp.Models.SupplierDto*@
+@model Multiflex.Frontend.WebApp.Models.SupplierMaterial
 
 @{
     ViewData["Title"] = "Add";
@@ -15,9 +15,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
-                <input asp-for="name" class="form-control" />
-                <span asp-validation-for="name" class="text-danger"></span>
+                <label asp-for="supplier_name" class="control-label"></label>
+                <input asp-for="supplier_name" class="form-control" />
+                <span asp-validation-for="supplier_name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="link" class="control-label"></label>
