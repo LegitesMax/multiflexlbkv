@@ -13,12 +13,13 @@ namespace Multiflex.Frontend.WebApp.Controllers
     public class LieferantenController : Controller
     {
 
-        private static List<Models.SupplierDto> lieferanten = new();
+       // private static List<Models.SupplierDto> lieferanten = new();
 
         private static List<Models.MaterialDto> material = new();
         private static List<Models.SupplierDto> lieferatnen = new();
         private static List<Models.SupplierMaterial> lfmt = new();
 
+        #region crap
         //public async Task<ActionResult> Index()
         //{
         //    #region crap
@@ -132,6 +133,8 @@ namespace Multiflex.Frontend.WebApp.Controllers
         //    return Task.Run(() => lieferanten.FirstOrDefault(s => s.id == id));
         //}
 
+        #endregion crap
+
         #region Add
         public ActionResult Add()
         {
@@ -201,6 +204,8 @@ namespace Multiflex.Frontend.WebApp.Controllers
         public async Task<ActionResult> Index()
         {
             lfmt.Clear();
+            material.Clear();
+            lieferatnen.Clear();
 
             //material = new();
             //lieferatnen = new();
@@ -227,6 +232,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
             lieferatnen.AddRange(items1);
             material.AddRange(items2);
             List<string> alreadyadded= new List<string>();
+            alreadyadded.Clear();
             bool notaddedyet = false;
 
             foreach (var item in material)
