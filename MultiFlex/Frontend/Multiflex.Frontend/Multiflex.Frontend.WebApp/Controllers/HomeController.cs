@@ -30,7 +30,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
 
         public ActionResult Index()
         {
-
+            #region crap
             //Stopwatch stopWatch1 = new Stopwatch();
             //stopWatch1.Start();
             ////lieferanten = new();
@@ -78,8 +78,8 @@ namespace Multiflex.Frontend.WebApp.Controllers
             //stopWatch1.Stop();
             //System.Console.WriteLine($"Gesammt: {stopWatch1.Elapsed}");
             //return View(itemsRegal.Result, itemsShelf.Result, itemsWare.Result);
+            #endregion crap
 
-    
             Electron.IpcMain.On("open-add-window", async (arg) =>
             {
                 //var mainWindow = Electron.WindowManager.BrowserWindows.First();
@@ -96,42 +96,43 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 BrowserWindow win = await AddWindow("/Home/Add", new BrowserWindowOptions());
                 win.Show();
             });
-            
-            Electron.IpcMain.On("searchRegal", async (arg) =>
-            {
-                var mainWindow = Electron.WindowManager.BrowserWindows.First();
-                using var httpCliet = new HttpClient();
+            #region crap
+            //Electron.IpcMain.On("searchRegal", async (arg) =>
+            //{
+            //    var mainWindow = Electron.WindowManager.BrowserWindows.First();
+            //    using var httpCliet = new HttpClient();
 
-                var requestRegal = await Task.Run(() =>
-                {
-                    return httpCliet.GetStringAsync($"http://127.0.0.1:8080/regal/{arg}");
-                });
-                Console.WriteLine(requestRegal);
+            //    var requestRegal = await Task.Run(() =>
+            //    {
+            //        return httpCliet.GetStringAsync($"http://127.0.0.1:8080/regal/{arg}");
+            //    });
+            //    Console.WriteLine(requestRegal);
 
-                var requestWare = await Task.Run(() =>
-                {
-                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/product");
-                });
+            //    var requestWare = await Task.Run(() =>
+            //    {
+            //        return httpCliet.GetStringAsync("http://127.0.0.1:8080/ware/product");
+            //    });
 
-                Console.WriteLine(requestWare);
-                var requestFach = await Task.Run(() =>
-                {
-                    return httpCliet.GetStringAsync("http://127.0.0.1:8080/fach");
-                });
+            //    Console.WriteLine(requestWare);
+            //    var requestFach = await Task.Run(() =>
+            //    {
+            //        return httpCliet.GetStringAsync("http://127.0.0.1:8080/fach");
+            //    });
 
-                Console.WriteLine(requestWare);
-                var json1 = JArray.Parse(requestRegal);
-                var json2 = JArray.Parse(requestWare);
-                var json3 = JArray.Parse(requestFach);
-                Console.WriteLine("Json1");
-                Console.WriteLine(json1);
-                //Console.WriteLine("Json2");
-                //Console.WriteLine(json2);
-                //Console.WriteLine("Json3");
-                //Console.WriteLine(json3);
+            //    Console.WriteLine(requestWare);
+            //    var json1 = JArray.Parse(requestRegal);
+            //    var json2 = JArray.Parse(requestWare);
+            //    var json3 = JArray.Parse(requestFach);
+            //    Console.WriteLine("Json1");
+            //    Console.WriteLine(json1);
+            //    //Console.WriteLine("Json2");
+            //    //Console.WriteLine(json2);
+            //    //Console.WriteLine("Json3");
+            //    //Console.WriteLine(json3);
 
-                Electron.IpcMain.Send(mainWindow, "getSearchedRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
-            });
+            //    Electron.IpcMain.Send(mainWindow, "getSearchedRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
+            //});
+            #endregion crap
 
             Electron.IpcMain.On("loadFinished", async (arg) =>
             {
@@ -156,6 +157,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 var json1 = JArray.Parse(requestRegal);
                 var json2 = JArray.Parse(requestWare);
                 var json3 = JArray.Parse(requestFach);
+                #region crap
                 //Console.WriteLine("Json1: Regal");
                 //Console.WriteLine(json1);
                 //Console.WriteLine("Json2: Ware");
@@ -168,6 +170,7 @@ namespace Multiflex.Frontend.WebApp.Controllers
                 //});
                 //var json1 = JArray.Parse(requestRegalFachWare);
                 //Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString());
+                #endregion crap
                 Electron.IpcMain.Send(mainWindow, "getRegal-reply", json1.ToString(), json2.ToString(), json3.ToString());
             });
             return View();
