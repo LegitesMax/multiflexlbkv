@@ -25,7 +25,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build API docker image
       run: |
-        cd MultiFlex/Frontend/Frontend
+        cd MultiFlex/Frontend
         docker build . --tag ${{ env.IMAGE_NAME }}
     
     - name: Push image
