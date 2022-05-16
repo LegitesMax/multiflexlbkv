@@ -1,64 +1,37 @@
-name: Docker Image CI
+name: Frontend-UI CD
 
-on:
+on: 
   push:
     paths: 'MultiFlex/Frontend/**'
   workflow_dispatch:
 
-env:
-  DOCKER_CONTAINER: multiflex-frontend
-  REGISTRY: ghcr.io
-  IMAGE_NAME: multiflex-frontend
-
 jobs:
-  build-and-push-docker-image:
+  deploy-website:
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
+    steps:    
+    - uses: actions/checkout@v1
     
-    - name: Login to the Container registry (Github container registry)
-      uses: docker/login-action@v1
+    - name: Install ssh key
+      uses: caberger/install-ssh-key@v1.0
       with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build API docker image
-      run: |
-        cd MultiFlex/Frontend
-        docker build . --tag ${{ env.IMAGE_NAME }}
+        ssh-private-key:  ${{ secrets.SSH_PRIVATE_KEY }}
+        user: ${{ secrets.REMOTE_USER }}
+        server: ${{ secrets.REMOTE_HOST }}
+        alias: server
     
-    - name: Push image
+    - name: Remove and recreate existing target folder
       run: |
-        IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
-        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-        VERSION=latest
-        echo IMAGE_ID=$IMAGE_ID
-        echo VERSION=$VERSION
-        docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-        docker push $IMAGE_ID:$VERSION
-        
-  start-docker-container-on-vm:
-    needs:
-      - build-and-push-docker-image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install ssh key
-        uses: caberger/install-ssh-key@v1.0
-        with:
-            ssh-private-key:  ${{ secrets.SSH_PRIVATE_KEY }}
-            user: ${{ secrets.REMOTE_USER }}
-            server: ${{ secrets.REMOTE_HOST }}
-            alias: server
-
-      - name: Remove existing container
-        run: |
-          ssh server "sudo docker stop ${{ env.DOCKER_CONTAINER }} || echo 'Container doesnt exist!'"
-          ssh server "sudo docker rm ${{ env.DOCKER_CONTAINER }} || echo 'No container to remove'"
-          
-      - name: Pull latest docker image and run container
-        run: | 
-          IMAGE_PULL_URL=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
-          IMAGE_PULL_URL=$(echo $IMAGE_PULL_URL | tr '[A-Z]' '[a-z]')
-          ssh server "sudo docker pull $IMAGE_PULL_URL"
-          ssh server "sudo docker run -d --name ${{ env.DOCKER_CONTAINER }} -p 8080:80 -p 8081:443 $IMAGE_PULL_URL"
+        ssh server "sudo rm -rf ${{ secrets.REMOTE_TARGET }}"
+        ssh server "sudo mkdir ${{ secrets.REMOTE_TARGET }}"
+        ssh server "sudo chmod 777 ${{ secrets.REMOTE_TARGET }}"
+      
+    
+    - name: Deploy to OraVM
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: "MultiFlex/Frontend/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
