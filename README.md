@@ -6,5 +6,3 @@ Erwünscht wird ein One-Pager, der die obengenannten Daten anzeigeigt. Die dazu 
 - Markus Schwarz
 - Fabian Schned
 - David Zeilinger
-
-abcd
