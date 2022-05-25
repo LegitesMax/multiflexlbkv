@@ -3,50 +3,180 @@
     //var controller = ViewContext?.RouteData?.Values["controller"]?.ToString();
     //var action = ViewContext?.RouteData?.Values["action"]?.ToString();
     var title = "Home";
-
     ViewData["Title"] = title;
 
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Accordion Item #1
-                </button>
-            </h2>
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Anzahl</th>
-                        <th scope="col">Min. Anzahl</th>
-                        <th scope="col">Farbe</th>
-                        <th scope="col">Produkt</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">LÖXXXX</th>
-                        <td>23</td>
-                        <td>5</td>
-                        <td>Dunkel</td>
-                        <td>ka</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">LÖXXXX</th>
-                        <td>23</td>
-                        <td>5</td>
-                        <td>Dunkel</td>
-                        <td>ka</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">LÖXXXX</th>
-                        <td>23</td>
-                        <td>5</td>
-                        <td>Dunkel</td>
-                        <td>ka</td>
-                    </tr>
-                </tbody>
-            </table>
+
+    <div class="container pb-5">
+        <div class="row text-center">
+            <div class="col">
+                <button type="button" class="btn btn-dark">PDF erstellen</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-dark">Kritische PDF erstellen</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-dark">Nachkaufen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 d-flex">
+        <div class="w-75 mx-4">
+            <h2 class="">Bestand</h2>
+            <div class="accordion accordion-flush border" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Löwe | 15Stk
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Anzahl</th>
+                                    <th scope="col">Min. Anzahl</th>
+                                    <th scope="col">Farbe</th>
+                                    <th scope="col">Produkt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">LÖXXXX</th>
+                                    <td>23</td>
+                                    <td>5</td>
+                                    <td>Dunkel</td>
+                                    <td>ka</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+
+                        <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            <div class="d-flex justify-content-between w-100">
+                                <p>
+                                    Lebensbaum | 55Stk | <danger class="text-danger">BAXXXX - 2Stk</danger>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </button>
+
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Anzahl</th>
+                                    <th scope="col">Min. Anzahl</th>
+                                    <th scope="col">Farbe</th>
+                                    <th scope="col">Produkt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">BAXXXX</th>
+                                    <td>25</td>
+                                    <td>5</td>
+                                    <td>Hell</td>
+                                    <td>ka</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">BAXXXX</th>
+                                    <td>20</td>
+                                    <td>5</td>
+                                    <td>Neutral</td>
+                                    <td>ka</td>
+                                </tr>
+                                <tr class="text-danger">
+                                    <th scope="row">BAXXXX</th>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>Dunkel</td>
+                                    <td>ka</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            <p>
+                                Lotusblume | 45Stk | <danger class="text-danger">LOXXXX - 3Stk</danger>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                                </svg>
+                            </p>
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Anzahl</th>
+                                    <th scope="col">Min. Anzahl</th>
+                                    <th scope="col">Farbe</th>
+                                    <th scope="col">Produkt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">LOXXXX</th>
+                                    <td>15</td>
+                                    <td>5</td>
+                                    <td>Dunkel</td>
+                                    <td>ka</td>
+                                </tr>
+                                <tr class="text-danger">
+                                    <th scope="row">LOXXXX</th>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>Hell</td>
+                                    <td>ka</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-25">
+            <h2 class="text-center">Bestellungen</h2>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between">
+                    BAXXX | 1Stk
+                    <status>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
+                    </status>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    LÖXXX | 1Stk
+                    <status>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z" />
+                        </svg>
+                    </status>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    LOXXX | 2Stk
+                    <status>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z" />
+                        </svg>
+                    </status>
+                </li>
+            </ul>
         </div>
     </div>
 }
