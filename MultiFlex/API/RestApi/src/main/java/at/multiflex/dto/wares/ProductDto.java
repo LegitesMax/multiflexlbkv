@@ -14,5 +14,7 @@ import java.util.List;
 public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
     private List<Integer> material_ids;
+
+    private Integer product_id;
     //</editor-fold>
 }

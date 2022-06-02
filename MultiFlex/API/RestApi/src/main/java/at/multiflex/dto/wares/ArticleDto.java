@@ -20,6 +20,6 @@ public class ArticleDto {
     private Integer minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    private Integer color_id;
+
     //</editor-fold>
 }

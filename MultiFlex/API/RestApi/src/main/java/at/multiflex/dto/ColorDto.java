@@ -22,6 +22,6 @@ public class ColorDto {
     private String color;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    private List<Integer> article_ids = new ArrayList<>();
+    private List<Integer> product_ids = new ArrayList<>();
     //</editor-fold>
 }

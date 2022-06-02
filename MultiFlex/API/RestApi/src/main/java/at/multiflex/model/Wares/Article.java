@@ -32,23 +32,13 @@ public class Article {
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
         //<editor-fold desc="Transient Fields">
-    @Transient
-    private Integer color_id = configurateColerId();
+
         //</editor-fold>
         //<editor-fold desc="Relation">
-    @ManyToOne
-    @JoinColumn(name = "color_id", nullable = false)
-    private Color color;
+
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
-    private Integer configurateColerId(){
-        if (color != null){
-            if (color.getId() != null){
-                return getColor().getId();
-            }
-        }
-        return null;
-    }
+
         //</editor-fold>
     //</editor-fold>
 }

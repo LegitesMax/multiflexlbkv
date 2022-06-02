@@ -1,6 +1,7 @@
 package at.multiflex.model;
 
 import at.multiflex.model.Wares.Article;
+import at.multiflex.model.Wares.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,16 +35,16 @@ public class Color {
         //<editor-fold desc="Transient Fields">
     @Transient
     //private List<Integer> article_ids = configurateProductIds();
-    private List<Integer> article_ids = configurateProductIds();
+    private List<Integer> product_ids = configurateProductIds();
         //</editor-fold>
         //<editor-fold desc="Relation">
     @OneToMany(mappedBy = "color")
-    private Set<Article> articles = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
     private List<Integer> configurateProductIds(){
-        if (getArticles() != null){
-            return getArticles().stream().map(x -> x.getId()).collect(Collectors.toList());
+        if (getProducts() != null){
+            return getProducts().stream().map(x -> x.getId()).collect(Collectors.toList());
         }
         return new ArrayList<>();
     }
