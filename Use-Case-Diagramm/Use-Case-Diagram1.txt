@@ -1,0 +1,6 @@
+@startuml
+
+Benuzer --|> (Webseitebesuchn)
+(Webseitebesuchn) --|> (Daten Ansehen)
+(Daten Ansehen) --|> (Liste mit allen Daten als Pdf)
+@enduml
