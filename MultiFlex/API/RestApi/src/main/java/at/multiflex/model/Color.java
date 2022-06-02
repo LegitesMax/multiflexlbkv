@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -30,18 +31,15 @@ public class Color {
 
     @Transient
     //private List<Integer> article_ids = configurateProductIds();
-    private List<Integer> article_ids = getArticles().stream().map(x -> x.getId()).collect(Collectors.toList());
+    private List<Integer> article_ids = configurateProductIds();
 
     @OneToMany(mappedBy = "color")
     private Set<Article> articles = new HashSet<>();
 
-    //private List<Integer> configurateProductIds(){
-    //    var ids = new ArrayList<Integer>();
-    //    if (this.getArticles() != null){
-    //        this.getArticles().forEach(x -> {
-    //            ids.add(x.getId());
-    //        });
-    //    }
-    //     return ids;
-    //}
+    private List<Integer> configurateProductIds(){
+        if (getArticles() != null){
+            return getArticles().stream().map(x -> x.getId()).collect(Collectors.toList());
+        }
+         return new ArrayList<>();
+    }
 }

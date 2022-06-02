@@ -29,9 +29,18 @@ public class Article {
     private Integer minValue;
 
     @Transient
-    private Integer color_id = getColor().getId();
+    private Integer color_id = configurateColerId();
 
     @ManyToOne
     @JoinColumn(name = "color_id", nullable = false)
     private Color color;
+
+    private Integer configurateColerId(){
+        if (color != null){
+            if (color.getId() != null){
+                return getColor().getId();
+            }
+        }
+        return null;
+    }
 }
