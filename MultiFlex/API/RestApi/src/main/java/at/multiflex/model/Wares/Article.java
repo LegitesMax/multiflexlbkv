@@ -1,5 +1,6 @@
-package at.multiflex.model;
+package at.multiflex.model.Wares;
 
+import at.multiflex.model.Color;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Article {
+    //<editor-fold desc="Common Fields">
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,14 +29,18 @@ public class Article {
 
     @Column(nullable = false)
     private Integer minValue;
-
+    //</editor-fold>
+    //<editor-fold desc="Navigation Help">
+        //<editor-fold desc="Transient Fields">
     @Transient
     private Integer color_id = configurateColerId();
-
+        //</editor-fold>
+        //<editor-fold desc="Relation">
     @ManyToOne
     @JoinColumn(name = "color_id", nullable = false)
     private Color color;
-
+        //</editor-fold>
+        //<editor-fold desc="Transient Field configuration">
     private Integer configurateColerId(){
         if (color != null){
             if (color.getId() != null){
@@ -43,4 +49,6 @@ public class Article {
         }
         return null;
     }
+        //</editor-fold>
+    //</editor-fold>
 }
