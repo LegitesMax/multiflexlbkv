@@ -1,0 +1,6 @@
+@startuml
+
+Benuzer --|> (Webseitebesuchn)
+(Webseitebesuchn) --|> (Daten Ansehen)
+(Daten Ansehen) --|> (Liste Kritischer Daten als Pdf)
+@enduml
