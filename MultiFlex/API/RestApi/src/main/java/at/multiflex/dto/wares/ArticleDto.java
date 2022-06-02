@@ -1,27 +1,25 @@
-package at.multiflex.dto;
+package at.multiflex.dto.wares;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductionFormulaDto {
+public class ArticleDto {
     //<editor-fold desc="Common Fields">
     private Integer id;
+
+    private String name;
+
+    private Integer Value;
+
+    private Integer minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    private Integer product_id;
-
-    private List<Integer> material_ids;
+    private Integer color_id;
     //</editor-fold>
 }

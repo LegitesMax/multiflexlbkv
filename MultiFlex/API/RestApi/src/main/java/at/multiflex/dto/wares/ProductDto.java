@@ -1,6 +1,5 @@
-package at.multiflex.dto.Wares;
+package at.multiflex.dto.wares;
 
-import at.multiflex.dto.Wares.ArticleDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +11,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MaterialDto extends ArticleDto {
+public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
-    private List<Integer> productionFormula_ids;
+    private List<Integer> material_ids;
     //</editor-fold>
 }

@@ -1,13 +1,16 @@
 package at.multiflex.model.Wares;
 
-import at.multiflex.model.ProductionFormula;
-import at.multiflex.model.Wares.Article;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -22,19 +25,18 @@ public class Product extends Article {
     //<editor-fold desc="Navigation Help">
         //<editor-fold desc="Transient Fields">
     @Transient
-    private Integer productionFormula_id = configurateProductId();
+    private List<Integer> material_ids = configurateMaterialIds();
         //</editor-fold>
         //<editor-fold desc="Relation">
-    @OneToOne
-    @JoinColumn(name = "productionFormula_id", nullable = false)
-    private ProductionFormula productionFormula;
+    @ManyToMany(mappedBy = "products")
+    private Set<Material> materials = new HashSet<>();
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
-    private Integer configurateProductId(){
-        if (getProductionFormula() != null && getProductionFormula().getId() != null){
-            return getProductionFormula().getId();
+    private List<Integer> configurateMaterialIds(){
+        if (getMaterials() != null){
+            return getMaterials().stream().map(x -> x.getId()).collect(Collectors.toList());
         }
-        return null;
+        return new ArrayList<>();
     }
         //</editor-fold>
     //</editor-fold>

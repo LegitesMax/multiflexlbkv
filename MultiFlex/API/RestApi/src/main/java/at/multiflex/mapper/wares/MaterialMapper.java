@@ -1,6 +1,6 @@
 package at.multiflex.mapper.wares;
 
-import at.multiflex.dto.Wares.MaterialDto;
+import at.multiflex.dto.wares.MaterialDto;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Wares.Material;
 

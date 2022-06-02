@@ -1,7 +1,5 @@
 package at.multiflex.model.Wares;
 
-import at.multiflex.model.ProductionFormula;
-import at.multiflex.model.Wares.Article;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,20 +24,20 @@ public class Material extends Article {
     //<editor-fold desc="Navigation Help">
         //<editor-fold desc="Transient Fields">
     @Transient
-    private List<Integer> productionFormula_ids = configurateProductionFormulaIds();
+    private List<Integer> product_ids = configurateProductIds();
         //</editor-fold>
         //<editor-fold desc="Relation">
     @ManyToMany
     @JoinTable(
-            name = "Material_ProductionFormula", // name of the association table
+            name = "ProductionFormula", // name of the association table
             joinColumns = @JoinColumn(name = "material_id"), // foreign key columns
-            inverseJoinColumns = @JoinColumn(name = "productionFormulas_id"))
-    private Set<ProductionFormula> productionFormulas;
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> products;
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
-    private List<Integer> configurateProductionFormulaIds(){
-        if (getProductionFormulas() != null){
-            return getProductionFormulas().stream().map(x -> x.getId()).collect(Collectors.toList());
+    private List<Integer> configurateProductIds(){
+        if (getProducts() != null){
+            return getProducts().stream().map(x -> x.getId()).collect(Collectors.toList());
         }
         return new ArrayList<>();
     }

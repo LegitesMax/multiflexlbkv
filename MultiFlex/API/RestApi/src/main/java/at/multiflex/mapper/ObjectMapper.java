@@ -1,12 +1,10 @@
 package at.multiflex.mapper;
 
 import at.multiflex.dto.ColorDto;
-import at.multiflex.dto.ProductionFormulaDto;
-import at.multiflex.dto.Wares.ArticleDto;
-import at.multiflex.dto.Wares.MaterialDto;
-import at.multiflex.dto.Wares.ProductDto;
+import at.multiflex.dto.wares.ArticleDto;
+import at.multiflex.dto.wares.MaterialDto;
+import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.model.Color;
-import at.multiflex.model.ProductionFormula;
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Material;
 import at.multiflex.model.Wares.Product;
@@ -44,13 +42,6 @@ public interface ObjectMapper {
 
     @Mapping(target = "id")
     Color fromDto(ColorDto entity);
-    //</editor-fold>
-    //<editor-fold desc="ProductionFormula">
-    @Mapping(target = "id")
-    ProductionFormulaDto toDto(ProductionFormula entity);
-
-    @Mapping(target = "id")
-    ProductionFormula fromDto(ProductionFormulaDto entity);
     //</editor-fold>
 }
 

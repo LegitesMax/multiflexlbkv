@@ -1,6 +1,6 @@
 package at.multiflex.mapper.wares;
 
-import at.multiflex.dto.Wares.ProductDto;
+import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Wares.Product;
 

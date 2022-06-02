@@ -1,6 +1,6 @@
 package at.multiflex.dao.wares;
 
-import at.multiflex.dto.Wares.ArticleDto;
+import at.multiflex.dto.wares.ArticleDto;
 import at.multiflex.mapper.wares.ArticleMapper;
 import at.multiflex.repository.wares.ArticleRepository;
 
