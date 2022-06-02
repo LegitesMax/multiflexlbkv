@@ -1,4 +1,4 @@
-package at.multiflex.rest;
+package at.multiflex;
 
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.annotations.QuarkusMain;
