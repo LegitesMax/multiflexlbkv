@@ -16,23 +16,23 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "cdi")
 public interface ObjectMapper {
     //<editor-fold desc="Wares">
-    //<editor-fold desc="Article">
+    //<editor-fold desc="ArticleRepository">
     @Mapping(target = "id")
-    ArticleDto toDTO(Article entity);
+    ArticleDto toDto(Article entity);
 
     @Mapping(target = "id")
     Article fromDto(ArticleDto entity);
     //</editor-fold>
     //<editor-fold desc="Material">
     @Mapping(target = "id")
-    MaterialDto toDTO(Material entity);
+    MaterialDto toDto(Material entity);
 
     @Mapping(target = "id")
     Material fromDto(MaterialDto entity);
     //</editor-fold>
     //<editor-fold desc="Product">
     @Mapping(target = "id")
-    ProductDto toDTO(Product entity);
+    ProductDto toDto(Product entity);
 
     @Mapping(target = "id")
     Product fromDto(ProductDto entity);
@@ -40,14 +40,14 @@ public interface ObjectMapper {
     //</editor-fold>
     //<editor-fold desc="Color">
     @Mapping(target = "id")
-    ColorDto toDTO(Color entity);
+    ColorDto toDto(Color entity);
 
     @Mapping(target = "id")
     Color fromDto(ColorDto entity);
     //</editor-fold>
     //<editor-fold desc="ProductionFormula">
     @Mapping(target = "id")
-    ProductionFormulaDto toDTO(ProductionFormula entity);
+    ProductionFormulaDto toDto(ProductionFormula entity);
 
     @Mapping(target = "id")
     ProductionFormula fromDto(ProductionFormulaDto entity);
