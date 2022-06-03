@@ -2,11 +2,13 @@ package at.multiflex.model;
 
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Product;
+import at.multiflex.repository.wares.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -48,6 +50,11 @@ public class Color {
         }
         return new ArrayList<>();
     }
-        //</editor-fold>
+
+    public List<Integer> getProduct_ids() {
+        configurateProductIds();
+        return product_ids;
+    }
+    //</editor-fold>
     //</editor-fold>
 }

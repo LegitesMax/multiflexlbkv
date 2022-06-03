@@ -43,4 +43,10 @@ public class Material extends Article {
     }
         //</editor-fold>
     //</editor-fold>
+
+
+    public List<Integer> getProduct_ids() {
+        configurateProductIds();
+        return product_ids;
+    }
 }

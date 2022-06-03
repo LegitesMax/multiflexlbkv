@@ -55,4 +55,14 @@ public class Product extends Article {
     }
         //</editor-fold>
     //</editor-fold>
+
+    public void setMaterial_ids(List<Integer> material_ids) {
+        configurateMaterialIds();
+        this.material_ids = material_ids;
+    }
+
+    public void setColor_id(Integer color_id) {
+        configurateColerId();
+        this.color_id = color_id;
+    }
 }

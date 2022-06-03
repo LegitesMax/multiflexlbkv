@@ -15,6 +15,6 @@ public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
     private List<Integer> material_ids;
 
-    private Integer product_id;
+    private Integer color_id;
     //</editor-fold>
 }
