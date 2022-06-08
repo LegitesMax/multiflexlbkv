@@ -21,7 +21,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\BillBeeQueries\BillBeeQueries.csproj" />
 	  <ProjectReference Include="..\CommonBase\CommonBase.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Entities\Products\" />
 	</ItemGroup>
 
 </Project>

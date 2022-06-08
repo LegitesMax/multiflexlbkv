@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Frontend.AspMvc.Models;
 using System.Diagnostics;
+using Frontend.Logic.Controllers;
 
 namespace Frontend.AspMvc.Controllers
 {
@@ -15,21 +16,10 @@ namespace Frontend.AspMvc.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var orderController = new OrderController();
 
-        public IActionResult Index2()
-        {
-            return View();
-        }
+            var data = orderController.GetOrderedOrders();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
             return View();
         }
 

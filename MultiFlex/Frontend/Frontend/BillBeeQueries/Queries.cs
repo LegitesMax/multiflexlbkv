@@ -9,8 +9,13 @@ using System.Threading.Tasks;
 
 namespace BillBeeQueries
 {
-    internal class Queries
+    public class Queries
     {
+
+        internal string ApiKey { get; set; } = String.Empty;
+        internal string Username { get; set; } = String.Empty;
+        internal string Password { get; set; } = String.Empty;
+
         public ApiClient Login()
         {
             //Console.WriteLine("Beware, uncommenting lines may harm your productive data!");
@@ -24,25 +29,43 @@ namespace BillBeeQueries
             ILogger logger = new Logger();
 
             // Creating new instance of ApiClient
-            string configPath = "/usr/psw.json";
+            //string configPath = "/usr/psw.json";
+
+            //loaclfile
+            string configPath = @"C:\Users\zeili\Desktop\tmp\psw.json";
             ApiClient client;
 
             if (File.Exists(configPath))
             {
-                // From config file
-                client = new ApiClient(configPath, logger: logger);
+                //// From config file
+                //client = new ApiClient(configPath, logger: logger);
+
+                string value = File.ReadAllText(configPath);
+                var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiConfiguration>(value);
+
+                client = new ApiClient(logger: logger);
+                // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
+                client.Configuration.ApiKey = data.ApiKey;
+                // Enter the username of your main account here.
+                client.Configuration.Username = data.Username;
+                // Enter the password of your api here.
+                client.Configuration.Password = data.Password;
             }
             else
             {
-                // from naual given config
-                client = new ApiClient(logger: logger);
-                // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
-                client.Configuration.ApiKey = "";
-                // Enter the username of your main account here.
-                client.Configuration.Username = "";
-                // Enter the password of your api here.
-                client.Configuration.Password = "";
+                throw new Exception("Ping");
             }
+            //else
+            //{
+            //    // from naual given config
+            //    client = new ApiClient(logger: logger);
+            //    // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
+            //    client.Configuration.ApiKey = "EA44B4BD-E6D7-4E75-A98B-33D6FC2D01AE";
+            //    // Enter the username of your main account here.
+            //    client.Configuration.Username = "geschenksideen@zeilinger-design.at";
+            //    // Enter the password of your api here.
+            //    client.Configuration.Password = "797KWYiSGMdA8xn";
+            //}
             // Test the configuration
             if (client.TestConfiguration())
             {
@@ -59,7 +82,6 @@ namespace BillBeeQueries
 
             return client;
             //GetOrdes(client);
-
         }
         public void GetProducts(ApiClient client)
         {
@@ -69,26 +91,10 @@ namespace BillBeeQueries
             string jsonString = JsonSerializer.Serialize(products.Data);
             string jsonString2 = JsonSerializer.Serialize(customFields.Data);
 
-            File.WriteAllText(@"products.json", jsonString, Encoding.UTF8);
-            File.WriteAllText(@"customFields.json", jsonString2, Encoding.UTF8);
+           // File.WriteAllText(@"products.json", jsonString, Encoding.UTF8);
+            //File.WriteAllText(@"customFields.json", jsonString2, Encoding.UTF8);
 
             //File.WriteAllLines(path, createText, Encoding.UTF8);
-        }
-        public void GetOrdes(ApiClient client)
-        {
-            //NICHT GLEICHER TAG SONST PROBLEME
-            var date = new DateTime(2022, 06, 04);
-            var date2 = new DateTime(2022, 06, 06);
-
-            var orderState = new List<OrderStateEnum>() { OrderStateEnum.Storniert };
-
-            var orders = client.Orders.GetOrderList(minOrderDate: date, maxOrderDate: date2, orderStateId: orderState, pageSize: 50);
-
-            string jsonString = JsonSerializer.Serialize(orders.Data);
-
-
-            File.WriteAllText(@"orders.json", jsonString, Encoding.UTF8);
-
         }
     }
 }
