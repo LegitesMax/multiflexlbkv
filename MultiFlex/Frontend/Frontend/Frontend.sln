@@ -1,29 +1,31 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{B870647A-D97D-4AB5-ABA6-763C1404F885}") = "Frontend.Logic", "Frontend.Logic\Frontend.Logic.csproj", "{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.Logic", "Frontend.Logic\Frontend.Logic.csproj", "{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}"
 EndProject
-Project("{64FAD8FD-0936-4D5A-9150-759CEF21EFB9}") = "Frontend.ConApp", "Frontend.ConApp\Frontend.ConApp.csproj", "{BA9F6754-9315-4674-AB53-34CB4BB5F30B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.ConApp", "Frontend.ConApp\Frontend.ConApp.csproj", "{BA9F6754-9315-4674-AB53-34CB4BB5F30B}"
 EndProject
-Project("{B7C8A545-9545-4822-BC93-11595826F896}") = "Frontend.WebApi", "Frontend.WebApi\Frontend.WebApi.csproj", "{A75A5F5C-82CC-447B-A96D-242738B70C55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.WebApi", "Frontend.WebApi\Frontend.WebApi.csproj", "{A75A5F5C-82CC-447B-A96D-242738B70C55}"
 EndProject
-Project("{C97C94FB-2CF4-4FEE-BBE5-3F9F5CD08666}") = "CommonBase", "CommonBase\CommonBase.csproj", "{5D5C4E63-A490-4AD3-8B36-7CF49A5F5937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonBase", "CommonBase\CommonBase.csproj", "{5D5C4E63-A490-4AD3-8B36-7CF49A5F5937}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}")="SolutionItems","SolutionItems","{7D1E32D0-6289-41AB-B44D-31F87C0C21A2}"
-	ProjectSection(SolutionItems)=preProject
-		AspMvcDataFlow.md=AspMvcDataFlow.md
-		MultiTierArchitecture.md=MultiTierArchitecture.md
-		Nuget.md=Nuget.md
-		ReadMe.md=ReadMe.md
-		WebApiDataFlow.md=WebApiDataFlow.md
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{7D1E32D0-6289-41AB-B44D-31F87C0C21A2}"
+	ProjectSection(SolutionItems) = preProject
+		AspMvcDataFlow.md = AspMvcDataFlow.md
+		MultiTierArchitecture.md = MultiTierArchitecture.md
+		Nuget.md = Nuget.md
+		ReadMe.md = ReadMe.md
+		WebApiDataFlow.md = WebApiDataFlow.md
+	EndProjectSection
 EndProject
-Project("{14D00FB3-DA12-4CBE-9BFA-4C5C5DDBB525}") = "Frontend.WpfApp", "Frontend.WpfApp\Frontend.WpfApp.csproj", "{11E41372-993D-48EA-85EB-290BD727A3E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.WpfApp", "Frontend.WpfApp\Frontend.WpfApp.csproj", "{11E41372-993D-48EA-85EB-290BD727A3E6}"
 EndProject
-Project("{17DF897E-790B-4271-B842-A1F6AC781A74}") = "Frontend.AspMvc", "Frontend.AspMvc\Frontend.AspMvc.csproj", "{F32EA400-BBCC-4F3C-8A2B-882A20C9C1E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.AspMvc", "Frontend.AspMvc\Frontend.AspMvc.csproj", "{F32EA400-BBCC-4F3C-8A2B-882A20C9C1E8}"
 EndProject
-Project("{A09E0718-4D12-4BEF-BC25-A49770747895}") = "Frontend.Logic.UnitTest", "Frontend.Logic.UnitTest\Frontend.Logic.UnitTest.csproj", "{DA2BE746-8EFA-48EB-BE54-F27E3ED868C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.Logic.UnitTest", "Frontend.Logic.UnitTest\Frontend.Logic.UnitTest.csproj", "{DA2BE746-8EFA-48EB-BE54-F27E3ED868C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillBeeQueries", "BillBeeQueries\BillBeeQueries.csproj", "{3699DD40-FF91-4790-812C-F38227D599EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{DA2BE746-8EFA-48EB-BE54-F27E3ED868C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA2BE746-8EFA-48EB-BE54-F27E3ED868C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA2BE746-8EFA-48EB-BE54-F27E3ED868C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3699DD40-FF91-4790-812C-F38227D599EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3699DD40-FF91-4790-812C-F38227D599EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3699DD40-FF91-4790-812C-F38227D599EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3699DD40-FF91-4790-812C-F38227D599EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
