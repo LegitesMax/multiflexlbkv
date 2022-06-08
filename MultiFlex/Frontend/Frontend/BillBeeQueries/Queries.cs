@@ -1,11 +1,5 @@
 ﻿using Billbee.Api.Client;
-using Billbee.Api.Client.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace BillBeeQueries
 {
@@ -45,27 +39,17 @@ namespace BillBeeQueries
 
                 client = new ApiClient(logger: logger);
                 // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
-                client.Configuration.ApiKey = data.ApiKey;
+                client.Configuration.ApiKey = data!.ApiKey;
                 // Enter the username of your main account here.
-                client.Configuration.Username = data.Username;
+                client.Configuration.Username = data!.Username;
                 // Enter the password of your api here.
-                client.Configuration.Password = data.Password;
+                client.Configuration.Password = data!.Password;
             }
             else
             {
                 throw new Exception("Ping");
             }
-            //else
-            //{
-            //    // from naual given config
-            //    client = new ApiClient(logger: logger);
-            //    // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
-            //    client.Configuration.ApiKey = "EA44B4BD-E6D7-4E75-A98B-33D6FC2D01AE";
-            //    // Enter the username of your main account here.
-            //    client.Configuration.Username = "geschenksideen@zeilinger-design.at";
-            //    // Enter the password of your api here.
-            //    client.Configuration.Password = "797KWYiSGMdA8xn";
-            //}
+
             // Test the configuration
             if (client.TestConfiguration())
             {
