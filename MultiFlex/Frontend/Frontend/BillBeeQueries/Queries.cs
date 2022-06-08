@@ -11,7 +11,7 @@ namespace BillBeeQueries
 {
     internal class Queries
     {
-        static void Login()
+        public ApiClient Login()
         {
             //Console.WriteLine("Beware, uncommenting lines may harm your productive data!");
             //Console.WriteLine("Abort if you are not sure to proceed or press any key to continue.");
@@ -57,10 +57,11 @@ namespace BillBeeQueries
 
             #endregion
 
-            GetOrdes(client);
+            return client;
+            //GetOrdes(client);
 
         }
-        public static void GetProducts(ApiClient client)
+        public void GetProducts(ApiClient client)
         {
             var products = client.Products.GetProducts(1, 2);
             var customFields = client.Products.GetCustomFields(1, 2);
@@ -73,7 +74,7 @@ namespace BillBeeQueries
 
             //File.WriteAllLines(path, createText, Encoding.UTF8);
         }
-        public static void GetOrdes(ApiClient client)
+        public void GetOrdes(ApiClient client)
         {
             //NICHT GLEICHER TAG SONST PROBLEME
             var date = new DateTime(2022, 06, 04);
