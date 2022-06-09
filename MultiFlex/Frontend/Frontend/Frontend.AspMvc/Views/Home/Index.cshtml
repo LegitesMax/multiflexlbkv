@@ -7,23 +7,27 @@
     ViewData["Title"] = title;
 
 
-    <div class="container pb-5">
-        <div class="row text-center">
-            <div class="col">
-                <button type="button" class="btn btn-dark">PDF erstellen</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-dark">Kritische PDF erstellen</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-dark">Nachkaufen</button>
-            </div>
-        </div>
+    <!--<div class="container pb-5">
+    <div class="row text-center">
+    <div class="col">
+    <button type="button" class="btn btn-dark">PDF erstellen</button>
     </div>
+    <div class="col">
+    <button type="button" class="btn btn-dark">Kritische PDF erstellen</button>
+    </div>
+    <div class="col">
+    <button type="button" class="btn btn-dark">Nachkaufen</button>
+    </div>
+    </div>
+    </div>-->
 
     <div class="w-100 d-flex">
         <div class="w-75 mx-4">
-            <h2 class="">Bestand</h2>
+            <div class="d-flex">
+                <h2 class="">Bestand - </h2>
+                <button type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</button>
+            </div>
+
             <div class="accordion accordion-flush border" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -142,7 +146,7 @@
         </div>
 
         <div class="w-25">
-            <h2 class="text-center">Bestellungen</h2>
+            <h2 class="text-center">Offene Bestellungen</h2>
             <ul class="list-group">
                 @{
                     foreach (var item in Model)
@@ -152,14 +156,14 @@
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
                                     <p>Produkt: @item2.Product.SKU</p>
-                                     <p>Land: @item.ShippingAddress.Country</p>
+                                    <p>Land: @item.ShippingAddress.Country</p>
                                 </div>
                                 <!--<status>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                                     </svg>
                                 </status>-->
-                            </li>
+                    </li>
                         }
                     }
                 }
