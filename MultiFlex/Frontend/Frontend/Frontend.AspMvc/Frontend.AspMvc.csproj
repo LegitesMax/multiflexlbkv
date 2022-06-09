@@ -10,6 +10,7 @@
     <DefineConstants>ACCOUNT_OFF;LOGGING_OFF;REVISION_OFF;DEVELOP_ON</DefineConstants>
     <UserSecretsId>633074d4-00f5-4c7e-a329-6b864c321623</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
