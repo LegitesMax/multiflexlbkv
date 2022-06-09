@@ -2,6 +2,8 @@
 using Frontend.AspMvc.Models;
 using System.Diagnostics;
 using Frontend.Logic.Controllers;
+using Newtonsoft.Json;
+using Frontend.Logic.Entities.Orders;
 
 namespace Frontend.AspMvc.Controllers
 {
@@ -13,14 +15,12 @@ namespace Frontend.AspMvc.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
         {
-            var orderController = new OrderController();
+            var model = GetOrdereItems();
 
-            var data = orderController.GetOrderedOrders();
-
-            return View();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -28,5 +28,16 @@ namespace Frontend.AspMvc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IList<RootOrderItem>? GetOrdereItems()
+        {
+            var orderController = new OrderController();
+            var data = orderController.GetOrderedOrders();
+
+            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+
+            return result;
+        }
+
     }
 }

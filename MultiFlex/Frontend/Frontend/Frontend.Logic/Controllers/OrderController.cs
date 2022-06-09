@@ -9,7 +9,7 @@ using BillBeeQueries;
 
 namespace Frontend.Logic.Controllers
 {
-    public class OrderController : GenericController<Entities.Orders.Orders>
+    public class OrderController : GenericController<Entities.Orders.OrderItem>
     {
         public OrderController()
         {
@@ -53,7 +53,7 @@ namespace Frontend.Logic.Controllers
 
             string result = JsonSerializer.Serialize(orders.Data);
 
-            Console.WriteLine(result);
+            File.WriteAllText(@"C:\Users\zeili\Desktop\Billbee tests\BillBee-Rest\orders.json", result, Encoding.UTF8);
 
             return result == null ? "Derzeit keine offene Bestellung" : result;
         }
