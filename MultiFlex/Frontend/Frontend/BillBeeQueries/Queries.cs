@@ -26,29 +26,29 @@ namespace BillBeeQueries
             string configPath = "/usr/psw.json";
 
             //loaclfile
-           // string configPath = @"C:\Users\zeili\Desktop\tmp\psw.json";
+            // string configPath = @"C:\Users\zeili\Desktop\tmp\psw.json";
             ApiClient client;
 
-            if (File.Exists(configPath))
-            {
-                //// From config file
-                //client = new ApiClient(configPath, logger: logger);
+            //if (File.Exists(configPath))
+            //{
+            //    //// From config file
+            //    //client = new ApiClient(configPath, logger: logger);
 
-                string value = File.ReadAllText(configPath);
-                var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiConfiguration>(value);
+            //    string value = File.ReadAllText(configPath);
+            //    var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiConfiguration>(value);
 
-                client = new ApiClient(logger: logger);
-                // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
-                client.Configuration.ApiKey = data!.ApiKey;
-                // Enter the username of your main account here.
-                client.Configuration.Username = data!.Username;
-                // Enter the password of your api here.
-                client.Configuration.Password = data!.Password;
-            }
-            else
-            {
+            //    client = new ApiClient(logger: logger);
+            //    // Enter your api key here. If you don't have an api key. Please contact support@billbee.de with a description on what you would like to do, to get one.
+            //    client.Configuration.ApiKey = data!.ApiKey;
+            //    // Enter the username of your main account here.
+            //    client.Configuration.Username = data!.Username;
+            //    // Enter the password of your api here.
+            //    client.Configuration.Password = data!.Password;
+            //}
+            //else
+            //{
                 throw new Exception("Ping");
-            }
+            //}
 
             // Test the configuration
             if (client.TestConfiguration())
