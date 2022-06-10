@@ -34,8 +34,8 @@ public class Category {
     private List<Integer> product_ids = configurateProductIds();
     //</editor-fold>
     //<editor-fold desc="Relation">
-    @OneToMany(mappedBy = "color")
-    private Set<Product> products = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "color")
+    private Set<Product> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
     //<editor-fold desc="Transient Field configuration">
     private List<Integer> configurateProductIds(){

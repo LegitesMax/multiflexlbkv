@@ -46,10 +46,231 @@
 
 --Color
 insert into Color (name, color) values ('Bambus', 'BA');
+insert into Color (name, color) values ('34','34');
+insert into Color (name, color) values ('64','62');
+insert into Color (name, color) values ('67','67');
+insert into Color (name, color) values ('22','22');
+insert into Color (name, color) values ('14','14');
+insert into Color (name, color) values ('51','51');
+insert into Color (name, color) values ('299','299');
 
 --Category
-insert into Color (name) values ('Blume des Lebens');
-insert into Color (name) values ('Lotusblume');
-insert into Color (name) values ('Baum des Lebens');
-insert into Color (name) values ('Baum des Lebens eckig');
-insert into Color (name) values ('Löwe');
+insert into Category (name) values ('Blume des Lebens');
+insert into Category (name) values ('Lotusblume');
+insert into Category (name) values ('Baum des Lebens');
+insert into Category (name) values ('Baum des Lebens eckig');
+insert into Category (name) values ('Löwe');
+
+--Size
+insert into Size (size) values (39);
+insert into Size (size) values (49);
+
+--Article
+insert into Article (name, Value, minValue) values ('BL 39 34', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 62', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 67', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 22', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 14', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 51', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 29', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 39 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('BL 49 34', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 62', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 67', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 22', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 14', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 51', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 29', 10, 5);
+insert into Article (name, Value, minValue) values ('BL 49 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('LO 39 34', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 62', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 67', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 22', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 14', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 51', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 29', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 39 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('LO 49 34', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 62', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 67', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 22', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 14', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 51', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 29', 10, 5);
+insert into Article (name, Value, minValue) values ('LO 49 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('BA 39 34', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 62', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 67', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 22', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 14', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 51', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 29', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 39 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('BA 49 34', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 62', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 67', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 22', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 14', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 51', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 29', 10, 5);
+insert into Article (name, Value, minValue) values ('BA 49 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('BAE 39 34', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 62', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 67', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 22', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 14', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 51', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 29', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 39 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('BAE 49 34', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 62', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 67', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 22', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 14', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 51', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 29', 10, 5);
+insert into Article (name, Value, minValue) values ('BAE 49 BA', 10, 5);
+
+insert into Article (name, Value, minValue) values ('LÖ', 10, 5);
+
+--Product
+insert into Product(id, category_id, color_id) values(1, 1,2 );
+insert into Product(id, category_id, color_id) values(2, 1,3 );
+insert into Product(id, category_id, color_id) values(3, 1,4 );
+insert into Product(id, category_id, color_id) values(4, 1,5 );
+insert into Product(id, category_id, color_id) values(5, 1,6 );
+insert into Product(id, category_id, color_id) values(6, 1,7 );
+insert into Product(id, category_id, color_id) values(7, 1,8 );
+insert into Product(id, category_id, color_id) values(8, 1,1 );
+insert into Product(id, category_id, color_id) values(9, 1,2 );
+insert into Product(id, category_id, color_id) values(10, 1,3 );
+insert into Product(id, category_id, color_id) values(11, 1,4 );
+insert into Product(id, category_id, color_id) values(12, 1,5 );
+insert into Product(id, category_id, color_id) values(13, 1,6 );
+insert into Product(id, category_id, color_id) values(14, 1,7 );
+insert into Product(id, category_id, color_id) values(15, 1,8 );
+insert into Product(id, category_id, color_id) values(16, 1,1 );
+
+insert into Product(id, category_id, color_id) values(17, 2,2 );
+insert into Product(id, category_id, color_id) values(18, 2,3 );
+insert into Product(id, category_id, color_id) values(19, 2,4 );
+insert into Product(id, category_id, color_id) values(20, 2,5 );
+insert into Product(id, category_id, color_id) values(21, 2,6 );
+insert into Product(id, category_id, color_id) values(22, 2,7 );
+insert into Product(id, category_id, color_id) values(23, 2,8 );
+insert into Product(id, category_id, color_id) values(24, 2,1 );
+insert into Product(id, category_id, color_id) values(25, 2,2 );
+insert into Product(id, category_id, color_id) values(26, 2,3 );
+insert into Product(id, category_id, color_id) values(27, 2,4 );
+insert into Product(id, category_id, color_id) values(28, 2,5 );
+insert into Product(id, category_id, color_id) values(29, 2,6 );
+insert into Product(id, category_id, color_id) values(30, 2,7 );
+insert into Product(id, category_id, color_id) values(31, 2,8 );
+insert into Product(id, category_id, color_id) values(32, 2,1 );
+
+insert into Product(id, category_id, color_id) values(33, 3,2 );
+insert into Product(id, category_id, color_id) values(34, 3,3 );
+insert into Product(id, category_id, color_id) values(35, 3,4 );
+insert into Product(id, category_id, color_id) values(36, 3,5 );
+insert into Product(id, category_id, color_id) values(37, 3,6 );
+insert into Product(id, category_id, color_id) values(38, 3,7 );
+insert into Product(id, category_id, color_id) values(39, 3,8 );
+insert into Product(id, category_id, color_id) values(40, 3,1 );
+insert into Product(id, category_id, color_id) values(41, 3,2 );
+insert into Product(id, category_id, color_id) values(42, 3,3 );
+insert into Product(id, category_id, color_id) values(43, 3,4 );
+insert into Product(id, category_id, color_id) values(44, 3,5 );
+insert into Product(id, category_id, color_id) values(45, 3,6 );
+insert into Product(id, category_id, color_id) values(46, 3,7 );
+insert into Product(id, category_id, color_id) values(47, 3,8 );
+insert into Product(id, category_id, color_id) values(48, 3,1 );
+
+insert into Product(id, category_id, color_id) values(49, 4,2 );
+insert into Product(id, category_id, color_id) values(50, 4,3 );
+insert into Product(id, category_id, color_id) values(51, 4,4 );
+insert into Product(id, category_id, color_id) values(52, 4,5 );
+insert into Product(id, category_id, color_id) values(53, 4,6 );
+insert into Product(id, category_id, color_id) values(54, 4,7 );
+insert into Product(id, category_id, color_id) values(55, 4,8 );
+insert into Product(id, category_id, color_id) values(56, 4,1 );
+insert into Product(id, category_id, color_id) values(57, 4,2 );
+insert into Product(id, category_id, color_id) values(58, 4,3 );
+insert into Product(id, category_id, color_id) values(59, 4,4 );
+insert into Product(id, category_id, color_id) values(60, 4,5 );
+insert into Product(id, category_id, color_id) values(61, 4,6 );
+insert into Product(id, category_id, color_id) values(62, 4,7 );
+insert into Product(id, category_id, color_id) values(63, 4,8 );
+insert into Product(id, category_id, color_id) values(64, 4,1 );
+
+--ProductSize
+insert into ProductSize (product_id, size_id) values (1, 1);
+insert into ProductSize (product_id, size_id) values (2, 1);
+insert into ProductSize (product_id, size_id) values (3, 1);
+insert into ProductSize (product_id, size_id) values (4, 1);
+insert into ProductSize (product_id, size_id) values (5, 1);
+insert into ProductSize (product_id, size_id) values (6, 1);
+insert into ProductSize (product_id, size_id) values (7, 1);
+insert into ProductSize (product_id, size_id) values (8, 1);
+insert into ProductSize (product_id, size_id) values (9, 2);
+insert into ProductSize (product_id, size_id) values (10, 2);
+insert into ProductSize (product_id, size_id) values (11, 2);
+insert into ProductSize (product_id, size_id) values (12, 2);
+insert into ProductSize (product_id, size_id) values (13, 2);
+insert into ProductSize (product_id, size_id) values (14, 2);
+insert into ProductSize (product_id, size_id) values (15, 2);
+insert into ProductSize (product_id, size_id) values (16, 2);
+insert into ProductSize (product_id, size_id) values (17, 1);
+insert into ProductSize (product_id, size_id) values (18, 1);
+insert into ProductSize (product_id, size_id) values (19, 1);
+insert into ProductSize (product_id, size_id) values (20, 1);
+insert into ProductSize (product_id, size_id) values (21, 1);
+insert into ProductSize (product_id, size_id) values (22, 1);
+insert into ProductSize (product_id, size_id) values (23, 1);
+insert into ProductSize (product_id, size_id) values (24, 1);
+insert into ProductSize (product_id, size_id) values (25, 2);
+insert into ProductSize (product_id, size_id) values (26, 2);
+insert into ProductSize (product_id, size_id) values (27, 2);
+insert into ProductSize (product_id, size_id) values (28, 2);
+insert into ProductSize (product_id, size_id) values (29, 2);
+insert into ProductSize (product_id, size_id) values (30, 2);
+insert into ProductSize (product_id, size_id) values (31, 2);
+insert into ProductSize (product_id, size_id) values (32, 2);
+insert into ProductSize (product_id, size_id) values (33, 1);
+insert into ProductSize (product_id, size_id) values (34, 1);
+insert into ProductSize (product_id, size_id) values (35, 1);
+insert into ProductSize (product_id, size_id) values (36, 1);
+insert into ProductSize (product_id, size_id) values (37, 1);
+insert into ProductSize (product_id, size_id) values (38, 1);
+insert into ProductSize (product_id, size_id) values (39, 1);
+insert into ProductSize (product_id, size_id) values (40, 1);
+insert into ProductSize (product_id, size_id) values (41, 2);
+insert into ProductSize (product_id, size_id) values (42, 2);
+insert into ProductSize (product_id, size_id) values (43, 2);
+insert into ProductSize (product_id, size_id) values (44, 2);
+insert into ProductSize (product_id, size_id) values (45, 2);
+insert into ProductSize (product_id, size_id) values (46, 2);
+insert into ProductSize (product_id, size_id) values (47, 2);
+insert into ProductSize (product_id, size_id) values (48, 2);
+insert into ProductSize (product_id, size_id) values (49, 1);
+insert into ProductSize (product_id, size_id) values (50, 1);
+insert into ProductSize (product_id, size_id) values (51, 1);
+insert into ProductSize (product_id, size_id) values (52, 1);
+insert into ProductSize (product_id, size_id) values (53, 1);
+insert into ProductSize (product_id, size_id) values (54, 1);
+insert into ProductSize (product_id, size_id) values (55, 1);
+insert into ProductSize (product_id, size_id) values (56, 1);
+insert into ProductSize (product_id, size_id) values (57, 2);
+insert into ProductSize (product_id, size_id) values (58, 2);
+insert into ProductSize (product_id, size_id) values (59, 2);
+insert into ProductSize (product_id, size_id) values (60, 2);
+insert into ProductSize (product_id, size_id) values (61, 2);
+insert into ProductSize (product_id, size_id) values (62, 2);
+insert into ProductSize (product_id, size_id) values (63, 2);
+insert into ProductSize (product_id, size_id) values (64, 2);
