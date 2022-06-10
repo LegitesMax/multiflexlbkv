@@ -1,0 +1,21 @@
+### Simple Get
+GET http://localhost:8080/Color
+###
+GET http://localhost:8080/Category
+###
+GET http://localhost:8080/Article
+###
+GET http://localhost:8080/Product
+###
+GET http://localhost:8080/Material
+
+### Get by Id
+GET http://localhost:8080/Color/1
+###
+GET http://localhost:8080/Category/1
+###
+GET http://localhost:8080/Article/1
+###
+GET http://localhost:8080/Product/1
+###
+GET http://localhost:8080/Material/1

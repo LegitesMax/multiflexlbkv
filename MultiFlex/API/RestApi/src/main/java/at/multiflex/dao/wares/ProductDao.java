@@ -30,7 +30,7 @@ public class ProductDao {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/get/{name}")
+    @Path("/{name}")
     public List<ProductDto> getByName(String name) {
         var entities = repository.findByName(name);
         return mapper.toDto(entities);
@@ -38,7 +38,7 @@ public class ProductDao {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/get/{id}")
+    @Path("/{id}")
     public ProductDto getById(Integer id) {
         var entity = repository.findById(id);
         return mapper.toDto(entity);
