@@ -2,6 +2,7 @@ package at.multiflex.model.Wares;
 
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
+import at.multiflex.model.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,9 @@ public class Product extends Article {
 
     @Transient
     private Integer category_id = configurateCategoryId();
+
+    @Transient
+    private Integer size_id = configurateSizeId();
         //</editor-fold>
         //<editor-fold desc="Relation">
     @ManyToMany(mappedBy = "products")
@@ -46,6 +50,10 @@ public class Product extends Article {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "size_id", nullable = false)
+    private Size size;
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
     private List<Integer> configurateMaterialIds(){
@@ -67,6 +75,12 @@ public class Product extends Article {
         }
         return null;
     }
+    private Integer configurateSizeId(){
+        if (getSize() != null && getSize().getId() != null){
+            return getSize().getId();
+        }
+        return null;
+    }
         //</editor-fold>
     //</editor-fold>
 
@@ -79,6 +93,10 @@ public class Product extends Article {
     }
 
     public Integer getCategory_id() {
+        return configurateCategoryId();
+    }
+
+    public Integer getSize_id() {
         return configurateCategoryId();
     }
 }
