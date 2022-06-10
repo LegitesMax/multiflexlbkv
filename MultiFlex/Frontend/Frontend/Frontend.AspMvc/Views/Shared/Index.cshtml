@@ -1,0 +1,46 @@
+﻿@*@CodeCopy*@
+@model IEnumerable<Frontend.AspMvc.Models.IdentityModel>
+
+@{
+    var title = "Index";
+    var type = Model.GetType();
+    var filter = ViewBag.Filter as object;
+
+    if (type != null)
+    {
+        title = type.GetGenericArguments()[0].Name;
+    }
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+</p>
+
+@if (filter != null)
+{
+    <div class="row">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            @*<button type="button" class="btn btn-outline-primary col-md-1" title="Sort"><i class="fa fa-sort"></i></button>*@
+            <button type="button" class="btn btn-outline-secondary col-md-11" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">@filter.ToString()</button>
+            <button type="button" class="btn btn-outline-primary col-md-1" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter" title="Filter"><i class="fa fa-filter"></i></button>
+        </div>
+    </div>
+    <div class="collapse" id="collapseFilter" style="margin: 5px;">
+        <div class="card card-body">
+            @await Html.PartialAsync("_Filter", filter)
+        </div>
+    </div>
+}
+
+<table class="table">
+    @await Html.PartialAsync("_TableHeader", Model)
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @await Html.PartialAsync("_TableRow", item)
+        }
+    </tbody>
+</table>

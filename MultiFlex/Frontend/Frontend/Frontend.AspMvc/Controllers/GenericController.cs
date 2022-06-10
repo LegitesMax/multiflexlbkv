@@ -2,6 +2,7 @@
 //MdStart
 #nullable disable
 using Microsoft.AspNetCore.Mvc;
+using Frontend.Logic.Contracts;
 #if ACCOUNT_ON
 using Microsoft.AspNetCore.Mvc.Filters;
 #endif
@@ -13,8 +14,8 @@ namespace Frontend.AspMvc.Controllers
     /// </summary>
     /// <typeparam name="TAccessModel">The type of access model</typeparam>
     /// <typeparam name="TViewModel">The type of view model</typeparam>
-    public abstract class GenericController<TAccessModel, TViewModel> : MvcController
-        where TAccessModel : Logic.IIdentifyable, new()
+    public abstract partial class GenericController<TAccessModel, TViewModel> : MvcController
+        where TAccessModel : IIdentifyable, new()
         where TViewModel : class, new()
     {
         public enum ActionMode : int
@@ -28,9 +29,9 @@ namespace Frontend.AspMvc.Controllers
             ViewDelete,
             Delete,
         }
-        protected Logic.IDataAccess<TAccessModel> DataAccess { get; init; }
+        protected IDataAccess<TAccessModel> DataAccess { get; init; }
 
-        protected GenericController(Logic.IDataAccess<TAccessModel> dataAccess)
+        protected GenericController(IDataAccess<TAccessModel> dataAccess)
         {
             this.DataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
         }
@@ -40,7 +41,7 @@ namespace Frontend.AspMvc.Controllers
         {
             base.OnActionExecuting(context);
 
-            DataAccess.SessionToken = SessionInfo.SessionToken;
+            DataAccess.SessionToken = SessionWrapper.SessionToken;
         }
 #endif
         protected virtual TAccessModel[] AfterQuery(TAccessModel[] accessModels) => accessModels;
@@ -120,6 +121,12 @@ namespace Frontend.AspMvc.Controllers
                     }
                 }
             }
+            else
+            {
+                ViewBag.Error = string.Join("; ", ModelState.Values
+                                      .SelectMany(x => x.Errors)
+                                      .Select(x => x.ErrorMessage));
+            }
             return View(ToViewModel(accessModel, ActionMode.Index));
         }
 
@@ -172,6 +179,12 @@ namespace Frontend.AspMvc.Controllers
                         ViewBag.Error = ex.InnerException.Message;
                     }
                 }
+            }
+            else
+            {
+                ViewBag.Error = string.Join("; ", ModelState.Values
+                                      .SelectMany(x => x.Errors)
+                                      .Select(x => x.ErrorMessage));
             }
             return string.IsNullOrEmpty(ViewBag.Error) ? RedirectToAction(nameof(Index)) : View(ToViewModel(accessModel, ActionMode.Update));
         }

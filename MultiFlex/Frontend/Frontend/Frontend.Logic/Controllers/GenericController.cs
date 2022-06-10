@@ -1,6 +1,7 @@
 ﻿//@CodeCopy
 //MdStart
 
+using Frontend.Logic.Contracts;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
@@ -36,11 +37,18 @@ namespace Frontend.Logic.Controllers
         static partial void AfterClassInitialize();
 
         private DbSet<TEntity>? dbSet = null;
+        /// <summary>
+        /// Creates an instance
+        /// </summary>
         public GenericController()
             : base(new DataContext.ProjectDbContext())
         {
 
         }
+        /// <summary>
+        /// Creates an instance
+        /// </summary>
+        /// <param name="other">A reference to an other controller</param>
         public GenericController(ControllerObject other)
             : base(other)
         {
@@ -139,9 +147,9 @@ namespace Frontend.Logic.Controllers
 
         #region Queries
         /// <summary>
-        /// Returns all interfaces of the entities in the collection.
+        /// Returns all of the entities in the collection.
         /// </summary>
-        /// <returns>All interfaces of the entity collection.</returns>
+        /// <returns>All of the entitities in the collection.</returns>
         public virtual async Task<TEntity[]> GetAllAsync()
         {
 #if ACCOUNT_ON
@@ -236,7 +244,7 @@ namespace Frontend.Logic.Controllers
         /// </summary>
         /// <param name="id">The identification.</param>
         /// <returns>The element of the type T with the corresponding identification.</returns>
-        public virtual async ValueTask<TEntity?> GetByIdAsync(int id)
+        public virtual async Task<TEntity?> GetByIdAsync(int id)
         {
 #if ACCOUNT_ON
             await CheckAuthorizationAsync(GetType(), MethodBase.GetCurrentMethod(), AccessType.GetBy).ConfigureAwait(false);
@@ -352,7 +360,9 @@ namespace Frontend.Logic.Controllers
             ValidateEntity(ActionType.Insert, entity);
             BeforeActionExecute(ActionType.Insert, entity);
             await BeforeActionExecuteAsync(ActionType.Insert, entity).ConfigureAwait(false);
+            BeforeExecuteInsert(entity);
             await EntitySet.AddAsync(entity).ConfigureAwait(false);
+            AfterExecuteInsert(entity);
             AfterActionExecute(ActionType.Insert);
             return entity;
         }
@@ -385,6 +395,9 @@ namespace Frontend.Logic.Controllers
             AfterActionExecute(ActionType.InsertArray);
             return entities;
         }
+        partial void BeforeExecuteInsert(TEntity entity);
+        partial void AfterExecuteInsert(TEntity entity);
+
         #endregion Insert
 
         #region Update
@@ -410,7 +423,9 @@ namespace Frontend.Logic.Controllers
             ValidateEntity(ActionType.Update, entity);
             BeforeActionExecute(ActionType.Update, entity);
             await BeforeActionExecuteAsync(ActionType.Update, entity).ConfigureAwait(false);
+            BeforeExecuteUpdate(entity);
             EntitySet.Update(entity);
+            AfterExecuteUpdate(entity);
             AfterActionExecute(ActionType.Update);
             return entity;
         }
@@ -443,6 +458,8 @@ namespace Frontend.Logic.Controllers
             AfterActionExecute(ActionType.UpdateArray);
             return entities;
         }
+        partial void BeforeExecuteUpdate(TEntity entity);
+        partial void AfterExecuteUpdate(TEntity entity);
         #endregion Update
 
         #region Delete
@@ -470,10 +487,14 @@ namespace Frontend.Logic.Controllers
                 ValidateEntity(ActionType.Delete, entity);
                 BeforeActionExecute(ActionType.Delete, entity);
                 await BeforeActionExecuteAsync(ActionType.Delete, entity).ConfigureAwait(false);
+                BeforeExecuteDelete(entity);
                 EntitySet.Remove(entity);
+                AfterExecuteDelete(entity);
                 AfterActionExecute(ActionType.Delete);
             }
         }
+        partial void BeforeExecuteDelete(TEntity entity);
+        partial void AfterExecuteDelete(TEntity entity);
         #endregion Delete
 
         #region SaveChanges
@@ -499,11 +520,15 @@ namespace Frontend.Logic.Controllers
             if (Context != null)
             {
                 BeforeActionExecute(ActionType.Save);
+                BeforeExecuteSaveChanges();
                 result = await Context.SaveChangesAsync().ConfigureAwait(false);
+                AfterExecuteSaveChanges();
                 AfterActionExecute(ActionType.Save);
             }
             return result;
         }
+        partial void BeforeExecuteSaveChanges();
+        partial void AfterExecuteSaveChanges();
         #endregion SaveChanges
     }
 }

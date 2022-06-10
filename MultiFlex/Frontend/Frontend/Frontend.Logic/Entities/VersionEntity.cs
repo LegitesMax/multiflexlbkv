@@ -1,6 +1,8 @@
 ﻿//@CodeCopy
 //MdStart
 
+using Frontend.Logic.Contracts;
+
 namespace Frontend.Logic.Entities
 {
     public abstract partial class VersionEntity : IdentityEntity, IVersionable

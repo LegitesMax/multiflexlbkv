@@ -1,6 +1,5 @@
 ﻿//@CodeCopy
 //MdStart
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,9 +11,11 @@ namespace Frontend.Logic.UnitTest
     /// </summary>
     /// <typeparam name="T">The generic parameter of the entity.</typeparam>
     [TestClass]
-    public abstract class EntityUnitTest<T> where T : Entities.IdentityEntity, new()
+    public abstract partial class EntityUnitTest<T> where T : Entities.IdentityEntity, new()
     {
+#pragma warning disable CA2211 // Non-constant fields should not be visible
         public static int Counter = 0;
+#pragma warning restore CA2211 // Non-constant fields should not be visible
 
         public abstract Controllers.GenericController<T> CreateController();
 
@@ -23,7 +24,7 @@ namespace Frontend.Logic.UnitTest
         /// This method deletes all entities in the database.
         /// </summary>
         /// <returns></returns>
-        public async Task DeleteControllerEntities()
+        public virtual async Task DeleteControllerEntities()
         {
             using var ctrl = CreateController();
             var items = await ctrl.GetAllAsync();
@@ -40,7 +41,7 @@ namespace Frontend.Logic.UnitTest
         /// </summary>
         /// <param name="entity">Entity created in the database.</param>
         /// <returns>The actual entity</returns>
-        public async Task<T> Create_Entity_AndCheck(T entity)
+        public virtual async Task<T> Create_Entity_AndCheck(T entity)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace Frontend.Logic.UnitTest
         /// </summary>
         /// <param name="entities">Entities created in the database.</param>
         /// <returns></returns>
-        public async Task CreateArray_Entities_AndCheckAll(IEnumerable<T> entities)
+        public virtual async Task CreateArray_Entities_AndCheckAll(IEnumerable<T> entities)
         {
             using var ctrl = CreateController();
             using var ctrlAfter = CreateController();
@@ -98,7 +99,7 @@ namespace Frontend.Logic.UnitTest
         /// <param name="id">Id form entity updated in the Database.</param>
         /// <param name="changedEntity">Entity containing the changes.</param>
         /// <returns>The actual entity</returns>
-        public async Task<T> Update_Entity_AndCheck(int id, T changedEntity)
+        public virtual async Task<T> Update_Entity_AndCheck(int id, T changedEntity)
         {
             using var ctrl = CreateController();
             using var ctrlAfter = CreateController();
@@ -130,7 +131,7 @@ namespace Frontend.Logic.UnitTest
         /// <param name="entity">Entity created in the Database.</param>
         /// <param name="changedEntity">Entity containing the changes.</param>
         /// <returns>The actual entity</returns>
-        public async Task<T> CreateUpdate_Entity_AndCheck(T entity, T changedEntity)
+        public virtual async Task<T> CreateUpdate_Entity_AndCheck(T entity, T changedEntity)
         {
             using var ctrl = CreateController();
             using var ctrlAfter = CreateController();
@@ -168,7 +169,7 @@ namespace Frontend.Logic.UnitTest
         /// <param name="entities">Entities created in the database.</param>
         /// <param name="changedEntities">Entities containing the changes.</param>
         /// <returns></returns>
-        public async Task CreateUpdateArray_Entities_AndCheckAll(IEnumerable<T> entities, IEnumerable<T> changedEntities)
+        public virtual async Task CreateUpdateArray_Entities_AndCheckAll(IEnumerable<T> entities, IEnumerable<T> changedEntities)
         {
             using var ctrl = CreateController();
             using var ctrlAfter = CreateController();

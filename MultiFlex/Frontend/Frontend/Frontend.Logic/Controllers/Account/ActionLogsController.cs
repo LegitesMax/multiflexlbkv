@@ -1,9 +1,11 @@
 ﻿//@CodeCopy
 //MdStart
 #if ACCOUNT_ON
+using Frontend.Logic.Entities.Logging;
+
 namespace Frontend.Logic.Controllers.Account
 {
-    internal sealed partial class ActionLogsController : GenericController<Entities.Account.ActionLog>
+    internal sealed partial class ActionLogsController : GenericController<ActionLog>
     {
         public ActionLogsController()
         {

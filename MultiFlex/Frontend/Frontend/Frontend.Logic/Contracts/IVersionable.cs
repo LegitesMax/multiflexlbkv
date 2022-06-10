@@ -1,7 +1,7 @@
 ﻿//@CodeCopy
 //MdStart
 
-namespace Frontend.Logic
+namespace Frontend.Logic.Contracts
 {
     public partial interface IVersionable : IIdentifyable
     {
