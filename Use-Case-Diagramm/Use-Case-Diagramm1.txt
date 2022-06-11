@@ -1,6 +1,7 @@
-@startuml
 
+@startuml
+(Use-Case Benutzer gibt den Lagerbestand als PDF aus)
 Benuzer --|> (Webseitebesuchn)
 (Webseitebesuchn) --|> (Daten Ansehen)
-(Daten Ansehen) --|> (Liste mit allen Daten als Pdf)
+(Daten Ansehen) --|> (Liste mit allen Daten als Pdf) : Konvertiert Liste In PDF
 @enduml
