@@ -40,29 +40,5 @@ namespace Frontend.AspMvc.Controllers
             return result;
         }
 
-        public IActionResult OpenOrders()
-        {
-            var model = GetOrdereItems();
-
-
-            return View(model);
-        }
-
-        public IActionResult CanceledOrders()
-        {
-            var model = GetOrdereItems();
-
-
-            return View(model);
-        }
-
-        public IActionResult ReadyOrders()
-        {
-            var model = GetOrdereItems();
-
-
-            return View(model);
-
-
-        }
     }
+}
