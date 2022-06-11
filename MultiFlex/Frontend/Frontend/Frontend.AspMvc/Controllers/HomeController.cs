@@ -15,7 +15,7 @@ namespace Frontend.AspMvc.Controllers
         {
             _logger = logger;
         }
-        
+
         public IActionResult Index()
         {
             var model = GetOrdereItems();
@@ -40,5 +40,29 @@ namespace Frontend.AspMvc.Controllers
             return result;
         }
 
+        public IActionResult OpenOrders()
+        {
+            var model = GetOrdereItems();
+
+
+            return View(model);
+        }
+
+        public IActionResult CanceledOrders()
+        {
+            var model = GetOrdereItems();
+
+
+            return View(model);
+        }
+
+        public IActionResult ReadyOrders()
+        {
+            var model = GetOrdereItems();
+
+
+            return View(model);
+
+
+        }
     }
-}
