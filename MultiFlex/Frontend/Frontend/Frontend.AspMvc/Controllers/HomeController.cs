@@ -20,14 +20,27 @@ namespace Frontend.AspMvc.Controllers
         {
             var model = GetOrdereItems();
 
+            ViewData["orderStatus"] = "open";
 
             return View(model);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult OpenOrders(object sender, EventArgs e)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ViewData["orderStatus"] = "open";
+            return View("Index", GetOrdereItems());
+        }
+
+        public IActionResult CanceledOrders(object sender, EventArgs e)
+        {
+            ViewData["orderStatus"] = "canceled";
+            return View("Index", GetOrdereItems());
+        }
+
+        public IActionResult ReadyOrders(object sender, EventArgs e)
+        {
+            ViewData["orderStatus"] = "ready";
+            return View("Index", GetOrdereItems());
         }
 
         public IList<RootOrderItem>? GetOrdereItems()
@@ -40,5 +53,30 @@ namespace Frontend.AspMvc.Controllers
             return result;
         }
 
+        public IList<RootOrderItem>? GetCanceledItems()
+        {
+            var orderController = new OrderController();
+            var data = orderController.GetOrderedOrders();
+
+            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+
+            return result;
+        }
+
+        public IList<RootOrderItem>? GetReadyItems()
+        {
+            var orderController = new OrderController();
+            var data = orderController.GetOrderedOrders();
+
+            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+
+            return result;
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

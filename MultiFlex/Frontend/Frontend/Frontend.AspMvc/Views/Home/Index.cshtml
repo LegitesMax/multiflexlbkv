@@ -63,7 +63,7 @@
                         <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                             <div class="d-flex justify-content-between w-100">
                                 <p>
-                                    Lebensbaum - 240Stk 
+                                    Lebensbaum - 240Stk
                                 </p>
                             </div>
                         </button>
@@ -189,7 +189,7 @@
                         <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo2" aria-expanded="false" aria-controls="flush-collapseTwo2">
                             <div class="d-flex justify-content-between w-100">
                                 <p>
-                                    Lebensbaum Eckig - 169Stk 
+                                    Lebensbaum Eckig - 169Stk
                                 </p>
                             </div>
                         </button>
@@ -437,7 +437,7 @@
                         <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo3" aria-expanded="false" aria-controls="flush-collapseTwo3">
                             <div class="d-flex justify-content-between w-100">
                                 <p>
-                                    Blume - 226Stk 
+                                    Blume - 226Stk
                                 </p>
                             </div>
                         </button>
@@ -569,7 +569,22 @@
             <hr>
             <ul class="list-group">
                 @{
-                    @await Html.PartialAsync("_OpenOrders");
+                    if (ViewData["orderStatus"] == "open")
+                    {
+                        @await Html.PartialAsync("_OpenOrders")
+                    }
+                    else if (ViewData["orderStatus"] == "canceled")
+                    {
+                        @await Html.PartialAsync("_OpenOrders")
+                    }
+                    else if (ViewData["orderStatus"] == "ready")
+                    {
+                        @await Html.PartialAsync("_OpenOrders")
+                    }
+                    else if (ViewData["orderStatus"] == string.Empty)
+                    {
+                        <p>Ein Fehler ist aufgetreten</p>
+                    }
                 }
             </ul>
         </div>
