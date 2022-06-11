@@ -1,6 +1,6 @@
 @startuml
-
+(Use-Case Benutzer gibt Kritischen Lagerbestand als PDF aus)
 Benuzer --|> (Webseitebesuchn)
-(Webseitebesuchn) --|> (Daten Ansehen)
-(Daten Ansehen) --|> (Liste Kritischer Daten als Pdf)
+(Webseitebesuchn) --|> (Daten Ansehen) : Zeigt alle Daten an
+(Daten Ansehen) --|> (Liste Kritischer Daten als Pdf) : Konvertiert Liste In PDF
 @enduml
