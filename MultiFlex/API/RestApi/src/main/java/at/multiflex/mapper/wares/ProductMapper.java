@@ -3,7 +3,9 @@ package at.multiflex.mapper.wares;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Wares.Product;
+import at.multiflex.repository.CategoryRepository;
 import at.multiflex.repository.ColorRepository;
+import at.multiflex.repository.SizeRepository;
 import at.multiflex.repository.wares.MaterialRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,6 +22,10 @@ public class ProductMapper {
     MaterialRepository materialRepository;
     @Inject
     ColorRepository colorRepository;
+    @Inject
+    CategoryRepository categoryRepository;
+    @Inject
+    SizeRepository sizeRepository;
     public ProductDto toDto(Product entity) {
         return om.toDto(entity);
     }
@@ -27,10 +33,16 @@ public class ProductMapper {
         var entity = om.fromDto(dto);
 
         if (dto.getMaterial_ids() != null){
-            entity.getMaterials().forEach(x -> entity.getMaterials().add(materialRepository.findById(x.getId())));
+            entity.getMaterial_ids().forEach(x -> entity.getMaterials().add(materialRepository.findById(x)));
         }
         if (dto.getColor_id() != null){
             entity.setColor(colorRepository.findById(dto.getColor_id()));
+        }
+        if (dto.getCategory_id() != null){
+            entity.setCategory(categoryRepository.findById(dto.getColor_id()));
+        }
+        if (dto.getSize_ids() != null){
+            entity.getSize_ids().forEach(x -> entity.getSizes().add(sizeRepository.findById(x)));
         }
 
         return entity;

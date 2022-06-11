@@ -1,14 +1,11 @@
 package at.multiflex.model;
 
-import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Product;
-import at.multiflex.repository.wares.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,29 +18,30 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Color {
+public class Size {
     //<editor-fold desc="Common Fields">
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 64)
-    private String name;
+    @Column(nullable = false)
+    private Integer size;
 
-    @Column(nullable = false, length = 64)
-    private String color;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-        //<editor-fold desc="Transient Fields">
+    //<editor-fold desc="Transient Fields">
     @Transient
-    //private List<Integer> article_ids = configurateProductIds();
     private List<Integer> product_ids = configurateProductIds();
-        //</editor-fold>
-        //<editor-fold desc="Relation">
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "color")
+    //</editor-fold>
+    //<editor-fold desc="Relation">
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "ProductSize", // name of the association table
+            joinColumns = @JoinColumn(name = "size_id", referencedColumnName = "id"), // foreign key columns
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
     private Set<Product> products = new java.util.LinkedHashSet<>();
-        //</editor-fold>
-        //<editor-fold desc="Transient Field configuration">
+    //</editor-fold>
+    //<editor-fold desc="Transient Field configuration">
     private List<Integer> configurateProductIds(){
         if (getProducts() != null){
             return getProducts().stream().map(x -> x.getId()).collect(Collectors.toList());

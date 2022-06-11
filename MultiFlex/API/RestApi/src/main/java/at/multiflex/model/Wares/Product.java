@@ -1,6 +1,8 @@
 package at.multiflex.model.Wares;
 
+import at.multiflex.model.Category;
 import at.multiflex.model.Color;
+import at.multiflex.model.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,14 +32,27 @@ public class Product extends Article {
 
     @Transient
     private Integer color_id = configurateColerId();
+
+    @Transient
+    private Integer category_id = configurateCategoryId();
+
+    @Transient
+    private List<Integer> size_ids = configurateSizeIds();
         //</editor-fold>
         //<editor-fold desc="Relation">
-    @ManyToMany(mappedBy = "products")
-    private Set<Material> materials = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
+    private Set<Material> materials = new java.util.LinkedHashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "color_id", nullable = false)
     private Color color;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
+    private Set<Size> sizes = new java.util.LinkedHashSet<>();
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
     private List<Integer> configurateMaterialIds(){
@@ -53,16 +68,34 @@ public class Product extends Article {
         }
         return null;
     }
+    private Integer configurateCategoryId(){
+        if (getCategory() != null && getCategory().getId() != null){
+            return getCategory().getId();
+        }
+        return null;
+    }
+    private List<Integer> configurateSizeIds(){
+        if (getSizes() != null){
+            return getSizes().stream().map(x -> x.getId()).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
+    }
         //</editor-fold>
     //</editor-fold>
 
-    public void setMaterial_ids(List<Integer> material_ids) {
-        configurateMaterialIds();
-        this.material_ids = material_ids;
+    public List<Integer> getMaterial_ids() {
+        return configurateMaterialIds();
     }
 
-    public void setColor_id(Integer color_id) {
-        configurateColerId();
-        this.color_id = color_id;
+    public Integer getColor_id() {
+        return configurateColerId();
+    }
+
+    public Integer getCategory_id() {
+        return configurateCategoryId();
+    }
+
+    public List<Integer> getSize_ids() {
+        return configurateSizeIds();
     }
 }

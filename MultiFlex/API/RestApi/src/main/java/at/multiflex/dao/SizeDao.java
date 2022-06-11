@@ -1,8 +1,11 @@
-package at.multiflex.dao.wares;
+package at.multiflex.dao;
 
-import at.multiflex.dto.wares.ProductDto;
-import at.multiflex.mapper.wares.ProductMapper;
-import at.multiflex.repository.wares.ProductRepository;
+import at.multiflex.dto.CategoryDto;
+import at.multiflex.dto.SizeDto;
+import at.multiflex.mapper.CategoryMapper;
+import at.multiflex.mapper.SizeMapper;
+import at.multiflex.repository.CategoryRepository;
+import at.multiflex.repository.SizeRepository;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -12,34 +15,25 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Dependent
-@Path("/Product")
-public class ProductDao {
-    @Inject
-    ProductRepository repository;
+@Path("/Size")
+public class SizeDao {@Inject
+    SizeRepository repository;
 
     @Inject
-    ProductMapper mapper;
+    SizeMapper mapper;
 
     //<editor-fold desc="Get">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<ProductDto> getAll() {
+    public List<SizeDto> getAll() {
         var entities = repository.loadAll();
         return mapper.toDto(entities);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/{name}")
-    public List<ProductDto> getByName(String name) {
-        var entities = repository.findByName(name);
-        return mapper.toDto(entities);
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public ProductDto getById(Integer id) {
+    public SizeDto getById(Integer id) {
         var entity = repository.findById(id);
         return mapper.toDto(entity);
     }
@@ -48,7 +42,7 @@ public class ProductDao {
     @POST
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
-    public Response add(ProductDto dto) {
+    public Response add(SizeDto dto) {
         var entity = mapper.fromDto(dto);
         repository.add(entity);
         return Response.status(Response.Status.CREATED).build();
@@ -71,7 +65,7 @@ public class ProductDao {
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
-    public Response update(ProductDto dto) {
+    public Response update(SizeDto dto) {
         var entity = mapper.fromDto(dto);
         repository.update(entity);
         return Response.status(Response.Status.OK).build();
