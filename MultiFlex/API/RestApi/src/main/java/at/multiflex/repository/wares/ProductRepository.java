@@ -21,4 +21,9 @@ public class ProductRepository extends CRUDOperations {
     public List<Product> findByName(String name){
         return em.createQuery("select x from Product x where x.name like lower(concat('%', concat(:name, '%')))", Product.class).setParameter("name", name).getResultList();
     }
+    @Transactional
+    public List<Product> findByCategory(String name){
+        return em.createQuery("select x from Category y join y.products x where y.name like lower(concat('%', concat(:name, '%')))", Product.class)
+                 .setParameter("name", name).getResultList();
+    }
 }

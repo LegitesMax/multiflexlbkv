@@ -19,3 +19,4 @@ GET http://localhost:8080/Article/1
 GET http://localhost:8080/Product/1
 ###
 GET http://localhost:8080/Material/1
+

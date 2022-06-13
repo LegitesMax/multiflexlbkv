@@ -1,7 +1,11 @@
 package at.multiflex.dao.wares;
 
+import at.multiflex.dao.logic.ProductLogic;
+import at.multiflex.dto.traffic.CategoryProducts;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.wares.ProductMapper;
+import at.multiflex.model.Category;
+import at.multiflex.repository.CategoryRepository;
 import at.multiflex.repository.wares.ProductRepository;
 
 import javax.enterprise.context.Dependent;
@@ -20,6 +24,9 @@ public class ProductDao {
     @Inject
     ProductMapper mapper;
 
+    @Inject
+    ProductLogic productLogic;
+
     //<editor-fold desc="Get">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -35,7 +42,20 @@ public class ProductDao {
         var entities = repository.findByName(name);
         return mapper.toDto(entities);
     }
-
+    //<editor-fold desc="Get">
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/category/{name}")
+    public CategoryProducts getByCategory(String name) {
+        return productLogic.getProductsByByCategory(name);
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/category")
+    public List<CategoryProducts> getAllByCategory(String name) {
+        return productLogic.getAllProductsByByCategory();
+    }
+    //</editor-fold>
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")

@@ -18,8 +18,8 @@ public class CategoryRepository extends CRUDOperations{
         return em.createQuery("select x from Category x where x.id = :id", Category.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Category> findByName(String name){
-        return em.createQuery("select x from Category x where x.name like lower(concat('%', concat(:name, '%')))", Category.class).setParameter("name", name).getResultList();
+    public Category findByName(String name){
+        return em.createQuery("select x from Category x where x.name like lower(concat('%', concat(:name, '%')))", Category.class).setParameter("name", name).getSingleResult();
     }
     @Transactional
     public List<Category> findByProduct(String productName){
