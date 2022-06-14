@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class ColorDto {
 
     private String name;
 
-    private String color;
+    private String colorCode;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
     private List<Integer> product_ids = new ArrayList<>();

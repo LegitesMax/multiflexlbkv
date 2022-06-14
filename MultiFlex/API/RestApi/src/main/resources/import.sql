@@ -1,65 +1,19 @@
----- This file allow to write SQL commands that will be emitted in test and dev.
----- The commands are commented as their support depends of the database
---
-----Regale
---insert into Regal (maxAmountShelfs, name) values(10, 'Regal-1');
---insert into Regal (maxAmountShelfs, name) values( 12, 'Regal-2');
---
-----TypeDto
---insert into Type (name) values ('Produkt');
---insert into Type (name)  values ('Material');
---
-----Waren
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values(8, 15, 5,'BAXXXX', 1);
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values(2, 10, 1,'LÖXXXX', 1);
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values(10, 15, 5,'LOXXXX', 1);
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values(4, 15, 2,'TAXXXX', 1);
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values(7, 10, 3,'HEXXXX', 1);
---
-----Fächer
---insert into Shelf (maxAmount, position, regal_id, ware_id) values( 20, 1, 1, 1);
---insert into Shelf (position, regal_id, ware_id, maxAmount) values(2, 1, 2, 20);
---insert into Shelf (position, regal_id, ware_id, maxAmount) values(3, 1, 5, 20);
---insert into Shelf (position, regal_id, ware_id, maxAmount) values(1, 2, 3, 20);
---insert into Shelf (position, regal_id, ware_id, maxAmount) values(2, 2, 4, 20);
---
-----Supplier
---insert into Supplier (name, link, deliveryTime) values('Amazon', 'https://www.amazon.de/', 3);
---insert into Supplier (name, link, deliveryTime) values('Obi', 'https://www.obi.at ', 3);
---insert into Supplier (name, link, deliveryTime) values('Bauhaus', 'https://www.bauhaus.at/', 3);
---
-----Color
---insert into Color (name) values ('Schwarz');
---
---
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'Schrott', 2);
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'Holzplatte-Schwarz', 2);
---insert into Ware (stock, maxAmount, minAmount, name, type_id) values (7, 10, 3,'Holzplatte-Braun', 2);
---
-----TypeDto-Ware
---insert into Ware_Supplier (Supplier_id, ware_id) values (1, 6);
---insert into Ware_Supplier (Supplier_id, ware_id) values (1, 7);
---insert into Ware_Supplier (Supplier_id, ware_id) values (1, 8);
---insert into Ware_Supplier (Supplier_id, ware_id) values (2, 7);
---insert into Ware_Supplier (Supplier_id, ware_id) values (3, 6);
---insert into Ware_Supplier (Supplier_id, ware_id) values (3, 7);
-
 --Color
-insert into Color (name, color) values ('Bambus', 'BA');
-insert into Color (name, color) values ('34','34');
-insert into Color (name, color) values ('64','62');
-insert into Color (name, color) values ('67','67');
-insert into Color (name, color) values ('22','22');
-insert into Color (name, color) values ('14','14');
-insert into Color (name, color) values ('51','51');
-insert into Color (name, color) values ('299','299');
+insert into Color (name, colorCode) values ('Bambus', 'BA');
+insert into Color (name, colorCode) values ('34','34');
+insert into Color (name, colorCode) values ('64','62');
+insert into Color (name, colorCode) values ('67','67');
+insert into Color (name, colorCode) values ('22','22');
+insert into Color (name, colorCode) values ('Stein','14');
+insert into Color (name, colorCode) values ('51','51');
+insert into Color (name, colorCode) values ('299','299');
 
 --Category
-insert into Category (name) values ('Blume des Lebens');
-insert into Category (name) values ('Lotusblume');
-insert into Category (name) values ('Baum des Lebens');
-insert into Category (name) values ('Baum des Lebens eckig');
-insert into Category (name) values ('Löwe');
+insert into Category (name, acronym) values ('Blume des Lebens', 'BL');
+insert into Category (name, acronym) values ('Lotusblume', 'LO');
+insert into Category (name, acronym) values ('Baum des Lebens', 'BA');
+insert into Category (name, acronym) values ('Baum des Lebens eckig', 'BAE');
+insert into Category (name, acronym) values ('Löwe', 'LÖ');
 
 --Size
 insert into Size (size) values (39);

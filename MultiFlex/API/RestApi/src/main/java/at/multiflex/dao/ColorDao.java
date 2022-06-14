@@ -31,7 +31,7 @@ public class ColorDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{name}")
-    public List<ColorDto> getByName(String name) {
+    public ColorDto getByName(String name) {
         var entities = repository.findByName(name);
         return mapper.toDto(entities);
     }

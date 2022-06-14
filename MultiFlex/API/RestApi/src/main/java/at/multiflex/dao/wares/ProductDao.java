@@ -72,13 +72,13 @@ public class ProductDao {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/category/acronym/{acronym}")
+    @Path("/Color/acronym/{acronym}")
     public ColorProducts getByColorAcronym(String acronym) {
         return productLogic.getProductsByByColorAcronym(acronym);
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/category")
+    @Path("/Color")
     public List<ColorProducts> getAllByColor (){
         return productLogic.getAllProductsByByColor();
     }

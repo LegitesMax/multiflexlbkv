@@ -1,17 +1,13 @@
 package at.multiflex.model;
 
-import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Product;
-import at.multiflex.repository.wares.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,11 +23,11 @@ public class Color {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 64, unique = true)
     private String name;
 
     @Column(nullable = false, length = 64, unique = true)
-    private String color;
+    private String colorCode;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
         //<editor-fold desc="Transient Fields">
