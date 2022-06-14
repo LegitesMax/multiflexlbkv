@@ -39,10 +39,10 @@ public class ProductMapper {
             entity.setColor(colorRepository.findById(dto.getColor_id()));
         }
         if (dto.getCategory_id() != null){
-            entity.setCategory(categoryRepository.findById(dto.getColor_id()));
+            entity.setCategory(categoryRepository.findById(dto.getCategory_id()));
         }
-        if (dto.getSize_ids() != null){
-            entity.getSize_ids().forEach(x -> entity.getSizes().add(sizeRepository.findById(x)));
+        if (dto.getSize_id() != null){
+            entity.setSize(sizeRepository.findById(dto.getSize_id()));
         }
 
         return entity;

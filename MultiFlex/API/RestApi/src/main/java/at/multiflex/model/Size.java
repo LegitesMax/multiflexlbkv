@@ -34,11 +34,7 @@ public class Size {
     private List<Integer> product_ids = configurateProductIds();
     //</editor-fold>
     //<editor-fold desc="Relation">
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "ProductSize", // name of the association table
-            joinColumns = @JoinColumn(name = "size_id", referencedColumnName = "id"), // foreign key columns
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "color")
     private Set<Product> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
     //<editor-fold desc="Transient Field configuration">

@@ -37,7 +37,7 @@ public class Product extends Article {
     private Integer category_id = configurateCategoryId();
 
     @Transient
-    private List<Integer> size_ids = configurateSizeIds();
+    private Integer size_id = configurateSizeId();
         //</editor-fold>
         //<editor-fold desc="Relation">
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
@@ -51,8 +51,9 @@ public class Product extends Article {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
-    private Set<Size> sizes = new java.util.LinkedHashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "size_id", nullable = false)
+    private Size size;
         //</editor-fold>
         //<editor-fold desc="Transient Field configuration">
     private List<Integer> configurateMaterialIds(){
@@ -74,11 +75,11 @@ public class Product extends Article {
         }
         return null;
     }
-    private List<Integer> configurateSizeIds(){
-        if (getSizes() != null){
-            return getSizes().stream().map(x -> x.getId()).collect(Collectors.toList());
+    private Integer configurateSizeId(){
+        if (getSize() != null && getSize().getId() != null){
+            return getSize().getId();
         }
-        return new ArrayList<>();
+        return null;
     }
         //</editor-fold>
     //</editor-fold>
@@ -95,7 +96,8 @@ public class Product extends Article {
         return configurateCategoryId();
     }
 
-    public List<Integer> getSize_ids() {
-        return configurateSizeIds();
+    public Integer getSize_id() {
+        size_id = configurateSizeId();
+        return size_id;
     }
 }
