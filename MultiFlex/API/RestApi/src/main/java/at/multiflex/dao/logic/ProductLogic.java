@@ -32,6 +32,14 @@ public class ProductLogic {
 
         return new CategoryProducts( categoryMapper.toDto(category), productMapper.toDto(products));
     }
+    public CategoryProducts getProductsByByCategoryAcronym(String acronym){
+
+        var products = productRepository.findByCategoryAcronym(acronym);
+
+        var category = categoryRepository.findByAcronym(acronym);
+
+        return new CategoryProducts( categoryMapper.toDto(category), productMapper.toDto(products));
+    }
     public List<CategoryProducts> getAllProductsByByCategory(){
 
         var category = categoryRepository.loadAll();
@@ -43,5 +51,6 @@ public class ProductLogic {
 
         return cp;
     }
+
 
 }

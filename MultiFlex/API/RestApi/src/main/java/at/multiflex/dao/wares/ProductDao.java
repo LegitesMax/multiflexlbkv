@@ -42,12 +42,18 @@ public class ProductDao {
         var entities = repository.findByName(name);
         return mapper.toDto(entities);
     }
-    //<editor-fold desc="Get">
+    //<editor-fold desc="CategoryProduct">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/category/{name}")
-    public CategoryProducts getByCategory(String name) {
+    @Path("/category/name/{name}")
+    public CategoryProducts getByCategoryName(String name) {
         return productLogic.getProductsByByCategory(name);
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/category/acronym/{acronym}")
+    public CategoryProducts getByCategoryAcronym(String acronym) {
+        return productLogic.getProductsByByCategoryAcronym(acronym);
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

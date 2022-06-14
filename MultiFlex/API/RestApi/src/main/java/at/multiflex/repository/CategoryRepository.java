@@ -22,6 +22,10 @@ public class CategoryRepository extends CRUDOperations{
         return em.createQuery("select x from Category x where x.name like lower(concat('%', concat(:name, '%')))", Category.class).setParameter("name", name).getSingleResult();
     }
     @Transactional
+    public Category findByAcronym(String name){
+        return em.createQuery("select x from Category x where x.acronym like lower(concat('%', concat(:name, '%')))", Category.class).setParameter("name", name).getSingleResult();
+    }
+    @Transactional
     public List<Category> findByProduct(String productName){
         return em.createQuery("select x from Product y join y.category x where x.name = :name", Category.class)
                  .setParameter("name", productName).getResultList();

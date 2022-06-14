@@ -26,4 +26,24 @@ public class ProductRepository extends CRUDOperations {
         return em.createQuery("select x from Category y join y.products x where y.name like lower(concat('%', concat(:name, '%')))", Product.class)
                  .setParameter("name", name).getResultList();
     }
+    @Transactional
+    public List<Product> findByCategoryAcronym(String name){
+        return em.createQuery("select x from Category y join y.products x where y.acronym like lower(concat('%', concat(:name, '%')))", Product.class)
+                .setParameter("name", name).getResultList();
+    }
+    @Transactional
+    public List<Product> findByColor(String name){
+        return em.createQuery("select x from Color y join y.products x where y.name like lower(concat('%', concat(:name, '%')))", Product.class)
+                .setParameter("name", name).getResultList();
+    }
+    @Transactional
+    public List<Product> findByColorId(String name){
+        return em.createQuery("select x from Color y join y.products x where y.color like lower(concat('%', concat(:name, '%')))", Product.class)
+                .setParameter("name", name).getResultList();
+    }
+    @Transactional
+    public List<Product> findBySize(Integer size){
+        return em.createQuery("select x from Size y join y.products x where y.size = :size ", Product.class)
+                .setParameter("size", size).getResultList();
+    }
 }
