@@ -17,7 +17,11 @@ public class ColorRepository extends CRUDOperations {
         return em.createQuery("select x from Color x where x.id = :id", Color.class).setParameter("id", id).getSingleResult();
     }
     @Transactional
-    public List<Color> findByName(String name){
-        return em.createQuery("select x from Color x where x.name like lower(concat('%', concat(:name, '%')))", Color.class).setParameter("name", name).getResultList();
+    public Color findByName(String name){
+        return em.createQuery("select x from Color x where x.name like lower(concat('%', concat(:name, '%')))", Color.class).setParameter("name", name).getSingleResult();
+    }
+    @Transactional
+    public Color findByColorId(String name){
+        return em.createQuery("select x from Color x where x.color = :name", Color.class).setParameter("name", name).getSingleResult();
     }
 }
