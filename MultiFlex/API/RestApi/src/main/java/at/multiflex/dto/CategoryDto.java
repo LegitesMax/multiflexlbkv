@@ -18,6 +18,8 @@ public class CategoryDto {
 
     private String name;
 
+    private String acronym;
+
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
     private List<Integer> product_ids = new ArrayList<>();

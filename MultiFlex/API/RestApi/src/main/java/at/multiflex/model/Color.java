@@ -30,7 +30,7 @@ public class Color {
     @Column(nullable = false, length = 64)
     private String name;
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 64, unique = true)
     private String color;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">

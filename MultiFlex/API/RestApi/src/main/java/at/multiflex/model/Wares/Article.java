@@ -21,7 +21,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 64, unique = true)
     private String name;
 
     @Column(nullable = false)

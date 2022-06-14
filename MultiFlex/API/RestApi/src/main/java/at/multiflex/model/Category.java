@@ -27,6 +27,9 @@ public class Category {
     @Column(nullable = false, length = 64, unique = true)
     private String name;
 
+    @Column(unique = true, length = 8)
+    private String acronym;
+
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
     //<editor-fold desc="Transient Fields">
