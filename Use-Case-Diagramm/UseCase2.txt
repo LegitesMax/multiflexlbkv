@@ -1,0 +1,15 @@
+@startuml
+package Benutzer {
+Benuzer --|> (Webseite besuchen)
+(Webseite besuchen) --|> (Bestellungen Ansehen) : Zeigt alle Bestellungen an
+(Bestellungen Ansehen) --|> (Benutzer gibt Bestellung als erledigt an)
+}
+
+package System {
+  usecase "System schickt änderung nach BillBee" as send
+  usecase "Datensatz in BillBee als versendet makiert" as BillBee
+}
+
+(Benutzer gibt Bestellung als erledigt an) -up-> send #green;line.dashed;text:green
+send --> BillBee
+@enduml
