@@ -5,7 +5,7 @@ insert into Color (name, colorCode) values ('Eiche','62');
 insert into Color (name, colorCode) values ('67','67');
 insert into Color (name, colorCode) values ('Rustikal','22');
 insert into Color (name, colorCode) values ('Stein','14');
-insert into Color (name, colorCode) values ('51','51');
+insert into Color (name, colorCode) values ('Ulme','51');
 insert into Color (name, colorCode) values ('29','29');
 
 --Category
