@@ -581,7 +581,7 @@
 
                     else if (ViewData["orderStatus"] == "ready")
                     {
-                        @await Html.PartialAsync("_OpenOrders")
+                        @await Html.PartialAsync("_ReadyOrders")
                     }
 
                     else if (ViewData["orderStatus"] == string.Empty)

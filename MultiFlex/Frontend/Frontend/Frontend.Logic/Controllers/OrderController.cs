@@ -32,6 +32,19 @@ namespace Frontend.Logic.Controllers
             return result == null ? "Derzeit keine Bestellung" : result;
         }
 
+
+        public string GetOrderedOrders()
+        {
+            var client = query.Login();
+
+            var orderState = new List<OrderStateEnum>() { OrderStateEnum.Zahlung_erhalten};
+            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);
+
+            string result = JsonSerializer.Serialize(orders.Data);
+
+            return result == null ? "Derzeit keine offene Bestellung" : result;
+        }
+
         public string GetCancledOrders()
         {
             var client = query.Login();
@@ -44,21 +57,6 @@ namespace Frontend.Logic.Controllers
             return result == null ? "Keine Stornierungen vorhanden" : result;
         }
 
-        public string GetOrderedOrders()
-        {
-            var client = query.Login();
-
-            var orderState = new List<OrderStateEnum>() { OrderStateEnum.Zahlung_erhalten};
-            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);
-
-            string result = JsonSerializer.Serialize(orders.Data);
-
-            File.WriteAllText(@"C:\Users\zeili\Desktop\Billbee tests\BillBee-Rest\orders.json", result, Encoding.UTF8);
-
-            return result == null ? "Derzeit keine offene Bestellung" : result;
-        }
-
-
         public string GetReadyOrders()
         {
             var client = query.Login();
@@ -68,7 +66,7 @@ namespace Frontend.Logic.Controllers
 
             string result = JsonSerializer.Serialize(orders.Data);
 
-            return result == null ? "Keine Stornierungen vorhanden" : result;
+            return result == null ? "Derzeit kein Packet fertiggestellt" : result;
         }
     }
 }
