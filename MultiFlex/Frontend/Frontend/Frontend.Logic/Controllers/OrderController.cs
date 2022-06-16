@@ -37,7 +37,7 @@ namespace Frontend.Logic.Controllers
             var client = query.Login();
 
             var orderState = new List<OrderStateEnum>() { OrderStateEnum.Storniert };
-            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);
+            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Now, maxOrderDate: DateTime.MaxValue);
 
             string result = JsonSerializer.Serialize(orders.Data);
 
@@ -56,6 +56,19 @@ namespace Frontend.Logic.Controllers
             File.WriteAllText(@"C:\Users\zeili\Desktop\Billbee tests\BillBee-Rest\orders.json", result, Encoding.UTF8);
 
             return result == null ? "Derzeit keine offene Bestellung" : result;
+        }
+
+
+        public string GetReadyOrders()
+        {
+            var client = query.Login();
+
+            var orderState = new List<OrderStateEnum>() { OrderStateEnum.Versendet };
+            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Now, maxOrderDate: DateTime.MaxValue);
+
+            string result = JsonSerializer.Serialize(orders.Data);
+
+            return result == null ? "Keine Stornierungen vorhanden" : result;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Frontend.AspMvc.Controllers
         {
             var model = GetOrdereItems();
 
-            ViewData["orderStatus"] = "open";
+            ViewData["orderStatus"] = "canceled";
 
             return View(model);
         }
@@ -34,13 +34,13 @@ namespace Frontend.AspMvc.Controllers
         public IActionResult CanceledOrders(object sender, EventArgs e)
         {
             ViewData["orderStatus"] = "canceled";
-            return View("Index", GetOrdereItems());
+            return View("Index", GetCanceledItems());
         }
 
         public IActionResult ReadyOrders(object sender, EventArgs e)
         {
             ViewData["orderStatus"] = "ready";
-            return View("Index", GetOrdereItems());
+            return View("Index", GetReadyItems());
         }
 
         public IList<RootOrderItem>? GetOrdereItems()
@@ -56,7 +56,7 @@ namespace Frontend.AspMvc.Controllers
         public IList<RootOrderItem>? GetCanceledItems()
         {
             var orderController = new OrderController();
-            var data = orderController.GetOrderedOrders();
+            var data = orderController.GetCancledOrders();
 
             var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
 
@@ -66,7 +66,7 @@ namespace Frontend.AspMvc.Controllers
         public IList<RootOrderItem>? GetReadyItems()
         {
             var orderController = new OrderController();
-            var data = orderController.GetOrderedOrders();
+            var data = orderController.GetReadyOrders();
 
             var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
 

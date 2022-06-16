@@ -573,14 +573,17 @@
                     {
                         @await Html.PartialAsync("_OpenOrders")
                     }
+
                     else if (ViewData["orderStatus"] == "canceled")
                     {
-                        @await Html.PartialAsync("_OpenOrders")
+                        @await Html.PartialAsync("_CancledOrders")
                     }
+
                     else if (ViewData["orderStatus"] == "ready")
                     {
                         @await Html.PartialAsync("_OpenOrders")
                     }
+
                     else if (ViewData["orderStatus"] == string.Empty)
                     {
                         <p>Ein Fehler ist aufgetreten</p>
