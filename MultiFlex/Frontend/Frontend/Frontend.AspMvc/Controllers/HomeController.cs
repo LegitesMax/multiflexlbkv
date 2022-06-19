@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Frontend.AspMvc.Models;
-using System.Diagnostics;
+﻿using Frontend.AspMvc.Models;
 using Frontend.Logic.Controllers;
-using Newtonsoft.Json;
 using Frontend.Logic.Entities.Orders;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using PdfSharp.Drawing.Layout;
+using PdfSharp.Pdf;
+using System.Diagnostics;
+using System.Drawing;
 using System.Text;
 
 namespace Frontend.AspMvc.Controllers
@@ -98,7 +99,7 @@ namespace Frontend.AspMvc.Controllers
             if (ViewData["pdfStatus"] == "ready")
             {
                 var data = GetReadyItems();
-                if (data != null) done = ExportPdf(data, "Versandbereite Bestellungen");
+                if (data != null) done = ExportPdf(data, "Fertige Bestellungen");
                 else done = false;
             }
 
@@ -171,7 +172,15 @@ namespace Frontend.AspMvc.Controllers
             //        x = "1";
             //    }
             //});
-   
+            //int count = 0;
+            //foreach (var item in quantity)
+            //{
+            //    if (item == null)
+            //    {
+            //        quantity[count] = "1";
+            //    }
+            //    count++;
+            //}
 
 
 
@@ -192,10 +201,12 @@ namespace Frontend.AspMvc.Controllers
                 XStringFormat format = new XStringFormat();
                 format.LineAlignment = XLineAlignment.Near;
                 format.Alignment = XStringAlignment.Near;
+                
                 var tf = new XTextFormatter(graph);
 
 
                 XFont fontParagraph = new XFont("Verdana", 8, XFontStyle.BoldItalic);
+                XFont fontParagraph1 = new XFont("Verdana", 20, XFontStyle.BoldItalic);
 
 
                 int el1_width = 80;//Breite der Ersten Reihe
@@ -204,7 +215,7 @@ namespace Frontend.AspMvc.Controllers
                 // page structure options
                 double lineHeight = 20;
                 int marginLeft = 20;
-                int marginTop = 20;
+                int marginTop = 55;
 
                 int el_height = 30;
                 int rect_height = 17;
@@ -219,12 +230,17 @@ namespace Frontend.AspMvc.Controllers
                 XSolidBrush rect_style2 = new XSolidBrush(XColors.DarkGreen);
                 XSolidBrush rect_style3 = new XSolidBrush(XColors.Red);
 
+
+                //tf.DrawString(status, fontParagraph, XBrushes.Black, new XRect(0, 0, 250, 140), format2);
+         
+                tf.DrawString(status, fontParagraph1, XBrushes.Black, new XRect(170, 10, 250, 140), XStringFormats.TopLeft);
+
                 for (int i = 0; i < data!.Count() && result != false; i++)
                 {
                     double dist_Y = lineHeight * (i + 1);
                     double dist_Y2 = dist_Y - 2;
 
-                    if (i == 0) 
+                    if (i == 0)
                     {
                         graph.DrawRectangle(rect_style2, marginLeft, marginTop, pdfPage.Width - 2 * marginLeft, rect_height);
 
@@ -234,7 +250,7 @@ namespace Frontend.AspMvc.Controllers
                         tf.DrawString("SKU", fontParagraph, XBrushes.White,
                                       new XRect(marginLeft + offSetX_1 + interLine_X_1, marginTop, el2_width, el_height), format);
 
-                        tf.DrawString("Mänge", fontParagraph, XBrushes.White,
+                        tf.DrawString("Menge", fontParagraph, XBrushes.White,
                                       new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, marginTop, el1_width, el_height), format);
 
                         graph.DrawRectangle(rect_style1, marginLeft, dist_Y2 + marginTop, el1_width, rect_height);
@@ -259,7 +275,7 @@ namespace Frontend.AspMvc.Controllers
                             format);
 
                     }
-                    else  
+                    else
                     {
 
 
