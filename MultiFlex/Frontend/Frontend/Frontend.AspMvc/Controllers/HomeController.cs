@@ -23,31 +23,31 @@ namespace Frontend.AspMvc.Controllers
         public IActionResult IndexAsync()
         {
             var model = GetOrdereItems();
-            var products = GetStorageProducts();
+            //var products = GetStorageProductsAsync();
 
             ViewData["orderStatus"] = "open";
 
-            return View(products);
+            return View(model);
         }
 
+        //Actions
         public IActionResult OpenOrders(object sender, EventArgs e)
         {
             ViewData["orderStatus"] = "open";
             return View("Index", GetOrdereItems());
         }
-
         public IActionResult CanceledOrders(object sender, EventArgs e)
         {
             ViewData["orderStatus"] = "canceled";
             return View("Index", GetCanceledItems());
         }
-
         public IActionResult ReadyOrders(object sender, EventArgs e)
         {
             ViewData["orderStatus"] = "ready";
             return View("Index", GetReadyItems());
         }
 
+        //PDF
         public IActionResult CreateOpenPdf(object sender, EventArgs e)
         {
             ViewData["pdfStatus"] = "open";
@@ -73,11 +73,12 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", GetReadyItems());
         }
 
-
-        public async Task<IList<RootOrderItem>> GetStorageProducts()
+        //Get Data
+        public IList<RootOrderItem>? GetStorageProductsAsync()
         {
-            HttpClient client = new HttpClient();
-            var data = await client.GetStringAsync("http://127.0.0.1:8080/Product/categoryAndColor");
+            var orderController = new OrderController();
+            var data = orderController.GetStoragedProductsAsync().Result;
+            var roorItem = new RootOrderItem();
 
             var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
 
@@ -114,7 +115,6 @@ namespace Frontend.AspMvc.Controllers
 
             //return View("Index");
         }
-
         public IList<RootOrderItem>? GetOrdereItems()
         {
             var orderController = new OrderController();

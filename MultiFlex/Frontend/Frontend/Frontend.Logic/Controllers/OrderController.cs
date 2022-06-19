@@ -32,7 +32,16 @@ namespace Frontend.Logic.Controllers
             return result == null ? "Derzeit keine Bestellung" : result;
         }
 
+        public async Task<string> GetStoragedProductsAsync()
+        {
+            HttpClient client = new HttpClient();
 
+            var data = client.GetStringAsync("http://127.0.0.1:8080/Product/categoryAndColor");
+
+            var result = JsonSerializer.Serialize(await data);
+
+            return result == null ? "Nix im Lager" : result;
+        }
         public string GetOrderedOrders()
         {
             var client = query.Login();

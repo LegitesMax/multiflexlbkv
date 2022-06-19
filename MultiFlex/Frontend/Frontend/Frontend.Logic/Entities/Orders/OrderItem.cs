@@ -10,5 +10,6 @@ namespace Frontend.Logic.Entities.Orders
     public class RootOrderItem : RootShippingAddress
     {
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public List<Catigory.CategoryColorProducts> CategoryColor { get; set; } = new List<Catigory.CategoryColorProducts>();
     }
 }

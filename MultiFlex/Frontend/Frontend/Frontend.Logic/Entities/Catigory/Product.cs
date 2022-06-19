@@ -2,7 +2,7 @@
 
 namespace Frontend.Logic.Entities.Catigory
 {
-    public class Product : Category
+    public class Product 
     {
         public int id { get; set; }
         public string name { get; set; }
