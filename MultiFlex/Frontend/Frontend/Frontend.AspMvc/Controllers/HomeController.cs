@@ -23,7 +23,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             HttpClient client = new HttpClient();
-            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/category");
+            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/categoryAndColor");
 
 
 
