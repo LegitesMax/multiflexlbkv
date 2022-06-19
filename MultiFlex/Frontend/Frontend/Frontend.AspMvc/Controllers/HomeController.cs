@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using Frontend.Logic.Entities.Orders;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-//using System.Text.Encoding.CodePages.dll;
 using PdfSharp.Drawing.Layout;
 using System.Text;
 
@@ -143,9 +142,6 @@ namespace Frontend.AspMvc.Controllers
         {
             var result = false;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            //var orderController = new OrderController();
-            //var data = orderController.GetOrderedOrders();
-            //var dataresult = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
             var shippingadresses = new List<string>();
             var sku = new List<string>();
             var quantity = new List<string>();
@@ -168,15 +164,16 @@ namespace Frontend.AspMvc.Controllers
                     }
                 }
             }
-            //int count = 0;
-            //foreach (var item in quantity)
-            //{
-            //    if (item == null)
+            //quantity.ForEach(x =>
+            //{            
+            //    if (x.IsNullOrEmpty())
             //    {
-            //        quantity[count] = "1";
+            //        x = "1";
             //    }
-            //    count++;
-            //}
+            //});
+   
+
+
 
             PdfDocument document = new PdfDocument();
             document.Info.Title = "DataPDF";
@@ -185,7 +182,7 @@ namespace Frontend.AspMvc.Controllers
             {
                 // Page Options
                 PdfPage pdfPage = document.AddPage();
-                pdfPage.Height = 842;//842
+                pdfPage.Height = 842;
                 pdfPage.Width = 590;
 
                 // Get an XGraphics object for drawing
@@ -200,7 +197,7 @@ namespace Frontend.AspMvc.Controllers
 
                 XFont fontParagraph = new XFont("Verdana", 8, XFontStyle.BoldItalic);
 
-                // Row elements
+
                 int el1_width = 80;//Breite der Ersten Reihe
                 int el2_width = 380;//breite der zweiten Reihe
 
@@ -227,7 +224,7 @@ namespace Frontend.AspMvc.Controllers
                     double dist_Y = lineHeight * (i + 1);
                     double dist_Y2 = dist_Y - 2;
 
-                    if (i == 0) //Erster Durchgang (Header)
+                    if (i == 0) 
                     {
                         graph.DrawRectangle(rect_style2, marginLeft, marginTop, pdfPage.Width - 2 * marginLeft, rect_height);
 
@@ -240,12 +237,10 @@ namespace Frontend.AspMvc.Controllers
                         tf.DrawString("Mänge", fontParagraph, XBrushes.White,
                                       new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, marginTop, el1_width, el_height), format);
 
-                        // Erste Elemente Hier schon mitgeben
-                        //text1
                         graph.DrawRectangle(rect_style1, marginLeft, dist_Y2 + marginTop, el1_width, rect_height);
                         tf.DrawString(shippingadresses[i], fontParagraph, XBrushes.Black,
                                       new XRect(marginLeft, dist_Y + marginTop, el1_width, el_height), format);
-                        //text2
+
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_1 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
                         tf.DrawString(
                             sku[i],
@@ -254,8 +249,6 @@ namespace Frontend.AspMvc.Controllers
                             new XRect(marginLeft + offSetX_1 + interLine_X_1, dist_Y + marginTop, el2_width, el_height),
                             format);
 
-
-                        //text3
 
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
                         tf.DrawString(
@@ -266,15 +259,10 @@ namespace Frontend.AspMvc.Controllers
                             format);
 
                     }
-                    else  //Alle Anderen Durchgänge (Tabelle)
+                    else  
                     {
 
-                        //if (i % 2 == 1)
-                        //{
-                        //  graph.DrawRectangle(TextBackgroundBrush, marginLeft, lineY - 2 + marginTop, pdfPage.Width - marginLeft - marginRight, lineHeight - 2);
-                        //}
 
-                        //text1
                         graph.DrawRectangle(rect_style1, marginLeft, marginTop + dist_Y2, el1_width, rect_height);
                         tf.DrawString(
 
@@ -284,7 +272,6 @@ namespace Frontend.AspMvc.Controllers
                             new XRect(marginLeft, marginTop + dist_Y, el1_width, el_height),
                             format);
 
-                        //text2
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_1 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
                         tf.DrawString(
                             sku[i],
@@ -292,9 +279,6 @@ namespace Frontend.AspMvc.Controllers
                             XBrushes.Black,
                             new XRect(marginLeft + offSetX_1 + interLine_X_1, marginTop + dist_Y, el2_width, el_height),
                             format);
-
-
-                        //text3
 
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
                         tf.DrawString(
@@ -311,7 +295,6 @@ namespace Frontend.AspMvc.Controllers
 
             }
 
-            //File.s
             string filename = $"C:\\Users\\{Environment.UserName}\\Downloads\\{status}.pdf";
 
             var isExported = document.CanSave(ref filename);
