@@ -1,8 +1,6 @@
-﻿using Frontend.Logic.Entities.Orders;
-
-namespace Frontend.Logic.Entities.Catigory
+﻿namespace Frontend.AspMvc.Models
 {
-    public class CategoryColorProducts : RootOrderItem
+    public class CategoryColorProducts
     {
         public Category category { get; set; }
         public List<Product> products { get; set; }

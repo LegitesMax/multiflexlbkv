@@ -20,14 +20,18 @@ namespace Frontend.AspMvc.Controllers
             _logger = logger;
         }
 
-        public IActionResult IndexAsync()
+        public async Task<IActionResult> IndexAsync()
         {
+            //HttpClient client = new HttpClient();
+            //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/categoryAndColor");
+
+
+
             var model = GetOrdereItems();
-            var products = GetStorageProducts();
 
             ViewData["orderStatus"] = "open";
 
-            return View(products);
+            return View(model);
         }
 
         public IActionResult OpenOrders(object sender, EventArgs e)
@@ -71,17 +75,6 @@ namespace Frontend.AspMvc.Controllers
 
             ViewData["orderStatus"] = "ready";
             return View("Index", GetReadyItems());
-        }
-
-
-        public async Task<IList<RootOrderItem>> GetStorageProducts()
-        {
-            HttpClient client = new HttpClient();
-            var data = await client.GetStringAsync("http://127.0.0.1:8080/Product/categoryAndColor");
-
-            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
-
-            return result;
         }
 
         public void CreatePdf()

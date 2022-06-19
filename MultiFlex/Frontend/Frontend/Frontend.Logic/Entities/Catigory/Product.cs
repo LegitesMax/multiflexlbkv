@@ -1,8 +1,6 @@
-﻿using Frontend.Logic.Entities.Orders;
-
-namespace Frontend.Logic.Entities.Catigory
+﻿namespace Frontend.AspMvc.Models
 {
-    public class Product : Category
+    public class Product
     {
         public int id { get; set; }
         public string name { get; set; }
