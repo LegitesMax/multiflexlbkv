@@ -1,6 +1,7 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.dao.logic.ProductLogic;
+import at.multiflex.dto.traffic.CategoryColorProducts;
 import at.multiflex.dto.traffic.CategoryProducts;
 import at.multiflex.dto.traffic.ColorProducts;
 import at.multiflex.dto.wares.ProductDto;
@@ -61,6 +62,12 @@ public class ProductDao {
     @Path("/category")
     public List<CategoryProducts> getAllByCategory() {
         return productLogic.getAllProductsByByCategory();
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/categoryAndColor")
+    public List<CategoryColorProducts> getAllByCategoryAndColor() {
+        return productLogic.getAllProductsByCategoryAndByColor();
     }
     //</editor-fold>
     //<editor-fold desc="ColorProduct">
