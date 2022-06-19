@@ -20,14 +20,27 @@
     </div>
     </div>
     </div>-->
+    if (ViewData["pdfStatus"] == "succses")
+    {
+        <div class="alert alert-success" role="alert">
+            PDF wurde erfolgreich erstellt
+        </div>
+    }
+
+    else if (ViewData["pdfStatus"] == "error")
+    {
+        <div class="alert alert-danger" role="alert">
+            Fehler beim erstellen der PDF
+        </div>
+    }
 
     <div class="w-100 d-flex">
         <div class="w-75 mx-4">
             <div class="d-flex">
-                <h2 class="">Bestand - </h2>
-                <button type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</button>
-            </div>
+                <h2>Bestand - </h2>
 
+                <a asp-action="CreatePdf" type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</a>
+            </div>
             <div class="accordion accordion-flush border" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -562,9 +575,9 @@
         <div class="w-25">
             <h2 class="text-center">Offene Bestellungen</h2>
             <div class="d-flex justify-content-between">
-                <a asp-controller="Home" asp-action="OpenOrders">Offen</a>
-                <a asp-controller="Home" asp-action="CanceledOrders">Storniert</a>
-                <a asp-controller="Home" asp-action="ReadyOrders">Erledigt</a>
+                <a type="button" class="btn btn-dark" asp-controller="Home" asp-action="OpenOrders">Offen</a>
+                <a type="button" class="btn btn-dark" asp-controller="Home" asp-action="CanceledOrders">Storniert</a>
+                <a type="button" class="btn btn-dark" asp-controller="Home" asp-action="ReadyOrders">Erledigt</a>
             </div>
             <hr>
             <ul class="list-group">

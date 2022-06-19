@@ -12,14 +12,24 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using PdfSharp.Drawing.Layout;
-
+using Frontend.Logic.Controllers;
+using Newtonsoft.Json;
+using Frontend.Logic.Entities.Orders;
 
 namespace Frontend.AspMvc.AddPdf
 {
     public class CreatePdfs
     {
+        public CreatePdfs()
+        {
+        
+        }
         public static void ExportGraf_Click()
         {
+            //var orderController = new OrderController();
+            //var data = orderController.GetOrderedOrders();
+            //var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+
             PdfDocument document = new PdfDocument();
             document.Info.Title = "DataPDF";
 
