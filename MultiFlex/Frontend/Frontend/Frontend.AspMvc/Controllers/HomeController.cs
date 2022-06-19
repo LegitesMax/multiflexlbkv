@@ -23,6 +23,11 @@ namespace Frontend.AspMvc.Controllers
 
         public IActionResult Index()
         {
+            //HttpClient client = new HttpClient();
+            //var productJson = await client.GetStringAsync("https://demos.telerik.com/blazor-ui-service/api/Product/GetProducts%22");
+
+
+
             var model = GetOrdereItems();
 
             ViewData["orderStatus"] = "open";
@@ -141,7 +146,9 @@ namespace Frontend.AspMvc.Controllers
             //var orderController = new OrderController();
             //var data = orderController.GetOrderedOrders();
             //var dataresult = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
-
+            var shippingadresses = new List<string>();
+            var sku = new List<string>();
+            var quantity = new List<string>();
             if (data == null)
             {
                 result = false;
@@ -153,13 +160,23 @@ namespace Frontend.AspMvc.Controllers
                 {
                     foreach (var item2 in item.OrderItems)
                     {
-                        var a = item.ShippingAddress.Country;
-                        var b = item2.Product.SKU;
-                        var y = item2.Product.Quantity;
+                        shippingadresses.Add(item.ShippingAddress.Country);
+                        sku.Add(item2.Product.SKU);
+                        //quantity.Add(item2.Product.Quantity);
+                        quantity.Add("1");
 
                     }
                 }
             }
+            //int count = 0;
+            //foreach (var item in quantity)
+            //{
+            //    if (item == null)
+            //    {
+            //        quantity[count] = "1";
+            //    }
+            //    count++;
+            //}
 
             PdfDocument document = new PdfDocument();
             document.Info.Title = "DataPDF";
@@ -226,12 +243,12 @@ namespace Frontend.AspMvc.Controllers
                         // Erste Elemente Hier schon mitgeben
                         //text1
                         graph.DrawRectangle(rect_style1, marginLeft, dist_Y2 + marginTop, el1_width, rect_height);
-                        tf.DrawString("text1", fontParagraph, XBrushes.Black,
+                        tf.DrawString(shippingadresses[i], fontParagraph, XBrushes.Black,
                                       new XRect(marginLeft, dist_Y + marginTop, el1_width, el_height), format);
                         //text2
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_1 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
                         tf.DrawString(
-                            "text2",
+                            sku[i],
                             fontParagraph,
                             XBrushes.Black,
                             new XRect(marginLeft + offSetX_1 + interLine_X_1, dist_Y + marginTop, el2_width, el_height),
@@ -242,7 +259,7 @@ namespace Frontend.AspMvc.Controllers
 
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
                         tf.DrawString(
-                            "text3",
+                            quantity[i],
                             fontParagraph,
                             XBrushes.Black,
                             new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, dist_Y + marginTop, el1_width, el_height),
@@ -261,7 +278,7 @@ namespace Frontend.AspMvc.Controllers
                         graph.DrawRectangle(rect_style1, marginLeft, marginTop + dist_Y2, el1_width, rect_height);
                         tf.DrawString(
 
-                            "text1",
+                            shippingadresses[i],
                             fontParagraph,
                             XBrushes.Black,
                             new XRect(marginLeft, marginTop + dist_Y, el1_width, el_height),
@@ -270,7 +287,7 @@ namespace Frontend.AspMvc.Controllers
                         //text2
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_1 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
                         tf.DrawString(
-                            "text2",
+                            sku[i],
                             fontParagraph,
                             XBrushes.Black,
                             new XRect(marginLeft + offSetX_1 + interLine_X_1, marginTop + dist_Y, el2_width, el_height),
@@ -281,7 +298,7 @@ namespace Frontend.AspMvc.Controllers
 
                         graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
                         tf.DrawString(
-                            "text3",
+                            quantity[i],
                             fontParagraph,
                             XBrushes.Black,
                             new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, marginTop + dist_Y, el1_width, el_height),
@@ -295,7 +312,7 @@ namespace Frontend.AspMvc.Controllers
             }
 
             //File.s
-            string filename = "C:\\Users\\fabsc\\Desktop\\test\\Create.pdf";
+            string filename = $"C:\\Users\\fabsc\\Desktop\\test\\{status}.pdf";
 
             var isExported = document.CanSave(ref filename);
 
