@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<Frontend.Logic.Entities.Orders.RootOrderItem>
 @{
-    <p>aaaaaaaaaaaaaa</p>
     if (Model.Count() == 0)
     {
         <p class="text-center">Fehler im Lager</p>
     }
-
     else
     {
-        @foreach (var item in Model)
+        foreach (var item in Model)
         {
-            @foreach (var item1 in item.CategoryColor)
-            {
+            <div class="accordion accordion-flush border" id="accordionFlushExample">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="@item1.category.name">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@item1.category.id" aria-expanded="false" aria-controls="@item1.category.id">
-                            @item1.category.name
+
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
                         </button>
                     </h2>
-                    <div id="@item1.category.id" class="accordion-collapse collapse" aria-labelledby="@item1.category.name" data-bs-parent="#accordionFlushExample">
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <table class="table table-dark table-striped">
                             <thead>
                                 <tr>
@@ -28,64 +25,23 @@
                                     <th scope="col">Farbe</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                @foreach (var item2 in item1.products)
-                                {
-                                    <p>cc</p>
-                                    <tr>
-                                        <th scope="row">LÖ</th>
-                                        <td>8</td>
-                                        <td>1</td>
-                                        <td>Dunkel</td>
-                                    </tr>
-                                }
+
+                                <tr>
+                                    <th scope="row">LÖ</th>
+                                    <td>8</td>
+                                    <td>1</td>
+                                    <td>Dunkel</td>
+                                </tr>
+
                             </tbody>
+
                         </table>
                     </div>
+
                 </div>
-            }
+            </div>
         }
-        //    @foreach (var item in Model)
-        //    {
-        //        <div class="accordion-item">
-        //            @foreach (var item1 in item.CategoryColor)
-        //            {
-        //                <h2 class="accordion-header" id="@item1.category.name">
-        //                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@item1.category.id">
-        //                        @item1.category.name
-        //                    </button>
-        //                </h2>
-        //                <div id="@item1.category.id" class="accordion-collapse collapse" aria-labelledby="@item1.category.name" data-bs-parent="#accordionFlushExample">
-        //                    <table class="table table-dark table-striped">
-        //                        <thead>
-        //                            <tr>
-        //                                <th scope="col">Bezeichnung</th>
-        //                                <th scope="col">Anzahl</th>
-        //                                <th scope="col">Min. Anzahl</th>
-        //                                <th scope="col">Farbcode</th>
-        //                                <th scope="col">Farbe</th>
-        //                            </tr>
-        //                        </thead>
-
-        //                        @foreach (var item2 in item1.products)
-        //                        {
-        //                            <tbody>
-
-        //                                <tr>
-        //                                    <th scope="row">@item2.name</th>
-        //                                    <td>@item2.value</td>
-        //                                    <td>@item2.minValue</td>
-        //                                    <td>@item2.colorCode</td>
-        //                                    <td>@item2.colorName</td>
-        //                                </tr>
-
-        //                            </tbody>
-        //                        }
-        //                    </table>
-        //                </div>
-        //            }
-
-        //        </div>
-        //    }
     }
 }
