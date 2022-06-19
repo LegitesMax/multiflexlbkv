@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<Frontend.Logic.Entities.Orders.RootOrderItem>
 @{
+    ViewData["pdfStatus"] = "open";
     if (Model.Count() == 0)
     {
         <p class="text-center">Keine offene Bestellung vorhanden</p>
     }
     else
     {
+        <a asp-action="CreateOpenPdf" type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</a>
+
         foreach (var item in Model)
         {
             foreach (var item2 in item.OrderItems)
@@ -18,3 +21,4 @@
         }
     }
 }
+<p>aaaaaaaaaaaaaaa</p>

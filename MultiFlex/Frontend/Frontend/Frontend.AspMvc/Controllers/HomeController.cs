@@ -6,8 +6,9 @@ using Newtonsoft.Json;
 using Frontend.Logic.Entities.Orders;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+//using System.Text.Encoding.CodePages.dll;
 using PdfSharp.Drawing.Layout;
-
+using System.Text;
 
 namespace Frontend.AspMvc.Controllers
 {
@@ -24,7 +25,7 @@ namespace Frontend.AspMvc.Controllers
         {
             var model = GetOrdereItems();
 
-            ViewData["orderStatus"] = "canceled";
+            ViewData["orderStatus"] = "open";
 
             return View(model);
         }
@@ -47,15 +48,60 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", GetReadyItems());
         }
 
-        public IActionResult CreatePdf(object sender, EventArgs e)
+        public IActionResult CreateOpenPdf(object sender, EventArgs e)
         {
-            var done = ExportPdf();
+            ViewData["pdfStatus"] = "open";
+            CreatePdf();
 
-            if(done == true ) ViewData["pdfStatus"] = "succses";
+            ViewData["orderStatus"] = "open";
+            return View("Index", GetOrdereItems());
+        }
+        public IActionResult CreateCanceledPdf(object sender, EventArgs e)
+        {
+            ViewData["pdfStatus"] = "canceled";
+            CreatePdf();
+
+            ViewData["orderStatus"] = "canceled";
+            return View("Index", GetCanceledItems());
+        }
+        public IActionResult CreateReadyPdf(object sender, EventArgs e)
+        {
+            ViewData["pdfStatus"] = "ready";
+            CreatePdf();
+
+            ViewData["orderStatus"] = "ready";
+            return View("Index", GetReadyItems());
+        }
+
+        public void CreatePdf()
+        {
+            bool done = false;
+
+            var test = ViewData["pdfStatus"];
+
+            if (ViewData["pdfStatus"] == "open")
+            {
+                var data = GetOrdereItems();
+                if (data != null) done = ExportPdf(data, "Offene Bestellungen");
+                else done = false;
+            }
+            if (ViewData["pdfStatus"] == "canceled")
+            {
+                var data = GetCanceledItems();
+                if (data != null) done = ExportPdf(data, "Stornierte Bestellungen");
+                else done = false;
+            }
+            if (ViewData["pdfStatus"] == "ready")
+            {
+                var data = GetReadyItems();
+                if (data != null) done = ExportPdf(data, "Versandbereite Bestellungen");
+                else done = false;
+            }
+
+            if (done == true) ViewData["pdfStatus"] = "succses";
             else ViewData["pdfStatus"] = "error";
 
-
-            return View("Index");
+            //return View("Index");
         }
 
         public IList<RootOrderItem>? GetOrdereItems()
@@ -88,12 +134,32 @@ namespace Frontend.AspMvc.Controllers
             return result;
         }
 
-        public static bool ExportPdf()
+        public static bool ExportPdf(IEnumerable<RootOrderItem> data, string status)
         {
+            var result = false;
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             //var orderController = new OrderController();
             //var data = orderController.GetOrderedOrders();
-            //var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
-            var result = false;
+            //var dataresult = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+
+            if (data == null)
+            {
+                result = false;
+            }
+            else
+            {
+                result = true;
+                foreach (var item in data)
+                {
+                    foreach (var item2 in item.OrderItems)
+                    {
+                        var a = item.ShippingAddress.Country;
+                        var b = item2.Product.SKU;
+                        var y = item2.Product.Quantity;
+
+                    }
+                }
+            }
 
             PdfDocument document = new PdfDocument();
             document.Info.Title = "DataPDF";
@@ -114,7 +180,8 @@ namespace Frontend.AspMvc.Controllers
                 format.Alignment = XStringAlignment.Near;
                 var tf = new XTextFormatter(graph);
 
-                XFont fontParagraph = new XFont("test", 12, XFontStyle.Bold);
+
+                XFont fontParagraph = new XFont("Verdana", 8, XFontStyle.BoldItalic);
 
                 // Row elements
                 int el1_width = 80;//Breite der Ersten Reihe
@@ -138,7 +205,7 @@ namespace Frontend.AspMvc.Controllers
                 XSolidBrush rect_style2 = new XSolidBrush(XColors.DarkGreen);
                 XSolidBrush rect_style3 = new XSolidBrush(XColors.Red);
 
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < data!.Count() && result != false; i++)
                 {
                     double dist_Y = lineHeight * (i + 1);
                     double dist_Y2 = dist_Y - 2;
@@ -147,13 +214,13 @@ namespace Frontend.AspMvc.Controllers
                     {
                         graph.DrawRectangle(rect_style2, marginLeft, marginTop, pdfPage.Width - 2 * marginLeft, rect_height);
 
-                        tf.DrawString("column1", fontParagraph, XBrushes.White,
+                        tf.DrawString("Land", fontParagraph, XBrushes.White,
                                       new XRect(marginLeft, marginTop, el1_width, el_height), format);
 
-                        tf.DrawString("column2", fontParagraph, XBrushes.White,
+                        tf.DrawString("SKU", fontParagraph, XBrushes.White,
                                       new XRect(marginLeft + offSetX_1 + interLine_X_1, marginTop, el2_width, el_height), format);
 
-                        tf.DrawString("column3", fontParagraph, XBrushes.White,
+                        tf.DrawString("Mänge", fontParagraph, XBrushes.White,
                                       new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, marginTop, el1_width, el_height), format);
 
                         // Erste Elemente Hier schon mitgeben
@@ -228,17 +295,17 @@ namespace Frontend.AspMvc.Controllers
             }
 
             //File.s
-            string filename = "C:\\Users\\fabsc\\Desktop\\test\\HelloWorld.pdf";
-            //document.Save(filename);
+            string filename = "C:\\Users\\fabsc\\Desktop\\test\\Create.pdf";
 
             var isExported = document.CanSave(ref filename);
 
-            if(isExported == false)
+            if (isExported == false)
             {
                 result = false;
             }
             else
             {
+                document.Save(filename);
                 result = true;
             }
 

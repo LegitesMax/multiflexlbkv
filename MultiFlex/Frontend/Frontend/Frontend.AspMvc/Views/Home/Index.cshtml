@@ -20,6 +20,8 @@
     </div>
     </div>
     </div>-->
+
+
     if (ViewData["pdfStatus"] == "succses")
     {
         <div class="alert alert-success" role="alert">
@@ -39,7 +41,7 @@
             <div class="d-flex">
                 <h2>Bestand - </h2>
 
-                <a asp-action="CreatePdf" type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</a>
+                <!--<a asp-action="CreatePdf" type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</a>-->
             </div>
             <div class="accordion accordion-flush border" id="accordionFlushExample">
                 <div class="accordion-item">
@@ -584,11 +586,13 @@
                 @{
                     if (ViewData["orderStatus"] == "open")
                     {
+                        
                         @await Html.PartialAsync("_OpenOrders")
                     }
 
                     else if (ViewData["orderStatus"] == "canceled")
                     {
+                        
                         @await Html.PartialAsync("_CancledOrders")
                     }
 

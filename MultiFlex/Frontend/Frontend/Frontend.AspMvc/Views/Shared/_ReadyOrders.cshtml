@@ -6,6 +6,8 @@
     }
     else
     {
+        <a asp-action="CreateReadyPdf" type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</a>
+        ViewData["pdfStatus"] = "ready";
         foreach (var item in Model)
         {
             foreach (var item2 in item.OrderItems)
