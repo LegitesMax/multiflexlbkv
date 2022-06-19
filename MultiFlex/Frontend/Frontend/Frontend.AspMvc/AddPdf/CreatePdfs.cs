@@ -63,7 +63,95 @@ namespace Frontend.AspMvc.AddPdf
                 XSolidBrush rect_style2 = new XSolidBrush(XColors.DarkGreen);
                 XSolidBrush rect_style3 = new XSolidBrush(XColors.Red);
 
-                
+                for (int i = 0; i < 30; i++)
+                {
+                    double dist_Y = lineHeight * (i + 1);
+                    double dist_Y2 = dist_Y - 2;
+
+                    if (i == 0) //Erster Durchgang (Header)
+                    {
+                        graph.DrawRectangle(rect_style2, marginLeft, marginTop, pdfPage.Width - 2 * marginLeft, rect_height);
+
+                        tf.DrawString("column1", fontParagraph, XBrushes.White,
+                                      new XRect(marginLeft, marginTop, el1_width, el_height), format);
+
+                        tf.DrawString("column2", fontParagraph, XBrushes.White,
+                                      new XRect(marginLeft + offSetX_1 + interLine_X_1, marginTop, el2_width, el_height), format);
+
+                        tf.DrawString("column3", fontParagraph, XBrushes.White,
+                                      new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, marginTop, el1_width, el_height), format);
+
+                        // Erste Elemente Hier schon mitgeben
+                        //text1
+                        graph.DrawRectangle(rect_style1, marginLeft, dist_Y2 + marginTop, el1_width, rect_height);
+                        tf.DrawString("text1", fontParagraph, XBrushes.Black,
+                                      new XRect(marginLeft, dist_Y + marginTop, el1_width, el_height), format);
+                        //text2
+                        graph.DrawRectangle(rect_style1, marginLeft + offSetX_1 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
+                        tf.DrawString(
+                            "text2",
+                            fontParagraph,
+                            XBrushes.Black,
+                            new XRect(marginLeft + offSetX_1 + interLine_X_1, dist_Y + marginTop, el2_width, el_height),
+                            format);
+
+
+                        //text3
+
+                        graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
+                        tf.DrawString(
+                            "text3",
+                            fontParagraph,
+                            XBrushes.Black,
+                            new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, dist_Y + marginTop, el1_width, el_height),
+                            format);
+
+
+                    }
+                    else  //Alle Anderen Durchgänge (Tabelle)
+                    {
+
+                        //if (i % 2 == 1)
+                        //{
+                        //  graph.DrawRectangle(TextBackgroundBrush, marginLeft, lineY - 2 + marginTop, pdfPage.Width - marginLeft - marginRight, lineHeight - 2);
+                        //}
+
+                        //text1
+                        graph.DrawRectangle(rect_style1, marginLeft, marginTop + dist_Y2, el1_width, rect_height);
+                        tf.DrawString(
+
+                            "text1",
+                            fontParagraph,
+                            XBrushes.Black,
+                            new XRect(marginLeft, marginTop + dist_Y, el1_width, el_height),
+                            format);
+
+                        //text2
+                        graph.DrawRectangle(rect_style1, marginLeft + offSetX_1 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
+                        tf.DrawString(
+                            "text2",
+                            fontParagraph,
+                            XBrushes.Black,
+                            new XRect(marginLeft + offSetX_1 + interLine_X_1, marginTop + dist_Y, el2_width, el_height),
+                            format);
+
+
+                        //text3
+
+                        graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
+                        tf.DrawString(
+                            "text3",
+                            fontParagraph,
+                            XBrushes.Black,
+                            new XRect(marginLeft + offSetX_2 + 2 * interLine_X_2, marginTop + dist_Y, el1_width, el_height),
+                            format);
+
+                    }
+
+                }
+
+
+            }
 
             //File.s
             const string filename = "C:\\Users\\fabsc\\Desktop\\test\\HelloWorld.pdf";
