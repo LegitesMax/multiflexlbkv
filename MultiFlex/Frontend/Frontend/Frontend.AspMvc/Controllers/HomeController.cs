@@ -23,7 +23,7 @@ namespace Frontend.AspMvc.Controllers
         public IActionResult IndexAsync()
         {
             var model = GetOrdereItems();
-            //var products = GetStorageProductsAsync();
+            var products = GetStorageProductsAsync();
 
             ViewData["orderStatus"] = "open";
 
