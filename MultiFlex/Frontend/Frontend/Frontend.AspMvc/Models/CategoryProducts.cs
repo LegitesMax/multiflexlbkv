@@ -2,8 +2,7 @@
 {
     public class CategoryProducts
     {
-        public CategoryDto category { get; set; }
-        public List<ProductDto> products { get; set; } = new();
-
+        public Category category { get; set; }
+        public List<Product> products { get; set; }
     }
 }

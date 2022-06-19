@@ -24,7 +24,7 @@ namespace Frontend.AspMvc.Controllers
         public IActionResult Index()
         {
             //HttpClient client = new HttpClient();
-            //var productJson = await client.GetStringAsync("https://demos.telerik.com/blazor-ui-service/api/Product/GetProducts%22");
+            //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/category");
 
 
 
