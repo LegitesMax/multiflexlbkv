@@ -1,4 +1,6 @@
-﻿using Frontend.AspMvc.Models;
+﻿using Billbee.Api.Client.Model;
+using CommonBase.Extensions;
+using Frontend.AspMvc.Models;
 using Frontend.Logic.Controllers;
 using Frontend.Logic.Entities.Orders;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +16,9 @@ namespace Frontend.AspMvc.Controllers
 {
     public class HomeController : Controller
     {
+
+        public static string status { get; set; } = "open";
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -24,57 +29,26 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             HttpClient client = new HttpClient();
+
             var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/categoryAndColor");
-
-
-
             var model = GetOrdereItems();
-
-            ViewData["orderStatus"] = "open";
 
             return View(model);
         }
 
         public IActionResult OpenOrders(object sender, EventArgs e)
         {
-            ViewData["orderStatus"] = "open";
+            status = "open";
             return View("Index", GetOrdereItems());
         }
-
         public IActionResult CanceledOrders(object sender, EventArgs e)
         {
-            ViewData["orderStatus"] = "canceled";
+            status = "canceled";
             return View("Index", GetCanceledItems());
         }
-
         public IActionResult ReadyOrders(object sender, EventArgs e)
         {
-            ViewData["orderStatus"] = "ready";
-            return View("Index", GetReadyItems());
-        }
-
-        public IActionResult CreateOpenPdf(object sender, EventArgs e)
-        {
-            ViewData["pdfStatus"] = "open";
-            CreatePdf();
-
-            ViewData["orderStatus"] = "open";
-            return View("Index", GetOrdereItems());
-        }
-        public IActionResult CreateCanceledPdf(object sender, EventArgs e)
-        {
-            ViewData["pdfStatus"] = "canceled";
-            CreatePdf();
-
-            ViewData["orderStatus"] = "canceled";
-            return View("Index", GetCanceledItems());
-        }
-        public IActionResult CreateReadyPdf(object sender, EventArgs e)
-        {
-            ViewData["pdfStatus"] = "ready";
-            CreatePdf();
-
-            ViewData["orderStatus"] = "ready";
+            status = "ready";
             return View("Index", GetReadyItems());
         }
 
@@ -82,21 +56,22 @@ namespace Frontend.AspMvc.Controllers
         {
             bool done = false;
 
-            var test = ViewData["pdfStatus"];
+            var test = status;
 
-            if (ViewData["pdfStatus"] == "open")
+            if (status == "open")
             {
                 var data = GetOrdereItems();
                 if (data != null) done = ExportPdf(data, "Offene Bestellungen");
+
                 else done = false;
             }
-            if (ViewData["pdfStatus"] == "canceled")
+            if (status == "canceled")
             {
                 var data = GetCanceledItems();
                 if (data != null) done = ExportPdf(data, "Stornierte Bestellungen");
                 else done = false;
             }
-            if (ViewData["pdfStatus"] == "ready")
+            if (status == "ready")
             {
                 var data = GetReadyItems();
                 if (data != null) done = ExportPdf(data, "Fertige Bestellungen");
@@ -109,37 +84,43 @@ namespace Frontend.AspMvc.Controllers
             //return View("Index");
         }
 
-        public IList<RootOrderItem>? GetOrdereItems()
+        public IList<Logic.Entities.Orders.Order>? GetOrdereItems()
         {
             var orderController = new OrderController();
             var data = orderController.GetOrderedOrders();
 
-            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
-            return result;
+            var orderResult = new List<Logic.Entities.Orders.Order>();
+            foreach (var item in result)
+            {
+                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+            }
+
+            return orderResult;
         }
 
-        public IList<RootOrderItem>? GetCanceledItems()
+        public IList<Logic.Entities.Orders.Order>? GetCanceledItems()
         {
             var orderController = new OrderController();
             var data = orderController.GetCancledOrders();
 
-            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Order>>(data);
 
             return result;
         }
 
-        public IList<RootOrderItem>? GetReadyItems()
+        public IList<Logic.Entities.Orders.Order>? GetReadyItems()
         {
             var orderController = new OrderController();
             var data = orderController.GetReadyOrders();
 
-            var result = JsonConvert.DeserializeObject<IList<RootOrderItem>>(data);
+            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Order>>(data);
 
             return result;
         }
 
-        public static bool ExportPdf(IEnumerable<RootOrderItem> data, string status)
+        public static bool ExportPdf(IEnumerable<Logic.Entities.Orders.Order> data, string status)
         {
             var result = false;
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -157,11 +138,10 @@ namespace Frontend.AspMvc.Controllers
                 {
                     foreach (var item2 in item.OrderItems)
                     {
-                        shippingadresses.Add(item.ShippingAddress.Country);
+                        shippingadresses.Add(item.ShippingAddress.Country!);
                         sku.Add(item2.Product.SKU);
                         //quantity.Add(item2.Product.Quantity);
                         quantity.Add("1");
-
                     }
                 }
             }
@@ -201,7 +181,7 @@ namespace Frontend.AspMvc.Controllers
                 XStringFormat format = new XStringFormat();
                 format.LineAlignment = XLineAlignment.Near;
                 format.Alignment = XStringAlignment.Near;
-                
+
                 var tf = new XTextFormatter(graph);
 
 
@@ -232,7 +212,7 @@ namespace Frontend.AspMvc.Controllers
 
 
                 //tf.DrawString(status, fontParagraph, XBrushes.Black, new XRect(0, 0, 250, 140), format2);
-         
+
                 tf.DrawString(status, fontParagraph1, XBrushes.Black, new XRect(170, 10, 250, 140), XStringFormats.TopLeft);
 
                 for (int i = 0; i < data!.Count() && result != false; i++)

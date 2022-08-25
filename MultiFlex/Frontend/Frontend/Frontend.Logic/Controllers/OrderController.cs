@@ -9,7 +9,7 @@ using BillBeeQueries;
 
 namespace Frontend.Logic.Controllers
 {
-    public class OrderController : GenericController<Entities.Orders.OrderItem>
+    public class OrderController : GenericController<Entities.Orders.Order>
     {
         public OrderController()
         {
@@ -26,7 +26,6 @@ namespace Frontend.Logic.Controllers
             var client = query.Login();
 
             var orders = client.Orders.GetOrderList(pageSize: 100);
-
             string result = JsonSerializer.Serialize(orders.Data);
 
             return result == null ? "Derzeit keine Bestellung" : result;

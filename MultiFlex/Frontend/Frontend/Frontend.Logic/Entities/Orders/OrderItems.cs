@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Logic.Controllers
+namespace Frontend.Logic.Entities.Orders
 {
-    public class ProductController
+    public class OrderItems
     {
+        public Product Product { get; set; }
     }
 }

@@ -1,35 +1,21 @@
 ﻿@*@CodeCopy*@
-@model IEnumerable<Frontend.Logic.Entities.Orders.RootOrderItem>
+@model IEnumerable<Frontend.Logic.Entities.Orders.Order>
 @{
     //var controller = ViewContext?.RouteData?.Values["controller"]?.ToString();
     //var action = ViewContext?.RouteData?.Values["action"]?.ToString();
     var title = "Home";
     ViewData["Title"] = title;
 
+    var pdfStatus = ViewData["pdfStatus"];
 
-    <!--<div class="container pb-5">
-    <div class="row text-center">
-    <div class="col">
-    <button type="button" class="btn btn-dark">PDF erstellen</button>
-    </div>
-    <div class="col">
-    <button type="button" class="btn btn-dark">Kritische PDF erstellen</button>
-    </div>
-    <div class="col">
-    <button type="button" class="btn btn-dark">Nachkaufen</button>
-    </div>
-    </div>
-    </div>-->
-
-
-    if (ViewData["pdfStatus"] == "succses")
+    if (pdfStatus == "succses")
     {
         <div class="alert alert-success" role="alert">
             PDF wurde erfolgreich erstellt
         </div>
     }
 
-    else if (ViewData["pdfStatus"] == "error")
+    else if (pdfStatus == "error")
     {
         <div class="alert alert-danger" role="alert">
             Fehler beim erstellen der PDF
@@ -40,8 +26,6 @@
         <div class="w-75 mx-4">
             <div class="d-flex">
                 <h2>Bestand</h2>
-
-                <!--<a asp-action="CreatePdf" type="button" class="btn btn-dark mx-2 my-3">PDF erstellen</a>-->
             </div>
             <div class="accordion accordion-flush border" id="accordionFlushExample">
                 <div class="accordion-item">
@@ -586,25 +570,24 @@
                 @{
                     if (ViewData["orderStatus"] == "open")
                     {
-                        
-                        @await Html.PartialAsync("_OpenOrders")
+                        ViewData["pdfStatus"] = "open";
                     }
 
-                    else if (ViewData["orderStatus"] == "canceled")
+                    if (ViewData["orderStatus"] == "canceled")
                     {
-                        
-                        @await Html.PartialAsync("_CancledOrders")
+                        ViewData["pdfStatus"] = "canceled";
                     }
 
-                    else if (ViewData["orderStatus"] == "ready")
+                    if (ViewData["orderStatus"] == "ready")
                     {
-                        @await Html.PartialAsync("_ReadyOrders")
+                        ViewData["pdfStatus"] = "ready";
                     }
 
-                    else if (ViewData["orderStatus"] == string.Empty)
+                    if (ViewData["orderStatus"] == string.Empty)
                     {
                         <p>Ein Fehler ist aufgetreten</p>
                     }
+                    @await Html.PartialAsync("_CancledOrders")
                 }
             </ul>
         </div>
