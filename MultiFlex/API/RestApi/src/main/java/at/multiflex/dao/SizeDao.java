@@ -1,10 +1,8 @@
 package at.multiflex.dao;
 
-import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.SizeDto;
-import at.multiflex.mapper.CategoryMapper;
-import at.multiflex.mapper.SizeMapper;
-import at.multiflex.repository.CategoryRepository;
+import at.multiflex.mapper.ObjectMapper;
+import at.multiflex.model.Size;
 import at.multiflex.repository.SizeRepository;
 
 import javax.enterprise.context.Dependent;
@@ -12,6 +10,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
@@ -19,15 +18,13 @@ import java.util.List;
 public class SizeDao {@Inject
     SizeRepository repository;
 
-    @Inject
-    SizeMapper mapper;
-
     //<editor-fold desc="Get">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<SizeDto> getAll() {
         var entities = repository.loadAll();
-        return mapper.toDto(entities);
+
+        return toDto(entities);
     }
 
     @GET
@@ -35,7 +32,7 @@ public class SizeDao {@Inject
     @Path("/{id}")
     public SizeDto getById(Integer id) {
         var entity = repository.findById(id);
-        return mapper.toDto(entity);
+        return ObjectMapper.MAPPER.toDto(entity);
     }
     //</editor-fold>
     //<editor-fold desc="Post">
@@ -43,7 +40,7 @@ public class SizeDao {@Inject
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
     public Response add(SizeDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -66,9 +63,21 @@ public class SizeDao {@Inject
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(SizeDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.update(entity);
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
+
+    public List<SizeDto> toDto(List<Size> entities) {
+        var dtos = new ArrayList<SizeDto>();
+        entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
+        return dtos;
+    }
+
+    public List<Size> fromDto(List<SizeDto> dtos) {
+        var result = new ArrayList<Size>();
+        dtos.forEach(x -> result.add(ObjectMapper.MAPPER.fromDto(x)));
+        return result;
+    }
 }

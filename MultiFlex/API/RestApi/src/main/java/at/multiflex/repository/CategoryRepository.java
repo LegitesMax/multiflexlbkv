@@ -1,7 +1,6 @@
 package at.multiflex.repository;
 
 import at.multiflex.model.Category;
-import at.multiflex.model.Color;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;

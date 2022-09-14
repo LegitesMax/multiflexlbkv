@@ -1,17 +1,16 @@
 package at.multiflex.dao;
 
 import at.multiflex.dto.CategoryDto;
-import at.multiflex.dto.ColorDto;
-import at.multiflex.mapper.CategoryMapper;
-import at.multiflex.mapper.ColorMapper;
+import at.multiflex.mapper.ObjectMapper;
+import at.multiflex.model.Category;
 import at.multiflex.repository.CategoryRepository;
-import at.multiflex.repository.ColorRepository;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
@@ -20,15 +19,13 @@ public class CategoryDao {
     @Inject
     CategoryRepository repository;
 
-    @Inject
-    CategoryMapper mapper;
-
     //<editor-fold desc="Get">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<CategoryDto> getAll() {
         var entities = repository.loadAll();
-        return mapper.toDto(entities);
+
+        return toDto(entities);
     }
 
     @GET
@@ -36,7 +33,7 @@ public class CategoryDao {
     @Path("/{name}")
     public CategoryDto getByName(String name) {
         var entities = repository.findByName(name);
-        return mapper.toDto(entities);
+        return ObjectMapper.MAPPER.toDto(entities);
     }
 
     @GET
@@ -44,7 +41,7 @@ public class CategoryDao {
     @Path("/{id}")
     public CategoryDto getById(Integer id) {
         var entity = repository.findById(id);
-        return mapper.toDto(entity);
+        return ObjectMapper.MAPPER.toDto(entity);
     }
     //</editor-fold>
     //<editor-fold desc="Post">
@@ -52,7 +49,7 @@ public class CategoryDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
     public Response add(CategoryDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -75,9 +72,14 @@ public class CategoryDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(CategoryDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.update(entity);
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
+    public List<CategoryDto> toDto(List<Category> entities) {
+        var dtos = new ArrayList<CategoryDto>();
+        entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
+        return dtos;
+    }
 }

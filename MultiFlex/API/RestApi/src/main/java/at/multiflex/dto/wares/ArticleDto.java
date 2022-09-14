@@ -15,7 +15,7 @@ public class ArticleDto {
 
     private String name;
 
-    private Integer Value;
+    private Integer value;
 
     private Integer minValue;
     //</editor-fold>

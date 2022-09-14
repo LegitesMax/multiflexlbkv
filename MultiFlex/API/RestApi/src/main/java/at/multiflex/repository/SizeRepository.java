@@ -1,6 +1,5 @@
 package at.multiflex.repository;
 
-import at.multiflex.model.Category;
 import at.multiflex.model.Size;
 
 import javax.enterprise.context.ApplicationScoped;

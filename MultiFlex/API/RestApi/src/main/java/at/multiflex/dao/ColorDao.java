@@ -1,7 +1,8 @@
 package at.multiflex.dao;
 
 import at.multiflex.dto.ColorDto;
-import at.multiflex.mapper.ColorMapper;
+import at.multiflex.mapper.ObjectMapper;
+import at.multiflex.model.Color;
 import at.multiflex.repository.ColorRepository;
 
 import javax.enterprise.context.Dependent;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
@@ -17,15 +19,12 @@ public class ColorDao {
     @Inject
     ColorRepository repository;
 
-    @Inject
-    ColorMapper mapper;
-
     //<editor-fold desc="Get">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<ColorDto> getAll() {
         var entities = repository.loadAll();
-        return mapper.toDto(entities);
+        return toDto(entities);
     }
 
     @GET
@@ -33,7 +32,7 @@ public class ColorDao {
     @Path("/{name}")
     public ColorDto getByName(String name) {
         var entities = repository.findByName(name);
-        return mapper.toDto(entities);
+        return ObjectMapper.MAPPER.toDto(entities);
     }
 
     @GET
@@ -41,7 +40,7 @@ public class ColorDao {
     @Path("/{id}")
     public ColorDto getById(Integer id) {
         var entity = repository.findById(id);
-        return mapper.toDto(entity);
+        return ObjectMapper.MAPPER.toDto(entity);
     }
     //</editor-fold>
     //<editor-fold desc="Post">
@@ -49,7 +48,7 @@ public class ColorDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
     public Response add(ColorDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -72,9 +71,14 @@ public class ColorDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(ColorDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.update(entity);
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
+    public List<ColorDto> toDto(List<Color> entities) {
+        var dtos = new ArrayList<ColorDto>();
+        entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
+        return dtos;
+    }
 }

@@ -1,13 +1,11 @@
 package at.multiflex.model.Wares;
 
-import at.multiflex.model.Color;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -25,7 +23,7 @@ public class Article {
     private String name;
 
     @Column(nullable = false)
-    private Integer Value;
+    private Integer value;
 
     @Column(nullable = false)
     private Integer minValue;
