@@ -1,9 +1,5 @@
 package at.multiflex.dao.wares;
 
-import at.multiflex.dao.logic.ProductLogic;
-import at.multiflex.dto.traffic.CategoryColorProducts;
-import at.multiflex.dto.traffic.CategoryProducts;
-import at.multiflex.dto.traffic.ColorProducts;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Wares.Product;
@@ -23,9 +19,6 @@ public class ProductDao {
     @Inject
     ProductRepository repository;
 
-    @Inject
-    ProductLogic productLogic;
-
     //<editor-fold desc="Get">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -40,52 +33,6 @@ public class ProductDao {
     public List<ProductDto> getByName(String name) {
         var entities = repository.findByName(name);
         return toDto(entities);
-    }
-
-    //<editor-fold desc="CategoryProduct">
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/category/name/{name}")
-    public CategoryProducts getByCategoryName(String name) {
-        return productLogic.getProductsByByCategory(name);
-    }
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/category/acronym/{acronym}")
-    public CategoryProducts getByCategoryAcronym(String acronym) {
-        return productLogic.getProductsByByCategoryAcronym(acronym);
-    }
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/category")
-    public List<CategoryProducts> getAllByCategory() {
-        return productLogic.getAllProductsByByCategory();
-    }
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/categoryAndColor")
-    public List<CategoryColorProducts> getAllByCategoryAndColor() {
-        return productLogic.getAllProductsByCategoryAndByColor();
-    }
-    //</editor-fold>
-    //<editor-fold desc="ColorProduct">
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/Color/name/{name}")
-    public ColorProducts getByColorName(String name) {
-        return productLogic.getProductsByByColor(name);
-    }
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/Color/acronym/{acronym}")
-    public ColorProducts getByColorAcronym(String acronym) {
-        return productLogic.getProductsByByColorAcronym(acronym);
-    }
-    @GET
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/Color")
-    public List<ColorProducts> getAllByColor (){
-        return productLogic.getAllProductsByByColor();
     }
     //</editor-fold>*/
     @GET
