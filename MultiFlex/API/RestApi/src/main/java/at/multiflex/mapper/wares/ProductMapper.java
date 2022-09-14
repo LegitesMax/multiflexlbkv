@@ -31,20 +31,6 @@ public class ProductMapper {
     }
     public Product fromDto(ProductDto dto) {
         var entity = om.fromDto(dto);
-
-        if (dto.getMaterial_ids() != null){
-            entity.getMaterial_ids().forEach(x -> entity.getMaterials().add(materialRepository.findById(x)));
-        }
-        if (dto.getColor_id() != null){
-            entity.setColor(colorRepository.findById(dto.getColor_id()));
-        }
-        if (dto.getCategory_id() != null){
-            entity.setCategory(categoryRepository.findById(dto.getCategory_id()));
-        }
-        if (dto.getSize_id() != null){
-            entity.setSize(sizeRepository.findById(dto.getSize_id()));
-        }
-
         return entity;
     }
 

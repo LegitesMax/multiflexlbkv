@@ -14,6 +14,7 @@ import at.multiflex.model.Wares.Material;
 import at.multiflex.model.Wares.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 @Mapper(componentModel = "cdi")
 public interface ObjectMapper {
@@ -31,12 +32,28 @@ public interface ObjectMapper {
 
     @Mapping(target = "id")
     Material fromDto(MaterialDto entity);
+
+    @Named("toDtoIgnoreParent")
+    //@Mapping(target = "products", ignore = true)
+    MaterialDto toDtoIgnoreParent(Material entity);
+
+    @Named("fromDtoIgnoreParent")
+    //@Mapping(target = "products", ignore = true)
+    Material fromDtoIgnoreParent(MaterialDto entity);
     //</editor-fold>
     //<editor-fold desc="Product">
-    @Mapping(target = "id")
+    //@Mapping(target = "id")
+    @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
+    //@Mapping(target = "materials", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "category", qualifiedByName = {"toDtoIgnoreParent"})
     ProductDto toDto(Product entity);
 
-    @Mapping(target = "id")
+    //@Mapping(target = "id")
+    @Mapping(target = "size", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "color", qualifiedByName = {"fromDtoIgnoreParent"})
+    //@Mapping(target = "materials", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "category", qualifiedByName = {"fromDtoIgnoreParent"})
     Product fromDto(ProductDto entity);
     //</editor-fold>
     //</editor-fold>
@@ -46,6 +63,14 @@ public interface ObjectMapper {
 
     @Mapping(target = "id")
     Color fromDto(ColorDto entity);
+
+    @Named("toDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    ColorDto toDtoIgnoreParent(Color entity);
+
+    @Named("fromDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    Color fromDtoIgnoreParent(ColorDto entity);
     //</editor-fold>
     //<editor-fold desc="Category">
     @Mapping(target = "id")
@@ -53,6 +78,14 @@ public interface ObjectMapper {
 
     @Mapping(target = "id")
     Category fromDto(CategoryDto entity);
+
+    @Named("toDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    CategoryDto toDtoIgnoreParent(Category entity);
+
+    @Named("fromDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    Category fromDtoIgnoreParent(CategoryDto entity);
     //</editor-fold>
     //<editor-fold desc="Size">
     @Mapping(target = "id")
@@ -60,6 +93,14 @@ public interface ObjectMapper {
 
     @Mapping(target = "id")
     Size fromDto(SizeDto entity);
+
+    @Named("toDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    SizeDto toDtoIgnoreParent(Size entity);
+
+    @Named("fromDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    Size fromDtoIgnoreParent(SizeDto entity);
     //</editor-fold>
 }
 

@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,5 +16,7 @@ import java.util.List;
 public class MaterialDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
     private List<Integer> product_ids;
+
+    //private Set<ProductDto> products = new HashSet<>();
     //</editor-fold>
 }
