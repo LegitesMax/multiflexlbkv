@@ -1,13 +1,14 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.dao.logic.ProductLogic;
+import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.traffic.CategoryColorProducts;
 import at.multiflex.dto.traffic.CategoryProducts;
 import at.multiflex.dto.traffic.ColorProducts;
 import at.multiflex.dto.wares.ProductDto;
-import at.multiflex.mapper.wares.ProductMapper;
+import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Category;
-import at.multiflex.repository.CategoryRepository;
+import at.multiflex.model.Wares.Product;
 import at.multiflex.repository.wares.ProductRepository;
 
 import javax.enterprise.context.Dependent;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
@@ -24,9 +26,6 @@ public class ProductDao {
     ProductRepository repository;
 
     @Inject
-    ProductMapper mapper;
-
-    @Inject
     ProductLogic productLogic;
 
     //<editor-fold desc="Get">
@@ -34,7 +33,7 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<ProductDto> getAll() {
         var entities = repository.loadAll();
-        return mapper.toDto(entities);
+        return toDto(entities);
     }
 
     @GET
@@ -42,8 +41,9 @@ public class ProductDao {
     @Path("/{name}")
     public List<ProductDto> getByName(String name) {
         var entities = repository.findByName(name);
-        return mapper.toDto(entities);
+        return toDto(entities);
     }
+
     //<editor-fold desc="CategoryProduct">
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -89,13 +89,13 @@ public class ProductDao {
     public List<ColorProducts> getAllByColor (){
         return productLogic.getAllProductsByByColor();
     }
-    //</editor-fold>
+    //</editor-fold>*/
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
     public ProductDto getById(Integer id) {
         var entity = repository.findById(id);
-        return mapper.toDto(entity);
+        return ObjectMapper.MAPPER.toDto(entity);
     }
     //</editor-fold>
     //<editor-fold desc="Post">
@@ -103,7 +103,7 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
     public Response add(ProductDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -126,9 +126,14 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(ProductDto dto) {
-        var entity = mapper.fromDto(dto);
+        var entity = ObjectMapper.MAPPER.fromDto(dto);
         repository.update(entity);
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
+    public List<ProductDto> toDto(List<Product> entities) {
+        var dtos = new ArrayList<ProductDto>();
+        entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
+        return dtos;
+    }
 }
