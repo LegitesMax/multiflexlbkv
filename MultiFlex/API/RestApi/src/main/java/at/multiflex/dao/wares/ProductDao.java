@@ -1,13 +1,11 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.dao.logic.ProductLogic;
-import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.traffic.CategoryColorProducts;
 import at.multiflex.dto.traffic.CategoryProducts;
 import at.multiflex.dto.traffic.ColorProducts;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.ObjectMapper;
-import at.multiflex.model.Category;
 import at.multiflex.model.Wares.Product;
 import at.multiflex.repository.wares.ProductRepository;
 

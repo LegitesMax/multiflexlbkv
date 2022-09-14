@@ -1,10 +1,8 @@
 package at.multiflex.dao;
 
 import at.multiflex.dto.CategoryDto;
-import at.multiflex.dto.ColorDto;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Category;
-import at.multiflex.model.Color;
 import at.multiflex.repository.CategoryRepository;
 
 import javax.enterprise.context.Dependent;

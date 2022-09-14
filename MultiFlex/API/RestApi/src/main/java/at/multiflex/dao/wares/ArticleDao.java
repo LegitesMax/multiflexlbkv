@@ -1,10 +1,8 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.dto.wares.ArticleDto;
-import at.multiflex.dto.wares.MaterialDto;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Wares.Article;
-import at.multiflex.model.Wares.Material;
 import at.multiflex.repository.wares.ArticleRepository;
 
 import javax.enterprise.context.Dependent;

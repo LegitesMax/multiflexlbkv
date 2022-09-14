@@ -1,7 +1,5 @@
 package at.multiflex.mapper;
 
-import at.multiflex.dto.CategoryDto;
-
 import java.util.List;
 
 public class MappingHelper {

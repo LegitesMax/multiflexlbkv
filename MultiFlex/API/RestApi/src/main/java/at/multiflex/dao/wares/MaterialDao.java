@@ -1,10 +1,7 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.dto.wares.MaterialDto;
-import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.ObjectMapper;
-import at.multiflex.model.Wares.Material;
-import at.multiflex.model.Wares.Product;
 import at.multiflex.repository.wares.MaterialRepository;
 
 import javax.enterprise.context.Dependent;
@@ -12,7 +9,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
