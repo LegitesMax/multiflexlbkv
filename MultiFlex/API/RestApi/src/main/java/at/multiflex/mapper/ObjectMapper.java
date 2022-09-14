@@ -16,6 +16,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.List;
+import java.util.Set;
+
 @Mapper(componentModel = "cdi")
 public interface ObjectMapper {
     //<editor-fold desc="Wares">
@@ -45,14 +48,14 @@ public interface ObjectMapper {
     //@Mapping(target = "id")
     @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
-    //@Mapping(target = "materials", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "materials", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "category", qualifiedByName = {"toDtoIgnoreParent"})
     ProductDto toDto(Product entity);
 
     //@Mapping(target = "id")
     @Mapping(target = "size", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"fromDtoIgnoreParent"})
-    //@Mapping(target = "materials", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "materials", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "category", qualifiedByName = {"fromDtoIgnoreParent"})
     Product fromDto(ProductDto entity);
     //</editor-fold>
@@ -102,5 +105,36 @@ public interface ObjectMapper {
     @Mapping(target = "products", ignore = true)
     Size fromDtoIgnoreParent(SizeDto entity);
     //</editor-fold>
+    //region Lists
+    //<editor-fold desc="Material">
+    @Mapping(target = "id")
+    List<MaterialDto> toDto(List<Material> entity);
+
+    @Mapping(target = "id")
+    List<Material> fromDto(List<MaterialDto> entity);
+
+    @Named("toDtoIgnoreParent")
+        @Mapping(target = "products", ignore = true)
+    List<MaterialDto> toDtoIgnoreParent(List<Material> entity);
+
+    @Named("fromDtoIgnoreParent")
+        @Mapping(target = "products", ignore = true)
+    List<Material> fromDtoIgnoreParent(List<MaterialDto> entity);
+
+    @Mapping(target = "id")
+    Set<MaterialDto> toDto(Set<Material> entity);
+
+    @Mapping(target = "id")
+    Set<Material> fromDto(Set<MaterialDto> entity);
+
+    @Named("toDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    Set<MaterialDto> toDtoIgnoreParent(Set<Material> entity);
+
+    @Named("fromDtoIgnoreParent")
+    @Mapping(target = "products", ignore = true)
+    Set<Material> fromDtoIgnoreParent(Set<MaterialDto> entity);
+    //</editor-fold>
+    //endregion
 }
 

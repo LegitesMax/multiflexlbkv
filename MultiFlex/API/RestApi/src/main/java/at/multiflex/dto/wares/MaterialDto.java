@@ -17,6 +17,6 @@ public class MaterialDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
     private List<Integer> product_ids;
 
-    //private Set<ProductDto> products = new HashSet<>();
+    private Set<ProductDto> products = new HashSet<>();
     //</editor-fold>
 }
