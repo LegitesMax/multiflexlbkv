@@ -15,8 +15,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class MaterialDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
-    private List<Integer> product_ids;
-
     private Set<ProductDto> products = new HashSet<>();
     //</editor-fold>
 }

@@ -84,25 +84,6 @@ public class ProductLogic {
         return cp;
     }
 
-    //public List<CategoryColorProducts> getAllProductsByCategoryAndByColor(){
-    //    var products = productRepository.loadAll();
-    //    var color = new ArrayList<Color>();
-    //    var category = new ArrayList<Color>();
-//
-    //    products.forEach(x -> {
-    //
-    //    });
-//
-    //    var entities = colorRepository.loadAll();
-    //    var cp = new ArrayList<CategoryColorProducts>();
-    //    entities.forEach(x -> {
-    //        var products = productRepository.findByColor(x.getName());
-    //        cp.add(new ColorProducts(colorMapper.toDto(x), productMapper.toDto(products)));
-    //    });
-//
-//
-    //    return cp;
-    //}
     public List<CategoryColorProducts> getAllProductsByCategoryAndByColor(){
 
         var category = categoryRepository.loadAll();
@@ -118,7 +99,6 @@ public class ProductLogic {
                 productWithColor.setId(y.getId());
                 productWithColor.setValue(y.getValue());
                 productWithColor.setMinValue(y.getMinValue());
-                productWithColor.setMaterial_ids(y.getMaterial_ids());
 
                 productWithColor.setColorCode(color.getColorCode());
                 productWithColor.setColorName(color.getName());

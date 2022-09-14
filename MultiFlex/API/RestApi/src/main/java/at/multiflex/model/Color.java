@@ -29,28 +29,8 @@ public class Color {
     @Column(nullable = false, length = 64, unique = true)
     private String colorCode;
     //</editor-fold>
-    //<editor-fold desc="Navigation Help">
-        //<editor-fold desc="Transient Fields">
-    @Transient
-    //private List<Integer> article_ids = configurateProductIds();
-    private List<Integer> product_ids = configurateProductIds();
-        //</editor-fold>
-        //<editor-fold desc="Relation">
+    //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "color")
     private Set<Product> products = new java.util.LinkedHashSet<>();
-        //</editor-fold>
-        //<editor-fold desc="Transient Field configuration">
-    private List<Integer> configurateProductIds(){
-        if (getProducts() != null){
-            return getProducts().stream().map(x -> x.getId()).collect(Collectors.toList());
-        }
-        return new ArrayList<>();
-    }
-
-    public List<Integer> getProduct_ids() {
-        configurateProductIds();
-        return product_ids;
-    }
-    //</editor-fold>
     //</editor-fold>
 }

@@ -25,8 +25,6 @@ public class CategoryDto {
 
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    private List<Integer> product_ids = new ArrayList<>();
-
     private Set<ProductDto> products = new HashSet<>();
     //</editor-fold>
 }
