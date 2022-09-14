@@ -25,7 +25,7 @@ public class Article {
     private String name;
 
     @Column(nullable = false)
-    private Integer Value;
+    private Integer value;
 
     @Column(nullable = false)
     private Integer minValue;

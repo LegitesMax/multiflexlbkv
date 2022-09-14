@@ -12,15 +12,15 @@ import at.multiflex.model.Size;
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Material;
 import at.multiflex.model.Wares.Product;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 import java.util.Set;
 
-@Mapper(componentModel = "cdi")
+@Mapper(componentModel = "cdi",
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ObjectMapper {
     ObjectMapper MAPPER = Mappers.getMapper( ObjectMapper.class );
     //<editor-fold desc="Wares">
