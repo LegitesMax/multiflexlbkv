@@ -8,7 +8,7 @@ namespace Frontend.AspMvc.Extensions
     {
         public static void Set<T>(this ISession session, string key, T? value)
         {
-            string strValue = JsonSerializer.Serialize(value);
+            string strValue = System.Text.Json.JsonSerializer.Serialize(value);
 
             session.SetString(key, strValue);
         }
@@ -17,7 +17,7 @@ namespace Frontend.AspMvc.Extensions
         {
             var strValue = session.GetString(key);
 
-            return strValue == null ? default : JsonSerializer.Deserialize<T>(strValue);
+            return strValue == null ? default : System.Text.Json.JsonSerializer.Deserialize<T>(strValue);
         }
     }
 }
