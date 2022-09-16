@@ -291,7 +291,8 @@ namespace Frontend.AspMvc.Controllers
 
             }
 
-            string filename = $"C:\\Users\\{Environment.UserName}\\Downloads\\{status}.pdf";
+            //string filename = $"C:\\Users\\{Environment.UserName}\\Downloads\\{status}.pdf";
+            string filename = Environment.GetEnvironmentVariable("USERPROFILE") + $@"\Downloads\{status}.pdf";
 
             var isExported = document.CanSave(ref filename);
 

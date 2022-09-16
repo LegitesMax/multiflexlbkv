@@ -28,8 +28,8 @@ namespace BillBeeQueries
             //loaclfile
             //string configPath = @"C:\Users\zeili\Desktop\tmp\psw.json";
             //string configPath = @"C:\Users\fabsc\Desktop\tmp\psw.json";
-            string configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\psw.json";
-            Console.WriteLine(Environment.GetEnvironmentVariable("USERPROFILE"));
+            string configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
+
             ApiClient client;
 
             if (File.Exists(configPath))
