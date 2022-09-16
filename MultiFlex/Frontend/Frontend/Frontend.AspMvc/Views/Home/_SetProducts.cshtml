@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Frontend.AspMvc.Models.Product>
+
+@foreach(var item in Model)
+{
+    <tr>
+        <th scope="row">@item.Name</th>
+        <td>@item.Value</td>
+        <td>@item.MinValue</td>
+        <td>@item.Color.Name</td>
+    </tr>
+}

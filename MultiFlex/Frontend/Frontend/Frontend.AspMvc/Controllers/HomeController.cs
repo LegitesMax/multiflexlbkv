@@ -31,8 +31,8 @@ namespace Frontend.AspMvc.Controllers
             HttpClient client = new HttpClient();
 
             Model model = new Model();
-            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/");
-            model.Products = JsonConvert.DeserializeObject<List<Models.Product>>(productJson);
+            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
+            model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
             model.Orders = GetOrdereItems();
 
             
