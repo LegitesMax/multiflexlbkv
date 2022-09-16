@@ -1,5 +1,5 @@
 ﻿@*@CodeCopy*@
-@model IEnumerable<Frontend.Logic.Entities.Orders.Order>
+@model Frontend.AspMvc.Models.Model
 @{
     //var controller = ViewContext?.RouteData?.Values["controller"]?.ToString();
     //var action = ViewContext?.RouteData?.Values["action"]?.ToString();
@@ -587,7 +587,7 @@
                     {
                         <p>Ein Fehler ist aufgetreten</p>
                     }
-                    @await Html.PartialAsync("_CancledOrders")
+                    @await Html.PartialAsync("_CancledOrders", Model.Orders);
                 }
             </ul>
         </div>

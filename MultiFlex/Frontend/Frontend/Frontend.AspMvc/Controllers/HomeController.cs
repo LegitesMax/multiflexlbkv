@@ -30,8 +30,12 @@ namespace Frontend.AspMvc.Controllers
         {
             HttpClient client = new HttpClient();
 
+            Model model = new Model();
             var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Product/");
-            var model = GetOrdereItems();
+            model.Products = JsonConvert.DeserializeObject<List<Models.Product>>(productJson);
+            model.Orders = GetOrdereItems();
+
+            
 
             return View(model);
         }
