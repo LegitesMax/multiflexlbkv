@@ -24,48 +24,52 @@
 
     <div class="w-100 d-flex">
         <div class="w-75 mx-4">
-        <div class="d-flex">
-            <h2>Bestand</h2>
-        </div>
+            <div class="d-flex">
+                <h2>Bestand</h2>
+            </div>
             <div class="accordion accordion-flush border" id="accordionFlushExample">
-               @{
-                   // @await Html.PartialAsync("_SetCategories", Model.Categories);
+                @{
+                    // @await Html.PartialAsync("_SetCategories", Model.Categories);
                 }
                 @{
-                @foreach (var item in Model.Categories)
-                {
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                @item.Name - @item.Products.Sum(x => x.Value)Stk
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <table class="table table-dark table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Bezeichnung</th>
-                                        <th scope="col">Anzahl</th>
-                                        <th scope="col">Min. Anzahl</th>
-                                        <th scope="col">Farbe</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach(var product in @item.Products)
-                                    {
+                    @foreach (var item in Model.Categories)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    @item.Name - @item.Products.Sum(x => x.Value)Stk
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <table class="table table-dark table-striped">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">@product.Name</th>
-                                            <td>@product.Value</td>
-                                            <td>@product.MinValue</td>
-                                            <td>@product.Color.Name</td>
+                                            <th scope="col">Bezeichnung</th>
+                                            <th scope="col">Anzahl</th>
+                                            <th scope="col">Min. Anzahl</th>
+                                            <th scope="col">Farbe</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in @item.Products)
+                                        {
+                                            <tr>
+                                                <th scope="row">@product.Name</th>
+                                                <td>@product.Value</td>
+                                                <td>@product.MinValue</td>
+                                                <td>@product.Color.Name</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+
+                        
+                    }
                 }
-                }
+
+
             </div>
         </div>
 
@@ -98,7 +102,8 @@
                     {
                         <p>Ein Fehler ist aufgetreten</p>
                     }
-                    @await Html.PartialAsync("_CancledOrders", Model.Orders);
+                    @await Html.PartialAsync("_CancledOrders", Model.Orders)
+                    ;
                 }
             </ul>
         </div>
