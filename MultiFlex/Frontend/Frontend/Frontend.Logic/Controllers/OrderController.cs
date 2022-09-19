@@ -37,7 +37,7 @@ namespace Frontend.Logic.Controllers
             var client = query.Login();
 
             var orderState = new List<OrderStateEnum>() { OrderStateEnum.Zahlung_erhalten};
-            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);
+            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 500);
 
             string result = JsonSerializer.Serialize(orders.Data);
 
