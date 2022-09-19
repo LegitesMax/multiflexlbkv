@@ -145,6 +145,8 @@ namespace Frontend.AspMvc.Controllers
             var orderResult = new List<Logic.Entities.Orders.Order>();
             foreach (var item in result)
             {
+                var order = new OrderItems[] { item.OrderItems[0] };
+                item.OrderItems = order;
                 orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
             }
 
