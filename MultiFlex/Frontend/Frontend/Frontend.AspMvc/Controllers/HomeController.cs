@@ -20,43 +20,54 @@ namespace Frontend.AspMvc.Controllers
         public static string status { get; set; } = "open";
 
         private readonly ILogger<HomeController> _logger;
+        public Model Model { get; set; } = new();
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+        public async Task SetCategoriesAsync()
+        {
+            HttpClient client = new HttpClient();
+            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
+            Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+        }
 
         public async Task<IActionResult> IndexAsync()
         {
-            HttpClient client = new HttpClient();
-
-            Model model = new Model();
-            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
-            model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-            model.Orders = GetOrdereItems();
-
+            //HttpClient client = new HttpClient();
+            //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
+            //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
             
 
-            return View(model);
+            return View(Model);
         }
 
-        public IActionResult OpenOrders(object sender, EventArgs e)
+        public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
         {
             status = "open";
-            return View("Index", GetOrdereItems());
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+            return View("Index", Model);
         }
-        public IActionResult CanceledOrders(object sender, EventArgs e)
+        public async Task<IActionResult> CanceledOrdersAsync(object sender, EventArgs e)
         {
             status = "canceled";
-            return View("Index", GetCanceledItems());
+            Model.Orders = GetCanceledItems();
+            await SetCategoriesAsync();
+            return View("Index", Model);
         }
-        public IActionResult ReadyOrders(object sender, EventArgs e)
+        public async Task<IActionResult> ReadyOrdersAsync(object sender, EventArgs e)
         {
             status = "ready";
-            return View("Index", GetReadyItems());
+            Model.Orders = GetReadyItems();
+            await SetCategoriesAsync();
+            return View("Index", Model);
         }
 
-        public void CreatePdf()
+        public async Task<ViewResult> CreatePdfAsync()
         {
             bool done = false;
 
@@ -65,6 +76,7 @@ namespace Frontend.AspMvc.Controllers
             if (status == "open")
             {
                 var data = GetOrdereItems();
+                Model.Orders = data;
                 if (data != null) done = ExportPdf(data, "Offene Bestellungen");
 
                 else done = false;
@@ -72,12 +84,14 @@ namespace Frontend.AspMvc.Controllers
             if (status == "canceled")
             {
                 var data = GetCanceledItems();
+                Model.Orders = data;
                 if (data != null) done = ExportPdf(data, "Stornierte Bestellungen");
                 else done = false;
             }
             if (status == "ready")
             {
                 var data = GetReadyItems();
+                Model.Orders = data;
                 if (data != null) done = ExportPdf(data, "Fertige Bestellungen");
                 else done = false;
             }
@@ -85,7 +99,8 @@ namespace Frontend.AspMvc.Controllers
             if (done == true) ViewData["pdfStatus"] = "succses";
             else ViewData["pdfStatus"] = "error";
 
-            //return View("Index");
+            await SetCategoriesAsync();
+            return View("Index", Model);
         }
 
         public IList<Logic.Entities.Orders.Order>? GetOrdereItems()
@@ -109,9 +124,15 @@ namespace Frontend.AspMvc.Controllers
             var orderController = new OrderController();
             var data = orderController.GetCancledOrders();
 
-            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Order>>(data);
+            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
-            return result;
+            var orderResult = new List<Logic.Entities.Orders.Order>();
+            foreach (var item in result)
+            {
+                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+            }
+
+            return orderResult;
         }
 
         public IList<Logic.Entities.Orders.Order>? GetReadyItems()
@@ -119,9 +140,15 @@ namespace Frontend.AspMvc.Controllers
             var orderController = new OrderController();
             var data = orderController.GetReadyOrders();
 
-            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Order>>(data);
+            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
-            return result;
+            var orderResult = new List<Logic.Entities.Orders.Order>();
+            foreach (var item in result)
+            {
+                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+            }
+
+            return orderResult;
         }
 
         public static bool ExportPdf(IEnumerable<Logic.Entities.Orders.Order> data, string status)
