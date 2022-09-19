@@ -36,7 +36,7 @@
                     @foreach (var item in Model.Categories)
                     {
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-heading@i">
+                            <h2 class="accordion-header" id="flush-heading-@i">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@i" aria-expanded="false" aria-controls="flush-collapse-@i">
                                     @item.Name - @item.Products.Sum(x => x.Value)Stk
                                 </button>
