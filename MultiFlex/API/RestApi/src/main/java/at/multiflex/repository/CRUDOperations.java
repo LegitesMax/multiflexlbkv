@@ -10,6 +10,9 @@ import javax.transaction.Transactional;
  */
 @ApplicationScoped
 public class CRUDOperations {
+    /**
+     * The EntityManager
+     */
     @Inject
     protected EntityManager em;
 

@@ -71,7 +71,12 @@ public interface ObjectMapper {
     @Named("toDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     MaterialDto toDtoIgnoreParent(Material entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     *  while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     Material fromDtoIgnoreParent(MaterialDto entity);
