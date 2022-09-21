@@ -23,7 +23,6 @@ public class ArticleDao {
     ArticleRepository repository;
 
     //<editor-fold desc="Get">
-
     /**
      * This gets all entities with this type from the Database and returns a list with them
      * @return a list with all ArticleDtos
@@ -60,7 +59,6 @@ public class ArticleDao {
     }
     //</editor-fold>
     //<editor-fold desc="Post">
-
     /**
      * transforms a given dto to an entity and adds it into the database
      * @param dto A dto to insert into the database
@@ -108,7 +106,6 @@ public class ArticleDao {
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
-
     /**
      * Method to transform a list of Article entities to a dto
      * @param entities list of all Article entities to transform
