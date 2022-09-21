@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * This Color class gets inserted into the database
+ */
 @Getter
 @Setter
 @AllArgsConstructor

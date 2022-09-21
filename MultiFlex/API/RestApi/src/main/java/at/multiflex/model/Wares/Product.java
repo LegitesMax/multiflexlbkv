@@ -11,6 +11,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * This Product class gets inserted into the database
+ */
 @Getter
 @Setter
 @AllArgsConstructor

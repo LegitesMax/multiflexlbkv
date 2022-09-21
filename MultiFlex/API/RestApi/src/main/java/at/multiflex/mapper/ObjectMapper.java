@@ -18,26 +18,56 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class creates mapper during the compilation that can be used to map entities to dtos and vice versa
+ */
 @Mapper(componentModel = "cdi",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ObjectMapper {
+    /**
+     * Instance of the mapper
+     */
     ObjectMapper MAPPER = Mappers.getMapper( ObjectMapper.class );
     //<editor-fold desc="Wares">
     //<editor-fold desc="ArticleRepository">
+
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     ArticleDto toDto(Article entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     Article fromDto(ArticleDto entity);
     //</editor-fold>
     //<editor-fold desc="Material">
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     MaterialDto toDto(Material entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     Material fromDto(MaterialDto entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     * while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     MaterialDto toDtoIgnoreParent(Material entity);
@@ -48,6 +78,11 @@ public interface ObjectMapper {
     //</editor-fold>
     //<editor-fold desc="Product">
     //@Mapping(target = "id")
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "materials", qualifiedByName = {"toDtoIgnoreParent"})
@@ -55,6 +90,11 @@ public interface ObjectMapper {
     ProductDto toDto(Product entity);
 
     //@Mapping(target = "id")
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "size", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "materials", qualifiedByName = {"fromDtoIgnoreParent"})
@@ -63,76 +103,170 @@ public interface ObjectMapper {
     //</editor-fold>
     //</editor-fold>
     //<editor-fold desc="Color">
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     ColorDto toDto(Color entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     Color fromDto(ColorDto entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     * while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     ColorDto toDtoIgnoreParent(Color entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     *  while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     Color fromDtoIgnoreParent(ColorDto entity);
     //</editor-fold>
     //<editor-fold desc="Category">
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     CategoryDto toDto(Category entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     Category fromDto(CategoryDto entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     * while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     CategoryDto toDtoIgnoreParent(Category entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     *  while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     Category fromDtoIgnoreParent(CategoryDto entity);
     //</editor-fold>
     //<editor-fold desc="Size">
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     SizeDto toDto(Size entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     Size fromDto(SizeDto entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     * while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     SizeDto toDtoIgnoreParent(Size entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     *  while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     Size fromDtoIgnoreParent(SizeDto entity);
     //</editor-fold>
     //region Lists
     //<editor-fold desc="Material">
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     List<MaterialDto> toDto(List<Material> entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     List<Material> fromDto(List<MaterialDto> entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     * while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("toDtoIgnoreParent")
         @Mapping(target = "products", ignore = true)
     List<MaterialDto> toDtoIgnoreParent(List<Material> entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     *  while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("fromDtoIgnoreParent")
         @Mapping(target = "products", ignore = true)
     List<Material> fromDtoIgnoreParent(List<MaterialDto> entity);
-
+    /**
+     * The entity will be transformed into a dto
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Mapping(target = "id")
     Set<MaterialDto> toDto(Set<Material> entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     Set<Material> fromDto(Set<MaterialDto> entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     * while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     Set<MaterialDto> toDtoIgnoreParent(Set<Material> entity);
-
+    /**
+     * The entity will be transformed into a dto,
+     *  while ignoring all relations to other entities
+     * @param entity The entity to transform
+     * @return The resulting dto
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "products", ignore = true)
     Set<Material> fromDtoIgnoreParent(Set<MaterialDto> entity);

@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * This Article class gets inserted into the database
+ */
 @Getter
 @Setter
 @AllArgsConstructor
