@@ -1,6 +1,7 @@
 package at.multiflex.dao;
 
 import at.multiflex.dto.CategoryDto;
+import at.multiflex.mapper.MappingHelper;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Category;
 import at.multiflex.repository.CategoryRepository;
@@ -29,10 +30,10 @@ public class CategoryDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<CategoryDto> getAll() {
+    public List<Object> getAll() {
         var entities = repository.loadAll();
 
-        return toDto(entities);
+        return MappingHelper.entityDtoTransformation(entities);
     }
     /**
      * This gets specific entities from this type from the Database and returns a list with them
