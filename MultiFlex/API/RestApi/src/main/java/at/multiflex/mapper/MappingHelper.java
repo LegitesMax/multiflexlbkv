@@ -17,8 +17,16 @@ import org.mapstruct.factory.Mappers;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A generic method to help with the mapping from dto to entity and vice versa
+ */
 public class MappingHelper {
-
+    /**
+     * This method transforms a list of entities to a list of dtos and vice versa
+     * @param entities a list of entities or dtos to transform
+     * @param <T> A generic type T
+     * @return A list containing the converted entities
+     */
     public static <T> List<Object> entityDtoTransformation(List<T> entities) {
         var dtos = new ArrayList<Object>();
 
@@ -28,6 +36,13 @@ public class MappingHelper {
 
         return dtos;
     }
+
+    /**
+     * This method transforms an entity to a dto and a dto to an entity
+     * @param entity the entity or the dto to convert
+     * @param <T> A generic type T
+     * @return The converted entity or dto
+     */
     public static <T> Object entityDtoTransformation(T entity) {
         var result = new Object();
         //region toDto
