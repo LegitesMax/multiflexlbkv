@@ -1,7 +1,7 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.dto.wares.ProductDto;
-import at.multiflex.mapper.ObjectMapper;
+import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.Wares.Product;
 import at.multiflex.repository.wares.ProductRepository;
 
@@ -29,9 +29,9 @@ public class ProductDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<ProductDto> getAll() {
+    public List<Object> getAll() {
         var entities = repository.loadAll();
-        return toDto(entities);
+        return MappingHelper.entityDtoTransformation(entities);
     }
     /**
      * This gets specific entities from this type from the Database and returns a list with them
@@ -41,9 +41,9 @@ public class ProductDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{name}")
-    public List<ProductDto> getByName(String name) {
+    public List<Object> getByName(String name) {
         var entities = repository.findByName(name);
-        return toDto(entities);
+        return MappingHelper.entityDtoTransformation(entities);
     }
     //</editor-fold>*/
     /**
@@ -54,9 +54,9 @@ public class ProductDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public ProductDto getById(Integer id) {
+    public Object getById(Integer id) {
         var entity = repository.findById(id);
-        return ObjectMapper.MAPPER.toDto(entity);
+        return MappingHelper.entityDtoTransformation(entity);
     }
     //</editor-fold>
     //<editor-fold desc="Post">
@@ -69,7 +69,7 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
     public Response add(ProductDto dto) {
-        var entity = ObjectMapper.MAPPER.fromDto(dto);
+        var entity = MappingHelper.entityDtoTransformation(dto);
         repository.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -102,19 +102,10 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(ProductDto dto) {
-        var entity = ObjectMapper.MAPPER.fromDto(dto);
-        repository.update(entity);
+        var entity = MappingHelper.entityDtoTransformation(dto);
+
+        repository.update((Product) entity);
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
-    /**
-     * Method to transform a list of Product entities to a dto
-     * @param entities list of all Product entities to transform
-     * @return the dtos of all given entities
-     */
-    public List<ProductDto> toDto(List<Product> entities) {
-        var dtos = new ArrayList<ProductDto>();
-        entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
-        return dtos;
-    }
 }
