@@ -50,6 +50,11 @@ jobs:
             user: ${{ secrets.REMOTE_USER }}
             server: ${{ secrets.REMOTE_HOST }}
             alias: server
+
+      - name: Remove existing container
+        run: |
+          ssh server "sudo docker stop ${{ env.DOCKER_CONTAINER }} || echo 'Container doesnt exist!'"
+          ssh server "sudo docker rm ${{ env.DOCKER_CONTAINER }} || echo 'No container to remove'"
           
       - name: Pull latest docker image and run container
         run: | 
