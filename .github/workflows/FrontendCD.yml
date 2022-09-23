@@ -41,7 +41,7 @@ jobs:
   start-docker-container-on-vm:
     needs:
       - build-and-push-docker-image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Install ssh key
         uses: caberger/install-ssh-key@v1.0
