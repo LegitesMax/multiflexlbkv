@@ -1,4 +1,0 @@
-Host syp
-     Hostname 144.24.168.219
-     User ubuntu
-     IdentityFile ~/.ssh/Syp-Server
