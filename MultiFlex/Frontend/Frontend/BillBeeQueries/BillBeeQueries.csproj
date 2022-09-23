@@ -1,13 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
+		<IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Billbee.Api.Client" Version="2.2.1" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(IsWindows)'=='true'">
+		<DefineConstants>Windows</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(IsLinux)'=='true'">
+		<DefineConstants>Linux</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Billbee.Api.Client" Version="2.2.1" />
+	</ItemGroup>
 
 </Project>
