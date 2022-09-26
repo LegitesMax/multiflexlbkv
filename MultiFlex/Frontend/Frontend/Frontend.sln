@@ -4,8 +4,6 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.Logic", "Frontend.Logic\Frontend.Logic.csproj", "{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.ConApp", "Frontend.ConApp\Frontend.ConApp.csproj", "{BA9F6754-9315-4674-AB53-34CB4BB5F30B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonBase", "CommonBase\CommonBase.csproj", "{5D5C4E63-A490-4AD3-8B36-7CF49A5F5937}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{7D1E32D0-6289-41AB-B44D-31F87C0C21A2}"
@@ -33,10 +31,6 @@ Global
 		{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BA6D589-2D38-4527-BD59-B827DAB0D5F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA9F6754-9315-4674-AB53-34CB4BB5F30B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D5C4E63-A490-4AD3-8B36-7CF49A5F5937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D5C4E63-A490-4AD3-8B36-7CF49A5F5937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D5C4E63-A490-4AD3-8B36-7CF49A5F5937}.Release|Any CPU.ActiveCfg = Release|Any CPU
