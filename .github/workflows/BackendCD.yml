@@ -69,4 +69,5 @@ jobs:
           IMAGE_PULL_URL=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
           IMAGE_PULL_URL=$(echo $IMAGE_PULL_URL | tr '[A-Z]' '[a-z]')
           ssh server "sudo docker pull $IMAGE_PULL_URL"
-          ssh server "sudo docker run -d --name ${{ env.DOCKER_CONTAINER }} -p 9000:9001 -p 9000:9002 $IMAGE_PULL_URL"
+          ssh server "sudo docker container ls"
+          ssh server "sudo docker run -d --name ${{ env.DOCKER_CONTAINER }} -p 9000:80 -p 9001:443 $IMAGE_PULL_URL"
