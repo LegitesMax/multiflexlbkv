@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    paths: 'MultiFlex/Frontend/**'
+    paths: 'MultiFlex/API/**'
   workflow_dispatch:
 
 env:
