@@ -26,7 +26,7 @@ jobs:
     - name: Build API docker image
       run: |
         cd MultiFlex/API/RestApi
-        docker build . --tag ${{ env.IMAGE_NAME }}
+        docker build -f src/main/docker/Dockerfile -t quarkus/restapi . --tag ${{ env.IMAGE_NAME }}
     
     - name: Push image
       run: |
