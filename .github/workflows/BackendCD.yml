@@ -2,13 +2,13 @@ name: Docker Image CI
 
 on:
   push:
-    paths: 'MultiFlex/Frontend/**'
+    paths: 'MultiFlex/API/**'
   workflow_dispatch:
 
 env:
-  DOCKER_CONTAINER: multiflex-frontend
+  DOCKER_CONTAINER: multiflex-backend
   REGISTRY: ghcr.io
-  IMAGE_NAME: multiflex-frontend
+  IMAGE_NAME: multiflex-backend
 
 jobs:
   build-and-push-docker-image:
@@ -25,7 +25,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build API docker image
       run: |
-        cd MultiFlex/Frontend/Frontend
+        cd MultiFlex/API/RestApi
         docker build . --tag ${{ env.IMAGE_NAME }}
     
     - name: Push image
