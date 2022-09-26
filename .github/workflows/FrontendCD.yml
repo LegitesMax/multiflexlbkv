@@ -9,6 +9,8 @@ env:
   DOCKER_CONTAINER: multiflex-frontend
   REGISTRY: ghcr.io
   IMAGE_NAME: multiflex-frontend
+  DOCKER_CONTAINER_BACKEND: multiflex-backend
+  IMAGE_NAME_BACKEND: multiflex-backend
 
 jobs:
   build-and-push-docker-image:
@@ -27,12 +29,8 @@ jobs:
       run: |
         cd MultiFlex/Frontend/Frontend
         docker build . --tag ${{ env.IMAGE_NAME }}
-        cd ..
-        cd ..
-        cd API/RestApi
-        docker build . --tag ${{ env.IMAGE_NAME }}
     
-    - name: Push image
+    - name: Push image Frontend
       run: |
         IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
@@ -40,6 +38,21 @@ jobs:
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+        docker push $IMAGE_ID:$VERSION
+    
+    - name: Java Docker
+      run: |
+        cd Multiflex/API/RestApi
+        docker build . --tag ${{ env.IMAGE_NAME_BACKEND }}
+    
+    - name: Push image Java
+      run: |
+        IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME_BACKEND }}
+        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        VERSION=latest
+        echo IMAGE_ID=$IMAGE_ID
+        echo VERSION=$VERSION
+        docker tag $IMAGE_NAME_BACKEND $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:$VERSION
         
   start-docker-container-on-vm:
@@ -73,6 +86,8 @@ jobs:
         run: |
           ssh server "sudo docker stop ${{ env.DOCKER_CONTAINER }} || echo 'Container doesnt exist!'"
           ssh server "sudo docker rm ${{ env.DOCKER_CONTAINER }} || echo 'No container to remove'"
+          ssh server "sudo docker stop ${{ env.DOCKER_CONTAINER_BACKEND }} || echo 'Container doesnt exist!'"
+          ssh server "sudo docker rm ${{ env.DOCKER_CONTAINER_BACKEND }} || echo 'No container to remove'"
           
       - name: Pull latest docker image and run container
         run: | 
@@ -80,3 +95,7 @@ jobs:
           IMAGE_PULL_URL=$(echo $IMAGE_PULL_URL | tr '[A-Z]' '[a-z]')
           ssh server "sudo docker pull $IMAGE_PULL_URL"
           ssh server "sudo docker run -d --name ${{ env.DOCKER_CONTAINER }} -p 8080:80 -p 8081:443 $IMAGE_PULL_URL"
+          IMAGE_PULL_URL_BACKEND=${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME_BACKEND }}:latest
+          IMAGE_PULL_URL_BACKEND=$(echo $IMAGE_PULL_URL_BACKEND | tr '[A-Z]' '[a-z]')
+          ssh server "sudo docker pull $IMAGE_PULL_URL_BACKEND"
+          ssh server "sudo docker run -d --name ${{ env.DOCKER_CONTAINER_BACKEND }} -p 8080:80 -p 8081:443 $IMAGE_PULL_URL_BACKEND"

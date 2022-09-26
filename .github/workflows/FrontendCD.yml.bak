@@ -9,6 +9,8 @@ env:
   DOCKER_CONTAINER: multiflex-frontend
   REGISTRY: ghcr.io
   IMAGE_NAME: multiflex-frontend
+  DOCKER_CONTAINER_BACKEND: multiflex-backend
+  IMAGE_NAME_BACKEND: multiflex-backend
 
 jobs:
   build-and-push-docker-image:
@@ -37,7 +39,12 @@ jobs:
         echo VERSION=$VERSION
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:$VERSION
-        
+    
+    - name: Java Docker
+      run: |
+        cd Multiflex/API/RestApi
+        docker build . --tag ${{ env.IMAGE_NAME_BACKEND }}
+    
   start-docker-container-on-vm:
     needs:
       - build-and-push-docker-image
