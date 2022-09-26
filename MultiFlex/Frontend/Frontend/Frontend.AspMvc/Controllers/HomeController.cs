@@ -26,13 +26,13 @@ namespace Frontend.AspMvc.Controllers
         {
             _logger = logger;
         }
+
         public async Task SetCategoriesAsync()
         {
             HttpClient client = new HttpClient();
             var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
             Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
         }
-
         public async Task<IActionResult> IndexAsync()
         {
             //HttpClient client = new HttpClient();
@@ -67,6 +67,10 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", Model);
         }
 
+        /// <summary>
+        /// Create PDF File for each Order (open,canceled,ready)
+        /// </summary>
+        /// <returns>return to Index Page</returns>
         public async Task<ViewResult> CreatePdfAsync()
         {
             bool done = false;
@@ -103,6 +107,10 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", Model);
         }
 
+        /// <summary>
+        /// Get all orders from the ordered Items
+        /// </summary>
+        /// <returns>returns all ordered items</returns>
         public IList<Logic.Entities.Orders.Order>? GetOrdereItems()
         {
             var orderController = new OrderController();
@@ -119,6 +127,10 @@ namespace Frontend.AspMvc.Controllers
             return orderResult;
         }
 
+        /// <summary>
+        /// Get all canceled orders from the orders
+        /// </summary>
+        /// <returns>returns canceled order items</returns>
         public IList<Logic.Entities.Orders.Order>? GetCanceledItems()
         {
             var orderController = new OrderController();
@@ -135,6 +147,10 @@ namespace Frontend.AspMvc.Controllers
             return orderResult;
         }
 
+        /// <summary>
+        /// To get the Items for Shipping
+        /// </summary>
+        /// <returns>return List of all Ready for shipping Items</returns>
         public IList<Logic.Entities.Orders.Order>? GetReadyItems()
         {
             var orderController = new OrderController();
@@ -153,6 +169,12 @@ namespace Frontend.AspMvc.Controllers
             return orderResult;
         }
 
+        /// <summary>
+        /// Gnererate PDF File for the user with the data
+        /// </summary>
+        /// <param name="data">The data of the Orders</param>
+        /// <param name="status">The Order State for the PDF title</param>
+        /// <returns>boolen if export success</returns>
         public static bool ExportPdf(IEnumerable<Logic.Entities.Orders.Order> data, string status)
         {
             var result = false;

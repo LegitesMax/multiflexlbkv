@@ -22,8 +22,9 @@ namespace Frontend.AspMvc.AddPdf
     {
         public CreatePdfs()
         {
-        
+
         }
+
         public static void ExportGraf_Click()
         {
             //var orderController = new OrderController();
