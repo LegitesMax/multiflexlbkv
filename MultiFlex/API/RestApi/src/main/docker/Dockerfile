@@ -2,5 +2,5 @@ FROM quay.io/quarkus/quarkus-micro-image:1.0
 WORKDIR /work/
 COPY . /work/application
 RUN chmod 775 /work
-EXPOSE 8080
+EXPOSE 9000
 CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
