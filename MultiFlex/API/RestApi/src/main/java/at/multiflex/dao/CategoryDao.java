@@ -1,6 +1,7 @@
 package at.multiflex.dao;
 
 import at.multiflex.dto.CategoryDto;
+import at.multiflex.mapper.MappingHelper;
 import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Category;
 import at.multiflex.repository.CategoryRepository;
@@ -13,6 +14,9 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class includes all json requests for the Category class
+ */
 @Dependent
 @Path("/Category")
 public class CategoryDao {
@@ -20,14 +24,22 @@ public class CategoryDao {
     CategoryRepository repository;
 
     //<editor-fold desc="Get">
+    /**
+     * This gets all entities with this type from the Database and returns a list with them
+     * @return a list with all CategoryDtos
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<CategoryDto> getAll() {
+    public List<Object> getAll() {
         var entities = repository.loadAll();
 
-        return toDto(entities);
+        return MappingHelper.entityDtoTransformation(entities);
     }
-
+    /**
+     * This gets specific entities from this type from the Database and returns a list with them
+     * @param name Category name which should be searched
+     * @return All entities with this name
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{name}")
@@ -35,7 +47,11 @@ public class CategoryDao {
         var entities = repository.findByName(name);
         return ObjectMapper.MAPPER.toDto(entities);
     }
-
+    /**
+     * gets an entity from this class by its id
+     * @param id the id of the Category to return
+     * @return The Category with the id of the input param
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
@@ -45,6 +61,11 @@ public class CategoryDao {
     }
     //</editor-fold>
     //<editor-fold desc="Post">
+    /**
+     * transforms a given dto to an entity and adds it into the database
+     * @param dto A dto to insert into the database
+     * @return The JSON Response code
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
@@ -55,6 +76,11 @@ public class CategoryDao {
     }
     //</editor-fold>
     //<editor-fold desc="Delete">
+    /**
+     * Deletes a Category entity by that entities id
+     * @param id The id of an entity to delete
+     * @return The JSON Response code
+     */
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
@@ -68,6 +94,11 @@ public class CategoryDao {
     }
     //</editor-fold>
     //<editor-fold desc="Put">
+    /**
+     * Transforms a dto into a Category and updates it
+     * @param dto The dto of the entity
+     * @return The JSON Response code
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
@@ -77,9 +108,16 @@ public class CategoryDao {
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
+    //<editor-fold desc="transformation">
+    /**
+     * Method to transform a list of Category entities to a dto
+     * @param entities list of all Category entities to transform
+     * @return the dtos of all given entities
+     */
     public List<CategoryDto> toDto(List<Category> entities) {
         var dtos = new ArrayList<CategoryDto>();
         entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
         return dtos;
     }
+    //</editor-fold>
 }

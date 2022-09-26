@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * This Material class gets inserted into the database
+ */
 @Getter
 @Setter
 @AllArgsConstructor

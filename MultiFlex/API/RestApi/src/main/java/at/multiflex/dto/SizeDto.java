@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * A Data Transfer Object of the class Size
+ */
 @Getter
 @Setter
 @AllArgsConstructor

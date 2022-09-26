@@ -95,6 +95,12 @@
       <version>1.5.2.Final</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-javadoc-plugin</artifactId>
+      <version>3.4.1</version>
+      <type>maven-plugin</type>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -174,8 +180,30 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.4.1</version>
+            <configuration>
+              <show>private</show>
+              <nohelp>true</nohelp>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.4.1</version>
+            <configuration>
+              <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+              <show>public</show>
+            </configuration>
+          </plugin>
+        </plugins>
+      </reporting>
       <properties>
         <quarkus.package.type>native</quarkus.package.type>
       </properties>

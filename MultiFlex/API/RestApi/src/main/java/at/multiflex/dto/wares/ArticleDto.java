@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * A Data Transfer Object of the class Article
+ */
 @Getter
 @Setter
 @AllArgsConstructor

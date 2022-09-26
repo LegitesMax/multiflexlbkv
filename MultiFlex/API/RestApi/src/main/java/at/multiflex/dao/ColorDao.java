@@ -13,6 +13,9 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class includes all json requests for the Color class
+ */
 @Dependent
 @Path("/Color")
 public class ColorDao {
@@ -20,13 +23,21 @@ public class ColorDao {
     ColorRepository repository;
 
     //<editor-fold desc="Get">
+    /**
+     * This gets all entities with this type from the Database and returns a list with them
+     * @return a list with all ColorDtos
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<ColorDto> getAll() {
         var entities = repository.loadAll();
         return toDto(entities);
     }
-
+    /**
+     * This gets specific entities from this type from the Database and returns a list with them
+     * @param name Color name which should be searched
+     * @return All entities with this name
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{name}")
@@ -34,7 +45,11 @@ public class ColorDao {
         var entities = repository.findByName(name);
         return ObjectMapper.MAPPER.toDto(entities);
     }
-
+    /**
+     * gets an entity from this class by its id
+     * @param id the id of the Color to return
+     * @return The Color with the id of the input param
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
@@ -44,6 +59,11 @@ public class ColorDao {
     }
     //</editor-fold>
     //<editor-fold desc="Post">
+    /**
+     * transforms a given dto to an entity and adds it into the database
+     * @param dto A dto to insert into the database
+     * @return The JSON Response code
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
@@ -54,6 +74,11 @@ public class ColorDao {
     }
     //</editor-fold>
     //<editor-fold desc="Delete">
+    /**
+     * Deletes a Color entity by that entities id
+     * @param id The id of an entity to delete
+     * @return The JSON Response code
+     */
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
@@ -67,6 +92,11 @@ public class ColorDao {
     }
     //</editor-fold>
     //<editor-fold desc="Put">
+    /**
+     * Transforms a dto into a Color and updates it
+     * @param dto The dto of the entity
+     * @return The JSON Response code
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
@@ -76,6 +106,11 @@ public class ColorDao {
         return Response.status(Response.Status.OK).build();
     }
     //</editor-fold>
+    /**
+     * Method to transform a list of Color entities to a dto
+     * @param entities list of all Color entities to transform
+     * @return the dtos of all given entities
+     */
     public List<ColorDto> toDto(List<Color> entities) {
         var dtos = new ArrayList<ColorDto>();
         entities.forEach(x -> dtos.add(ObjectMapper.MAPPER.toDto(x)));
