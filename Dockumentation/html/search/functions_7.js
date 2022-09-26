@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['insertasync_0',['InsertAsync',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html#a01b7970a85291ff679576c2241115439',1,'Frontend.Logic.Contracts.IDataAccess.InsertAsync(T element)'],['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html#aed548204434684b9318f07aac4440a59',1,'Frontend.Logic.Contracts.IDataAccess.InsertAsync(IEnumerable&lt; T &gt; elements)'],['../class_frontend_1_1_logic_1_1_controllers_1_1_generic_controller.html#a7e9f894dc0298bd954e9e00d9d8d9829',1,'Frontend.Logic.Controllers.GenericController.InsertAsync(TEntity entity)'],['../class_frontend_1_1_logic_1_1_controllers_1_1_generic_controller.html#a29b8c570fcaf0ec345ffd943f103d66b',1,'Frontend.Logic.Controllers.GenericController.InsertAsync(IEnumerable&lt; TEntity &gt; entities)']]]
+];

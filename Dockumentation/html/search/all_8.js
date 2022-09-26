@@ -1,0 +1,13 @@
+var searchData=
+[
+  ['id_0',['Id',['../class_frontend_1_1_asp_mvc_1_1_models_1_1_identity_model.html#a885750c086cea072505b2b0adbbcb105',1,'Frontend.AspMvc.Models.IdentityModel.Id()'],['../class_frontend_1_1_logic_1_1_entities_1_1_identity_entity.html#a23ff8ba7e93dff23268147548629d066',1,'Frontend.Logic.Entities.IdentityEntity.Id()'],['../class_frontend_1_1_logic_1_1_models_1_1_identity_model.html#a28256d43664f401d434c89309da4f90f',1,'Frontend.Logic.Models.IdentityModel.Id()']]],
+  ['idataaccess_1',['IDataAccess',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html',1,'Frontend::Logic::Contracts']]],
+  ['idataaccess_3c_20tentity_20_3e_2',['IDataAccess&lt; TEntity &gt;',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html',1,'Frontend::Logic::Contracts']]],
+  ['idataaccess_3c_20tmodel_20_3e_3',['IDataAccess&lt; TModel &gt;',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html',1,'Frontend::Logic::Contracts']]],
+  ['identityentity_4',['IdentityEntity',['../class_frontend_1_1_logic_1_1_entities_1_1_identity_entity.html',1,'Frontend::Logic::Entities']]],
+  ['identitymodel_5',['IdentityModel',['../class_frontend_1_1_asp_mvc_1_1_models_1_1_identity_model.html',1,'Frontend.AspMvc.Models.IdentityModel'],['../class_frontend_1_1_logic_1_1_models_1_1_identity_model.html',1,'Frontend.Logic.Models.IdentityModel']]],
+  ['iidentifyable_6',['IIdentifyable',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_identifyable.html',1,'Frontend::Logic::Contracts']]],
+  ['insertasync_7',['InsertAsync',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html#a01b7970a85291ff679576c2241115439',1,'Frontend.Logic.Contracts.IDataAccess.InsertAsync(T element)'],['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_data_access.html#aed548204434684b9318f07aac4440a59',1,'Frontend.Logic.Contracts.IDataAccess.InsertAsync(IEnumerable&lt; T &gt; elements)'],['../class_frontend_1_1_logic_1_1_controllers_1_1_generic_controller.html#a7e9f894dc0298bd954e9e00d9d8d9829',1,'Frontend.Logic.Controllers.GenericController.InsertAsync(TEntity entity)'],['../class_frontend_1_1_logic_1_1_controllers_1_1_generic_controller.html#a29b8c570fcaf0ec345ffd943f103d66b',1,'Frontend.Logic.Controllers.GenericController.InsertAsync(IEnumerable&lt; TEntity &gt; entities)']]],
+  ['isessionwrapper_8',['ISessionWrapper',['../interface_frontend_1_1_asp_mvc_1_1_modules_1_1_session_1_1_i_session_wrapper.html',1,'Frontend::AspMvc::Modules::Session']]],
+  ['iversionable_9',['IVersionable',['../interface_frontend_1_1_logic_1_1_contracts_1_1_i_versionable.html',1,'Frontend::Logic::Contracts']]]
+];
