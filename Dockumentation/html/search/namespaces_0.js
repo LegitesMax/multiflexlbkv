@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['billbeequeries_0',['BillBeeQueries',['../namespace_bill_bee_queries.html',1,'']]]
+  ['aspnetcore_0',['AspNetCore',['../namespace_asp_net_core.html',1,'']]]
 ];

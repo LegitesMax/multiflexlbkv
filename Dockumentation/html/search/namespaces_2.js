@@ -1,24 +1,8 @@
 var searchData=
 [
-  ['account_0',['Account',['../namespace_frontend_1_1_asp_mvc_1_1_models_1_1_account.html',1,'Frontend.AspMvc.Models.Account'],['../namespace_frontend_1_1_logic_1_1_models_1_1_account.html',1,'Frontend.Logic.Models.Account']]],
-  ['addpdf_1',['AddPdf',['../namespace_frontend_1_1_asp_mvc_1_1_add_pdf.html',1,'Frontend::AspMvc']]],
-  ['aspmvc_2',['AspMvc',['../namespace_frontend_1_1_asp_mvc.html',1,'Frontend']]],
-  ['common_3',['Common',['../namespace_frontend_1_1_logic_1_1_modules_1_1_common.html',1,'Frontend::Logic::Modules']]],
-  ['configuration_4',['Configuration',['../namespace_frontend_1_1_logic_1_1_modules_1_1_configuration.html',1,'Frontend::Logic::Modules']]],
-  ['contracts_5',['Contracts',['../namespace_frontend_1_1_logic_1_1_contracts.html',1,'Frontend::Logic']]],
-  ['controllers_6',['Controllers',['../namespace_frontend_1_1_asp_mvc_1_1_controllers.html',1,'Frontend.AspMvc.Controllers'],['../namespace_frontend_1_1_logic_1_1_controllers.html',1,'Frontend.Logic.Controllers']]],
-  ['datacontext_7',['DataContext',['../namespace_frontend_1_1_logic_1_1_data_context.html',1,'Frontend::Logic']]],
-  ['entities_8',['Entities',['../namespace_frontend_1_1_logic_1_1_entities.html',1,'Frontend::Logic']]],
-  ['exceptions_9',['Exceptions',['../namespace_frontend_1_1_logic_1_1_modules_1_1_exceptions.html',1,'Frontend::Logic::Modules']]],
-  ['extensions_10',['Extensions',['../namespace_frontend_1_1_asp_mvc_1_1_extensions.html',1,'Frontend::AspMvc']]],
-  ['facades_11',['Facades',['../namespace_frontend_1_1_logic_1_1_facades.html',1,'Frontend::Logic']]],
-  ['frontend_12',['Frontend',['../namespace_frontend.html',1,'']]],
-  ['logic_13',['Logic',['../namespace_frontend_1_1_logic.html',1,'Frontend']]],
-  ['models_14',['Models',['../namespace_frontend_1_1_asp_mvc_1_1_models.html',1,'Frontend.AspMvc.Models'],['../namespace_frontend_1_1_logic_1_1_models.html',1,'Frontend.Logic.Models']]],
-  ['modules_15',['Modules',['../namespace_frontend_1_1_asp_mvc_1_1_modules.html',1,'Frontend.AspMvc.Modules'],['../namespace_frontend_1_1_logic_1_1_modules.html',1,'Frontend.Logic.Modules']]],
-  ['orders_16',['Orders',['../namespace_frontend_1_1_logic_1_1_entities_1_1_orders.html',1,'Frontend::Logic::Entities']]],
-  ['restapi_17',['RestApi',['../namespace_frontend_1_1_logic_1_1_modules_1_1_rest_api.html',1,'Frontend::Logic::Modules']]],
-  ['session_18',['Session',['../namespace_frontend_1_1_asp_mvc_1_1_modules_1_1_session.html',1,'Frontend::AspMvc::Modules']]],
-  ['unittest_19',['UnitTest',['../namespace_frontend_1_1_logic_1_1_unit_test.html',1,'Frontend::Logic']]],
-  ['view_20',['View',['../namespace_frontend_1_1_asp_mvc_1_1_models_1_1_view.html',1,'Frontend::AspMvc::Models']]]
+  ['commonbase_0',['CommonBase',['../namespace_common_base.html',1,'']]],
+  ['configuration_1',['Configuration',['../namespace_common_base_1_1_modules_1_1_configuration.html',1,'CommonBase::Modules']]],
+  ['extensions_2',['Extensions',['../namespace_common_base_1_1_extensions.html',1,'CommonBase']]],
+  ['modules_3',['Modules',['../namespace_common_base_1_1_modules.html',1,'CommonBase']]],
+  ['threadsafe_4',['ThreadSafe',['../namespace_common_base_1_1_thread_safe.html',1,'CommonBase']]]
 ];

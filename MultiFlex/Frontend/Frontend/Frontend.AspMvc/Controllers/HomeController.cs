@@ -44,7 +44,12 @@ namespace Frontend.AspMvc.Controllers
 
             return View(Model);
         }
-
+        /// <summary>
+        /// Set Status Open Get All Open Order Items
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">event</param>
+        /// <returns>Return to Index Page</returns>
         public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
         {
             status = "open";
@@ -52,6 +57,12 @@ namespace Frontend.AspMvc.Controllers
             await SetCategoriesAsync();
             return View("Index", Model);
         }
+        /// <summary>
+        /// Set Status cancled Get All cancled Order Items
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">event</param>
+        /// <returns>Return to Index Page</returns>
         public async Task<IActionResult> CanceledOrdersAsync(object sender, EventArgs e)
         {
             status = "canceled";
@@ -59,6 +70,12 @@ namespace Frontend.AspMvc.Controllers
             await SetCategoriesAsync();
             return View("Index", Model);
         }
+        /// <summary>
+        /// Set Status redy Get All orders that are redy
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">event</param>
+        /// <returns>Return to Index Page</returns>
         public async Task<IActionResult> ReadyOrdersAsync(object sender, EventArgs e)
         {
             status = "ready";

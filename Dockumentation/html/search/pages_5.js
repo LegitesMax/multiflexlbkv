@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['the_20mit_20license_20_28mit_29_0',['The MIT License (MIT)',['../md__c___users_zeili__desktop__schule_4_c_h_i_f__s_y_p_multiflexlbkv__multi_flex__frontend__frontbbe03b3d19af3f37c52d6a540dd1b2a0.html',1,'']]]
+  ['6_2e1_2e0_20_2f_202020_2d10_2d31_0',['6.1.0 / 2020-10-31',['../md__frontend__multiflex__frontend__multi_flex__frontend__web_app_obj__host_node_modules_electron2e9e659722a3ebb71b702d3526d93849.html',1,'']]]
 ];

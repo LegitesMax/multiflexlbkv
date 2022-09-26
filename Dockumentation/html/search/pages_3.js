@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nexus_2drepository_0',['Nexus-Repository',['../md__c___users_zeili__desktop__schule_4_c_h_i_f__s_y_p_multiflexlbkv__multi_flex__frontend__frontend__nuget.html',1,'']]]
+  ['3_2e1_2e0_20_2f_202017_2d09_2d26_0',['3.1.0 / 2017-09-26',['../md__frontend__multiflex__frontend__multi_flex__frontend__web_app_obj__host_node_modules_engine_i4658152ff598394e1dd1cfc743e1ea8f.html',1,'(Global Namespace)'],['../md__frontend__multiflex__frontend__multi_flex__frontend__web_app_obj__host_node_modules_engine_id7fa3318fb3e3dc108c5ea2a57628a28.html',1,'(Global Namespace)'],['../md__frontend__multiflex__frontend__multi_flex__frontend__web_app_obj__host_node_modules_socket_ie013a79c5b32c490b929aa93b8ec3a6c.html',1,'(Global Namespace)'],['../md__frontend__multiflex__frontend__multi_flex__frontend__web_app_obj__host_node_modules_socket_i057244aa6445acadcd85ce9c8ad6eaac.html',1,'(Global Namespace)'],['../md__frontend__multiflex__frontend__multi_flex__frontend__web_app_obj__host_node_modules_socket_i3cd372dcef006db2065f6b4da8889550.html',1,'(Global Namespace)']]]
 ];
