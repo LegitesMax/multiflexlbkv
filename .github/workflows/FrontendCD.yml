@@ -27,6 +27,10 @@ jobs:
       run: |
         cd MultiFlex/Frontend/Frontend
         docker build . --tag ${{ env.IMAGE_NAME }}
+        cd ..
+        cd ..
+        cd API/RestApi
+        docker build . --tag ${{ env.IMAGE_NAME }}
     
     - name: Push image
       run: |
