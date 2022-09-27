@@ -1,5 +1,8 @@
 ﻿namespace Frontend.AspMvc.Models
 {
+    /// <summary>
+    /// Database Model for Size
+    /// </summary>
     public class Size
     {
         [JsonProperty("id")]

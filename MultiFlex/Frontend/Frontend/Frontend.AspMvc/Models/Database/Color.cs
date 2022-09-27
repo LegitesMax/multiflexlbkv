@@ -1,5 +1,8 @@
 ﻿namespace Frontend.AspMvc.Models
 {
+    /// <summary>
+    /// Database Model for Colors
+    /// </summary>
     public class Color
     {
         [JsonProperty("id")]

@@ -1,5 +1,8 @@
 ﻿namespace Frontend.Logic.Entities.Orders
 {
+    /// <summary>
+    /// Entiti Order for Database
+    /// </summary>
     public class Order : VersionEntity
     {
         public Order() { }

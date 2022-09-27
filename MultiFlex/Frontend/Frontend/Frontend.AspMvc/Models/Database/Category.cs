@@ -2,6 +2,9 @@
 
 namespace Frontend.AspMvc.Models
 {
+    /// <summary>
+    /// Database Model for Category
+    /// </summary>
     public class Category
     {
         [JsonProperty("id")]

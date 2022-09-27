@@ -1,5 +1,8 @@
 ﻿namespace Frontend.AspMvc.Models
 {
+    /// <summary>
+    /// Database Model for Product
+    /// </summary>
     public class Product
     {
         [JsonProperty("id")]

@@ -21,6 +21,10 @@ namespace Frontend.Logic.Controllers
 
         private Queries query = new Queries();
 
+        /// <summary>
+        /// Gets all Orders
+        /// </summary>
+        /// <returns>returns all Orders in a string</returns>
         public string GetAllOrders()
         {
             var client = query.Login();
@@ -31,7 +35,10 @@ namespace Frontend.Logic.Controllers
             return result == null ? "Derzeit keine Bestellung" : result;
         }
 
-
+        /// <summary>
+        /// Gets all Ordered Orders
+        /// </summary>
+        /// <returns>returns all Ordered Orders in a string</returns>
         public string GetOrderedOrders()
         {
             var client = query.Login();
@@ -43,7 +50,10 @@ namespace Frontend.Logic.Controllers
 
             return result == null ? "Derzeit keine offene Bestellung" : result;
         }
-
+        /// <summary>
+        /// Get all cancled orders
+        /// </summary>
+        /// <returns>returns all cancled orders in a string</returns>
         public string GetCancledOrders()
         {
             var client = query.Login();
@@ -55,7 +65,10 @@ namespace Frontend.Logic.Controllers
 
             return result == null ? "Keine Stornierungen vorhanden" : result;
         }
-
+        /// <summary>
+        /// get all redy Orders
+        /// </summary>
+        /// <returns>Returns all orders that are redy in a string</returns>
         public string GetReadyOrders()
         {
             var client = query.Login();

@@ -10,6 +10,5 @@ var searchData=
   ['colordto_7',['ColorDto',['../classat_1_1multiflex_1_1dto_1_1_color_dto.html',1,'at::multiflex::dto']]],
   ['colorrepository_8',['ColorRepository',['../classat_1_1multiflex_1_1repository_1_1_color_repository.html',1,'at::multiflex::repository']]],
   ['controllerobject_9',['ControllerObject',['../class_frontend_1_1_logic_1_1_controllers_1_1_controller_object.html',1,'Frontend::Logic::Controllers']]],
-  ['createpdfs_10',['CreatePdfs',['../class_frontend_1_1_asp_mvc_1_1_add_pdf_1_1_create_pdfs.html',1,'Frontend::AspMvc::AddPdf']]],
-  ['crudoperations_11',['CRUDOperations',['../classat_1_1multiflex_1_1repository_1_1_c_r_u_d_operations.html',1,'at::multiflex::repository']]]
+  ['crudoperations_10',['CRUDOperations',['../classat_1_1multiflex_1_1repository_1_1_c_r_u_d_operations.html',1,'at::multiflex::repository']]]
 ];
