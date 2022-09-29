@@ -30,7 +30,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task SetCategoriesAsync()
         {
             HttpClient client = new HttpClient();
-            var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
+            var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/");
             Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
         }
         public async Task<IActionResult> IndexAsync()
@@ -40,7 +40,7 @@ namespace Frontend.AspMvc.Controllers
             //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
-            
+
 
             return View(Model);
         }
