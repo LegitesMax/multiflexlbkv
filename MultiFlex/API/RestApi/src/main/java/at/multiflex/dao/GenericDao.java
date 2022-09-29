@@ -1,6 +1,5 @@
 package at.multiflex.dao;
 
-import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
@@ -14,18 +13,15 @@ import at.multiflex.repository.SizeRepository;
 import at.multiflex.repository.wares.ArticleRepository;
 import at.multiflex.repository.wares.MaterialRepository;
 import at.multiflex.repository.wares.ProductRepository;
-import org.jboss.resteasy.reactive.RestPath;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
-public class GenericDao<T> {
+public class GenericDao {
 
     @Inject
     ArticleRepository articleRepository;
@@ -40,7 +36,7 @@ public class GenericDao<T> {
     @Inject
     SizeRepository sizeRepository;
 
-    protected Class<T> type;
+    protected Class<?> type;
 
     //<editor-fold desc="Get">
     /**
@@ -50,27 +46,23 @@ public class GenericDao<T> {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() {
+    public List<Object> getAll() throws DaoException {
         //System.out.println(type.getName());
-        List entities = new ArrayList();
-        if (Article.class.getName().equals(type.getName())) {
+        List<?> entities;
+        if (Article.class.equals(type)) {
             entities = articleRepository.loadAll();
-        } else if (Material.class.getName().equals(type.getName())){
+        } else if (Material.class.equals(type)){
             entities = materialRepository.loadAll();
-        } else if (Product.class.getName().equals(type.getName())){
+        } else if (Product.class.equals(type)){
             entities = productRepository.loadAll();
-        } else if (Category.class.getName().equals(type.getName())){
+        } else if (Category.class.equals(type)){
             entities = categoryRepository.loadAll();
-        } else if (Color.class.getName().equals(type.getName())){
+        } else if (Color.class.equals(type)){
             entities = colorRepository.loadAll();
-        } else if (Size.class.getName().equals(type.getName())){
+        } else if (Size.class.equals(type)){
             entities = sizeRepository.loadAll();
         } else{
-            try {
-                throw new Exception("Entity does not exist");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            throw new DaoException("Entity does not exist");
         }
         switch (type.getName()){
             case "at.multiflex.model.Wares.Product":
@@ -82,6 +74,24 @@ public class GenericDao<T> {
                 System.out.println(Color.class.getName());
                 System.out.println(Size.class.getName());
                 System.out.println(type.getName());
+                System.out.println(type);
+        }
+
+        return MappingHelper.entityDtoTransformation(entities);
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/{name}")
+    public List<Object> getByName(String name) throws DaoException {
+        List<? extends Article> entities;
+        if (Article.class.equals(type)) {
+            entities = articleRepository.findByName(name);
+        } else if (Material.class.equals(type)){
+            entities = materialRepository.findByName(name);
+        } else if (Product.class.equals(type)){
+            entities = productRepository.findByName(name);
+        } else{
+            throw new DaoException("Entity does not have a name, or no available DB request");
         }
         return MappingHelper.entityDtoTransformation(entities);
     }
