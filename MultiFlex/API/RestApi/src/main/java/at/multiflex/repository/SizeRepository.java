@@ -3,6 +3,8 @@ package at.multiflex.repository;
 import at.multiflex.model.Size;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -10,7 +12,10 @@ import java.util.List;
  * This class has all Database Queries of the Size class
  */
 @ApplicationScoped
-public class SizeRepository extends CRUDOperations{
+public class SizeRepository
+{
+    @Inject
+    EntityManager em;
     /**
      * A Query to load all Size entities from the database
      * @return A list with all Size entities from the database

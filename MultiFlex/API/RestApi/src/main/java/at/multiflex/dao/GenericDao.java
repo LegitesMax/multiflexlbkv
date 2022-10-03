@@ -9,6 +9,7 @@ import at.multiflex.model.Size;
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Material;
 import at.multiflex.model.Wares.Product;
+import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.CategoryRepository;
 import at.multiflex.repository.ColorRepository;
 import at.multiflex.repository.SizeRepository;
@@ -41,6 +42,8 @@ public class GenericDao{
     ColorRepository colorRepository;
     @Inject
     SizeRepository sizeRepository;
+    @Inject
+    CRUDOperations crudOperations;
 
     protected Class<?> type;
 
@@ -69,18 +72,6 @@ public class GenericDao{
             entities = sizeRepository.loadAll();
         } else{
             throw new DaoException("Entity does not exist");
-        }
-        switch (type.getName()){
-            case "at.multiflex.model.Wares.Product":
-                System.out.println(Article.class.getName());
-                System.out.println(Article.class.getName());
-                System.out.println(Material.class.getName());
-                System.out.println(Product.class.getName());
-                System.out.println(Category.class.getName());
-                System.out.println(Color.class.getName());
-                System.out.println(Size.class.getName());
-                System.out.println(type.getName());
-                System.out.println(type);
         }
 
         return MappingHelper.entityDtoTransformation(entities);
@@ -116,7 +107,6 @@ public class GenericDao{
         } else if (Product.class.equals(type)){
             var dto = mapper.convertValue(input, Product.class);
             entity = MappingHelper.entityDtoTransformation(dto);
-            productRepository.add(entity);
         } else if (Category.class.equals(type)){
             var dto = mapper.convertValue(input, Category.class);
             entity = MappingHelper.entityDtoTransformation(dto);
@@ -129,7 +119,7 @@ public class GenericDao{
         } else{
             throw new DaoException("Entity type does exist");
         }
-        productRepository.add(entity);
+        crudOperations.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
     @DELETE
@@ -156,16 +146,38 @@ public class GenericDao{
             throw new NotFoundException();
         }
 
-        productRepository.delete(entity);
+        crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
-    //@PUT
-    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    //@Path("/update")
-    //public Response update(ColorDto dto) {
-    //    var entity = ObjectMapper.MAPPER.fromDto(dto);
-    //    repository.update(entity);
-    //    return Response.status(Response.Status.OK).build();
-    //}
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(Object input) throws DaoException {
+        ObjectMapper mapper = new ObjectMapper();
+        Object entity;
+        if (Article.class.equals(type)) {
+            var dto = mapper.convertValue(input, Article.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
+        } else if (Material.class.equals(type)){
+            var dto = mapper.convertValue(input, Material.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
+        } else if (Product.class.equals(type)){
+            var dto = mapper.convertValue(input, Product.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
+        } else if (Category.class.equals(type)){
+            var dto = mapper.convertValue(input, Category.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
+        } else if (Color.class.equals(type)){
+            var dto = mapper.convertValue(input, Color.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
+        } else if (Size.class.equals(type)){
+            var dto = mapper.convertValue(input, SizeDto.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
+        } else{
+            throw new DaoException("Entity type does exist");
+        }
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
 }

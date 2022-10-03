@@ -4,6 +4,8 @@ import at.multiflex.model.Wares.Article;
 import at.multiflex.repository.CRUDOperations;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -11,7 +13,10 @@ import java.util.List;
  * This class has all Database Queries of the Article class
  */
 @ApplicationScoped
-public class ArticleRepository extends CRUDOperations {
+public class ArticleRepository
+{
+    @Inject
+    EntityManager em;
     /**
      * A Query to load all Article entities from the database
      * @return A list with all Article entities from the database
