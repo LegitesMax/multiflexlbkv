@@ -2,6 +2,7 @@ package at.multiflex.repository.wares;
 
 import at.multiflex.model.Wares.Article;
 import at.multiflex.repository.CRUDOperations;
+import at.multiflex.repository.Repository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,10 +14,7 @@ import java.util.List;
  * This class has all Database Queries of the Article class
  */
 @ApplicationScoped
-public class ArticleRepository
-{
-    @Inject
-    EntityManager em;
+public class ArticleRepository extends Repository {
     /**
      * A Query to load all Article entities from the database
      * @return A list with all Article entities from the database

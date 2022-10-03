@@ -14,10 +14,7 @@ import java.util.List;
  * This class has all Database Queries of the Category class
  */
 @ApplicationScoped
-public class CategoryRepository
-{
-    @Inject
-    EntityManager em;
+public class CategoryRepository extends Repository{
     /**
      * A Query to load all Category entities from the database
      * @return A list with all Category entities from the database

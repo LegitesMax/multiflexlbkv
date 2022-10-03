@@ -12,10 +12,7 @@ import java.util.List;
  * This class has all Database Queries of the Size class
  */
 @ApplicationScoped
-public class SizeRepository
-{
-    @Inject
-    EntityManager em;
+public class SizeRepository extends Repository{
     /**
      * A Query to load all Size entities from the database
      * @return A list with all Size entities from the database

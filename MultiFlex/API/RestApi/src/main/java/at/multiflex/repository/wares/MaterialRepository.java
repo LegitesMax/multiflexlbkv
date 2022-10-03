@@ -2,6 +2,7 @@ package at.multiflex.repository.wares;
 
 import at.multiflex.model.Wares.Material;
 import at.multiflex.repository.CRUDOperations;
+import at.multiflex.repository.Repository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,10 +14,7 @@ import java.util.List;
  * This class has all Database Queries of the Material class
  */
 @ApplicationScoped
-public class MaterialRepository
-{
-    @Inject
-    EntityManager em;
+public class MaterialRepository extends Repository {
     /**
      * A Query to load all Material entities from the database
      * @return A list with all Material entities from the database

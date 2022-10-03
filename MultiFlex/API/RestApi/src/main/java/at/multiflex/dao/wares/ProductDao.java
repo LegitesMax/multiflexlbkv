@@ -1,17 +1,10 @@
 package at.multiflex.dao.wares;
 
-import at.multiflex.dao.DaoException;
 import at.multiflex.dao.GenericDao;
-import at.multiflex.dto.SizeDto;
-import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.model.Wares.Product;
-import org.jboss.resteasy.reactive.RestPath;
 
 import javax.enterprise.context.Dependent;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
+import javax.ws.rs.Path;
 
 /**
  * This class includes all json requests for the Article class
@@ -19,7 +12,9 @@ import java.util.List;
 @Dependent
 @Path("/Product")
 public class ProductDao extends GenericDao {
-
+    /**
+     * A Constructor that tells the superclass which entity class to use
+     */
     public ProductDao() {
         type = Product.class;
     }

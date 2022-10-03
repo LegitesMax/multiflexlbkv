@@ -9,25 +9,21 @@ import at.multiflex.model.Size;
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Material;
 import at.multiflex.model.Wares.Product;
-import at.multiflex.repository.CRUDOperations;
-import at.multiflex.repository.CategoryRepository;
-import at.multiflex.repository.ColorRepository;
-import at.multiflex.repository.SizeRepository;
+import at.multiflex.repository.*;
 import at.multiflex.repository.wares.ArticleRepository;
 import at.multiflex.repository.wares.MaterialRepository;
 import at.multiflex.repository.wares.ProductRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.LinkedHashMap;
 import java.util.List;
 
-
+/**
+ * A generic class for all dao classes
+ */
 public class GenericDao{
 
     @Inject
@@ -44,19 +40,19 @@ public class GenericDao{
     SizeRepository sizeRepository;
     @Inject
     CRUDOperations crudOperations;
+    //@Inject
+    //Repository repository;
 
     protected Class<?> type;
 
-    //<editor-fold desc="Get">
     /**
      * This gets all entities with this type from the Database and returns a list with them
-     * @return a list with all ProductDtos
+     * @return a list with all Dtos
      *
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<Object> getAll() throws DaoException {
-        //System.out.println(type.getName());
         List<?> entities;
         if (Article.class.equals(type)) {
             entities = articleRepository.loadAll();
@@ -76,9 +72,14 @@ public class GenericDao{
 
         return MappingHelper.entityDtoTransformation(entities);
     }
+    /**
+     * This gets specific entities from this type from the Database and returns a list with them
+     * @param name name which should be searched
+     * @return All entities with this name
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/{name}")
+    @Path("/name/{name}")
     public List<Object> getByName(String name) throws DaoException {
         List<? extends Article> entities;
         if (Article.class.equals(type)) {
@@ -92,6 +93,38 @@ public class GenericDao{
         }
         return MappingHelper.entityDtoTransformation(entities);
     }
+    /**
+     * gets an entity from this class by its id
+     * @param id the id of the class to return
+     * @return The class with the id of the input param
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/{id}")
+    public Object getById(Integer id) throws DaoException {
+        Object entity;
+        if (Article.class.equals(type)) {
+            entity = articleRepository.findById(id);
+        } else if (Material.class.equals(type)){
+            entity = materialRepository.findById(id);
+        } else if (Product.class.equals(type)){
+            entity = productRepository.findById(id);
+        } else if (Category.class.equals(type)){
+            entity = categoryRepository.findById(id);
+        } else if (Color.class.equals(type)){
+            entity = colorRepository.findById(id);
+        } else if (Size.class.equals(type)){
+            entity = sizeRepository.findById(id);
+        } else{
+            throw new DaoException("Entity does not exist");
+        }
+        return MappingHelper.entityDtoTransformation(entity);
+    }
+    /**
+     * transforms a given dto to an entity and adds it into the database
+     * @param input A dto to insert into the database
+     * @return The JSON Response code
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
@@ -122,6 +155,11 @@ public class GenericDao{
         crudOperations.add(entity);
         return Response.status(Response.Status.CREATED).build();
     }
+    /**
+     * Deletes a entity by that entities id
+     * @param id The id of an entity to delete
+     * @return The JSON Response code
+     */
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
@@ -149,7 +187,11 @@ public class GenericDao{
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
-
+    /**
+     * Transforms a dto into a entity and updates it
+     * @param input The dto of the entity
+     * @return The JSON Response code
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")

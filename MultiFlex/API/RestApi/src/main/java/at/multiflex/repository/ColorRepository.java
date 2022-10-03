@@ -12,10 +12,7 @@ import java.util.List;
  * This class has all Database Queries of the Category class
  */
 @ApplicationScoped
-public class ColorRepository
-{
-    @Inject
-    EntityManager em;
+public class ColorRepository extends Repository{
     /**
      * A Query to load all Color entities from the database
      * @return A list with all Color entities from the database
