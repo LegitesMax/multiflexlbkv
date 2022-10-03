@@ -3,7 +3,6 @@ package at.multiflex.dao;
 import at.multiflex.dto.ColorDto;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.mapper.MappingHelper;
-import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
 import at.multiflex.model.Size;
@@ -16,16 +15,19 @@ import at.multiflex.repository.SizeRepository;
 import at.multiflex.repository.wares.ArticleRepository;
 import at.multiflex.repository.wares.MaterialRepository;
 import at.multiflex.repository.wares.ProductRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
-public class GenericDao {
+public class GenericDao{
 
     @Inject
     ArticleRepository articleRepository;
@@ -99,38 +101,36 @@ public class GenericDao {
         }
         return MappingHelper.entityDtoTransformation(entities);
     }
-    public <T> Response add(T dto) throws DaoException {
+    @POST
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/add")
+    public Response add(Object input) throws DaoException {
+        ObjectMapper mapper = new ObjectMapper();
+        Object entity;
         if (Article.class.equals(type)) {
-            var entity = (Article) MappingHelper.entityDtoTransformation(dto);
-            productRepository.add( entity);
+            var dto = mapper.convertValue(input, Article.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
         } else if (Material.class.equals(type)){
-            var entity = (Material) MappingHelper.entityDtoTransformation(dto);
-            productRepository.add(entity);
+            var dto = mapper.convertValue(input, Material.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
         } else if (Product.class.equals(type)){
-            var entity =  MappingHelper.entityDtoTransformation(dto);
-            var res = convertInstanceOfObject(entity, Product.class);
+            var dto = mapper.convertValue(input, Product.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
             productRepository.add(entity);
         } else if (Category.class.equals(type)){
-            var entity = (Category) MappingHelper.entityDtoTransformation(dto);
-            productRepository.add(entity);
+            var dto = mapper.convertValue(input, Category.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
         } else if (Color.class.equals(type)){
-            var entity = (Color) MappingHelper.entityDtoTransformation(dto);
-            productRepository.add(entity);
+            var dto = mapper.convertValue(input, Color.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
         } else if (Size.class.equals(type)){
-            var entity = MappingHelper.entityDtoTransformation(dto);
-
-            productRepository.add((Size) entity);
+            var dto = mapper.convertValue(input, SizeDto.class);
+            entity = MappingHelper.entityDtoTransformation(dto);
         } else{
             throw new DaoException("Entity type does exist");
         }
+        productRepository.add(entity);
         return Response.status(Response.Status.CREATED).build();
-    }
-    public static <T> T convertInstanceOfObject(Object o, Class<T> clazz) {
-        try {
-            return clazz.cast(o);
-        } catch(ClassCastException e) {
-            return null;
-        }
     }
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -155,17 +155,17 @@ public class GenericDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-        //var x = convertInstanceOfObject(entity, type);
+
         productRepository.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/update")
-    public Response update(ColorDto dto) {
-        var entity = ObjectMapper.MAPPER.fromDto(dto);
-        repository.update(entity);
-        return Response.status(Response.Status.OK).build();
-    }
+    //@PUT
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //@Path("/update")
+    //public Response update(ColorDto dto) {
+    //    var entity = ObjectMapper.MAPPER.fromDto(dto);
+    //    repository.update(entity);
+    //    return Response.status(Response.Status.OK).build();
+    //}
 }

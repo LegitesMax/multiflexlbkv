@@ -23,11 +23,4 @@ public class SizeDao extends GenericDao{
     public SizeDao() {
         type = Size.class;
     }
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/add")
-    public Response add(SizeDto dto) throws DaoException {
-        return super.add(dto);
-    }
 }

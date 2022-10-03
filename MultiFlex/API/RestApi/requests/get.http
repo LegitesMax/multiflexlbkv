@@ -24,9 +24,8 @@ POST http://localhost:9000/Size/add
 Content-Type: application/json
 
   {
-    "size": 55
+    "size": 65
   }
-
 ###
 POST http://localhost:9000/Color/add
 Content-Type: application/json

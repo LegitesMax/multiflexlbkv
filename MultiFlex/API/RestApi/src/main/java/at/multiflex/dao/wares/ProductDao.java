@@ -23,11 +23,4 @@ public class ProductDao extends GenericDao {
     public ProductDao() {
         type = Product.class;
     }
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/add")
-    public Response add(Product dto) throws DaoException {
-        return super.add(dto);
-    }
 }
