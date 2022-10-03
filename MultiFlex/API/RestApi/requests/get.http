@@ -19,4 +19,24 @@ GET http://localhost:8080/Article/1
 GET http://localhost:8080/Product/1
 ###
 GET http://localhost:8080/Material/1
+###
+POST http://localhost:9000/Size/add
+Content-Type: application/json
 
+  {
+    "size": 55
+  }
+
+###
+POST http://localhost:9000/Color/add
+Content-Type: application/json
+
+{
+  "name": "55A",
+  "colorCode": "TEST"
+}
+
+###
+DELETE http://localhost:9000/Size/delete/3
+###
+DELETE http://localhost:9000/Color/delete/1

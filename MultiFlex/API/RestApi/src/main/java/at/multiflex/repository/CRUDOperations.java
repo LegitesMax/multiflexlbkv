@@ -34,7 +34,8 @@ public class CRUDOperations {
     @Transactional
     public<T> void delete(T entity){
         if(entity == null) throw new IllegalArgumentException();
-        em.remove(entity);
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
+
     }
     /**
      * A generic method to update an entity
