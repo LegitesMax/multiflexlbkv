@@ -1,6 +1,5 @@
 package at.multiflex.dao;
 
-import at.multiflex.dto.ColorDto;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.Category;

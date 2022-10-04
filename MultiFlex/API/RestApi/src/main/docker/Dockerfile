@@ -3,4 +3,7 @@ WORKDIR /work/
 COPY . /work/application
 RUN chmod 775 /work
 EXPOSE 9000
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+#/bin
+#CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+CMD ["tail", "-f", "/dev/null"]
+
