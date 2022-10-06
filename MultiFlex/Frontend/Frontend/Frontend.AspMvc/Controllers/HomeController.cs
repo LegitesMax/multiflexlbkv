@@ -18,6 +18,7 @@ namespace Frontend.AspMvc.Controllers
     {
 
         public static string status { get; set; } = "open";
+        public static string indexStatus { get; set; } = "product";
 
         private readonly ILogger<HomeController> _logger;
         public Model Model { get; set; } = new();
@@ -33,9 +34,9 @@ namespace Frontend.AspMvc.Controllers
             //HttpClient client = new HttpClient();
             //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
             //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
-
 
             return View(Model);
         }
@@ -44,14 +45,16 @@ namespace Frontend.AspMvc.Controllers
             HttpClient client = new HttpClient();
             var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/");
 
-            if (ViewData["index"] == "material")
+            if (ViewData["index"] == "material" || indexStatus == "material")
             {
                 productJson = await client.GetStringAsync("http://127.0.0.1:9000/Material/");
                 Model.Materials = JsonConvert.DeserializeObject<List<Models.Material>>(productJson);
+                ViewData["index"] = "material";
             }
-            else
+            else if(ViewData["index"] == "product" || indexStatus == "product")
             {
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                ViewData["index"] = "product";
             }
         }
 
@@ -59,13 +62,16 @@ namespace Frontend.AspMvc.Controllers
         //Index loads
         public async Task<IActionResult> GetMaterials()
         {
+            indexStatus = "material";
+
             Model.Orders = GetOrdereItems();
-            ViewData["index"] = "material";
             await SetCategoriesAsync();
             return View("Index", Model);
         }
         public async Task<IActionResult> GetProducts()
         {
+            indexStatus = "product";
+
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
             return View("Index", Model);
@@ -81,7 +87,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
         {
             status = "open";
-             Model.Orders = GetOrdereItems();
+            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
             return View("Index", Model);
         }

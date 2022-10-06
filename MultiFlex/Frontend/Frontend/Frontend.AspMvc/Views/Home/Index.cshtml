@@ -31,14 +31,14 @@
 
                 <div class="accordion accordion-flush border" id="accordionFlushExample">
                     @{
-                    if (ViewData["index"] == "material")
-                    {
-                                @await Html.PartialAsync("_SetMaterial", Model.Materials);
-                    }
-                    else
-                    {
-                                @await Html.PartialAsync("_SetCategories", Model.Categories);
-                    }
+                        if (ViewData["index"] == "material")
+                        {
+                            @await Html.PartialAsync("_SetMaterial", Model.Materials);
+                        }
+                        else if(ViewData["index"] == "product")
+                        {
+                             @await Html.PartialAsync("_SetCategories", Model.Categories);
+                        }
                     }
                 </div>
             </div>
