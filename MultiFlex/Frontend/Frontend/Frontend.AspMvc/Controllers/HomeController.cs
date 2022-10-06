@@ -81,7 +81,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
         {
             status = "open";
-            Model.Orders = GetOrdereItems();
+             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
             return View("Index", Model);
         }

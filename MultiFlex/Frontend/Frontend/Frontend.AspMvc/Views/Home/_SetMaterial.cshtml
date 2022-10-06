@@ -3,29 +3,33 @@
     int i = 0;
     foreach (var item in Model)
     {
-        <div class="accordion-item">
-            <div class="accordion-header" id="flush-heading-@i">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@i" aria-expanded="false" aria-controls="flush-collapse-@i">
-                    @item.Name <!-- - @item. .Sum(x => x.Value)Stk-->
-                </button>
-            </div>
-            <div id="flush-collapse-@i" class="accordion-collapse collapse" aria-labelledby="flush-heading-@i" data-bs-parent="#accordionFlushExample">
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Bezeichnung</th>
-                            <th scope="col">Anzahl</th>
-                            <th scope="col">Min. Anzahl</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">@item.Name</th>
-                            <td>@item.Value</td>
-                            <td>@item.minValue</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <div class="accordion-header" id="flush-heading-@i">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@i" aria-expanded="false" aria-controls="flush-collapse-@i">
+                          @item.Name <!-- - @item. .Sum(x => x.Value)Stk-->
+                    </button>
+                </div>
+                <div id="flush-collapse-@i" class="accordion-collapse collapse" aria-labelledby="flush-heading-@i" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Bezeichnung</th>
+                                    <th scope="col">Anzahl</th>
+                                    <th scope="col">Min. Anzahl</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">@item.Name</th>
+                                    <td>@item.Value</td>
+                                    <td>@item.minValue</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         i++;

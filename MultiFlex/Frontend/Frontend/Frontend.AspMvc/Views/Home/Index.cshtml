@@ -10,49 +10,50 @@
 
     if (pdfStatus == "succses")
     {
-        <div class="alert alert-success" role="alert">
-            PDF wurde erfolgreich erstellt
-        </div>
+    <div class="alert alert-success" role="alert">
+                PDF wurde erfolgreich erstellt
+    </div>
     }
     else if (pdfStatus == "error")
     {
-        <div class="alert alert-danger" role="alert">
-            Fehler beim erstellen der PDF
-        </div>
+    <div class="alert alert-danger" role="alert">
+                Fehler beim erstellen der PDF
+    </div>
     }
 
     <div class="w-100 d-flex">
-        <div class="w-75 mx-4">
+            <div class="w-75 mx-4">
 
-            <div class="d-flex justify-content-center pb-4">
-                <a type="button" class="btn btn-dark mx-3 " asp-action="GetProducts">Produktbestand</a>
-                <a type="button" class="btn btn-dark" asp-action="GetMaterials">Materialbestand</a>
-            </div>
+                <div class="d-flex justify-content-center pb-4">
+                    <a type="button" class="btn btn-dark mx-3 " asp-action="GetProducts">Produktbestand</a>
+                    <a type="button" class="btn btn-dark" asp-action="GetMaterials">Materialbestand</a>
+                </div>
 
-            <div class="accordion accordion-flush border" id="accordionFlushExample">
-                @{
+                <div class="accordion accordion-flush border" id="accordionFlushExample">
+                    @{
                     if (ViewData["index"] == "material")
                     {
-                        @await Html.PartialAsync("_SetMaterial", Model.Materials);
+                                @await Html.PartialAsync("_SetMaterial", Model.Materials);
                     }
                     else
                     {
-                        @await Html.PartialAsync("_SetCategories", Model.Categories);
+                                @await Html.PartialAsync("_SetCategories", Model.Categories);
                     }
-                }
+                    }
+                </div>
             </div>
-        </div>
 
-        <div class="w-25">
-            <h2 class="text-center">Offene Bestellungen</h2>
-            <div class="d-flex justify-content-between">
-                <a type="button" class="btn btn-dark" asp-action="OpenOrders">Offen</a>
-                <a type="button" class="btn btn-dark" asp-action="CanceledOrders">Storniert</a>
-                <a type="button" class="btn btn-dark" asp-action="ReadyOrders">Erledigt</a>
-            </div>
-            <hr>
-            <ul class="list-group">
-                @{
+            <div class="w-25">
+                <h2 class="text-center">Offene Bestellungen</h2>
+                <div class="d-flex justify-content-between">
+
+                    <a type="button" class="btn btn-dark" asp-action="OpenOrders">Offen</a>
+                    <a type="button" class="btn btn-dark" asp-action="CanceledOrders">Storniert</a>
+                    <a type="button" class="btn btn-dark" asp-action="ReadyOrders">Erledigt</a>
+                </div>
+                <hr>
+                <ul class="list-group">
+                    @{
                     if (ViewData["orderStatus"] == "open")
                     {
                         ViewData["pdfStatus"] = "open";
@@ -70,11 +71,11 @@
 
                     if (ViewData["orderStatus"] == string.Empty)
                     {
-                        <p>Ein Fehler ist aufgetreten</p>
+                                <p>Ein Fehler ist aufgetreten</p>
                     }
                     @await Html.PartialAsync("_CancledOrders", Model.Orders);
-                }
-            </ul>
-        </div>
+                    }
+                </ul>
+            </div>
     </div>
 }
