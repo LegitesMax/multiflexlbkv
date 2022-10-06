@@ -162,3 +162,6 @@ insert into Product(id, category_id, color_id, size_id) values(61, 4,6, 2 );
 insert into Product(id, category_id, color_id, size_id) values(62, 4,7, 2 );
 insert into Product(id, category_id, color_id, size_id) values(63, 4,8, 2 );
 insert into Product(id, category_id, color_id, size_id) values(64, 4,1, 2 );
+
+insert into Article(id, name, value, minValue) values(100, 'Holz', 12, 2);
+insert into Material(id) values(100);

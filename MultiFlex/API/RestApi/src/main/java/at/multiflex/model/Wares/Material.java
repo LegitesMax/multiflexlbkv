@@ -23,7 +23,7 @@ public class Material extends Article {
     //</editor-fold>
 
     //<editor-fold desc="Relation">
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "ProductionFormula", // name of the association table
             joinColumns = @JoinColumn(name = "material_id"), // foreign key columns

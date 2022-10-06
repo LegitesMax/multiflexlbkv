@@ -27,12 +27,7 @@ namespace Frontend.AspMvc.Controllers
             _logger = logger;
         }
 
-        public async Task SetCategoriesAsync()
-        {
-            HttpClient client = new HttpClient();
-            var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/");
-            Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-        }
+        //first index load
         public async Task<IActionResult> IndexAsync()
         {
             //HttpClient client = new HttpClient();
@@ -44,6 +39,39 @@ namespace Frontend.AspMvc.Controllers
 
             return View(Model);
         }
+        public async Task SetCategoriesAsync()
+        {
+            HttpClient client = new HttpClient();
+            var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/");
+
+            if (ViewData["index"] == "material")
+            {
+                productJson = await client.GetStringAsync("http://127.0.0.1:9000/Material/");
+                Model.Materials = JsonConvert.DeserializeObject<List<Models.Material>>(productJson);
+            }
+            else
+            {
+                Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+            }
+        }
+
+
+        //Index loads
+        public async Task<IActionResult> GetMaterials()
+        {
+            Model.Orders = GetOrdereItems();
+            ViewData["index"] = "material";
+            await SetCategoriesAsync();
+            return View("Index", Model);
+        }
+        public async Task<IActionResult> GetProducts()
+        {
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+            return View("Index", Model);
+        }
+
+        //Order loads
         /// <summary>
         /// Set Status Open Get All Open Order Items
         /// </summary>
