@@ -34,6 +34,15 @@ Content-Type: application/json
   "name": "55A",
   "colorCode": "TEST"
 }
+###
+POST http://localhost:9000/Material/add
+Content-Type: application/json
+
+{
+  "name": "name",
+  "value": 1,
+  "minValue": 0
+}
 
 ###
 DELETE http://localhost:9000/Size/delete/3
