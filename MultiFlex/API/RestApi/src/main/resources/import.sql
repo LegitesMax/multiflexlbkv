@@ -163,5 +163,24 @@ insert into Product(id, category_id, color_id, size_id) values(62, 4,7, 2 );
 insert into Product(id, category_id, color_id, size_id) values(63, 4,8, 2 );
 insert into Product(id, category_id, color_id, size_id) values(64, 4,1, 2 );
 
-insert into Article(id, name, value, minValue) values(100, 'Holz', 12, 2);
+insert into Article(id, name, value, minValue) values(100, 'Holz', 55, 40);
+insert into Article(id, name, value, minValue) values(106, 'Holz49', 55, 40);
+insert into Article(id, name, value, minValue) values(107, 'Holz39', 55, 40);
 insert into Material(id) values(100);
+insert into Material(id) values(106);
+insert into Material(id) values(107);
+
+insert into Article(id, name, value, minValue) values(121, 'Folie', 7, 5);
+insert into Material(id) values(121);
+
+insert into Article(id, name, value, minValue) values(122, 'Klebeband', 12, 5);
+insert into Material(id) values(122);
+
+insert into Article(id, name, value, minValue) values(103, 'Schachtel49', 100, 50);
+insert into Material(id) values(103);
+
+insert into Article(id, name, value, minValue) values(104, 'Schachtel39', 60, 50);
+insert into Material(id) values(104);
+
+insert into Article(id, name, value, minValue) values(105, 'SchachtelLI', 35, 30);
+insert into Material(id) values(105);
