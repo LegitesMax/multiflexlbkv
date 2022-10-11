@@ -180,6 +180,13 @@ insert into Article(id, name, value, minValue, category_id,  color_id,size_id) v
 insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1107, 'Folie', 55, 40, 1001, 8, 1);
 insert into Material(id) values(1100);
 insert into Material(id) values(1101);
+insert into Material(id) values(1102);
+insert into Material(id) values(1103);
+
+insert into Material(id) values(1104);
+insert into Material(id) values(1105);
+insert into Material(id) values(1106);
+insert into Material(id) values(1107);
 
 
 insert into Category (id, name) values (1002, 'Klebeband');
