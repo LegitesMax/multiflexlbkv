@@ -33,7 +33,7 @@
                     @{
                         if (ViewData["index"] == "material")
                         {
-                            @await Html.PartialAsync("_SetMaterial", Model.Materials);
+                            @await Html.PartialAsync("_SetCategories", Model.Categories);
                         }
                         else if(ViewData["index"] == "product")
                         {

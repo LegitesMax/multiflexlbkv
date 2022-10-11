@@ -26,19 +26,19 @@ import java.util.List;
 public class GenericDao{
 
     @Inject
-    ArticleRepository articleRepository;
+    protected ArticleRepository articleRepository;
     @Inject
-    MaterialRepository materialRepository;
+    protected MaterialRepository materialRepository;
     @Inject
-    ProductRepository productRepository;
+    protected ProductRepository productRepository;
     @Inject
-    CategoryRepository categoryRepository;
+    protected CategoryRepository categoryRepository;
     @Inject
-    ColorRepository colorRepository;
+    protected ColorRepository colorRepository;
     @Inject
-    SizeRepository sizeRepository;
+    protected SizeRepository sizeRepository;
     @Inject
-    CRUDOperations crudOperations;
+    protected CRUDOperations crudOperations;
     //@Inject
     //Repository repository;
 

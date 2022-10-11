@@ -1,9 +1,20 @@
 package at.multiflex.dao;
 
+import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.Category;
+import at.multiflex.model.Color;
+import at.multiflex.model.Size;
+import at.multiflex.model.Wares.Article;
+import at.multiflex.model.Wares.Material;
+import at.multiflex.model.Wares.Product;
+import at.multiflex.repository.CategoryRepository;
 
 import javax.enterprise.context.Dependent;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * This class includes all json requests for the Category class
@@ -16,5 +27,21 @@ public class CategoryDao extends GenericDao {
      */
     public CategoryDao() {
         type = Category.class;
+    }
+    @Path("/Product")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public List<Object> getAllProducts() {
+        var entities = categoryRepository.loadAllProducts();
+
+        return MappingHelper.entityDtoTransformation(entities);
+    }
+    @Path("/Material")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public List<Object> getAllMaterials() {
+        var entities = categoryRepository.loadAllMaterials();
+
+        return MappingHelper.entityDtoTransformation(entities);
     }
 }

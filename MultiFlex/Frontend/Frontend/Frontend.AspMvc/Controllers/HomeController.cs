@@ -43,16 +43,16 @@ namespace Frontend.AspMvc.Controllers
         public async Task SetCategoriesAsync()
         {
             HttpClient client = new HttpClient();
-            var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/");
 
             if (ViewData["index"] == "material" || indexStatus == "material")
             {
-                productJson = await client.GetStringAsync("http://127.0.0.1:9000/Material/");
-                Model.Materials = JsonConvert.DeserializeObject<List<Models.Material>>(productJson);
+                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
+                Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "material";
             }
             else if(ViewData["index"] == "product" || indexStatus == "product")
             {
+                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
