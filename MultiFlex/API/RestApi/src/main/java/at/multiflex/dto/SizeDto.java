@@ -1,5 +1,6 @@
 package at.multiflex.dto;
 
+import at.multiflex.dto.wares.ArticleDto;
 import at.multiflex.dto.wares.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,6 @@ public class SizeDto {
 
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    private Set<ProductDto> products = new HashSet<>();
+    private Set<ArticleDto> products = new HashSet<>();
     //</editor-fold>
 }

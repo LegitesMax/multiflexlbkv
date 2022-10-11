@@ -1,5 +1,6 @@
 package at.multiflex.model;
 
+import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,11 +27,11 @@ public class Category {
     @Column(nullable = false, length = 64, unique = true)
     private String name;
 
-    @Column(unique = true, length = 8)
+    @Column(length = 8)
     private String acronym;
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "color")
-    private Set<Product> products = new java.util.LinkedHashSet<>();
+    private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 }

@@ -21,8 +21,5 @@ import java.util.Set;
 public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
     private Set<MaterialDto> materials = new HashSet<>();
-    private SizeDto size = new SizeDto();
-    private ColorDto color = new ColorDto();
-    private CategoryDto category = new CategoryDto();
     //</editor-fold>
 }

@@ -1,5 +1,6 @@
 package at.multiflex.model;
 
+import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,6 @@ public class Size {
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "color")
-    private Set<Product> products = new java.util.LinkedHashSet<>();
+    private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 }

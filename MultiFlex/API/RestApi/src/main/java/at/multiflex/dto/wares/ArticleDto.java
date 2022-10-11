@@ -1,5 +1,8 @@
 package at.multiflex.dto.wares;
 
+import at.multiflex.dto.CategoryDto;
+import at.multiflex.dto.ColorDto;
+import at.multiflex.dto.SizeDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +26,8 @@ public class ArticleDto {
     private Integer minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-
+    private SizeDto size = new SizeDto();
+    private ColorDto color = new ColorDto();
+    private CategoryDto category = new CategoryDto();
     //</editor-fold>
 }

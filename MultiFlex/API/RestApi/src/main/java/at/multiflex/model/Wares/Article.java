@@ -1,5 +1,8 @@
 package at.multiflex.model.Wares;
 
+import at.multiflex.model.Category;
+import at.multiflex.model.Color;
+import at.multiflex.model.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,4 +46,16 @@ public class Article {
 
         //</editor-fold>
     //</editor-fold>
+
+    @ManyToOne
+    @JoinColumn(name = "color_id", nullable = false)
+    private Color color;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "size_id", nullable = false)
+    private Size size;
 }

@@ -38,12 +38,18 @@ public interface ObjectMapper {
      * @return The resulting dto
      */
     @Mapping(target = "id")
+    @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "category", qualifiedByName = {"toDtoIgnoreParent"})
     ArticleDto toDto(Article entity);
     /**
      * The dto will be transformed into an entity
      * @param entity The dto to transform
      * @return The resulting entity
      */
+    @Mapping(target = "size", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "color", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "category", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "id")
     Article fromDto(ArticleDto entity);
     //</editor-fold>
@@ -54,12 +60,18 @@ public interface ObjectMapper {
      * @return The resulting dto
      */
     @Mapping(target = "id")
+    @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "category", qualifiedByName = {"toDtoIgnoreParent"})
     MaterialDto toDto(Material entity);
     /**
      * The dto will be transformed into an entity
      * @param entity The dto to transform
      * @return The resulting entity
      */
+    @Mapping(target = "size", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "color", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "category", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "id")
     Material fromDto(MaterialDto entity);
     /**

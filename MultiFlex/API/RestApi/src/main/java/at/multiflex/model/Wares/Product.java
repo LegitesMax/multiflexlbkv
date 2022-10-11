@@ -28,16 +28,5 @@ public class Product extends Article {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
     private Set<Material> materials = new java.util.LinkedHashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "color_id", nullable = false)
-    private Color color;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "size_id", nullable = false)
-    private Size size;
     //</editor-fold>
 }
