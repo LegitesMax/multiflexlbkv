@@ -169,15 +169,15 @@ insert into Material(id) values(1001);
 insert into Category (id, name) values (1001, 'Folie');
 
 --insert into Categ(id, name, value, minValue) values(100, 'Holz', 55, 40);
-insert into Article(id, name, value, minValue, category_id,color_id , size_id) values(1100, 'Folie', 55, 40, 1001, 'BA', 1);
-insert into Article(id, name, value, minValue, category_id, color_id, size_id) values(1101, 'Folie', 55, 40, 1001, 34, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1102, 'Folie', 55, 40, 1001, 62, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1103, 'Folie', 55, 40, 1001,  67,1);
+insert into Article(id, name, value, minValue, category_id,color_id , size_id) values(1100, 'Folie', 55, 40, 1001, 1, 1);
+insert into Article(id, name, value, minValue, category_id, color_id, size_id) values(1101, 'Folie', 55, 40, 1001, 2, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1102, 'Folie', 55, 40, 1001, 3, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1103, 'Folie', 55, 40, 1001,  4,1);
 
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1104, 'Folie', 55, 40, 1001, 22, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1105, 'Folie', 55, 40, 1001, 14, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1106, 'Folie', 55, 40, 1001, 51, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1107, 'Folie', 55, 40, 1001, 29. 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1104, 'Folie', 55, 40, 1001, 5, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1105, 'Folie', 55, 40, 1001, 6, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1106, 'Folie', 55, 40, 1001, 7, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1107, 'Folie', 55, 40, 1001, 8, 1);
 insert into Material(id) values(1100);
 insert into Material(id) values(1101);
 
