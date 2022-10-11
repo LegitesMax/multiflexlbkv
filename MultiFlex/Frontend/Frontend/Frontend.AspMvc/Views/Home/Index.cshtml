@@ -31,14 +31,7 @@
 
                 <div class="accordion accordion-flush border" id="accordionFlushExample">
                     @{
-                        if (ViewData["index"] == "material")
-                        {
-                            @await Html.PartialAsync("_SetCategories", Model.Categories);
-                        }
-                        else if(ViewData["index"] == "product")
-                        {
-                             @await Html.PartialAsync("_SetCategories", Model.Categories);
-                        }
+                        @await Html.PartialAsync("_SetCategories", Model.Categories);
                     }
                 </div>
             </div>

@@ -29,7 +29,14 @@
                                         <th scope="row">@product.Name</th>
                                         <td>@product.Value</td>
                                         <td>@product.MinValue</td>
-                                        <td>@product.Color.Name</td>
+                                        @if (product.Color == null)
+                                        {
+                                            <td>No specific Color</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@product.Color.Name</td>
+                                        }
                                     </tr>
                                 }
                             </tbody>

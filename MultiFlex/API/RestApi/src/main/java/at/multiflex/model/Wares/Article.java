@@ -26,7 +26,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 64, unique = true)
+    @Column(nullable = false, length = 64)
     private String name;
 
     @Column(nullable = false)
@@ -48,7 +48,7 @@ public class Article {
     //</editor-fold>
 
     @ManyToOne
-    @JoinColumn(name = "color_id", nullable = false)
+    @JoinColumn(name = "color_id")
     private Color color;
 
     @ManyToOne
