@@ -416,6 +416,16 @@ namespace Frontend.AspMvc.Controllers
 
         }
 
+
+        //Buttons Edit/Add/Remove
+        public Task<IActionResult> EditProduct()
+        {
+
+
+            return null;
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
