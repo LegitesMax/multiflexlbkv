@@ -71,6 +71,7 @@ namespace Frontend.AspMvc.Controllers
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
+            Model.Orders = GetOrdereItems();
         }
 
 
@@ -433,19 +434,22 @@ namespace Frontend.AspMvc.Controllers
 
 
         //Buttons Edit/Add/Remove
-        public Task<IActionResult> EditProduct(string name, int value, int minValue)
+        public async Task<IActionResult> EditProduct(string name, int value, int minValue)
         {
+            var data = new SubscribeModel();
+
+            data.Name = name;
+            data.Value = value;
+            data.MinValue = minValue;
+
+            var client = new HttpClient();
+            var httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8);
             
+            await client.PutAsync("http://127.0.0.1:9000/Article/add", httpContent);
+            await SetCategoriesAsync();
 
-
-
-            return null;
+            return View("Index", Model);
         }
-
-        public async void SendEditDataAsync()
-        {
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
