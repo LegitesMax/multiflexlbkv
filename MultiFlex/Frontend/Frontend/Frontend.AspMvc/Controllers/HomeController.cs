@@ -28,21 +28,6 @@ namespace Frontend.AspMvc.Controllers
             _logger = logger;
         }
 
-
-        public async Task<IActionResult> TESTBUTTONAsync(object sender, EventArgs e)
-        {
-            SetCategoriesAsync();
-            //status = "ready";
-            //Model.Orders = GetReadyItems();
-            //await SetCategoriesAsync();
-
-            //string name = Request.Form["Name"];
-            Console.WriteLine(sender);
-            Console.WriteLine(e);
-            //string email = txtEmail.Value;
-            //return View(Model);
-            return View("Index", Model);
-        }
         [HttpPost]
         public async Task<IActionResult> SubscribeAsync(SubscribeModel model)
         {
@@ -448,11 +433,17 @@ namespace Frontend.AspMvc.Controllers
 
 
         //Buttons Edit/Add/Remove
-        public Task<IActionResult> EditProduct()
+        public Task<IActionResult> EditProduct(string name, int value, int minValue)
         {
+            
+
 
 
             return null;
+        }
+
+        public async void SendEditDataAsync()
+        {
         }
 
 
