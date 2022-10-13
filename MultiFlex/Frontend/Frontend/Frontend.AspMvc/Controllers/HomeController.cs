@@ -28,6 +28,36 @@ namespace Frontend.AspMvc.Controllers
             _logger = logger;
         }
 
+
+        public async Task<IActionResult> TESTBUTTONAsync(object sender, EventArgs e)
+        {
+            SetCategoriesAsync();
+            //status = "ready";
+            //Model.Orders = GetReadyItems();
+            //await SetCategoriesAsync();
+
+            //string name = Request.Form["Name"];
+            Console.WriteLine(sender);
+            Console.WriteLine(e);
+            //string email = txtEmail.Value;
+            //return View(Model);
+            return View("Index", Model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> SubscribeAsync(SubscribeModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: SubscribeUser(model.Email);
+                Console.WriteLine(model.Name);
+                Console.WriteLine(model.Value);
+                Console.WriteLine(model.MinValue);
+            }
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+            return View("Index", Model);
+        }
+
         //first index load
         public async Task<IActionResult> IndexAsync()
         {
@@ -50,7 +80,7 @@ namespace Frontend.AspMvc.Controllers
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "material";
             }
-            else if(ViewData["index"] == "product" || indexStatus == "product")
+            else if (ViewData["index"] == "product" || indexStatus == "product")
             {
                 var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);

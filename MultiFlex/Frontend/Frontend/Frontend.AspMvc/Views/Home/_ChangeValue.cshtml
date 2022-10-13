@@ -1,0 +1,50 @@
+﻿@model Frontend.AspMvc.Models.SubscribeModel
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+            {
+            <div class="modal-body">
+
+                @{
+                    <div class="input-group">
+                        <span class="input-group-text">Name</span>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    </div>
+                    <br>
+                    /*
+                    <p>Name:     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })</p>
+                    <br>
+                    /*
+                    <p>Value:    @Html.TextBoxFor(model => model.Value, new { @class = "form-control", @value = "1" })</p>
+                    <br>
+                    <p>MinValue: @Html.TextBoxFor(model => model.MinValue, new { @class = "form-control" })</p>
+                    */
+
+
+                    <div class="input-group">
+                        <span class="input-group-text">Value & MinValue</span>
+                        @Html.TextBoxFor(model => model.Value, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.MinValue, new { @class = "form-control" })
+                    </div>
+
+                }
+
+                @Html.ValidationMessageFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Value)
+                @Html.ValidationMessageFor(model => model.MinValue)
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+            }
+        </div>
+    </div>
+</div>

@@ -2,11 +2,12 @@
 {
     public class Model
     {
-        public List<Product>? Products { get; set; }
-        public List<Category>? Categories { get; set; }
-        public List<Material>? Materials { get; set; }
-        public List<Color>? Colors { get; set; }
-        public List<Size>? Sizes { get; set; }
+        public List<Product>? Products { get; set; } = new();
+        public List<Category>? Categories { get; set; } = new();
+        public List<Material>? Materials { get; set; } = new();
+        public List<Color>? Colors { get; set; } = new();
+        public List<Size>? Sizes { get; set; } = new();
+        public SubscribeModel sub { get; set; } = new();
         public IList<Logic.Entities.Orders.Order>? Orders { get; set; }
 
     }
