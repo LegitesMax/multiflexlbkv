@@ -30,7 +30,7 @@ public class Article {
     private String name;
 
     @Column(nullable = false)
-    private Integer value;
+    private Double value;
 
     @Column(nullable = false)
     private Integer minValue;

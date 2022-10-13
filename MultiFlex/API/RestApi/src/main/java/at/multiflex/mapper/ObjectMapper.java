@@ -90,7 +90,7 @@ public interface ObjectMapper {
      * @return The resulting dto
      */
     @Named("fromDtoIgnoreParent")
-    @Mapping(target = "products", ignore = true)
+    @Mapping(target = "productionFormula", ignore = true)
     Material fromDtoIgnoreParent(MaterialDto entity);
     //</editor-fold>
     //<editor-fold desc="Product">
@@ -102,7 +102,7 @@ public interface ObjectMapper {
      */
     @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
-    @Mapping(target = "materials", qualifiedByName = {"toDtoIgnoreParent"})
+    //@Mapping(target = "productionFormula", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "category", qualifiedByName = {"toDtoIgnoreParent"})
     ProductDto toDto(Product entity);
 
@@ -114,7 +114,7 @@ public interface ObjectMapper {
      */
     @Mapping(target = "size", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"fromDtoIgnoreParent"})
-    @Mapping(target = "materials", qualifiedByName = {"fromDtoIgnoreParent"})
+    //@Mapping(target = "productionFormula", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "category", qualifiedByName = {"fromDtoIgnoreParent"})
     Product fromDto(ProductDto entity);
     //</editor-fold>
