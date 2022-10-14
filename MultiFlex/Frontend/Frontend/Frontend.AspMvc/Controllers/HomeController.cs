@@ -40,6 +40,7 @@ namespace Frontend.AspMvc.Controllers
             }
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
+            EditProduct(model.Name, model.Value.Value, model.MinValue.Value);
             return View("Index", Model);
         }
 
@@ -434,7 +435,7 @@ namespace Frontend.AspMvc.Controllers
 
 
         //Buttons Edit/Add/Remove
-        public async Task<IActionResult> EditProduct(string name, int value, int minValue)
+        public async void EditProduct(string name, int value, int minValue)
         {
             var data = new SubscribeModel();
 
@@ -445,10 +446,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8);
             
-            await client.PutAsync("http://127.0.0.1:9000/Article/add", httpContent);
+            await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            //return View("Index", Model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

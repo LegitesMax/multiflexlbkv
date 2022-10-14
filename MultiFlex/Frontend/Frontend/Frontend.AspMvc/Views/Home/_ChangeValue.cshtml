@@ -7,10 +7,10 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            @Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+            @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
             {
-            <div class="modal-body">
-                @{
+                <div class="modal-body">
+
                     <div class="input-group">
                         <span class="input-group-text">Name</span>
                         @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @name="name" })
@@ -21,17 +21,19 @@
                         @Html.TextBoxFor(model => model.Value, new { @class = "form-control", @name="value"})
                         @Html.TextBoxFor(model => model.MinValue, new { @class = "form-control", @name="minValue" })
                     </div>
-                }
-                @*@Html.ValidationMessageFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Value)
-                @Html.ValidationMessageFor(model => model.MinValue)*@
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button asp-action="EditProduct" class="btn btn-primary">Bestätigen</button>
-            </div>
+                    @Html.ValidationMessageFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Value)
+                    @Html.ValidationMessageFor(model => model.MinValue)
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </div>
             }
         </div>
     </div>
 </div>
+
+
