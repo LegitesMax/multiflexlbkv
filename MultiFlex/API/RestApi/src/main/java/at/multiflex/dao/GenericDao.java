@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -194,7 +195,7 @@ public class GenericDao{
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
-    public Response update(Object input) throws DaoException {
+    public Response update(Object input) throws DaoException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         Object entity;
         if (Article.class.equals(type)) {
@@ -206,6 +207,16 @@ public class GenericDao{
         } else if (Product.class.equals(type)){
             var dto = mapper.convertValue(input, Product.class);
             entity = MappingHelper.entityDtoTransformation(dto);
+
+            var oldEntity = articleRepository.findByName(dto.getName());
+            var entity2 = (Article)MappingHelper.entityDtoTransformation(input);
+            entity2.setId(oldEntity.stream().findFirst().get().getId());
+            var result = oldEntity.stream().findFirst().get();
+
+            entity2.setCategory(result.getCategory());
+            entity2.setColor(result.getColor());
+            entity2.setSize(result.getSize());
+
         } else if (Category.class.equals(type)){
             var dto = mapper.convertValue(input, Category.class);
             entity = MappingHelper.entityDtoTransformation(dto);

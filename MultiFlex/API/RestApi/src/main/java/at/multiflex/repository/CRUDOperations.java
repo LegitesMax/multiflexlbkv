@@ -46,5 +46,13 @@ public class CRUDOperations {
     public<T> void update(T entity){
         if(entity == null) throw new IllegalArgumentException();
         em.merge(entity);
+        flushAndClear();
+        em.persist(entity);
+    }
+
+    @Transactional
+    public void flushAndClear() {
+        em.flush();
+        em.clear();
     }
 }

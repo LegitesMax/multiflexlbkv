@@ -30,4 +30,6 @@ public class ArticleDto {
     private ColorDto color = new ColorDto();
     private CategoryDto category = new CategoryDto();
     //</editor-fold>
+
+
 }

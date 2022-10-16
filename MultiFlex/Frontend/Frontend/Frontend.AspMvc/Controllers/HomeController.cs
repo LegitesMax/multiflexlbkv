@@ -39,8 +39,9 @@ namespace Frontend.AspMvc.Controllers
                 Console.WriteLine(model.MinValue);
             }
             Model.Orders = GetOrdereItems();
-            await SetCategoriesAsync();
             EditProduct(model.Name, model.Value.Value, model.MinValue.Value);
+            await SetCategoriesAsync();
+
             return View("Index", Model);
         }
 
@@ -446,8 +447,8 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8);
             
-            await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
-            await SetCategoriesAsync();
+            //await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Product/update", data).Result;
 
             //return View("Index", Model);
         }
