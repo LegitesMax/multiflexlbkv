@@ -448,7 +448,7 @@ namespace Frontend.AspMvc.Controllers
             var httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8);
             
             //await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Product/update", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
 
             //return View("Index", Model);
         }

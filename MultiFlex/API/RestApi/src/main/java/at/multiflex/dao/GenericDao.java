@@ -192,7 +192,7 @@ public class GenericDao{
      * @param input The dto of the entity
      * @return The JSON Response code
      */
-    @PUT
+    /*@PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(Object input) throws DaoException, IOException {
@@ -231,5 +231,5 @@ public class GenericDao{
         }
         crudOperations.update(entity);
         return Response.status(Response.Status.OK).build();
-    }
+    }*/
 }

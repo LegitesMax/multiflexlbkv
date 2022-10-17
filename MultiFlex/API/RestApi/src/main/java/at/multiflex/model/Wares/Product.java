@@ -30,10 +30,10 @@ public class Product extends Article {
     //@ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
     //private Set<Material> materials = new java.util.LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private Set<ProductionFormula> productionFormula = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade=CascadeType.ALL)
     private Set<ProductionLog> productionLog = new java.util.LinkedHashSet<>();
     //</editor-fold>
 }

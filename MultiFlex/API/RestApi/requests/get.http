@@ -43,6 +43,15 @@ Content-Type: application/json
   "value": 1,
   "minValue": 0
 }
+###
+PUT http://localhost:9000/Article/update
+Content-Type: application/json
+
+{
+"name": "BA 49 34",
+"value": 100,
+"minValue": 1000
+}
 
 ###
 DELETE http://localhost:9000/Size/delete/3
