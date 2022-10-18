@@ -24,7 +24,7 @@ namespace BillBeeQueries
 
             // Creating new instance of ApiClient
 
-            string configPath = "";
+            string configPath = "/usr/psw.json";
 
 #if Linux
         configPath = "/usr/psw.json";
