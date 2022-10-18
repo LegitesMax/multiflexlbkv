@@ -29,6 +29,11 @@ public class CategoryDao extends GenericDao {
     public CategoryDao() {
         type = Category.class;
     }
+
+    /**
+     * Returns all Products by categories
+     * @return The resulting List
+     */
     @Path("/Product")
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -37,6 +42,10 @@ public class CategoryDao extends GenericDao {
 
         return MappingHelper.entityDtoTransformation(entities);
     }
+    /**
+     * Returns all Materials by categories
+     * @return The resulting List
+     */
     @Path("/Material")
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)

@@ -66,6 +66,10 @@ public class CategoryRepository extends Repository{
         return category;
         //return  em.createQuery("select x from Article x inner join x.category y where y.id = :id", Category.class).setParameter("id", id).getSingleResult();
     }
+    /**
+     * Loads all products categorised by category out of the database
+     * @return The resulting List
+     */
     @Transactional
     public List<Category> loadAllProducts() {
         //var res = em.createQuery("select x from Category x join x.products y where y.name like lower(concat('%', concat(x.acronym, '%')))", Category.class).getResultList();
@@ -100,6 +104,10 @@ public class CategoryRepository extends Repository{
         }
         return result;
     }
+    /**
+     * Loads all materials categorised by category out of the database
+     * @return The resulting List
+     */
     @Transactional
     public List<Category> loadAllMaterials() {
         ////var res = em.createQuery("select x from Category x join x.products y where y.name like lower(concat('%', concat(x.acronym, '%')))", Category.class).getResultList();

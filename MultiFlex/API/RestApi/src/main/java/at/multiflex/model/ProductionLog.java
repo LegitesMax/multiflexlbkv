@@ -9,7 +9,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
-
+/**
+ * An entity that logs all productions
+ */
 @Getter
 @Setter
 @AllArgsConstructor
