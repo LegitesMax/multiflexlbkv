@@ -25,30 +25,52 @@ import java.util.List;
  * A generic class for all dao classes
  */
 public class GenericDao{
-
+    /**
+     * repository for the article class
+     */
     @Inject
     protected ArticleRepository articleRepository;
+    /**
+     * repository for the material class
+     */
     @Inject
     protected MaterialRepository materialRepository;
+    /**
+     * repository for the product class
+     */
     @Inject
     protected ProductRepository productRepository;
+    /**
+     * repository for the category class
+     */
     @Inject
     protected CategoryRepository categoryRepository;
+    /**
+     * repository for the color class
+     */
     @Inject
     protected ColorRepository colorRepository;
+    /**
+     * repository for the size class
+     */
     @Inject
     protected SizeRepository sizeRepository;
+    /**
+     * all create update delete operations
+     */
     @Inject
     protected CRUDOperations crudOperations;
     //@Inject
     //Repository repository;
-
+    /**
+     * type of the class
+     */
     protected Class<?> type;
 
     /**
      * This gets all entities with this type from the Database and returns a list with them
      * @return a list with all Dtos
-     *
+     * @throws DaoException throws a DaoException
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -76,6 +98,7 @@ public class GenericDao{
      * This gets specific entities from this type from the Database and returns a list with them
      * @param name name which should be searched
      * @return All entities with this name
+     * @throws DaoException throws a DaoException
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -97,6 +120,7 @@ public class GenericDao{
      * gets an entity from this class by its id
      * @param id the id of the class to return
      * @return The class with the id of the input param
+     * @throws DaoException throws a DaoException
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -124,6 +148,7 @@ public class GenericDao{
      * transforms a given dto to an entity and adds it into the database
      * @param input A dto to insert into the database
      * @return The JSON Response code
+     * @throws DaoException throws a DaoException
      */
     @POST
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -159,6 +184,7 @@ public class GenericDao{
      * Deletes a entity by that entities id
      * @param id The id of an entity to delete
      * @return The JSON Response code
+     * @throws DaoException throws a DaoException
      */
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -191,8 +217,9 @@ public class GenericDao{
      * Transforms a dto into a entity and updates it
      * @param input The dto of the entity
      * @return The JSON Response code
+     * @throws DaoException throws a DaoException
      */
-    @PUT
+    /*@PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(Object input) throws DaoException, IOException {
@@ -231,5 +258,5 @@ public class GenericDao{
         }
         crudOperations.update(entity);
         return Response.status(Response.Status.OK).build();
-    }
+    }*/
 }

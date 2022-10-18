@@ -46,10 +46,10 @@ public class CRUDOperations {
     public<T> void update(T entity){
         if(entity == null) throw new IllegalArgumentException();
         em.merge(entity);
-        flushAndClear();
-        em.persist(entity);
     }
-
+    /**
+     * A method that executes all pending statements now instead of later
+     */
     @Transactional
     public void flushAndClear() {
         em.flush();

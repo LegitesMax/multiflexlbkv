@@ -2,6 +2,9 @@ package at.multiflex.model.Wares;
 
 import javax.persistence.*;
 
+/**
+ * An entity that contains the amount of material needed for the production of a product
+ */
 @Entity
 public class ProductionFormula {
 

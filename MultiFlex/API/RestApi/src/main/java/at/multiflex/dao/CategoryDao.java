@@ -11,6 +11,7 @@ import at.multiflex.repository.CategoryRepository;
 
 import javax.enterprise.context.Dependent;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -28,6 +29,11 @@ public class CategoryDao extends GenericDao {
     public CategoryDao() {
         type = Category.class;
     }
+
+    /**
+     * Returns all Products by categories
+     * @return The resulting List
+     */
     @Path("/Product")
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -36,6 +42,10 @@ public class CategoryDao extends GenericDao {
 
         return MappingHelper.entityDtoTransformation(entities);
     }
+    /**
+     * Returns all Materials by categories
+     * @return The resulting List
+     */
     @Path("/Material")
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
@@ -44,4 +54,5 @@ public class CategoryDao extends GenericDao {
 
         return MappingHelper.entityDtoTransformation(entities);
     }
+
 }

@@ -5,6 +5,7 @@ package at.multiflex.dao;
 public class DaoException extends Exception {
     /**
      * A Constructor that gives the message to the superclass
+     * @param errorMessage the message to throw
      */
     public DaoException(String errorMessage) {
         super(errorMessage);

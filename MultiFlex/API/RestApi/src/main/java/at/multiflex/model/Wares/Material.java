@@ -32,7 +32,7 @@ public class Material extends Article {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products;
     */
-    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private Set<ProductionFormula> productionFormula = new HashSet<>();
     //</editor-fold>
 }

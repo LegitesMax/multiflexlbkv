@@ -3,6 +3,7 @@ package at.multiflex.repository.wares;
 import at.multiflex.model.Wares.Article;
 import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.Repository;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ import java.util.List;
  * This class has all Database Queries of the Article class
  */
 @ApplicationScoped
-public class ArticleRepository extends Repository {
+public class ArticleRepository extends Repository implements PanacheRepository<Article> {
     /**
      * A Query to load all Article entities from the database
      * @return A list with all Article entities from the database
@@ -22,8 +23,8 @@ public class ArticleRepository extends Repository {
     @Transactional
     public List<Article> loadAll() {
         return em.createQuery("select x from Article x", Article.class).getResultList();
-    }
 
+    }
     /**
      * Loads an Article entity from the database
      * @param id The id of the entity to load
