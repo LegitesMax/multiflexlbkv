@@ -24,10 +24,12 @@ namespace BillBeeQueries
 
             // Creating new instance of ApiClient
 
-            string configPath = "/ usr / psw.json";
+            string configPath = "";
 
-#if Windows
-            configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
+#if Linux
+        configPath = "/usr/psw.json";
+#elif Windows
+        configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
 #endif
             //string configPath = "/usr/psw.json";
 
