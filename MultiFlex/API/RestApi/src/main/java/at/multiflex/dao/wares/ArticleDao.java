@@ -31,7 +31,11 @@ public class ArticleDao  extends GenericDao {
         type = Article.class;
     }
 
-
+    /**
+     * Transforms a dto into a entity and updates it
+     * @param dto The dto of the entity
+     * @return The JSON Response code
+     */
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
