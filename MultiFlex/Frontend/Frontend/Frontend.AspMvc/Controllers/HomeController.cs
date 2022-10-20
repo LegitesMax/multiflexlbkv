@@ -73,7 +73,8 @@ namespace Frontend.AspMvc.Controllers
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
-            Model.Orders = GetOrdereItems();
+            if(status == "open")
+                Model.Orders = GetOrdereItems();
         }
 
 
