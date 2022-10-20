@@ -29,17 +29,18 @@ namespace Frontend.AspMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubscribeAsync(SubscribeModel model)
+        public async Task<IActionResult> SubscribeAsync(Model model)
         {
             if (ModelState.IsValid)
             {
                 //TODO: SubscribeUser(model.Email);
-                Console.WriteLine(model.Name);
-                Console.WriteLine(model.Value);
-                Console.WriteLine(model.MinValue);
+                Console.WriteLine(model.sub.Name);
+                Console.WriteLine(model.sub.Value);
+                Console.WriteLine(model.sub.MinValue);
             }
             Model.Orders = GetOrdereItems();
-            EditProduct(model.Name, model.Value!.Value, model.MinValue!.Value);
+
+            EditProduct(model.sub.Name, model.sub.Value.Value, model.sub.MinValue.Value);
             await SetCategoriesAsync();
 
             return View("Index", Model);
@@ -448,28 +449,10 @@ namespace Frontend.AspMvc.Controllers
         //Buttons Edit/Add/Remove
         public void EditProduct(string name, int value, int minValue)
         {
-            var data = new SubscribeModel();
-
-            data.Name = name;
-            data.Value = value;
-            data.MinValue = minValue;
+            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue};
 
             var client = new HttpClient();
-            var httpContent = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8);
-            
-            //await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
-        }
-
-        public void EditProduct1()
-        {
-            ViewData["productInteractions"] = "edit";
-        }
-
-        public void AddProduct()
-        {
-            ViewData["productInteractions"] = "add";
-      
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
