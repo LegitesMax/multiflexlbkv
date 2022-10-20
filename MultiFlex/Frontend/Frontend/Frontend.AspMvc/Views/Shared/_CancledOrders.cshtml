@@ -1,19 +1,20 @@
 ﻿@model IEnumerable<Frontend.Logic.Entities.Orders.Order>
 @{
-    
+    var viewData = ViewData["pdfStatus"];
+
     if (Model.Count() == 0)
     {
-        if (ViewData["pdfStatus"] == "canceled")
+        if (viewData!.Equals("canceled"))
         {
-            <p class="text-center">Heute keine Stornierung vorhanden</p>
+            <div class="alert alert-warning text-center" role="alert">Heute keine Stornierung vorhanden</div>
         }
-        if (ViewData["pdfStatus"] == "open")
+        if (viewData!.Equals("open"))
         {
-            <p class="text-center">Keine offene Bestellung vorhanden</p>
+            <div class="alert alert-warning text-center" role="alert">Keine offene Bestellung vorhanden</div>
         }
-        if (ViewData["pdfStatus"] == "ready")
+        if (viewData!.Equals("ready"))
         {
-            <p class="text-center">Derzeit kein Packet versandbereit</p>
+            <div class="alert alert-warning text-center" role="alert">Derzeit kein Packet versandbereit</div>
         }
     }
     else

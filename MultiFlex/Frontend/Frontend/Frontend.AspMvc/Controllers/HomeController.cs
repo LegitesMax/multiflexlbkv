@@ -106,6 +106,8 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
         {
             status = "open";
+            ViewData["pdfStatus"] = "open";
+
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
             return View("Index", Model);
@@ -119,6 +121,8 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> CanceledOrdersAsync(object sender, EventArgs e)
         {
             status = "canceled";
+            ViewData["pdfStatus"] = "canceled";
+
             Model.Orders = GetCanceledItems();
             await SetCategoriesAsync();
             return View("Index", Model);
@@ -132,6 +136,8 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> ReadyOrdersAsync(object sender, EventArgs e)
         {
             status = "ready";
+            ViewData["pdfStatus"] = "ready";
+
             Model.Orders = GetReadyItems();
             await SetCategoriesAsync();
             return View("Index", Model);
