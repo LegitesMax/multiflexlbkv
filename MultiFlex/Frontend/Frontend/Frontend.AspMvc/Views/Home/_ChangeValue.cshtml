@@ -36,8 +36,14 @@
                                 @Html.ValidationMessageFor(model => model.sub.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Value)
                                 @Html.ValidationMessageFor(model => model.sub.MinValue)
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                                    <button type="submit" class="btn btn-primary">Bestätigen</button>
+                                </div>
                             }
                         </div>
+
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                             @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
                             {
@@ -61,20 +67,20 @@
                                     @Html.TextBoxFor(model => model.sub.MinValue, new { @class = "form-control", @name="minValue" })
                                 </div>
 
+                                
                                 @Html.ValidationMessageFor(model => model.sub.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Value)
                                 @Html.ValidationMessageFor(model => model.sub.MinValue)
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                                    <button type="submit" class="btn btn-primary">Bestätigen</button>
+                                </div>
                             }
                         </div>
                     </div>
                 </div>
             </center>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                <button type="submit" class="btn btn-primary">Bestätigen</button>
-            </div>
-
         </div>
     </div>
 </div>
