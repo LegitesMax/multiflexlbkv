@@ -39,7 +39,7 @@ namespace Frontend.AspMvc.Controllers
                 Console.WriteLine(model.MinValue);
             }
             Model.Orders = GetOrdereItems();
-            EditProduct(model.Name, model.Value.Value, model.MinValue.Value);
+            EditProduct(model.Name, model.Value!.Value, model.MinValue!.Value);
             await SetCategoriesAsync();
 
             return View("Index", Model);
@@ -195,9 +195,12 @@ namespace Frontend.AspMvc.Controllers
             var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
             var orderResult = new List<Logic.Entities.Orders.Order>();
-            foreach (var item in result)
+            if(result != null)
             {
-                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+                foreach (var item in result)
+                {
+                    orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+                }
             }
 
             return orderResult;
@@ -443,7 +446,7 @@ namespace Frontend.AspMvc.Controllers
 
 
         //Buttons Edit/Add/Remove
-        public async void EditProduct(string name, int value, int minValue)
+        public void EditProduct(string name, int value, int minValue)
         {
             var data = new SubscribeModel();
 
@@ -456,8 +459,6 @@ namespace Frontend.AspMvc.Controllers
             
             //await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
-
-            //return View("Index", Model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
