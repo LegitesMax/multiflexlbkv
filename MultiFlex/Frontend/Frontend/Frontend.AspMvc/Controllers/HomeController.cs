@@ -51,7 +51,7 @@ namespace Frontend.AspMvc.Controllers
             //HttpClient client = new HttpClient();
             //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
             //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-
+           
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
@@ -459,6 +459,17 @@ namespace Frontend.AspMvc.Controllers
             
             //await client.PutAsync("http://127.0.0.1:9000/Article/update", httpContent);
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
+        }
+
+        public void EditProduct1()
+        {
+            ViewData["productInteractions"] = "edit";
+        }
+
+        public void AddProduct()
+        {
+            ViewData["productInteractions"] = "add";
+      
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

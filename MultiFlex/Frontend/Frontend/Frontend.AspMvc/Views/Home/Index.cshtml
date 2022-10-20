@@ -35,7 +35,6 @@
                 @if(Model.Categories != null){
                     
                     @await Html.PartialAsync("_SetCategories", Model.Categories)
-                    ;
                 }
                 else
                 {
@@ -76,10 +75,9 @@
                         <div class="alert alert-danger " role="alert">Ein Fehler ist aufgetreten</div>
                     }
                     @await Html.PartialAsync("_CancledOrders", Model.Orders)
-                    ;
                 }
             </ul>
         </div>
     </div>
 }
-@await Html.PartialAsync("_ChangeValue", Model.sub);
+@await Html.PartialAsync("_ChangeValue", Model)
