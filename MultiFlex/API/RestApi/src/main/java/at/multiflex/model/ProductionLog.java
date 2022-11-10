@@ -2,6 +2,7 @@ package at.multiflex.model;
 
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Product;
+import at.multiflex.repository.CRUDOperations;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,12 @@ import java.util.Set;
 @Entity
 public class ProductionLog {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
 }

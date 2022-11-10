@@ -1,10 +1,15 @@
 package at.multiflex.model.Wares;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 /**
  * An entity that contains the amount of material needed for the production of a product
  */
+@Getter
+@Setter
 @Entity
 public class ProductionFormula {
 
