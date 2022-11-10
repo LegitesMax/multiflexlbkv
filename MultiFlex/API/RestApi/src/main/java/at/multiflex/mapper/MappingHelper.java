@@ -2,16 +2,20 @@ package at.multiflex.mapper;
 
 import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.ColorDto;
+import at.multiflex.dto.ProductionLogDto;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.dto.wares.ArticleDto;
 import at.multiflex.dto.wares.MaterialDto;
 import at.multiflex.dto.wares.ProductDto;
+import at.multiflex.dto.wares.ProductionFormulaDto;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
+import at.multiflex.model.ProductionLog;
 import at.multiflex.model.Size;
 import at.multiflex.model.Wares.Article;
 import at.multiflex.model.Wares.Material;
 import at.multiflex.model.Wares.Product;
+import at.multiflex.model.Wares.ProductionFormula;
 import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
@@ -64,6 +68,12 @@ public class MappingHelper {
         else if (entity.getClass() == Size.class){
             result = (ObjectMapper.MAPPER.toDto((Size) entity));
         }
+        else if (entity.getClass() == ProductionLog.class){
+            result = (ObjectMapper.MAPPER.toDto((ProductionLog) entity));
+        }
+        else if (entity.getClass() == ProductionFormula.class){
+            result = (ObjectMapper.MAPPER.toDto((ProductionFormula) entity));
+        }
         //endregion
         //region fromDto
         if (entity.getClass() == ArticleDto.class){
@@ -83,6 +93,12 @@ public class MappingHelper {
         }
         else if (entity.getClass() == SizeDto.class){
             result = (ObjectMapper.MAPPER.fromDto((SizeDto) entity));
+        }
+        else if (entity.getClass() == ProductionLogDto.class){
+            result = (ObjectMapper.MAPPER.fromDto((ProductionLogDto) entity));
+        }
+        else if (entity.getClass() == ProductionFormulaDto.class){
+            result = (ObjectMapper.MAPPER.fromDto((ProductionFormulaDto) entity));
         }
         //endregion
         return result;

@@ -1,5 +1,6 @@
 package at.multiflex.dto.wares;
 
+import at.multiflex.model.Wares.ProductionFormula;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class MaterialDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
-    private Set<ProductDto> products = new HashSet<>();
+    private Set<ProductionFormulaDto> productionFormula = new HashSet<>();
     //</editor-fold>
 }

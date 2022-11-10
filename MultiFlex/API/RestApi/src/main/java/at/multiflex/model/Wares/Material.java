@@ -27,7 +27,7 @@ public class Material extends Article {
     /*
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "ProductionFormula", // name of the association table
+            name = "ProductionFormulaDto", // name of the association table
             joinColumns = @JoinColumn(name = "material_id"), // foreign key columns
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products;

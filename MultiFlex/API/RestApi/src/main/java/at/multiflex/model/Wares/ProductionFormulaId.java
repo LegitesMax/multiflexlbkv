@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
- * This class generates the id for the ProductionFormula
+ * This class generates the id for the ProductionFormulaDto
  */
 @NoArgsConstructor
 @AllArgsConstructor
