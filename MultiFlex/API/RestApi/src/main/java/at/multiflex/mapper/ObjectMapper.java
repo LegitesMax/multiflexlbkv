@@ -84,10 +84,10 @@ public interface ObjectMapper {
     ProductionFormula fromDtoIgnoreParent(ProductionFormulaDto entity);
 
     @Mapping(target = "id")
-    //@Mapping(target = "product", qualifiedByName = {"toDtoIgnoreParent"})
+    @Mapping(target = "product", qualifiedByName = {"toDtoIgnoreParent"})
     ProductionLogDto toDto(ProductionLog entity);
     @Mapping(target = "id")
-    //@Mapping(target = "product", qualifiedByName = {"fromDtoIgnoreParent"})
+    @Mapping(target = "product", qualifiedByName = {"fromDtoIgnoreParent"})
     ProductionLog fromDto(ProductionLogDto entity);
 
     //@Named("fromDtoIgnoreParent")
