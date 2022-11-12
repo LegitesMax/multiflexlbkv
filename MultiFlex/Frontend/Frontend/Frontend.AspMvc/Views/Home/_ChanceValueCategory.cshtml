@@ -22,7 +22,8 @@
                         <div class="tab-pane fade show active" id="categoryAdd" role="tabpanel" aria-labelledby="categoryAdd-tab">
                             @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
                             {
-                                Model.sub.Opereations = "addCat";
+                                //Model.sub.Opereations = "addCat";
+
                                 <div class="input-group">
                                     <span class="input-group-text">Name</span>
                                     @Html.TextBoxFor(model => model.sub.Category.Name, new { @class = "form-control", @name="name" })
@@ -37,10 +38,10 @@
                                 @Html.ValidationMessageFor(model => model.sub.Category.Acronym)
 
                                 @*<div class="input-group">
-                                    <span class="input-group-text">Value & MinValue</span>
-                                    @Html.TextBoxFor(model => model.sub.Value, new { @class = "form-control", @name="value"})
-                                    @Html.TextBoxFor(model => model.sub.MinValue, new { @class = "form-control", @name="minValue" })
-                                </div>*@
+                            <span class="input-group-text">Value & MinValue</span>
+                            @Html.TextBoxFor(model => model.sub.Value, new { @class = "form-control", @name="value"})
+                            @Html.TextBoxFor(model => model.sub.MinValue, new { @class = "form-control", @name="minValue" })
+                            </div>*@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
@@ -52,16 +53,16 @@
                         <div class="tab-pane fade" id="categoryEdit" role="tabpanel" aria-labelledby="categoryEdit-tab">
                             @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
                             {
-                                Model.sub.Opereations = "editCat";
+                                //Model.sub.Opereations = "editCat";
 
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    @foreach (var item in Model.Categories!)
-                                    {
-                                        <option class="form-control" name="name">@item.Name</option>
-                                    }
+                                var test = new List<SelectListItem>();
 
-                                </select>
+                                foreach (var item in Model.Categories!)
+                                {
+                                    test.Add(new SelectListItem { Text = item.Name, Value = item.Name });
+                                }
+                                @Html.DropDownListFor(model => model.sub.Category.Name, test, new { @class = "form-select", @name="name"})
+
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-text">Neuer Name</span>

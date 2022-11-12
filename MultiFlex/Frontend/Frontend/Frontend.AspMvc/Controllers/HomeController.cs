@@ -29,38 +29,19 @@ namespace Frontend.AspMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubscribeAsync(Model model)
+        public async Task<IActionResult> SubscribeAsync()
         {
-            if (ModelState.IsValid)
-            {
-                //TODO: SubscribeUser(model.Email);
-                Console.WriteLine(model.sub.Name);
-                Console.WriteLine(model.sub.Value);
-                Console.WriteLine(model.sub.MinValue);
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    //TODO: SubscribeUser(model.Email);
+            //    Console.WriteLine(model.sub.Name);
+            //    Console.WriteLine(model.sub.Value);
+            //    Console.WriteLine(model.sub.MinValue);
+            //}
 
-            await Task.Run(() =>
-            {
-                Model.Orders = GetOrdereItems();
-                if (model.sub.Opereations == "editProd")
-                {
-                    EditProduct(model.sub.Name, model.sub.Value.Value, model.sub.MinValue.Value);
-                }
-                if (model.sub.Opereations == "addProd")
-                {
-
-                }
-                if (model.sub.Opereations == "editCat")
-                {
-
-                }
-                if (model.sub.Opereations == "addCat")
-                {
-
-                }
-            });
-
+            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
+
             return View("Index", Model);
         }
 
@@ -465,24 +446,30 @@ namespace Frontend.AspMvc.Controllers
 
 
         //Buttons Edit/Add/Remove
-        public void EditProduct(string name, int value, int minValue)
+        public async Task<IActionResult> EditProductAsync(Model model)
         {
-            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue};
-
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue };
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
         }
 
 
-        public void AddProduct(string name, int value, int minValue, SizeSubscribeModel size, CategorySubscribeModel category)
+        public async Task<IActionResult> AddProduct(Model model)
         {
-            /*var category = new CategorySubscribeModel() { Name = name, Acronym = "" };
-            var size = new SizeSubscribeModel() { Size = 2 };*/
-
-            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue, Category = category, Size = size };
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
         }
 
 
