@@ -29,6 +29,10 @@
                 <a type="button" class="btn btn-dark mx-3 " asp-action="GetProducts">Produktbestand</a>
                 <a type="button" class="btn btn-dark" asp-action="GetMaterials">Materialbestand</a>
             </div>
+            <div class="d-flex justify-content-center pb-4">
+                
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#categoryValue">Kategorie Hinzufügen</button>
+            </div>
 
             <div class="accordion accordion-flush border" id="accordionFlushExample">
 
@@ -81,3 +85,4 @@
     </div>
 }
 @await Html.PartialAsync("_ChangeValue", Model)
+@*@await Html.PartialAsync("_ChanceValueCategory", Model)*@
