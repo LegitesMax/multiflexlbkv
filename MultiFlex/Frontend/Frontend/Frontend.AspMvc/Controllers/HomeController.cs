@@ -52,7 +52,7 @@ namespace Frontend.AspMvc.Controllers
             //HttpClient client = new HttpClient();
             //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
             //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-           
+
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
@@ -74,7 +74,7 @@ namespace Frontend.AspMvc.Controllers
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
-            if(status == "open")
+            if (status == "open")
                 Model.Orders = GetOrdereItems();
         }
 
@@ -196,7 +196,7 @@ namespace Frontend.AspMvc.Controllers
             var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
             var orderResult = new List<Logic.Entities.Orders.Order>();
-            if(result != null)
+            if (result != null)
             {
                 foreach (var item in result)
                 {
@@ -449,7 +449,10 @@ namespace Frontend.AspMvc.Controllers
         //Buttons Edit/Add/Remove
         public void EditProduct(string name, int value, int minValue)
         {
-            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue};
+            var category = new CategorySubscribeModel() { Name = name, Acronym = "" };
+            var size = new SizeSubscribeModel() { Size = 2 };
+
+            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue, Category = category, Size = size };
 
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
