@@ -38,11 +38,29 @@ namespace Frontend.AspMvc.Controllers
                 Console.WriteLine(model.sub.Value);
                 Console.WriteLine(model.sub.MinValue);
             }
-            Model.Orders = GetOrdereItems();
 
-            EditProduct(model.sub.Name, model.sub.Value.Value, model.sub.MinValue.Value);
+            await Task.Run(() =>
+            {
+                Model.Orders = GetOrdereItems();
+                if (model.sub.Opereations == "editProd")
+                {
+                    EditProduct(model.sub.Name, model.sub.Value.Value, model.sub.MinValue.Value);
+                }
+                if (model.sub.Opereations == "addProd")
+                {
+
+                }
+                if (model.sub.Opereations == "editCat")
+                {
+
+                }
+                if (model.sub.Opereations == "addCat")
+                {
+
+                }
+            });
+
             await SetCategoriesAsync();
-
             return View("Index", Model);
         }
 
@@ -79,7 +97,7 @@ namespace Frontend.AspMvc.Controllers
         }
 
 
-        //Index loads
+        //Index loads / genereal loads
         public async Task<IActionResult> GetMaterials()
         {
             indexStatus = "material";
@@ -449,14 +467,24 @@ namespace Frontend.AspMvc.Controllers
         //Buttons Edit/Add/Remove
         public void EditProduct(string name, int value, int minValue)
         {
-            var category = new CategorySubscribeModel() { Name = name, Acronym = "" };
-            var size = new SizeSubscribeModel() { Size = 2 };
-
-            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue, Category = category, Size = size };
+            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue};
 
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
         }
+
+
+        public void AddProduct(string name, int value, int minValue, SizeSubscribeModel size, CategorySubscribeModel category)
+        {
+            /*var category = new CategorySubscribeModel() { Name = name, Acronym = "" };
+            var size = new SizeSubscribeModel() { Size = 2 };*/
+
+            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue, Category = category, Size = size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/", data).Result;
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

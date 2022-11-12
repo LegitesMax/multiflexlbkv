@@ -1,10 +1,10 @@
 ﻿@model Frontend.AspMvc.Models.Model
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="categoryValue" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"> Interaktionen</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Produkt Interaktionen</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -22,7 +22,7 @@
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
                             {
-                                Model.sub.Opereations = "addProd";
+                                Model.sub.Opereations = "addCat";
                                 <div class="input-group">
                                     <span class="input-group-text">Name</span>
                                     @Html.TextBoxFor(model => model.sub.Name, new { @class = "form-control", @name="name" })
@@ -48,7 +48,7 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                             @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
                             {
-                                Model.sub.Opereations = "editProd";
+                                Model.sub.Opereations = "editCat";
 
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected>Open this select menu</option>
