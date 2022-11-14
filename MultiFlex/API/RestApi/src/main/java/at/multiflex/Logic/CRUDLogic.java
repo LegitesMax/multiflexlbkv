@@ -26,14 +26,18 @@ public class CRUDLogic {
             input.setCategory(categoryRepository.findByAcronym(in[0]));
             input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));
             input.setColor(colorRepository.findByColorCode(in[2]));
-        } else if (in.length != 1){
+        } else if (in.length == 1){
             input.setCategory(categoryRepository.findByName(in[0]));
+            if (input.getColor().getName() == null ) {
+                input.setColor(colorRepository.findById(999));
+            }
+            if (input.getSize().getDescription() == null ) {
+                input.setColor(colorRepository.findById(999));
+            }
         }
         else {
             throw new IllegalArgumentException("inputValue");
         }
-
-
 
         return input;
     }
@@ -45,6 +49,10 @@ public class CRUDLogic {
             if (input.getColor().getName() == null ) {
                 input.setColor(colorRepository.findById(999));
             }
+            if (input.getSize().getSize() == null ) {
+                input.setColor(colorRepository.findById(999));
+            }
+            //input.setColor(null);
         }
         else {
             throw new IllegalArgumentException("inputValue " + in.length);
@@ -64,5 +72,19 @@ public class CRUDLogic {
         }
 
         return input;
+    }
+
+    public void checkNullRelations(Object obj){
+        var checkValue = (Article) obj;
+
+        if (!(checkValue.getSize().getSize() == null && checkValue.getSize().getDescription() == null)){
+            throw new IllegalArgumentException("Size is null");
+        }
+        if (!(checkValue.getCategory().getName() == null)){
+            throw new IllegalArgumentException("Category is null");
+        }
+        if (!(checkValue.getColor().getName() == null)){
+            throw new IllegalArgumentException("Color is null");
+        }
     }
 }

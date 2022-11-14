@@ -23,6 +23,8 @@ public class SizeDto {
 
     private Integer size;
 
+    private String description;
+
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
     private Set<ArticleDto> products = new HashSet<>();

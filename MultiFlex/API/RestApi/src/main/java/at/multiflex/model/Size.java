@@ -27,6 +27,9 @@ public class Size {
     @Column(unique = true)
     private Integer size;
 
+    @Column(length = 1024)
+    private String description;
+
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "size", cascade=CascadeType.ALL)

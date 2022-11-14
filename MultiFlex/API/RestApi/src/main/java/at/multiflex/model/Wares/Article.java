@@ -57,7 +57,7 @@ public class Article {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "size_id")
     private Size size;
 }

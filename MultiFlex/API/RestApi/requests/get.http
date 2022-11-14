@@ -52,6 +52,15 @@ Content-Type: application/json
   "minValue": 0
 }
 ###
+POST http://localhost:9000/Product/add
+Content-Type: application/json
+
+{
+  "name": "BA 49 34",
+  "value": 100,
+  "minValue": 1000
+}
+###
 PUT http://localhost:9000/Article/update
 Content-Type: application/json
 
