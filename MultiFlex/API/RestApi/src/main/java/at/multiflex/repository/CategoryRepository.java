@@ -154,7 +154,7 @@ public class CategoryRepository extends Repository{
      */
     @Transactional
     public Category findByAcronym(String name){
-        return em.createQuery("select x from Category x where x.acronym like lower(concat('%', concat(:name, '%')))", Category.class).setParameter("name", name).getSingleResult();
+        return em.createQuery("select x from Category x where x.acronym = :name", Category.class).setParameter("name", name).getSingleResult();
     }
     @Transactional
     public void getChecksum(){

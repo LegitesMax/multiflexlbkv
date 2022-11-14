@@ -21,9 +21,9 @@ public class ArticleDto {
 
     private String name;
 
-    private Integer value;
+    private Double value;
 
-    private Integer minValue;
+    private Double minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
     private SizeDto size = new SizeDto();

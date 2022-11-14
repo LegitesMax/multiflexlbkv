@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -154,7 +153,7 @@ public class GenericDao{
     @POST
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/add")
-    public Response add(Object input) throws DaoException {
+    public Response add(Material input) throws DaoException {
         ObjectMapper mapper = new ObjectMapper();
         Object entity;
         if (Article.class.equals(type)) {

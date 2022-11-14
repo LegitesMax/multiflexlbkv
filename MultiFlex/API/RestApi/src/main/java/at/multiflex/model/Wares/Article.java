@@ -21,7 +21,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "class")
 public class Article {
     //<editor-fold desc="Common Fields">
     @Id
@@ -35,7 +34,7 @@ public class Article {
     private Double value;
 
     @Column(nullable = false)
-    private Integer minValue;
+    private Double minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
         //<editor-fold desc="Transient Fields">
@@ -50,7 +49,7 @@ public class Article {
     //</editor-fold>
 
     @ManyToOne
-    @JoinColumn(name = "color_id")
+    @JoinColumn(name = "color_id", nullable = false)
     private Color color;
 
     @ManyToOne
