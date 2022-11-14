@@ -2,10 +2,8 @@ package at.multiflex.dao.wares;
 
 import at.multiflex.Logic.CRUDLogic;
 import at.multiflex.dao.DaoException;
-import at.multiflex.dao.GenericDao;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.MappingHelper;
-import at.multiflex.model.Wares.Product;
 import at.multiflex.model.Wares.Product;
 import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.wares.ProductRepository;

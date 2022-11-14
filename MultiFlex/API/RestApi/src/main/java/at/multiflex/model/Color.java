@@ -1,7 +1,6 @@
 package at.multiflex.model;
 
 import at.multiflex.model.Wares.Article;
-import at.multiflex.model.Wares.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

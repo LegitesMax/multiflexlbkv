@@ -4,7 +4,6 @@ import at.multiflex.Logic.CRUDLogic;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.Size;
-import at.multiflex.model.Size;
 import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.SizeRepository;
 

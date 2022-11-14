@@ -2,15 +2,12 @@ package at.multiflex.repository;
 
 import at.multiflex.model.Category;
 import at.multiflex.model.Wares.Article;
-import at.multiflex.model.Wares.Material;
-import at.multiflex.model.Wares.Product;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * This class has all Database Queries of the Category class

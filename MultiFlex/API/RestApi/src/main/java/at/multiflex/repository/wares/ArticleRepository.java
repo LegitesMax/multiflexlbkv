@@ -1,13 +1,10 @@
 package at.multiflex.repository.wares;
 
 import at.multiflex.model.Wares.Article;
-import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.Repository;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 

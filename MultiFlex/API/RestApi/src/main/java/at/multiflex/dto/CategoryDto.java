@@ -1,7 +1,6 @@
 package at.multiflex.dto;
 
 import at.multiflex.dto.wares.ArticleDto;
-import at.multiflex.dto.wares.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

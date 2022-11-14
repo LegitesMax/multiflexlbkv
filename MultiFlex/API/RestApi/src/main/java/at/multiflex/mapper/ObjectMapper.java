@@ -19,9 +19,6 @@ import at.multiflex.model.Wares.ProductionFormula;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-import java.util.List;
-import java.util.Set;
-
 /**
  * This class creates mapper during the compilation that can be used to map entities to dtos and vice versa
  */

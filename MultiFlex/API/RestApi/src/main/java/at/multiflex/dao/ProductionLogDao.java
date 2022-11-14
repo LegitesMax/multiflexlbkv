@@ -1,10 +1,8 @@
 package at.multiflex.dao;
 
-import at.multiflex.Logic.CRUDLogic;
 import at.multiflex.Logic.ProductionLogic;
 import at.multiflex.dto.ProductionLogDto;
 import at.multiflex.dto.logic.Production;
-import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.ProductionLog;
 import at.multiflex.model.Wares.Product;
@@ -138,7 +136,7 @@ public class ProductionLogDao {
             crudOperations.add(entity);
             logic.consume(entity.getProduct());
         }
-        
+
         return Response.status(Response.Status.CREATED).build();
     }
 

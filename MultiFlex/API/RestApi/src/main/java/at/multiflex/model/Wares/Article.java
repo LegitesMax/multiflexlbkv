@@ -3,15 +3,12 @@ package at.multiflex.model.Wares;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
 import at.multiflex.model.Size;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * This Article class gets inserted into the database

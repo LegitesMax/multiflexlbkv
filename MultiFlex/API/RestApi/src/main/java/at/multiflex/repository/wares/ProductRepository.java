@@ -1,12 +1,9 @@
 package at.multiflex.repository.wares;
 
 import at.multiflex.model.Wares.Product;
-import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.Repository;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
