@@ -3,6 +3,7 @@ package at.multiflex.dao;
 import at.multiflex.Logic.CRUDLogic;
 import at.multiflex.Logic.ProductionLogic;
 import at.multiflex.dto.ProductionLogDto;
+import at.multiflex.dto.logic.Production;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.mapper.MappingHelper;
 import at.multiflex.model.ProductionLog;
@@ -114,10 +115,10 @@ public class ProductionLogDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Consumes
     @Path("/produce")
-    public Response produce(ProductDto input) {
-        var entity = (Product) MappingHelper.entityDtoTransformation(input);
+    public Response produce(Production input) {
+        var entity = (Product) MappingHelper.entityDtoTransformation(input.getProduct());
 
-        logic.produce(entity);
+        logic.produce(entity, input.getAmount().intValue());
 
         return Response.status(Response.Status.CREATED).build();
     }
@@ -133,8 +134,27 @@ public class ProductionLogDao {
     public Response add(ProductionLogDto input) {
         var entity = (ProductionLog) MappingHelper.entityDtoTransformation(input);
 
-        crudOperations.add(entity);
-        logic.consume(entity.getProduct());
+        if (repository.findById(input.getId()) == null){
+            crudOperations.add(entity);
+            logic.consume(entity.getProduct());
+        }
+        
+        return Response.status(Response.Status.CREATED).build();
+    }
+
+    /**
+     * transforms a given dto to an entity and increases the amount of Products
+     * @param input A dto to insert into the database
+     * @return The JSON Response code
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Consumes
+    @Path("/fixStock")
+    public Response fixStock(Production input) {
+        var entity = (Product) MappingHelper.entityDtoTransformation(input.getProduct());
+
+        logic.fixStock(entity, input.getAmount());
 
         return Response.status(Response.Status.CREATED).build();
     }
