@@ -2,29 +2,17 @@ package at.multiflex.dao.wares;
 
 import at.multiflex.Logic.CRUDLogic;
 import at.multiflex.dao.DaoException;
-import at.multiflex.dao.GenericDao;
-import at.multiflex.dto.SizeDto;
 import at.multiflex.dto.wares.ArticleDto;
 import at.multiflex.mapper.MappingHelper;
 import at.multiflex.mapper.ObjectMapper;
-import at.multiflex.model.Category;
-import at.multiflex.model.Color;
-import at.multiflex.model.Size;
 import at.multiflex.model.Wares.Article;
-import at.multiflex.model.Wares.Material;
-import at.multiflex.model.Wares.Product;
 import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.wares.ArticleRepository;
-import org.apache.commons.beanutils.BeanUtils;
 
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -33,15 +21,15 @@ import java.util.List;
 @Path("/Article")
 public class ArticleDao {
     /**
-     * type of the class
-     */
-    protected Class<?> type;
-    /**
      * A Constructor that tells the superclass which entity class to use
      */
     public ArticleDao() {
         type = Article.class;
     }
+    /**
+     * type of the class
+     */
+    protected Class<?> type;
     /**
      * all create update delete operations
      */
@@ -120,11 +108,7 @@ public class ArticleDao {
     public Response add(ArticleDto input) {
         var entity = (Article) MappingHelper.entityDtoTransformation(input);
 
-        System.out.println(entity.getName());
-        System.out.println(entity.getMinValue());
-        System.out.println(entity.getValue());
-
-        entity = crudLogic.getArticle(entity);
+        entity = crudLogic.setEmptyFields(entity);
 
         crudOperations.add(entity);
 

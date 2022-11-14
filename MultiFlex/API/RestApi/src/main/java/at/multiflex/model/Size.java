@@ -24,12 +24,12 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private Integer size;
 
     //</editor-fold>
     //<editor-fold desc="Relation">
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "color", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "size", cascade=CascadeType.ALL)
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 }

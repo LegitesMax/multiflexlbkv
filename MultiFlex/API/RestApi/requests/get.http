@@ -20,6 +20,14 @@ GET http://localhost:8080/Product/1
 ###
 GET http://localhost:8080/Material/1
 ###
+POST http://localhost:9000/Category/add
+Content-Type: application/json
+
+{
+  "name" : "TEST",
+  "acronym": "TEST"
+}
+###
 POST http://localhost:9000/Size/add
 Content-Type: application/json
 
@@ -35,11 +43,11 @@ Content-Type: application/json
   "colorCode": "TEST"
 }
 ###
-POST http://localhost:9000/Article/add
+POST http://localhost:9000/Material/add
 Content-Type: application/json
 
 {
-  "name": "BA 49 34",
+  "name": "Folie",
   "value": 1,
   "minValue": 0
 }

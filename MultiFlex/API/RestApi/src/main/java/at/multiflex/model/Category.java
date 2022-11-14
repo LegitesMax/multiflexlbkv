@@ -31,7 +31,7 @@ public class Category {
     private String acronym;
     //</editor-fold>
     //<editor-fold desc="Relation">
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "color", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade=CascadeType.ALL)
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 }

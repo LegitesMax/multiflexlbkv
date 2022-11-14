@@ -24,6 +24,7 @@ public class CRUDOperations {
     @Transactional
     public<T> void add(T entity){
         if(entity == null) throw new IllegalArgumentException();
+        em.merge(entity);
         em.persist(entity);
     }
     /**

@@ -209,3 +209,9 @@ insert into ProductionFormula(product_id, material_id, amount) values (1, 1000, 
 
 -- ProductionLog
 insert into ProductionLog(id, product_id) values (1, 1);
+
+
+-- Unknown Values
+insert into Category (id, name) values (999, 'UNKNOWN');
+insert into Color (id, name, colorCode) values (999, 'UNKNOWN','UNKNOWN');
+insert into Size (id, size) values (99, 999);
