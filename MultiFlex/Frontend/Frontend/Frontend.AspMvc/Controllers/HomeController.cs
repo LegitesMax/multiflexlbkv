@@ -29,18 +29,17 @@ namespace Frontend.AspMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubscribeAsync(Model model)
+        public async Task<IActionResult> SubscribeAsync()
         {
-            if (ModelState.IsValid)
-            {
-                //TODO: SubscribeUser(model.Email);
-                Console.WriteLine(model.sub.Name);
-                Console.WriteLine(model.sub.Value);
-                Console.WriteLine(model.sub.MinValue);
-            }
-            Model.Orders = GetOrdereItems();
+            //if (ModelState.IsValid)
+            //{
+            //    //TODO: SubscribeUser(model.Email);
+            //    Console.WriteLine(model.sub.Name);
+            //    Console.WriteLine(model.sub.Value);
+            //    Console.WriteLine(model.sub.MinValue);
+            //}
 
-            EditProduct(model.sub.Name, model.sub.Value.Value, model.sub.MinValue.Value);
+            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
             return View("Index", Model);
@@ -52,7 +51,7 @@ namespace Frontend.AspMvc.Controllers
             //HttpClient client = new HttpClient();
             //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
             //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-           
+
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
@@ -74,12 +73,12 @@ namespace Frontend.AspMvc.Controllers
                 Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
-            if(status == "open")
+            if (status == "open")
                 Model.Orders = GetOrdereItems();
         }
 
 
-        //Index loads
+        //Index loads / genereal loads
         public async Task<IActionResult> GetMaterials()
         {
             indexStatus = "material";
@@ -196,7 +195,7 @@ namespace Frontend.AspMvc.Controllers
             var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
             var orderResult = new List<Logic.Entities.Orders.Order>();
-            if(result != null)
+            if (result != null)
             {
                 foreach (var item in result)
                 {
@@ -447,13 +446,32 @@ namespace Frontend.AspMvc.Controllers
 
 
         //Buttons Edit/Add/Remove
-        public void EditProduct(string name, int value, int minValue)
+        public async Task<IActionResult> EditProductAsync(Model model)
         {
-            var data = new SubscribeModel { Name = name, Value = value, MinValue = minValue};
-
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue };
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
         }
+
+
+        public async Task<IActionResult> AddProduct(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

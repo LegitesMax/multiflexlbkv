@@ -20,7 +20,7 @@
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+                            @using (@Html.BeginForm("AddProduct", "Home", FormMethod.Post))
                             {
                                 <div class="input-group">
                                     <span class="input-group-text">Name</span>
@@ -39,25 +39,26 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                                    <button type="submit" class="btn btn-primary">Bestätigen</button>
+                                    <button type="submit" class="btn btn-primary">Erstellen</button>
                                 </div>
                             }
                         </div>
 
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+                            @using (@Html.BeginForm("EditProduct", "Home", FormMethod.Post))
                             {
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    @foreach (var item in Model.Categories!)
-                                    {
-                                        foreach (var product in item.Products)
-                                        {
-                                            <option class="form-control" name="name">@product.Name</option>
-                                        }
-                                    }
+                                var test = new List<SelectListItem>();
 
-                                </select>
+                                foreach (var item in Model.Categories!)
+                                {
+                                    foreach (var product in item.Products)
+                                    {
+                                        test.Add(new SelectListItem { Text = product.Name, Value = product.Name });
+                                    }
+                                }
+
+                                //@Html.DropDownList("Produkt", test, "Wähle ein Produkt", new { @class = "form-select", @name="name"})
+                                @Html.DropDownListFor(model => model.sub.Name, test, new { @class = "form-select", @name="name"})
                                 <br>
                                 <div class="input-group">
                                     <span class="input-group-text">Value & MinValue</span>

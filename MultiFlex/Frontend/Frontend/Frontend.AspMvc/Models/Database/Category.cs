@@ -11,12 +11,12 @@ namespace Frontend.AspMvc.Models
         public int Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
         [JsonProperty("acronym")]
-        public string Acronym { get; set; }
+        public string Acronym { get; set; } = String.Empty;
 
         [JsonProperty("products")]
-        public List<Product> Products { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

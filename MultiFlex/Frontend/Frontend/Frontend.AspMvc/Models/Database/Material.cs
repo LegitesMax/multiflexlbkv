@@ -16,5 +16,10 @@
 
         [JsonProperty("minValue")]
         public int minValue { get; set; }
+
+        public Size size { get; set; } = new();
+        public Category category { get; set; } = new();
+
     }
+
 }
