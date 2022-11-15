@@ -7,12 +7,11 @@ import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class Hashing {
-    public void hash(String input)  {
-        String password = "passme";
+    public String hash(String input)  {
+        //String password = "passme";
+        return DigestUtils.md5Hex(input).toUpperCase();
 
-        String md5Hex = DigestUtils.md5Hex(input).toUpperCase();
-
-        System.out.println(md5Hex);
+        //System.out.println(md5Hex);
         //System.out.println(md5Hex.equals(hash));
     }
 }

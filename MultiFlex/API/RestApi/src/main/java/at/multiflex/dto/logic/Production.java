@@ -12,4 +12,6 @@ public class Production {
    private ProductDto product;
 
    private Double amount = 1.0;
+
+   private String hashValue;
 }
