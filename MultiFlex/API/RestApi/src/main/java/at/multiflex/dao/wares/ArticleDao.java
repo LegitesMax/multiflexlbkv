@@ -1,6 +1,7 @@
 package at.multiflex.dao.wares;
 
 import at.multiflex.Logic.CRUDLogic;
+import at.multiflex.Logic.Hashing;
 import at.multiflex.dao.DaoException;
 import at.multiflex.dto.wares.ArticleDto;
 import at.multiflex.mapper.MappingHelper;
@@ -37,6 +38,8 @@ public class ArticleDao {
     protected CRUDOperations crudOperations;
     @Inject
     CRUDLogic crudLogic;
+    @Inject
+    Hashing hashing;
 
     /**
      * repository for the article class
@@ -58,7 +61,10 @@ public class ArticleDao {
             throw new DaoException("Entity does not exist");
         }
 
-        return MappingHelper.entityDtoTransformation(entities);
+        var dtos = MappingHelper.entityDtoTransformation(entities);
+        hashing.hash(dtos.toString());
+
+        return dtos;
     }
     /**
      * This gets specific entities from this type from the Database and returns a list with them

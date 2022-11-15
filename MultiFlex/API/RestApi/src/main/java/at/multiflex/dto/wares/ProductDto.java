@@ -1,10 +1,7 @@
 package at.multiflex.dto.wares;
 
 import at.multiflex.dto.ProductionLogDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +13,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
     private Set<ProductionFormulaDto> productionFormula = new HashSet<>();

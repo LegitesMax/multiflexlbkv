@@ -155,12 +155,7 @@ public class CategoryRepository extends Repository{
     }
     @Transactional
     public void getChecksum(){
-        var x = em.createNativeQuery("CHECKSUM TABLE Category").getResultList();
+        var x = em.createNativeQuery("CHECKSUM TABLE Category").getSingleResult();
 
-        System.out.println(x.size());
-        System.out.println(x.toString());
-        System.out.println(x.getClass());
-        System.out.println(x.get(0).hashCode());
-        System.out.println();
     }
 }

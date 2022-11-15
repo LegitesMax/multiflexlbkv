@@ -3,10 +3,7 @@ package at.multiflex.dto.wares;
 import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.ColorDto;
 import at.multiflex.dto.SizeDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * A Data Transfer Object of the class Article
@@ -15,6 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ArticleDto {
     //<editor-fold desc="Common Fields">
     private Integer id;

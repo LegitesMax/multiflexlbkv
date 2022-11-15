@@ -1,10 +1,7 @@
 package at.multiflex.dto;
 
 import at.multiflex.dto.wares.ArticleDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +13,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class CategoryDto {
     //<editor-fold desc="Common Fields">
     private Integer id;

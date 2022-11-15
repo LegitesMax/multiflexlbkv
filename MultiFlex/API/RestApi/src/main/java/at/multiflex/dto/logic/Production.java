@@ -1,15 +1,13 @@
 package at.multiflex.dto.logic;
 
 import at.multiflex.dto.wares.ProductDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Production {
    private ProductDto product;
 
