@@ -12,10 +12,10 @@
         public string Name { get; set; }
 
         [JsonProperty("value")]
-        public int Value { get; set; }
+        public double Value { get; set; }
 
         [JsonProperty("minValue")]
-        public int MinValue { get; set; }
+        public double MinValue { get; set; }
 
         [JsonProperty("materials")]
         public List<object> Materials { get; set; }
