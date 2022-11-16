@@ -61,7 +61,7 @@ insert into Article (name, value, minValue, category_id, color_id, size_id) valu
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 39 51', 16, 7 ,  3,7, 1);
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 39 29', 12, 9 ,  3,8, 1);
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 39 BA', 13, 3 ,  3,1, 1);
--- insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 49 34', 16, 5 ,  3,2, 2);
+insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 49 34', 16, 5 ,  3,2, 2);
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 49 62', 11, 8 ,  3,3, 2);
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 49 67', 11, 5 ,  3,4, 2);
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BA 49 22', 13, 5 ,  3,5, 2);
@@ -86,7 +86,7 @@ insert into Article (name, value, minValue, category_id, color_id, size_id) valu
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BAE 49 29', 10, 5,  4,8, 2);
 insert into Article (name, value, minValue, category_id, color_id, size_id) values ('BAE 49 BA', 16, 7,  4,1, 2);
 
-insert into Article (name, value, minValue) values ('LÖ', 10, 5);
+-- insert into Article (name, value, minValue) values ('LÖ', 10, 5);
 
 --Product
 insert into Product(id) values(1);

@@ -56,7 +56,7 @@ POST http://localhost:9000/Product/add
 Content-Type: application/json
 
 {
-  "name": "BA 49 34",
+  "name": "TEST 49 34",
   "value": 100,
   "minValue": 1000
 }
