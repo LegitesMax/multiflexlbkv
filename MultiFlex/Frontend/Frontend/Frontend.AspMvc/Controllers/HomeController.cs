@@ -457,9 +457,111 @@ namespace Frontend.AspMvc.Controllers
 
             return View("Index", Model);
         }
-
-
         public async Task<IActionResult> AddProduct(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+
+
+        public async Task<IActionResult> AddCategory(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+        public async Task<IActionResult> EditCategory(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+
+
+        public async Task<IActionResult> AddColor(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+        public async Task<IActionResult> EditColor(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+
+
+        public async Task<IActionResult> AddSize(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+        public async Task<IActionResult> EditSize(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+
+
+        public async Task<IActionResult> AddMaterial(Model model)
+        {
+            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
+            var client = new HttpClient();
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+
+            Model.Orders = GetOrdereItems();
+            await SetCategoriesAsync();
+
+            return View("Index", Model);
+        }
+        public async Task<IActionResult> EditMaterial(Model model)
         {
             var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
 
