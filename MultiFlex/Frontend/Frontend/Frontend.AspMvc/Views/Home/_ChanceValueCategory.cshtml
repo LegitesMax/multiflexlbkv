@@ -34,6 +34,8 @@
                                     @Html.TextBoxFor(model => model.sub.Category.Acronym, new { @class = "form-control", @name="name" })
                                 </div>
 
+                                <br />
+
                                 @Html.ValidationMessageFor(model => model.sub.Category.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Category.Acronym)
 
@@ -77,6 +79,8 @@
                                     <span class="input-group-text">Neues Kürzel</span>
                                     @Html.TextBoxFor(model => model.sub.Category.Acronym, new { @class = "form-control", @name="name" })
                                 </div>
+
+                                <br />
 
                                 @Html.ValidationMessageFor(model => model.sub.Category.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Category.Acronym)
