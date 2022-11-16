@@ -74,6 +74,7 @@ public class HashDao {
         var hash = new HashDto();
 
         var entity = articleRepository.loadAll();
+
         hash.setHashValue(hashing.hash(entity.toString()));
         hash.setType(Type.Article);
 

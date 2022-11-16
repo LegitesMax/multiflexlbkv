@@ -3,10 +3,7 @@ package at.multiflex.model.Wares;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
 import at.multiflex.model.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -57,4 +54,25 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "size_id")
     private Size size;
+
+    @Override
+    public String toString() {
+        var string = "Article{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", value=" + value +
+                ", minValue=" + minValue;
+        if (color != null){
+            string += ", color=" + color.toString();
+        }
+        if (size != null){
+            string += ", size=" + size.toString();
+        }
+        if (category != null){
+            string += ", category=" + category.toString();
+        }
+        string += '}';
+
+        return string;
+    }
 }

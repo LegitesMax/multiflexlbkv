@@ -1,10 +1,7 @@
 package at.multiflex.model;
 
 import at.multiflex.model.Wares.Article;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -34,4 +31,13 @@ public class Size {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "size", cascade=CascadeType.ALL)
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Size{" +
+                "id=" + id +
+                ", size=" + size +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

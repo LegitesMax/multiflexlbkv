@@ -1,10 +1,7 @@
 package at.multiflex.model.Wares;
 
 import at.multiflex.model.ProductionLog;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -33,4 +30,13 @@ public class Product extends Article {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade=CascadeType.ALL)
     private Set<ProductionLog> productionLog = new java.util.LinkedHashSet<>();
     //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productionFormula=" + productionFormula +
+                ", productionLog=" + productionLog +
+                super.toString() +
+                '}';
+    }
 }

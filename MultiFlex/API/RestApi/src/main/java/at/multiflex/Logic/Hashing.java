@@ -10,8 +10,11 @@ public class Hashing {
     public String hash(String input)  {
         //String password = "passme";
         return DigestUtils.md5Hex(input).toUpperCase();
+        //var md5Hex = DigestUtils.md5Hex(input).toUpperCase();
 
         //System.out.println(md5Hex);
+        //System.out.println(input);
         //System.out.println(md5Hex.equals(hash));
+        //return md5Hex;
     }
 }

@@ -2,6 +2,7 @@ package at.multiflex.model.Wares;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -27,4 +28,11 @@ public class ProductionFormula {
     @Column(nullable = false)
     private Double amount;
 
+    @Override
+    public String toString() {
+        return "ProductionFormula{" +
+                "id=" + id.toString() +
+                ", amount=" + amount +
+                '}';
+    }
 }

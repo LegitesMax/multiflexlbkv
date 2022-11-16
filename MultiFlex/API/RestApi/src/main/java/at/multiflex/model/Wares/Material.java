@@ -1,9 +1,6 @@
 package at.multiflex.model.Wares;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -35,4 +32,12 @@ public class Material extends Article {
     @OneToMany(mappedBy = "material", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private Set<ProductionFormula> productionFormula = new HashSet<>();
     //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "productionFormula=" + productionFormula +
+                super.toString() +
+                '}';
+    }
 }

@@ -1,10 +1,7 @@
 package at.multiflex.model;
 
 import at.multiflex.model.Wares.Product;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 /**
@@ -25,4 +22,10 @@ public class ProductionLog {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @Override
+    public String toString() {
+        return "ProductionLog{" +
+                "id=" + id +
+                '}';
+    }
 }
