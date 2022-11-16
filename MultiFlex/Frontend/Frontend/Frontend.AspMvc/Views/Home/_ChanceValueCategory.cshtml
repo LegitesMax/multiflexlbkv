@@ -61,7 +61,11 @@
                                 {
                                     test.Add(new SelectListItem { Text = item.Name, Value = item.Name });
                                 }
-                                @Html.DropDownListFor(model => model.sub.Category.Name, test, new { @class = "form-select", @name="name"})
+
+                                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Suche deine Kategorie">
+                                <datalist id="datalistOptions">
+                                      @Html.DropDownListFor(model => model.sub.Category.Name, test, new { @class = "form-select", @name="name"})
+                                </datalist>
 
                                 <br />
                                 <div class="input-group">
