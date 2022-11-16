@@ -14,7 +14,7 @@ insert into Category (name, acronym) values ('Blume des Lebens', 'BL');
 insert into Category (name, acronym) values ('Lotusblume', 'LO');
 insert into Category (name, acronym) values ('Baum des Lebens', 'BA');
 insert into Category (name, acronym) values ('Baum des Lebens eckig', 'BAE');
-insert into Category (name, acronym) values ('Löwe', 'LÖ');
+insert into Category (name, acronym) values ('TESTWERT', 'TE');
 
 --Size
 insert into Size (size) values (39);

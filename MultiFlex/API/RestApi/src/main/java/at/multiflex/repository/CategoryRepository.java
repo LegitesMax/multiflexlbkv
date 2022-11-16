@@ -153,9 +153,4 @@ public class CategoryRepository extends Repository{
     public Category findByAcronym(String name){
         return em.createQuery("select x from Category x where x.acronym = :name", Category.class).setParameter("name", name).getSingleResult();
     }
-    @Transactional
-    public void getChecksum(){
-        var x = em.createNativeQuery("CHECKSUM TABLE Category").getSingleResult();
-
-    }
 }

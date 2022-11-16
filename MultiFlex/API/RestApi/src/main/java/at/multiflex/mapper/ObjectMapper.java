@@ -64,25 +64,49 @@ public interface ObjectMapper {
     @Mapping(target = "material", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "product", qualifiedByName = {"toDtoIgnoreParent"})
     ProductionFormulaDto toDto(ProductionFormula entity);
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     @Mapping(target = "material", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "product", qualifiedByName = {"fromDtoIgnoreParent"})
     ProductionFormula fromDto(ProductionFormulaDto entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "id")
     @Mapping(target = "product", ignore = true)
     @Mapping(target = "material", ignore = true)
     ProductionFormulaDto toDtoIgnoreParent(ProductionFormula entity);
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "id")
     @Mapping(target = "product", ignore = true)
     @Mapping(target = "material", ignore = true)
     ProductionFormula fromDtoIgnoreParent(ProductionFormulaDto entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     @Mapping(target = "product", qualifiedByName = {"toDtoIgnoreParent"})
     ProductionLogDto toDto(ProductionLog entity);
+
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     @Mapping(target = "product", qualifiedByName = {"fromDtoIgnoreParent"})
     ProductionLog fromDto(ProductionLogDto entity);
@@ -100,7 +124,11 @@ public interface ObjectMapper {
     //@Mapping(target = "id")
     ////@Mapping(target = "product", ignore = true)
     //ProductionLog fromDtoIgnoreParent(ProductionLogDto entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Mapping(target = "id")
     @Mapping(target = "size", qualifiedByName = {"toDtoIgnoreParent"})
     @Mapping(target = "color", qualifiedByName = {"toDtoIgnoreParent"})
@@ -163,12 +191,20 @@ public interface ObjectMapper {
     //@Mapping(target = "category", qualifiedByName = {"fromDtoIgnoreParent"})
     @Mapping(target = "id")
     Product fromDto(ProductDto entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Named("toDtoIgnoreParent")
     @Mapping(target = "productionFormula", ignore = true)
     @Mapping(target = "productionLog", ignore = true)
     ProductDto toDtoIgnoreParent(Product entity);
-
+    /**
+     * The dto will be transformed into an entity
+     * @param entity The dto to transform
+     * @return The resulting entity
+     */
     @Named("fromDtoIgnoreParent")
     @Mapping(target = "productionFormula", ignore = true)
     @Mapping(target = "productionLog", ignore = true)

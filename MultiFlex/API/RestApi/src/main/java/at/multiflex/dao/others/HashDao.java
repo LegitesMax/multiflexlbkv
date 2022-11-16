@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A Data Access Point to get hashes of the database entities
+ */
 @Path("/Hash")
 public class HashDao {
     /**
@@ -54,7 +57,7 @@ public class HashDao {
     @Inject
     protected SizeRepository sizeRepository;
     /**
-     * all create update delete operations
+     * repository for the size productionLog class
      */
     @Inject
     protected ProductionLogRepository productionLogRepository;
@@ -64,10 +67,16 @@ public class HashDao {
     @Inject
     protected CRUDOperations crudOperations;
 
-
+    /**
+     * a logic with all hashes
+     */
     @Inject
     Hashing hashing;
 
+    /**
+     * executes all hash methods and returns a list with the result
+     * @return a list with all hashes
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<HashDto> getAll() {
@@ -84,6 +93,10 @@ public class HashDao {
         return hashes;
     }
 
+    /**
+     * Hashes the article class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Article")
@@ -97,6 +110,10 @@ public class HashDao {
 
         return hash;
     }
+    /**
+     * Hashes the material class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Material")
@@ -109,6 +126,10 @@ public class HashDao {
 
         return hash;
     }
+    /**
+     * Hashes the product class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Product")
@@ -121,6 +142,10 @@ public class HashDao {
 
         return hash;
     }
+    /**
+     * Hashes the category class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Category")
@@ -133,6 +158,10 @@ public class HashDao {
 
         return hash;
     }
+    /**
+     * Hashes the color class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Color")
@@ -145,6 +174,10 @@ public class HashDao {
 
         return hash;
     }
+    /**
+     * Hashes the productionLog class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/ProductionLog")
@@ -157,6 +190,10 @@ public class HashDao {
 
         return hash;
     }
+    /**
+     * Hashes the size class
+     * @return the hash of the entities
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/Size")

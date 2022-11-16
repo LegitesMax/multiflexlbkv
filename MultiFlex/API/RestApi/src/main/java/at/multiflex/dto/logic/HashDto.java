@@ -2,6 +2,9 @@ package at.multiflex.dto.logic;
 
 import lombok.*;
 
+/**
+ * A Data Transfer Object for hashes
+ */
 @Getter
 @Setter
 @AllArgsConstructor

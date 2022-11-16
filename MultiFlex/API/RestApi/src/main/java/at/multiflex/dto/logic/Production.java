@@ -3,6 +3,9 @@ package at.multiflex.dto.logic;
 import at.multiflex.dto.wares.ProductDto;
 import lombok.*;
 
+/**
+ * A Data Transfer Object for the productionLogic
+ */
 @Getter
 @Setter
 @AllArgsConstructor
