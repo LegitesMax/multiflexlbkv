@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Path("/Hash")
@@ -66,6 +67,22 @@ public class HashDao {
 
     @Inject
     Hashing hashing;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    public List<HashDto> getAll() {
+        var hashes = new LinkedList<HashDto>();
+
+        hashes.add(getArticleHash());
+        hashes.add(getMaterialHash());
+        hashes.add(getProductHash());
+        hashes.add(getProductionLogHash());
+        hashes.add(getColorHash());
+        hashes.add(getCategoryHash());
+        hashes.add(getSizeHash());
+
+        return hashes;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
