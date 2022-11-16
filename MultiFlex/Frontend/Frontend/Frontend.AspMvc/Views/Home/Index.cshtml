@@ -7,18 +7,32 @@
     ViewData["Title"] = title;
 
     var pdfStatus = ViewData["pdfStatus"];
-   
+
 
     if (pdfStatus == "succses")
     {
-        <div class="alert alert-success" role="alert">
-            PDF wurde erfolgreich erstellt
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <span class="me-auto badge text-bg-success">SUCCESS</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    PDF wurde erfolgreich erstellt
+                </div>
+            </div>
         </div>
     }
     else if (pdfStatus == "error")
     {
-        <div class="alert alert-danger" role="alert">
-            Fehler beim erstellen der PDF
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+            <span class="me-auto badge text-bg-danger">ERROR</span>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Fehler beim erstellen der PDF
+            </div>
         </div>
     }
 
@@ -30,14 +44,15 @@
                 <a type="button" class="btn btn-dark" asp-action="GetMaterials">Materialbestand</a>
             </div>
             <div class="d-flex justify-content-center pb-4">
-                
+
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#categoryValue">Kategorie Hinzufügen</button>
             </div>
 
             <div class="accordion accordion-flush border" id="accordionFlushExample">
 
-                @if(Model.Categories != null){
-                    
+                @if (Model.Categories != null)
+                {
+
                     @await Html.PartialAsync("_SetCategories", Model.Categories)
                 }
                 else

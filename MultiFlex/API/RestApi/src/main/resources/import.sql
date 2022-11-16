@@ -206,10 +206,10 @@ insert into Material(id) values(1301);
 -- ProductionFormulas
 -- BL 39 34
 insert into ProductionFormula(product_id, material_id, amount) values (1, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values (1, he1000, 0.5);
 
 -- ProductionLog
 insert into ProductionLog(id, product_id) values (1, 1);
-
 
 -- Unknown Values
 -- insert into Category (id, name) values (999, 'UNKNOWN');
