@@ -213,5 +213,5 @@ insert into ProductionLog(id, product_id) values (1, 1);
 
 -- Unknown Values
 -- insert into Category (id, name) values (999, 'UNKNOWN');
-insert into Color (id, name, colorCode) values (999, 'UNKNOWN','UNKNOWN');
-insert into Size (id, description, size) values (999, 'UNKNOWN', 999);
+insert into Color (id, name, colorCode) values (999, 'No Specified Color','UNKNOWN');
+insert into Size (id, description) values (999, 'No Specified Size');

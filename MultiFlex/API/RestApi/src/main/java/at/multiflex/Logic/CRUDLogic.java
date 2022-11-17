@@ -72,9 +72,21 @@ public class CRUDLogic {
                 input.setColor(colorRepository.findById(999));
             }
             if (input.getSize().getSize() == null ) {
+                input.setSize(sizeRepository.findById(999));
+            }
+        }
+        else if (in.length == 2){
+            input.setCategory(categoryRepository.findByName(in[0]));
+            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));
+
+            if (input.getColor().getName() == null ) {
                 input.setColor(colorRepository.findById(999));
             }
-            //input.setColor(null);
+        }
+        else if (in.length == 3){
+            input.setCategory(categoryRepository.findByName(in[0]));
+            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));
+            input.setColor(colorRepository.findByColorCode(in[2]));
         }
         else {
             throw new IllegalArgumentException("inputValue " + in.length);
