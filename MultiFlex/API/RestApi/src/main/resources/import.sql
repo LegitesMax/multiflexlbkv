@@ -160,23 +160,33 @@ insert into Product(id) values(64);
 insert into Category (id, name) values (1000, 'Holz');
 
 insert into Article(id, name, value, minValue, category_id) values(1000, 'Holz', 55, 40, 1000);
-insert into Article(id, name, value, minValue, category_id,  size_id) values(1000, 'Holz39', 55, 40, 1000,  1);
-insert into Article(id, name, value, minValue, category_id,  size_id) values(1001, 'Holz49', 55, 40, 1000,  2);
+insert into Article(id, name, value, minValue, category_id,  size_id) values(1000, 'Holz 39', 55, 40, 1000,  1);
+insert into Article(id, name, value, minValue, category_id,  size_id) values(1001, 'Holz 49', 55, 40, 1000,  2);
 insert into Material(id) values(1000);
 insert into Material(id) values(1001);
 
 
 insert into Category (id, name) values (1001, 'Folie');
 
-insert into Article(id, name, value, minValue, category_id,color_id , size_id) values(1100, 'Folie', 55, 40, 1001, 1, 1);
-insert into Article(id, name, value, minValue, category_id, color_id, size_id) values(1101, 'Folie', 55, 40, 1001, 2, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1102, 'Folie', 55, 40, 1001, 3, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1103, 'Folie', 55, 40, 1001,  4,1);
+insert into Article(id, name, value, minValue, category_id,color_id , size_id) values(1100, 'Folie 39 BA', 55, 40, 1001, 1, 1);
+insert into Article(id, name, value, minValue, category_id, color_id, size_id) values(1101, 'Folie 39 34', 55, 40, 1001, 2, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1102, 'Folie 39 62', 55, 40, 1001, 3, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1103, 'Folie 39 67', 55, 40, 1001,  4,1);
 
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1104, 'Folie', 55, 40, 1001, 5, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1105, 'Folie', 55, 40, 1001, 6, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1106, 'Folie', 55, 40, 1001, 7, 1);
-insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1107, 'Folie', 55, 40, 1001, 8, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1104, 'Folie 39 22', 55, 40, 1001, 5, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1105, 'Folie 39 14', 55, 40, 1001, 6, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1106, 'Folie 39 51', 55, 40, 1001, 7, 1);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1107, 'Folie 39 29', 55, 40, 1001, 8, 1);
+
+insert into Article(id, name, value, minValue, category_id,color_id , size_id) values(1108, 'Folie 49 BA', 55, 40, 1001, 1, 2);
+insert into Article(id, name, value, minValue, category_id, color_id, size_id) values(1109, 'Folie 49 34', 55, 40, 1001, 2, 2);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1110, 'Folie 49 62', 55, 40, 1001, 3, 2);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1111, 'Folie 49 67', 55, 40, 1001,  4,2);
+
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1112, 'Folie 49 22', 55, 40, 1001, 5, 2);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1113, 'Folie 49 14', 55, 40, 1001, 6, 2);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1114, 'Folie 49 51', 55, 40, 1001, 7, 2);
+insert into Article(id, name, value, minValue, category_id,  color_id,size_id) values(1115, 'Folie 49 29', 55, 40, 1001, 8, 2);
 insert into Material(id) values(1100);
 insert into Material(id) values(1101);
 insert into Material(id) values(1102);
@@ -186,6 +196,16 @@ insert into Material(id) values(1104);
 insert into Material(id) values(1105);
 insert into Material(id) values(1106);
 insert into Material(id) values(1107);
+
+insert into Material(id) values(1108);
+insert into Material(id) values(1109);
+insert into Material(id) values(1110);
+insert into Material(id) values(1111);
+
+insert into Material(id) values(1112);
+insert into Material(id) values(1113);
+insert into Material(id) values(1114);
+insert into Material(id) values(1115);
 
 
 insert into Category (id, name) values (1002, 'Klebeband');
@@ -198,14 +218,267 @@ insert into Material(id) values(1201);
 
 insert into Category (id, name) values (1003, 'Schachtel');
 
-insert into Article(id, name, value, minValue, category_id, size_id) values(1300, 'Schachtel49', 55, 40, 1003, 1);
-insert into Article(id, name, value, minValue, category_id, size_id) values(1301, 'Schachtel39', 55, 40, 1003, 2);
+insert into Article(id, name, value, minValue, category_id, size_id) values(1300, 'Schachtel 39', 55, 40, 1003, 1);
+insert into Article(id, name, value, minValue, category_id, size_id) values(1301, 'Schachtel 49', 55, 40, 1003, 2);
 insert into Material(id) values(1300);
 insert into Material(id) values(1301);
 
 -- ProductionFormulas
 -- BL 39 34
-insert into ProductionFormula(product_id, material_id, amount) values (1, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(1, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(1, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(1, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(2, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(2, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(2, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(3, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(3, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(3, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(4, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(4, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(4, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(5, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(5, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(5, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(6, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(6, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(6, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(7, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(7, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(7, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(8, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(8, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(8, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(9, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(9, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(9, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(10, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(10, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(10, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(11, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(11, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(11, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(12, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(12, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(12, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(13, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(13, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(13, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(14, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(14, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(14, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(15, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(15, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(15, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(16, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(16, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(16, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(17, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(17, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(17, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(18, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(18, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(18, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(19, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(19, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(19, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(20, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(20, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(20, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(21, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(21, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(21, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(22, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(22, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(22, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(23, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(23, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(23, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(24, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(24, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(24, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(25, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(25, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(25, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(26, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(26, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(26, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(27, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(27, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(27, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(28, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(28, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(28, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(29, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(29, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(29, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(30, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(30, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(30, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(31, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(31, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(31, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(32, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(32, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(32, 1108, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(33, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(33, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(33, 1115, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(34, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(34, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(34, 1109, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(35, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(35, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(35, 1111, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(36, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(36, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(36, 1110, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(37, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(37, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(37, 1102, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(38, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(38, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(38, 1106, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(39, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(39, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(39, 1101, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(40, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(40, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(40, 1107, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(41, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(41, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(41, 1105, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(42, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(42, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(42, 1112, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(43, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(43, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(43, 1103, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(44, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(44, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(44, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(45, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(45, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(45, 1100, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(46, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(46, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(46, 1113, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(47, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(47, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(47, 1114, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(48, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(48, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(48, 1104, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(49, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(49, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(49, 1110, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(50, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(50, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(50, 1100, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(51, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(51, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(51, 1101, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(52, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(52, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(52, 1111, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(53, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(53, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(53, 1112, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(54, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(54, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(54, 1109, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(55, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(55, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(55, 1108, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(56, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(56, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(56, 1104, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(57, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(57, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(57, 1115, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(58, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(58, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(58, 1105, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(59, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(59, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(59, 1114, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(60, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(60, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(60, 1106, 0.5);
+
+
+insert into ProductionFormula(product_id, material_id, amount) values(61, 1001, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(61, 1301, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(61, 1113, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(62, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(62, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(62, 1102, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(63, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(63, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(63, 1103, 0.5);
+
+insert into ProductionFormula(product_id, material_id, amount) values(64, 1000, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(64, 1300, 0.5);
+insert into ProductionFormula(product_id, material_id, amount) values(64, 1107, 0.5);
 
 -- ProductionLog
 insert into ProductionLog(id, product_id) values (1, 1);
