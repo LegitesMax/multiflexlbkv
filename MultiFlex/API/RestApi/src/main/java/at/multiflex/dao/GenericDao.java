@@ -83,7 +83,6 @@ public class GenericDao{
             entities = productRepository.loadAll();
         } else if (Category.class.equals(type)){
             entities = categoryRepository.loadAll();
-            categoryRepository.getChecksum();
         } else if (Color.class.equals(type)){
             entities = colorRepository.loadAll();
         } else if (Size.class.equals(type)){

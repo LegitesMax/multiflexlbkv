@@ -3,6 +3,8 @@ package at.multiflex.dto.wares;
 import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.ColorDto;
 import at.multiflex.dto.SizeDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 /**
@@ -24,8 +26,14 @@ public class ArticleDto {
     private Double minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
+    @JsonBackReference
+    @JsonManagedReference
     private SizeDto size = new SizeDto();
+    @JsonBackReference
+    @JsonManagedReference
     private ColorDto color = new ColorDto();
+    @JsonBackReference
+    @JsonManagedReference
     private CategoryDto category = new CategoryDto();
     //</editor-fold>
 

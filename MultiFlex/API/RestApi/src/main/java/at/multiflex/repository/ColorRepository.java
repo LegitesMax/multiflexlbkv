@@ -37,6 +37,11 @@ public class ColorRepository extends Repository{
     public Color findByName(String name){
         return em.createQuery("select x from Color x where x.name like lower(concat('%', concat(:name, '%')))", Color.class).setParameter("name", name).getSingleResult();
     }
+    /**
+     * Loads all Color entities from the database with the given colorCode
+     * @param colorCode The code of the entity to load
+     * @return A list of entities loaded from the database
+     */
     @Transactional
     public Color findByColorCode(String colorCode){
         return em.createQuery("select x from Color x where x.colorCode like :colorCode", Color.class).setParameter("colorCode", colorCode).getSingleResult();

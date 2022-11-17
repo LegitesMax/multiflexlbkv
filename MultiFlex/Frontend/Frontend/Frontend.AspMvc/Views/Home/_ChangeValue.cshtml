@@ -33,6 +33,8 @@
                                     @Html.TextBoxFor(model => model.sub.MinValue, new { @class = "form-control", @name="minValue" })
                                 </div>
 
+                                <br />
+
                                 @Html.ValidationMessageFor(model => model.sub.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Value)
                                 @Html.ValidationMessageFor(model => model.sub.MinValue)
@@ -58,7 +60,12 @@
                                 }
 
                                 //@Html.DropDownList("Produkt", test, "Wähle ein Produkt", new { @class = "form-select", @name="name"})
-                                @Html.DropDownListFor(model => model.sub.Name, test, new { @class = "form-select", @name="name"})
+
+                                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Suche dein Produkt">
+                                <datalist id="datalistOptions">
+                                     @Html.DropDownListFor(model => model.sub.Name, test, new { @class = "form-control", @list="datalistOptions", @id="products", @name="name"})
+                                </datalist>
+
                                 <br>
                                 <div class="input-group">
                                     <span class="input-group-text">Value & MinValue</span>
@@ -67,6 +74,7 @@
                                         @Html.TextBoxFor(model => model.sub.MinValue, new { @class = "form-control", @name="minValue" })
                                     }
                                 </div>
+                                <br />
 
                                 @Html.ValidationMessageFor(model => model.sub.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Value)

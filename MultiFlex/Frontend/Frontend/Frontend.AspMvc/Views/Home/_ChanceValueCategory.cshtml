@@ -34,6 +34,8 @@
                                     @Html.TextBoxFor(model => model.sub.Category.Acronym, new { @class = "form-control", @name="name" })
                                 </div>
 
+                                <br />
+
                                 @Html.ValidationMessageFor(model => model.sub.Category.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Category.Acronym)
 
@@ -61,7 +63,11 @@
                                 {
                                     test.Add(new SelectListItem { Text = item.Name, Value = item.Name });
                                 }
-                                @Html.DropDownListFor(model => model.sub.Category.Name, test, new { @class = "form-select", @name="name"})
+
+                                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Suche deine Kategorie">
+                                <datalist id="datalistOptions">
+                                      @Html.DropDownListFor(model => model.sub.Category.Name, test, new { @class = "form-select", @name="name"})
+                                </datalist>
 
                                 <br />
                                 <div class="input-group">
@@ -73,6 +79,8 @@
                                     <span class="input-group-text">Neues Kürzel</span>
                                     @Html.TextBoxFor(model => model.sub.Category.Acronym, new { @class = "form-control", @name="name" })
                                 </div>
+
+                                <br />
 
                                 @Html.ValidationMessageFor(model => model.sub.Category.Name)
                                 @Html.ValidationMessageFor(model => model.sub.Category.Acronym)

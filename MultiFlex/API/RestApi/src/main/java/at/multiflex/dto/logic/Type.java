@@ -1,5 +1,39 @@
 package at.multiflex.dto.logic;
 
+/**
+ * An enum with all types
+ */
 public enum Type {
-    Article, Material, Product, ProductionFormula, Category, Color, Size, ProductionLog
+    /**
+     * Article entity as an enum
+     */
+    Article,
+    /**
+     * Material entity as an enum
+     */
+    Material,
+    /**
+     * Product entity as an enum
+     */
+    Product,
+    /**
+     * ProductionFormula entity as an enum
+     */
+    ProductionFormula,
+    /**
+     * Category entity as an enum
+     */
+    Category,
+    /**
+     * Color entity as an enum
+     */
+    Color,
+    /**
+     * Size entity as an enum
+     */
+    Size,
+    /**
+     * ProductionLog entity as an enum
+     */
+    ProductionLog
 }

@@ -1,8 +1,13 @@
 package at.multiflex.dto;
 
 import at.multiflex.dto.wares.ProductDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
+/**
+ * A Data Transfer Object for the ProductionLog class
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,5 +16,7 @@ import lombok.*;
 public class ProductionLogDto {
     private Integer id;
 
+    @JsonBackReference
+    @JsonManagedReference
     private ProductDto product;
 }

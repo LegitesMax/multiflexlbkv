@@ -1,6 +1,8 @@
 package at.multiflex.dto;
 
 import at.multiflex.dto.wares.ArticleDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import java.util.HashSet;
@@ -24,6 +26,8 @@ public class SizeDto {
 
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
+    @JsonBackReference
+    @JsonManagedReference
     private Set<ArticleDto> products = new HashSet<>();
     //</editor-fold>
 }

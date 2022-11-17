@@ -1,9 +1,8 @@
 package at.multiflex.model.Wares;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import at.multiflex.dto.logic.Type;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,7 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "Material")
 public class Material extends Article {
@@ -32,7 +30,19 @@ public class Material extends Article {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products;
     */
+    public Material() {
+    }
+
     @OneToMany(mappedBy = "material", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JsonManagedReference
     private Set<ProductionFormula> productionFormula = new HashSet<>();
     //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "productionFormula=" + productionFormula +
+                super.toString() +
+                '}';
+    }
 }

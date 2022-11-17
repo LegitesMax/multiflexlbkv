@@ -1,10 +1,10 @@
 package at.multiflex.model;
 
+import at.multiflex.dto.logic.Type;
 import at.multiflex.model.Wares.Article;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -28,9 +28,22 @@ public class Category {
 
     @Column(length = 8)
     private String acronym;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade=CascadeType.ALL)
+    @JsonManagedReference
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", acronym='" + acronym + '\'' +
+                '}';
+    }
 }

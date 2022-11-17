@@ -1,12 +1,11 @@
 package at.multiflex.model.Wares;
 
+import at.multiflex.dto.logic.Type;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
 import at.multiflex.model.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -25,7 +24,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 64, unique = true)
     private String name;
 
     @Column(nullable = false)
@@ -48,13 +47,37 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "color_id")
+    @JsonBackReference
     private Color color;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonBackReference
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "size_id")
+    @JsonBackReference
     private Size size;
+
+    @Override
+    public String toString() {
+        var string = "Article{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", value=" + value +
+                ", minValue=" + minValue;
+        if (color != null){
+            string += ", color=" + color.toString();
+        }
+        if (size != null){
+            string += ", size=" + size.toString();
+        }
+        if (category != null){
+            string += ", category=" + category.toString();
+        }
+        string += '}';
+
+        return string;
+    }
 }

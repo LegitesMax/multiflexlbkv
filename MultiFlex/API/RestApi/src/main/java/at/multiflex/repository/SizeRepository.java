@@ -28,6 +28,12 @@ public class SizeRepository extends Repository{
     public Size findById(Integer id){
         return em.createQuery("select x from Size x where x.id = :id", Size.class).setParameter("id", id).getSingleResult();
     }
+
+    /**
+     * finds a size with its size
+     * @param size the value of the size
+     * @return returns the resulting entity
+     */
     @Transactional
     public Size findBySize(Integer size){
         return em.createQuery("select x from Size x where x.size = :size", Size.class).setParameter("size", size).getSingleResult();
