@@ -1,6 +1,8 @@
 package at.multiflex.dto.wares;
 
 import at.multiflex.model.Wares.ProductionFormulaId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 /**
@@ -14,8 +16,12 @@ import lombok.*;
 public class ProductionFormulaDto {
     ProductionFormulaId id;
 
+    @JsonBackReference
+    @JsonManagedReference
     ProductDto product;
 
+    @JsonBackReference
+    @JsonManagedReference
     MaterialDto material;
 
     private Double amount;

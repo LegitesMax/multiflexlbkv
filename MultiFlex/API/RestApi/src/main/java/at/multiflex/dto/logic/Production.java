@@ -1,6 +1,8 @@
 package at.multiflex.dto.logic;
 
 import at.multiflex.dto.wares.ProductDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 /**
@@ -12,6 +14,8 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class Production {
+   @JsonBackReference
+   @JsonManagedReference
    private ProductDto product;
 
    private Double amount = 1.0;

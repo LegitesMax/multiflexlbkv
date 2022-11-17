@@ -1,6 +1,8 @@
 package at.multiflex.dto.wares;
 
 import at.multiflex.dto.ProductionLogDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import java.util.HashSet;
@@ -16,8 +18,12 @@ import java.util.Set;
 @ToString
 public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
+    @JsonBackReference
+    @JsonManagedReference
     private Set<ProductionFormulaDto> productionFormula = new HashSet<>();
 
+    @JsonBackReference
+    @JsonManagedReference
     private Set<ProductionLogDto> productionLog = new HashSet<>();
     //</editor-fold>
 }

@@ -1,6 +1,8 @@
 package at.multiflex.model;
 
 import at.multiflex.model.Wares.Article;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +31,7 @@ public class Size {
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "size", cascade=CascadeType.ALL)
+    @JsonManagedReference
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 

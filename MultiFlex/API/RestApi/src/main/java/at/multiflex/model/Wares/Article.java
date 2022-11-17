@@ -1,8 +1,10 @@
 package at.multiflex.model.Wares;
 
+import at.multiflex.dto.logic.Type;
 import at.multiflex.model.Category;
 import at.multiflex.model.Color;
 import at.multiflex.model.Size;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -45,14 +47,17 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "color_id")
+    @JsonBackReference
     private Color color;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonBackReference
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "size_id")
+    @JsonBackReference
     private Size size;
 
     @Override

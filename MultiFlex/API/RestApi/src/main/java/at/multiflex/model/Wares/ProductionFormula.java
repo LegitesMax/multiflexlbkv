@@ -1,5 +1,7 @@
 package at.multiflex.model.Wares;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,10 +21,12 @@ public class ProductionFormula {
 
     @ManyToOne
     @MapsId("productId")
+    @JsonBackReference
     Product product;
 
     @ManyToOne
     @MapsId("materialId")
+    @JsonBackReference
     Material material;
 
     @Column(nullable = false)

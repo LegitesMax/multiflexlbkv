@@ -10,11 +10,11 @@ insert into Color (name, colorCode) values ('29','29');
 
 -- INSERT PRODUCTS
 --Category
-insert into Category (name, acronym) values ('Blume des Lebens', 'BL');
-insert into Category (name, acronym) values ('Lotusblume', 'LO');
-insert into Category (name, acronym) values ('Baum des Lebens', 'BA');
-insert into Category (name, acronym) values ('Baum des Lebens eckig', 'BAE');
-insert into Category (name, acronym) values ('TESTWERT', 'TE');
+insert into Category (name, acronym, type) values ('Blume des Lebens', 'BL', 'Product');
+insert into Category (name, acronym, type) values ('Lotusblume', 'LO', 'Product');
+insert into Category (name, acronym, type) values ('Baum des Lebens', 'BA', 'Product');
+insert into Category (name, acronym, type) values ('Baum des Lebens eckig', 'BAE', 'Product');
+insert into Category (name, acronym, type) values ('TESTWERT', 'TE', 'Product');
 
 --Size
 insert into Size (size) values (39);
@@ -157,7 +157,7 @@ insert into Product(id) values(64);
 
 
 -- INSERT Material
-insert into Category (id, name) values (1000, 'Holz');
+insert into Category (id, name, type) values (1000, 'Holz', 'Material');
 
 insert into Article(id, name, value, minValue, category_id) values(1000, 'Holz', 55, 40, 1000);
 insert into Article(id, name, value, minValue, category_id,  size_id) values(1000, 'Holz39', 55, 40, 1000,  1);
@@ -166,7 +166,7 @@ insert into Material(id) values(1000);
 insert into Material(id) values(1001);
 
 
-insert into Category (id, name) values (1001, 'Folie');
+insert into Category (id, name, type) values (1001, 'Folie', 'Material');
 
 insert into Article(id, name, value, minValue, category_id,color_id , size_id) values(1100, 'Folie', 55, 40, 1001, 1, 1);
 insert into Article(id, name, value, minValue, category_id, color_id, size_id) values(1101, 'Folie', 55, 40, 1001, 2, 1);
@@ -188,7 +188,7 @@ insert into Material(id) values(1106);
 insert into Material(id) values(1107);
 
 
-insert into Category (id, name) values (1002, 'Klebeband');
+insert into Category (id, name, type) values (1002, 'Klebeband', 'Material');
 
 insert into Article(id, name, value, minValue, category_id, size_id) values(1200, 'Klebeband-Packet', 55, 40, 1002,  1);
 insert into Article(id, name, value, minValue, category_id, size_id) values(1201, 'Klebeband-Sicherung', 55, 40, 1002,  1);
@@ -196,7 +196,7 @@ insert into Material(id) values(1200);
 insert into Material(id) values(1201);
 
 
-insert into Category (id, name) values (1003, 'Schachtel');
+insert into Category (id, name, type) values (1003, 'Schachtel', 'Material');
 
 insert into Article(id, name, value, minValue, category_id, size_id) values(1300, 'Schachtel49', 55, 40, 1003, 1);
 insert into Article(id, name, value, minValue, category_id, size_id) values(1301, 'Schachtel39', 55, 40, 1003, 2);
@@ -206,7 +206,7 @@ insert into Material(id) values(1301);
 -- ProductionFormulas
 -- BL 39 34
 insert into ProductionFormula(product_id, material_id, amount) values (1, 1000, 0.5);
-insert into ProductionFormula(product_id, material_id, amount) values (1, he1000, 0.5);
+-- insert into ProductionFormula(product_id, material_id, amount) values (1, he1000, 0.5);
 
 -- ProductionLog
 insert into ProductionLog(id, product_id) values (1, 1);

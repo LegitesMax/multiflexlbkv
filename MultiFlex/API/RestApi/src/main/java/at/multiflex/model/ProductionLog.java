@@ -1,6 +1,8 @@
 package at.multiflex.model;
 
 import at.multiflex.model.Wares.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,6 +22,7 @@ public class ProductionLog {
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
+    @JsonBackReference
     private Product product;
 
     @Override
