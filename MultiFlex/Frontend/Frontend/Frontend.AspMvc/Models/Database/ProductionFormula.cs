@@ -11,6 +11,6 @@
         public Material? Material { get; set; }
 
         [JsonProperty("amount")]
-        public double Amount { get; set; } = new double();
+        public double Amount { get; set; }
     }
 }

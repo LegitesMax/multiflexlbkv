@@ -15,10 +15,10 @@ namespace Frontend.AspMvc.Models
         public string Name { get; set; } = string.Empty;
 
         [JsonProperty("value")]
-        public double Value { get; set; } = new double();
+        public double Value { get; set; } 
 
         [JsonProperty("minValue")]
-        public double MinValue { get; set; } = new double();
+        public double MinValue { get; set; }
 
 
 
