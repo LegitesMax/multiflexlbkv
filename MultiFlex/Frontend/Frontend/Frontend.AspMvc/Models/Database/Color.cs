@@ -6,15 +6,17 @@
     public class Color
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        [MaxLength(64)]
+        public string Name { get; set; } = string.Empty;
 
         [JsonProperty("colorCode")]
-        public string ColorCode { get; set; }
+        [MaxLength(64)]
+        public string ColorCode { get; set; } = string.Empty;
 
         [JsonProperty("products")]
-        public List<Product> Products { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

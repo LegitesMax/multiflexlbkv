@@ -8,13 +8,18 @@ namespace Frontend.AspMvc.Models
     public class Category
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("name")]
+        [MaxLength(64)]
         public string Name { get; set; } = String.Empty;
 
         [JsonProperty("acronym")]
-        public string Acronym { get; set; } = String.Empty;
+        [MaxLength(8)]
+        public string? Acronym { get; set; }
+
+        [JsonProperty("type")]
+        public Frontend.AspMvc.Models.Database.Type? Type { get; set; }
 
         [JsonProperty("products")]
         public List<Product>? Products { get; set; }

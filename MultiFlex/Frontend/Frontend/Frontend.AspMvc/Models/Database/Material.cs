@@ -1,4 +1,6 @@
-﻿namespace Frontend.AspMvc.Models
+﻿using Frontend.AspMvc.Models.Database;
+
+namespace Frontend.AspMvc.Models
 {
     /// <summary>
     /// Database Model for Materials
@@ -6,19 +8,32 @@
     public class Material
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; } = String.Empty;
+        [MaxLength(64)]
+        public string Name { get; set; } = string.Empty;
 
         [JsonProperty("value")]
-        public int Value { get; set; }
+        public double Value { get; set; } = new double();
 
         [JsonProperty("minValue")]
-        public int minValue { get; set; }
+        public double MinValue { get; set; } = new double();
 
-        public Size size { get; set; } = new();
-        public Category category { get; set; } = new();
+
+
+        [JsonProperty("size")]
+        public Size Size { get; set; } = new Size();
+
+        [JsonProperty("color")]
+        public Color? Color { get; set; }
+
+        [JsonProperty("category")]
+        public Category? Category { get; set; }
+
+
+        [JsonProperty("productionFormula")]
+        public List<ProductionFormula>? ProductionFormula { get; set; }
 
     }
 
