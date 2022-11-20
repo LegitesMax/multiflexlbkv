@@ -459,7 +459,7 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> AddProduct(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+            var data = new SubscribeModel { Name = model.sub.Product.Name, Value = (int?)model.sub.Product.Value, MinValue = (int?)model.sub.Product.MinValue, Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color};
 
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
@@ -473,10 +473,10 @@ namespace Frontend.AspMvc.Controllers
 
         public async Task<IActionResult> AddCategory(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+            var data = new SubscribeModel {Category = model.sub.Category };
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Category/add", data).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -485,10 +485,10 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> EditCategory(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+            var data = new SubscribeModel { Category = model.sub.Category };
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();

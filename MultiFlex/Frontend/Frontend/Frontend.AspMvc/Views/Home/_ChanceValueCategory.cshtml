@@ -20,7 +20,7 @@
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="categoryAdd" role="tabpanel" aria-labelledby="categoryAdd-tab">
-                            @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+                            @using (@Html.BeginForm("AddCategory", "Home", FormMethod.Post))
                             {
                                 //Model.sub.Opereations = "addCat";
 
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="categoryEdit" role="tabpanel" aria-labelledby="categoryEdit-tab">
-                            @using (@Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+                            @using (@Html.BeginForm("EditCategory", "Home", FormMethod.Post))
                             {
                                 //Model.sub.Opereations = "editCat";
 
