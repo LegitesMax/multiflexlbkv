@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Frontend.AspMvc.Models
 {
@@ -11,10 +12,12 @@ namespace Frontend.AspMvc.Models
         public int? Id { get; set; }
 
         [JsonProperty("name")]
+        [JsonPropertyName("name")]
         [MaxLength(64)]
         public string Name { get; set; } = String.Empty;
 
         [JsonProperty("acronym")]
+        [JsonPropertyName("acronym")]
         [MaxLength(8)]
         public string? Acronym { get; set; }
 

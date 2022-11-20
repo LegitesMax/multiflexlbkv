@@ -21,12 +21,10 @@ public class ProductionFormula {
 
     @ManyToOne
     @MapsId("productId")
-    @JsonBackReference
     Product product;
 
     @ManyToOne
     @MapsId("materialId")
-    @JsonBackReference
     Material material;
 
     @Column(nullable = false)

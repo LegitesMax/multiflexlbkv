@@ -24,8 +24,8 @@ POST http://localhost:9000/Category/add
 Content-Type: application/json
 
 {
-  "name" : "TEST",
-  "acronym": "TEST"
+  "name" : "test4",
+  "acronym": "test4"
 }
 ###
 POST http://localhost:9000/Size/add

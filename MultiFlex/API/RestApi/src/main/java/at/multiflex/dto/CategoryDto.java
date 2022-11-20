@@ -28,8 +28,7 @@ public class CategoryDto {
     private Type type;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    @JsonBackReference
-    @JsonManagedReference
+
     private Set<ArticleDto> products = new HashSet<>();
     //</editor-fold>
 }

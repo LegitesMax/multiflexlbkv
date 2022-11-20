@@ -462,7 +462,7 @@ namespace Frontend.AspMvc.Controllers
             var data = new SubscribeModel { Name = model.sub.Product.Name, Value = (int?)model.sub.Product.Value, MinValue = (int?)model.sub.Product.MinValue, Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color};
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -476,7 +476,7 @@ namespace Frontend.AspMvc.Controllers
             var data = new SubscribeModel {Category = model.sub.Category };
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Category/add", data).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Category/add", data).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();

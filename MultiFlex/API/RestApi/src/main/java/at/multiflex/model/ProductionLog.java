@@ -22,7 +22,6 @@ public class ProductionLog {
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonBackReference
     private Product product;
 
     @Override

@@ -16,7 +16,5 @@ import lombok.*;
 public class ProductionLogDto {
     private Integer id;
 
-    @JsonBackReference
-    @JsonManagedReference
     private ProductDto product;
 }

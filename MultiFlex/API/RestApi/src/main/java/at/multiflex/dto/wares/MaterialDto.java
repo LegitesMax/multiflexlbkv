@@ -17,8 +17,7 @@ import java.util.Set;
 @ToString
 public class MaterialDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
-    @JsonBackReference
-    @JsonManagedReference
+
     private Set<ProductionFormulaDto> productionFormula = new HashSet<>();
     //</editor-fold>
 }

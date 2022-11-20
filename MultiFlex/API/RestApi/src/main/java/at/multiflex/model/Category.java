@@ -34,7 +34,6 @@ public class Category {
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade=CascadeType.ALL)
-    @JsonManagedReference
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 

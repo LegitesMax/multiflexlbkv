@@ -30,7 +30,6 @@ public class Color {
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "color", cascade=CascadeType.ALL)
-    @JsonManagedReference
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 

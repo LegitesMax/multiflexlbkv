@@ -104,6 +104,9 @@ public class CategoryDao {
     @Path("/add")
     public Response add(CategoryDto input) {
         var entity = (Category) MappingHelper.entityDtoTransformation(input);
+        System.out.println( input.toString());
+
+        System.out.println( entity.toString());
 
         crudOperations.add(entity);
 

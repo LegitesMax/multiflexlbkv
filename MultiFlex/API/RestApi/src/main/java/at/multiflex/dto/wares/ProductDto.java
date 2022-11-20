@@ -18,12 +18,10 @@ import java.util.Set;
 @ToString
 public class ProductDto extends ArticleDto {
     //<editor-fold desc="Navigation Help">
-    @JsonBackReference
-    @JsonManagedReference
+
     private Set<ProductionFormulaDto> productionFormula = new HashSet<>();
 
-    @JsonBackReference
-    @JsonManagedReference
+
     private Set<ProductionLogDto> productionLog = new HashSet<>();
     //</editor-fold>
 }

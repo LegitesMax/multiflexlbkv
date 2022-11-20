@@ -16,12 +16,8 @@ import lombok.*;
 public class ProductionFormulaDto {
     ProductionFormulaId id;
 
-    @JsonBackReference
-    @JsonManagedReference
     ProductDto product;
 
-    @JsonBackReference
-    @JsonManagedReference
     MaterialDto material;
 
     private Double amount;

@@ -31,7 +31,6 @@ public class Size {
     //</editor-fold>
     //<editor-fold desc="Relation">
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "size", cascade=CascadeType.ALL)
-    @JsonManagedReference
     private Set<Article> products = new java.util.LinkedHashSet<>();
     //</editor-fold>
 

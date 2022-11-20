@@ -34,7 +34,6 @@ public class Material extends Article {
     }
 
     @OneToMany(mappedBy = "material", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JsonManagedReference
     private Set<ProductionFormula> productionFormula = new HashSet<>();
     //</editor-fold>
 

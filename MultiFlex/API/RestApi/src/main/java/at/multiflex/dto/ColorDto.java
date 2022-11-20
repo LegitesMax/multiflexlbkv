@@ -25,8 +25,6 @@ public class ColorDto {
     private String colorCode;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    @JsonBackReference
-    @JsonManagedReference
     private Set<ArticleDto> products = new HashSet<>();
     //</editor-fold>
 }

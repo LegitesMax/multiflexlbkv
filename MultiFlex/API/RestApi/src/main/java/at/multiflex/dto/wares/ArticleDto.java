@@ -26,14 +26,11 @@ public class ArticleDto {
     private Double minValue;
     //</editor-fold>
     //<editor-fold desc="Navigation Help">
-    @JsonBackReference
-    @JsonManagedReference
+
     private SizeDto size = new SizeDto();
-    @JsonBackReference
-    @JsonManagedReference
+
     private ColorDto color = new ColorDto();
-    @JsonBackReference
-    @JsonManagedReference
+
     private CategoryDto category = new CategoryDto();
     //</editor-fold>
 

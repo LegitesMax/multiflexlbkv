@@ -29,11 +29,11 @@ public class Product extends Article {
     //private Set<Material> materials = new java.util.LinkedHashSet<>();
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JsonManagedReference
+
     private Set<ProductionFormula> productionFormula = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade=CascadeType.ALL)
-    @JsonManagedReference
+
     private Set<ProductionLog> productionLog = new java.util.LinkedHashSet<>();
     //</editor-fold>
 
