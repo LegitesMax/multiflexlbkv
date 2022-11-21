@@ -12,8 +12,8 @@ namespace Frontend.AspMvc.Controllers
     /// <summary>
     /// A generic one for the standard CRUD operations.
     /// </summary>
-    /// <typeparam name="TAccessModel">The type of access model</typeparam>
-    /// <typeparam name="TViewModel">The type of view model</typeparam>
+    /// <typeparam Name="TAccessModel">The type of access model</typeparam>
+    /// <typeparam Name="TViewModel">The type of view model</typeparam>
     public abstract partial class GenericController<TAccessModel, TViewModel> : MvcController
         where TAccessModel : IIdentifyable, new()
         where TViewModel : class, new()
