@@ -25,7 +25,17 @@ Content-Type: application/json
 
 {
   "name" : "test4",
-  "acronym": "test4"
+  "acronym": "test4",
+  "type": "Material"
+}
+###
+POST http://localhost:9000/Category/add
+Content-Type: application/json
+
+{
+  "name" : "test3",
+  "acronym": "test3",
+  "type": "Product"
 }
 ###
 POST http://localhost:9000/Size/add

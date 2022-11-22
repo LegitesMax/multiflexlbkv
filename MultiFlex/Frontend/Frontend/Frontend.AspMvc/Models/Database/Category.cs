@@ -19,12 +19,14 @@ namespace Frontend.AspMvc.Models
         [JsonProperty("acronym")]
         [JsonPropertyName("acronym")]
         [MaxLength(8)]
-        public string? Acronym { get; set; }
+        public string Acronym { get; set; } = String.Empty;
 
         [JsonProperty("type")]
-        public Frontend.AspMvc.Models.Database.Type? Type { get; set; }
+        [JsonPropertyName("type")]
+        public Database.Type? Type { get; set; }
 
         [JsonProperty("products")]
+        [JsonPropertyName("products")]
         public List<Product>? Products { get; set; }
     }
 }

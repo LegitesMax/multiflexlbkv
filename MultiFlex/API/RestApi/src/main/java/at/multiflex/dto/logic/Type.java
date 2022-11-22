@@ -5,10 +5,6 @@ package at.multiflex.dto.logic;
  */
 public enum Type {
     /**
-     * Article entity as an enum
-     */
-    Article,
-    /**
      * Material entity as an enum
      */
     Material,
@@ -16,6 +12,10 @@ public enum Type {
      * Product entity as an enum
      */
     Product,
+    /**
+     * Article entity as an enum
+     */
+    Article,
     /**
      * ProductionFormula entity as an enum
      */

@@ -11,6 +11,7 @@ using PdfSharp.Pdf;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
+using Product = Frontend.AspMvc.Models.Product;
 
 namespace Frontend.AspMvc.Controllers
 {
@@ -100,8 +101,8 @@ namespace Frontend.AspMvc.Controllers
         /// <summary>
         /// Set Status Open Get All Open Order Items
         /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">event</param>
+        /// <param Name="sender">sender</param>
+        /// <param Name="e">event</param>
         /// <returns>Return to Index Page</returns>
         public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
         {
@@ -115,8 +116,8 @@ namespace Frontend.AspMvc.Controllers
         /// <summary>
         /// Set Status cancled Get All cancled Order Items
         /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">event</param>
+        /// <param Name="sender">sender</param>
+        /// <param Name="e">event</param>
         /// <returns>Return to Index Page</returns>
         public async Task<IActionResult> CanceledOrdersAsync(object sender, EventArgs e)
         {
@@ -130,8 +131,8 @@ namespace Frontend.AspMvc.Controllers
         /// <summary>
         /// Set Status redy Get All orders that are redy
         /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">event</param>
+        /// <param Name="sender">sender</param>
+        /// <param Name="e">event</param>
         /// <returns>Return to Index Page</returns>
         public async Task<IActionResult> ReadyOrdersAsync(object sender, EventArgs e)
         {
@@ -251,8 +252,8 @@ namespace Frontend.AspMvc.Controllers
         /// <summary>
         /// Gnererate PDF File for the user with the data
         /// </summary>
-        /// <param name="data">The data of the Orders</param>
-        /// <param name="status">The Order State for the PDF title</param>
+        /// <param Name="data">The data of the Orders</param>
+        /// <param Name="status">The Order State for the PDF title</param>
         /// <returns>boolen if export success</returns>
         public static bool ExportPdf(IEnumerable<Logic.Entities.Orders.Order> data, string status)
         {
@@ -448,9 +449,8 @@ namespace Frontend.AspMvc.Controllers
         //Buttons Edit/Add/Remove
         public async Task<IActionResult> EditProductAsync(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue };
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", model.sub.Product).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -459,10 +459,11 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> AddProduct(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Product.Name, Value = (int?)model.sub.Product.Value, MinValue = (int?)model.sub.Product.MinValue, Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color};
+            //var data = new SubscribeModel { Name = model.sub.Product.Name, Value = (int?)model.sub.Product.Value, MinValue = (int?)model.sub.Product.MinValue,  Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color};
+            var data = new Product { Name = model.sub.Product.Name, Value = model.sub.Product.Value, MinValue = model.sub.Product.MinValue, Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color };
 
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Article/add", model.sub.Product).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -473,10 +474,10 @@ namespace Frontend.AspMvc.Controllers
 
         public async Task<IActionResult> AddCategory(Model model)
         {
-            var data = new SubscribeModel {Category = model.sub.Category };
+            var data = new SubscribeModel { Category = model.sub.Category };
 
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Category/add", data).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Category/add", model.sub.Category).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -488,7 +489,7 @@ namespace Frontend.AspMvc.Controllers
             var data = new SubscribeModel { Category = model.sub.Category };
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", model.sub.Category).Result;
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();

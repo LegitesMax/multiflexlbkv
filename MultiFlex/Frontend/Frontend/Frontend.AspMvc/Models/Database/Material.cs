@@ -10,7 +10,7 @@ namespace Frontend.AspMvc.Models
         [JsonProperty("id")]
         public int? Id { get; set; }
 
-        [JsonProperty("name")]
+        [JsonProperty("Name")]
         [MaxLength(64)]
         public string Name { get; set; } = string.Empty;
 
