@@ -1,0 +1,7 @@
+<map id="Frontend.Logic.Entities.Orders.Order" name="Frontend.Logic.Entities.Orders.Order">
+<area shape="rect" id="node1" title="Entiti Order for Database" alt="" coords="39,229,213,271"/>
+<area shape="rect" id="node2" href="$classFrontend_1_1Logic_1_1Entities_1_1VersionEntity.html" title=" " alt="" coords="72,155,180,181"/>
+<area shape="rect" id="node3" href="$classFrontend_1_1Logic_1_1Entities_1_1IdentityEntity.html" title=" " alt="" coords="5,80,116,107"/>
+<area shape="rect" id="node4" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IIdentifyable.html" title=" " alt="" coords="75,5,177,32"/>
+<area shape="rect" id="node5" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IVersionable.html" title=" " alt="" coords="140,80,243,107"/>
+</map>

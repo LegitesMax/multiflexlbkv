@@ -1,0 +1,13 @@
+<map id="at.multiflex.dao.GenericDao" name="at.multiflex.dao.GenericDao">
+<area shape="rect" id="node1" title=" " alt="" coords="975,193,1180,220"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1CRUDOperations.html" title=" " alt="" coords="389,13,559,54"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,152,123,179"/>
+<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1repository_1_1Repository.html" title=" " alt="" coords="196,186,365,227"/>
+<area shape="rect" id="node4" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1ProductRepository.html" title=" " alt="" coords="583,186,795,227"/>
+<area shape="rect" id="node6" href="$classat_1_1multiflex_1_1repository_1_1ColorRepository.html" title=" " alt="" coords="604,251,773,293"/>
+<area shape="rect" id="node7" href="$classat_1_1multiflex_1_1repository_1_1CategoryRepository.html" title=" " alt="" coords="604,317,773,358"/>
+<area shape="rect" id="node8" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1ArticleRepository.html" title=" " alt="" coords="583,382,795,423"/>
+<area shape="rect" id="node10" href="$classat_1_1multiflex_1_1repository_1_1SizeRepository.html" title=" " alt="" coords="604,55,773,97"/>
+<area shape="rect" id="node11" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1MaterialRepository.html" title=" " alt="" coords="583,121,795,162"/>
+<area shape="rect" id="node9" title=" " alt="" coords="202,382,359,423"/>
+</map>

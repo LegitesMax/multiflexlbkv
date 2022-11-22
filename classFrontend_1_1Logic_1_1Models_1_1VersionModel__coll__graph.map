@@ -1,0 +1,6 @@
+<map id="Frontend.Logic.Models.VersionModel" name="Frontend.Logic.Models.VersionModel">
+<area shape="rect" id="node1" title=" " alt="" coords="17,155,237,196"/>
+<area shape="rect" id="node2" href="$classFrontend_1_1Logic_1_1Models_1_1IdentityModel.html" title=" " alt="" coords="5,80,117,107"/>
+<area shape="rect" id="node3" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IIdentifyable.html" title=" " alt="" coords="75,5,178,32"/>
+<area shape="rect" id="node4" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IVersionable.html" title=" " alt="" coords="142,80,245,107"/>
+</map>

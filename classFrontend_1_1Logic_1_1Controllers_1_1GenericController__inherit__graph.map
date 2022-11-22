@@ -1,0 +1,6 @@
+<map id="Frontend.Logic.Controllers.GenericController&lt; TEntity &gt;" name="Frontend.Logic.Controllers.GenericController&lt; TEntity &gt;">
+<area shape="rect" id="node1" title="This class provides the CRUD operations for an entity type." alt="" coords="51,155,263,196"/>
+<area shape="rect" id="node2" href="$classFrontend_1_1Logic_1_1Controllers_1_1ControllerObject.html" title=" " alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="20,5,119,32"/>
+<area shape="rect" id="node4" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IDataAccess.html" title=" " alt="" coords="157,80,336,107"/>
+</map>

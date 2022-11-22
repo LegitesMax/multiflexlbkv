@@ -1,0 +1,5 @@
+<map id="Frontend.Logic.Modules.Exceptions.LogicException" name="Frontend.Logic.Modules.Exceptions.LogicException">
+<area shape="rect" id="node1" title="Represents errors encountered while running the application." alt="" coords="5,80,260,121"/>
+<area shape="rect" id="node3" href="$classFrontend_1_1Logic_1_1Modules_1_1Exceptions_1_1AuthorizationException.html" title="Represents errors that occur during application execution." alt="" coords="5,169,260,211"/>
+<area shape="rect" id="node2" title=" " alt="" coords="89,5,176,32"/>
+</map>
