@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Article.html" title=" " alt="" coords="5,39,196,80"/>
-<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html" title=" " alt="" coords="244,5,435,47"/>
-<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html" title=" " alt="" coords="244,71,435,112"/>
+<area shape="rect" id="node1" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Article.html" title="This Article class gets inserted into the database." alt="" coords="5,39,196,80"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html" title="This Material class gets inserted into the database." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html" title="This Product class gets inserted into the database." alt="" coords="244,71,435,112"/>
 </map>

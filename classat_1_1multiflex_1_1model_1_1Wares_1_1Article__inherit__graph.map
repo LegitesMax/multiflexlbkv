@@ -1,5 +1,5 @@
 <map id="at.multiflex.model.Wares.Article" name="at.multiflex.model.Wares.Article">
-<area shape="rect" id="node1" title=" " alt="" coords="112,5,303,47"/>
-<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html" title=" " alt="" coords="5,95,196,136"/>
-<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html" title=" " alt="" coords="220,95,411,136"/>
+<area shape="rect" id="node1" title="This Article class gets inserted into the database." alt="" coords="112,5,303,47"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html" title="This Material class gets inserted into the database." alt="" coords="5,95,196,136"/>
+<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html" title="This Product class gets inserted into the database." alt="" coords="220,95,411,136"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="at.multiflex.repository.wares.MaterialRepository" name="at.multiflex.repository.wares.MaterialRepository">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,217,136"/>
-<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1Repository.html" title=" " alt="" coords="27,5,196,47"/>
+<area shape="rect" id="node1" title="This class has all Database Queries of the Material class." alt="" coords="5,95,217,136"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1Repository.html" title="A class where all repositories are inherited from." alt="" coords="27,5,196,47"/>
 </map>

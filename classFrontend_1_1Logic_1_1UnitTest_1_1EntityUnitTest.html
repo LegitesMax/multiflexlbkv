@@ -102,13 +102,13 @@ abstract <a class="el" href="classFrontend_1_1Logic_1_1Controllers_1_1GenericCon
 <tr class="memdesc:a8f5e68bb0582a4def0b428bdd8b1a8c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method creates an array of entities in the database, re-reads those entities and compares them to the input.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a8f5e68bb0582a4def0b428bdd8b1a8c2">More...</a><br /></td></tr>
 <tr class="separator:a8f5e68bb0582a4def0b428bdd8b1a8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad13fe9b44e8ebc3c9ad18af64324c6b3"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#ad13fe9b44e8ebc3c9ad18af64324c6b3">Update_Entity_AndCheck</a> (int id, T changedEntity)</td></tr>
-<tr class="memdesc:ad13fe9b44e8ebc3c9ad18af64324c6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method updates an entity in the database, rereads that entity, modifies it, and saves the change. The entity is then read out again and compared with the input.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#ad13fe9b44e8ebc3c9ad18af64324c6b3">More...</a><br /></td></tr>
+<tr class="memdesc:ad13fe9b44e8ebc3c9ad18af64324c6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method updates an entity in the database, rereads that entity, modifies it, and saves the change.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#ad13fe9b44e8ebc3c9ad18af64324c6b3">More...</a><br /></td></tr>
 <tr class="separator:ad13fe9b44e8ebc3c9ad18af64324c6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40d77e7d80923be5ecdf71fd563c4705"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a40d77e7d80923be5ecdf71fd563c4705">CreateUpdate_Entity_AndCheck</a> (T entity, T changedEntity)</td></tr>
-<tr class="memdesc:a40d77e7d80923be5ecdf71fd563c4705"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method creates an entity in the database, rereads that entity, modifies it, and saves the change. The entity is then read out again and compared with the input.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a40d77e7d80923be5ecdf71fd563c4705">More...</a><br /></td></tr>
+<tr class="memdesc:a40d77e7d80923be5ecdf71fd563c4705"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method creates an entity in the database, rereads that entity, modifies it, and saves the change.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a40d77e7d80923be5ecdf71fd563c4705">More...</a><br /></td></tr>
 <tr class="separator:a40d77e7d80923be5ecdf71fd563c4705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b286b7883437758c16be06ceabecf10"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a9b286b7883437758c16be06ceabecf10">CreateUpdateArray_Entities_AndCheckAll</a> (IEnumerable&lt; T &gt; entities, IEnumerable&lt; T &gt; changedEntities)</td></tr>
-<tr class="memdesc:a9b286b7883437758c16be06ceabecf10"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method creates an array of entities in the database, re-reads that entity, modifies it, and saves the change. The entities are then read out again and compared with the input.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a9b286b7883437758c16be06ceabecf10">More...</a><br /></td></tr>
+<tr class="memdesc:a9b286b7883437758c16be06ceabecf10"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method creates an array of entities in the database, re-reads that entity, modifies it, and saves the change.  <a href="classFrontend_1_1Logic_1_1UnitTest_1_1EntityUnitTest.html#a9b286b7883437758c16be06ceabecf10">More...</a><br /></td></tr>
 <tr class="separator:a9b286b7883437758c16be06ceabecf10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -293,7 +293,8 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>Counter</b> = 0
 </table>
 </div><div class="memdoc">
 
-<p>This method creates an entity in the database, rereads that entity, modifies it, and saves the change. The entity is then read out again and compared with the input. </p>
+<p>This method creates an entity in the database, rereads that entity, modifies it, and saves the change. </p>
+<p>The entity is then read out again and compared with the input.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entity</td><td>Entity created in the Database.</td></tr>
@@ -370,7 +371,8 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>Counter</b> = 0
 </table>
 </div><div class="memdoc">
 
-<p>This method creates an array of entities in the database, re-reads that entity, modifies it, and saves the change. The entities are then read out again and compared with the input. </p>
+<p>This method creates an array of entities in the database, re-reads that entity, modifies it, and saves the change. </p>
+<p>The entities are then read out again and compared with the input.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entities</td><td>Entities created in the database.</td></tr>
@@ -504,7 +506,8 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>Counter</b> = 0
 </table>
 </div><div class="memdoc">
 
-<p>This method updates an entity in the database, rereads that entity, modifies it, and saves the change. The entity is then read out again and compared with the input. </p>
+<p>This method updates an entity in the database, rereads that entity, modifies it, and saves the change. </p>
+<p>The entity is then read out again and compared with the input.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>Id form entity updated in the Database.</td></tr>

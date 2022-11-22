@@ -1,8 +1,8 @@
 <map id="at.multiflex.dto.wares.ProductionFormulaDto" name="at.multiflex.dto.wares.ProductionFormulaDto">
-<area shape="rect" id="node1" title=" " alt="" coords="644,49,883,90"/>
-<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1dto_1_1wares_1_1MaterialDto.html" title=" " alt="" coords="289,5,536,32"/>
-<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html" title=" " alt="" coords="5,36,240,63"/>
-<area shape="rect" id="node4" href="$classat_1_1multiflex_1_1dto_1_1wares_1_1ProductDto.html" title=" " alt="" coords="292,56,533,83"/>
-<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1ProductionFormulaId.html" title=" " alt="" coords="317,107,508,149"/>
+<area shape="rect" id="node1" title="A Data Transfer Object for the ProductionFormula class." alt="" coords="644,49,883,90"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1dto_1_1wares_1_1MaterialDto.html" title="A Data Transfer Object of the class Material." alt="" coords="289,5,536,32"/>
+<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html" title="A Data Transfer Object of the class Article." alt="" coords="5,36,240,63"/>
+<area shape="rect" id="node4" href="$classat_1_1multiflex_1_1dto_1_1wares_1_1ProductDto.html" title="A Data Transfer Object of the class Product." alt="" coords="292,56,533,83"/>
+<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1model_1_1Wares_1_1ProductionFormulaId.html" title="This class generates the id for the ProductionFormulaDto." alt="" coords="317,107,508,149"/>
 <area shape="rect" id="node6" title=" " alt="" coords="73,115,172,141"/>
 </map>

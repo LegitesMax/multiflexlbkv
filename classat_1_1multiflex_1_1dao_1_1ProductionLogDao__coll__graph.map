@@ -1,8 +1,8 @@
 <map id="at.multiflex.dao.ProductionLogDao" name="at.multiflex.dao.ProductionLogDao">
-<area shape="rect" id="node1" title=" " alt="" coords="773,65,972,107"/>
-<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1ProductionLogRepository.html" title=" " alt="" coords="459,5,643,47"/>
-<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1repository_1_1Repository.html" title=" " alt="" coords="196,5,365,47"/>
+<area shape="rect" id="node1" title="This class includes all json requests for the ProductionLog class." alt="" coords="773,65,972,107"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1ProductionLogRepository.html" title="This class has all Database Queries of the ProductionLog class." alt="" coords="459,5,643,47"/>
+<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1repository_1_1Repository.html" title="A class where all repositories are inherited from." alt="" coords="196,5,365,47"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,46,123,73"/>
-<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1repository_1_1CRUDOperations.html" title=" " alt="" coords="196,71,365,112"/>
-<area shape="rect" id="node6" href="$classat_1_1multiflex_1_1Logic_1_1ProductionLogic.html" title=" " alt="" coords="447,135,655,176"/>
+<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1repository_1_1CRUDOperations.html" title="This class has all CRUD (Create, Update, Delete) operations." alt="" coords="196,71,365,112"/>
+<area shape="rect" id="node6" href="$classat_1_1multiflex_1_1Logic_1_1ProductionLogic.html" title="The entire logic regarding production." alt="" coords="447,135,655,176"/>
 </map>

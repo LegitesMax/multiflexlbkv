@@ -1,10 +1,10 @@
 <map id="at.multiflex.repository.Repository" name="at.multiflex.repository.Repository">
-<area shape="rect" id="node1" title=" " alt="" coords="5,201,175,243"/>
-<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1CategoryRepository.html" title=" " alt="" coords="244,5,413,47"/>
-<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1repository_1_1ColorRepository.html" title=" " alt="" coords="244,71,413,112"/>
-<area shape="rect" id="node4" href="$classat_1_1multiflex_1_1repository_1_1ProductionLogRepository.html" title=" " alt="" coords="237,136,421,177"/>
-<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1repository_1_1SizeRepository.html" title=" " alt="" coords="244,201,413,243"/>
-<area shape="rect" id="node6" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1ArticleRepository.html" title=" " alt="" coords="223,267,435,308"/>
-<area shape="rect" id="node7" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1MaterialRepository.html" title=" " alt="" coords="223,332,435,373"/>
-<area shape="rect" id="node8" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1ProductRepository.html" title=" " alt="" coords="223,397,435,439"/>
+<area shape="rect" id="node1" title="A class where all repositories are inherited from." alt="" coords="5,201,175,243"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1repository_1_1CategoryRepository.html" title="This class has all Database Queries of the Category class." alt="" coords="244,5,413,47"/>
+<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1repository_1_1ColorRepository.html" title="This class has all Database Queries of the Category class." alt="" coords="244,71,413,112"/>
+<area shape="rect" id="node4" href="$classat_1_1multiflex_1_1repository_1_1ProductionLogRepository.html" title="This class has all Database Queries of the ProductionLog class." alt="" coords="237,136,421,177"/>
+<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1repository_1_1SizeRepository.html" title="This class has all Database Queries of the Size class." alt="" coords="244,201,413,243"/>
+<area shape="rect" id="node6" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1ArticleRepository.html" title="This class has all Database Queries of the Article class." alt="" coords="223,267,435,308"/>
+<area shape="rect" id="node7" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1MaterialRepository.html" title="This class has all Database Queries of the Material class." alt="" coords="223,332,435,373"/>
+<area shape="rect" id="node8" href="$classat_1_1multiflex_1_1repository_1_1wares_1_1ProductRepository.html" title="This class has all Database Queries of the Product class." alt="" coords="223,397,435,439"/>
 </map>
