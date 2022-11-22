@@ -1,0 +1,10 @@
+PROJECT_NAME        = "MultiFlex"
+INPUT               = MultiFlex
+RECURSIVE           = YES
+OUTPUT_DIRECTORY    = docs
+OUTPUT_LANGUAGE     = English
+USE_PDFLATEX        = YES
+PDF_HYPERLINKS      = YES
+INLINE_SOURCES      = YES
+SOURCE_BROWSER      = YES
+AUTOLINK_SUPPORT    = NO
