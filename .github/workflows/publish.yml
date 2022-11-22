@@ -1,4 +1,4 @@
-name: Ishjarta 🎮
+name: MultiFlex
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
 
 jobs:
   buildAndDeployDoxygen:
-    needs: testAllModes
     name: Build and Deploy Doxygen ✨
     runs-on: ubuntu-latest
     steps:
