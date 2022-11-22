@@ -3,6 +3,7 @@ INPUT               = MultiFlex
 RECURSIVE           = YES
 OUTPUT_DIRECTORY    = docs
 OUTPUT_LANGUAGE     = English
+JAVADOC_BANNER      = YES
 USE_PDFLATEX        = YES
 PDF_HYPERLINKS      = YES
 INLINE_SOURCES      = YES
