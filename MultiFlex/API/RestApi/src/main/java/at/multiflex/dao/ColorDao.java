@@ -140,9 +140,27 @@ public class ColorDao {
     }
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/updateByName")
+    public Response updateByName(ColorDto dto) {
+        var entity = repository.findByName(dto.getName());
+
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getName() != null) {
+            entity.setName(entity2.getName());
+        }
+        if (entity2.getColorCode() != null) {
+            entity.setColorCode(entity2.getColorCode());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(ColorDto dto) {
-        var entity = repository.findByName(dto.getName());
+        var entity = repository.findById(dto.getId());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 

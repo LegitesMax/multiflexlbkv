@@ -122,12 +122,30 @@ public class SizeDao {
     }
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/update")
-    public Response update(SizeDto dto) {
+    @Path("/updateBySize")
+    public Response updateBySize(SizeDto dto) {
         var entity = repository.findBySize(dto.getSize());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
+        if (entity2.getDescription() != null) {
+            entity.setDescription(entity2.getDescription());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(SizeDto dto) {
+        var entity = repository.findById(dto.getId());
+
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getSize() != null) {
+            entity.setSize(entity2.getSize());
+        }
         if (entity2.getDescription() != null) {
             entity.setDescription(entity2.getDescription());
         }

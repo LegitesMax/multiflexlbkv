@@ -164,12 +164,33 @@ public class CategoryDao {
     }
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/update")
-    public Response update(CategoryDto dto) {
+    @Path("/updateByName")
+    public Response updateByName(CategoryDto dto) {
         var entity = repository.findByName(dto.getName());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
+        if (entity2.getAcronym() != null) {
+            entity.setAcronym(entity2.getAcronym());
+        }
+        if (entity2.getType() != null) {
+            entity.setType(entity2.getType());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(CategoryDto dto) {
+        var entity = repository.findById(dto.getId());
+
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getName() != null) {
+            entity.setName(entity2.getName());
+        }
         if (entity2.getAcronym() != null) {
             entity.setAcronym(entity2.getAcronym());
         }

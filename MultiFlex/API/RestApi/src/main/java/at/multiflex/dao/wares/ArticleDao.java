@@ -150,12 +150,33 @@ public class ArticleDao {
      */
     @PUT
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/update")
-    public Response update(ArticleDto dto) {
+    @Path("/updateByName")
+    public Response updateByName(ArticleDto dto) {
         var entity = articleRepository.findByName(dto.getName()).get(0);
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
+        if (entity2.getMinValue() != null) {
+            entity.setMinValue(entity2.getMinValue());
+        }
+        if (entity2.getValue() != null) {
+            entity.setValue(entity2.getValue());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(ArticleDto dto) {
+        var entity = articleRepository.findById(dto.getId());
+
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getName() != null) {
+            entity.setName(entity2.getName());
+        }
         if (entity2.getMinValue() != null) {
             entity.setMinValue(entity2.getMinValue());
         }
