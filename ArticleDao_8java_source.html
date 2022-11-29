@@ -176,27 +176,20 @@ $(function() {
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    @Path(<span class="stringliteral">&quot;/update&quot;</span>)</div>
 <div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#a17b34e7425b9c74fda1cc9f9a0ef73ef">  154</a></span>&#160;    public Response update(<a class="code" href="classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html">ArticleDto</a> dto) {</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        var entity = articleRepository.<a class="code" href="classat_1_1multiflex_1_1repository_1_1wares_1_1ArticleRepository.html#a6d3344823f7ca4e5027c06d67ef4e3c3">findByName</a>(dto.getName()).get(0);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="comment">//var entity = ObjectMapper.MAPPER.fromDto(dto);</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        var entity2 = <a class="code" href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html">ObjectMapper</a>.<a class="code" href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html#ad95a726b3b5026d1617204a864c3fc74">MAPPER</a>.<a class="code" href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html#af5b296a9bae0f62f838438e8fe196230">fromDto</a>(dto);</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="comment">//if (entity2.getName() != null){</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            entity.setName(entity2.getName());</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="comment">//}else if (entity2.getMinValue() != null) {</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            entity.setMinValue(entity2.getMinValue());</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="comment">//}else if (entity2.getValue() != null) {</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span> (entity2.getMinValue() != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            entity.setMinValue(entity2.getMinValue());</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">if</span> (entity2.getValue() != <span class="keyword">null</span>) {</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            entity.setValue(entity2.getValue());</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="comment">/*}else if (entity2.getCategory() != null){</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">            entity.setCategory(entity2.getCategory());</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">        }else if (entity2.getColor() != null) {</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">            entity.setColor(entity2.getColor());</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">        }else if (entity2.getSize() != null) {</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">            entity.setSize(entity2.getSize());</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">        }</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">        */</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        crudOperations.update(entity);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.OK).build();</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    }</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        crudOperations.update(entity);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.OK).build();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;}</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html">at.multiflex.Logic.CRUDLogic</a></div><div class="ttdoc">A logic class that handles all regarding insert, update, delete.</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00017">CRUDLogic.java:17</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1Hashing_html"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1Hashing.html">at.multiflex.Logic.Hashing</a></div><div class="ttdoc">A class that handles all regarding hashes.</div><div class="ttdef"><b>Definition:</b> <a href="Hashing_8java_source.html#l00012">Hashing.java:12</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1DaoException_html"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1DaoException.html">at.multiflex.dao.DaoException</a></div><div class="ttdoc">A Exception that gets thrown in the DAO classes.</div><div class="ttdef"><b>Definition:</b> <a href="DaoException_8java_source.html#l00005">DaoException.java:5</a></div></div>

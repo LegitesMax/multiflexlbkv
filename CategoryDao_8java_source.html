@@ -72,127 +72,149 @@ $(function() {
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>at.multiflex.dao;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> at.multiflex.dto.CategoryDto;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> at.multiflex.mapper.MappingHelper;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> at.multiflex.model.Category;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> at.multiflex.repository.CRUDOperations;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> javax.enterprise.context.Dependent;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> javax.inject.Inject;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> javax.ws.rs.*;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> javax.ws.rs.core.MediaType;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> javax.ws.rs.core.Response;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> java.util.List;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;@Dependent</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;@Path(<span class="stringliteral">&quot;/Category&quot;</span>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html">   20</a></span>&#160;public class <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html">CategoryDao</a> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b">   24</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b">CategoryDao</a>() {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        type = <a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">   31</a></span>&#160;    <span class="keyword">protected</span> Class&lt;?&gt; <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">type</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    @Inject</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">   36</a></span>&#160;    <span class="keyword">protected</span> <a class="code" href="classat_1_1multiflex_1_1repository_1_1CRUDOperations.html">CRUDOperations</a> <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">crudOperations</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    @Inject</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">   42</a></span>&#160;    <span class="keyword">protected</span> at.multiflex.repository.CategoryRepository <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    @GET</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a418bcb7e7baab04a5175f459617cb3fe">   50</a></span>&#160;    public List&lt;Object&gt; getAll() throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        List&lt;Category&gt; entities;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            entities = repository.loadAll();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    @GET</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    @Path(<span class="stringliteral">&quot;/name/{name}&quot;</span>)</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a172c590915917eb6f176680426a55735">   69</a></span>&#160;    public Object getByName(String name) throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a> entities;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            entities = repository.findByName(name);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not have a name, or no available DB request&quot;</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    @GET</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    @Path(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ab6d4bba617b499f07dd488f7669855b1">   87</a></span>&#160;    public Object getById(Integer <span class="keywordtype">id</span>) throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a> entity;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            entity = repository.findById(<span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entity);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    @POST</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    @Consumes</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    @Path(<span class="stringliteral">&quot;/add&quot;</span>)</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a7640a086174074f3ff16654ca7786677">  105</a></span>&#160;    public Response add(<a class="code" href="classat_1_1multiflex_1_1dto_1_1CategoryDto.html">CategoryDto</a> input) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        System.out.println((Object) input.toString());</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        var entity = (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>) <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(input);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        System.out.println( input.toString());</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        System.out.println( entity.toString());</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> at.multiflex.dto.wares.ArticleDto;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> at.multiflex.mapper.MappingHelper;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> at.multiflex.mapper.ObjectMapper;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> at.multiflex.model.Category;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> at.multiflex.repository.CRUDOperations;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> javax.enterprise.context.Dependent;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> javax.inject.Inject;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> javax.ws.rs.*;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> javax.ws.rs.core.MediaType;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> javax.ws.rs.core.Response;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;@Dependent</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;@Path(<span class="stringliteral">&quot;/Category&quot;</span>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html">   22</a></span>&#160;public class <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html">CategoryDao</a> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b">   26</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b">CategoryDao</a>() {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        type = <a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">   33</a></span>&#160;    <span class="keyword">protected</span> Class&lt;?&gt; <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">type</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    @Inject</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">   38</a></span>&#160;    <span class="keyword">protected</span> <a class="code" href="classat_1_1multiflex_1_1repository_1_1CRUDOperations.html">CRUDOperations</a> <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">crudOperations</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    @Inject</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">   44</a></span>&#160;    <span class="keyword">protected</span> at.multiflex.repository.CategoryRepository <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    @GET</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a418bcb7e7baab04a5175f459617cb3fe">   52</a></span>&#160;    public List&lt;Object&gt; getAll() throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        List&lt;Category&gt; entities;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            entities = repository.loadAll();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    @GET</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    @Path(<span class="stringliteral">&quot;/name/{name}&quot;</span>)</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a172c590915917eb6f176680426a55735">   71</a></span>&#160;    public Object getByName(String name) throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a> entities;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            entities = repository.findByName(name);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not have a name, or no available DB request&quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    @GET</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    @Path(<span class="stringliteral">&quot;/{id}&quot;</span>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ab6d4bba617b499f07dd488f7669855b1">   89</a></span>&#160;    public Object getById(Integer <span class="keywordtype">id</span>) throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a> entity;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            entity = repository.findById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entity);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    @POST</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    @Consumes</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    @Path(<span class="stringliteral">&quot;/add&quot;</span>)</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a7640a086174074f3ff16654ca7786677">  107</a></span>&#160;    public Response add(<a class="code" href="classat_1_1multiflex_1_1dto_1_1CategoryDto.html">CategoryDto</a> input) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        System.out.println((Object) input.toString());</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        var entity = (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>) <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(input);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        System.out.println( input.toString());</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        crudOperations.add(entity);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        System.out.println( entity.toString());</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.CREATED).build();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    @DELETE</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    @Path(<span class="stringliteral">&quot;/delete/{id}&quot;</span>)</div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#afa11e87f835e61201e47f2891777f7d0">  125</a></span>&#160;    public Response delete(@PathParam(&quot;<span class="keywordtype">id</span>&quot;) Integer <span class="keywordtype">id</span>) throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        Object entity;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            entity = repository.findById(<span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">if</span>(entity == <span class="keyword">null</span>) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> NotFoundException();</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        crudOperations.delete(entity);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.NO_CONTENT).build();</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    @Path(<span class="stringliteral">&quot;/Product&quot;</span>)</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    @GET</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a333dc1c5b757c42bf1dacd581ac14e21">  146</a></span>&#160;    public List&lt;Object&gt; getAllProducts() {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        var entities = repository.loadAllProducts();</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    @Path(<span class="stringliteral">&quot;/Material&quot;</span>)</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    @GET</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a5f15b7977c3964b3efb136ef3f6588ae">  158</a></span>&#160;    public List&lt;Object&gt; getAllMaterials() {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        var entities = repository.loadAllMaterials();</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html">at.multiflex.dao.CategoryDao</a></div><div class="ttdoc">This class includes all json requests for the Category class.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00020">CategoryDao.java:20</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_a082c4574dea04036af0308a3997f3d5b"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b">at.multiflex.dao.CategoryDao.CategoryDao</a></div><div class="ttdeci">CategoryDao()</div><div class="ttdoc">A Constructor that tells the superclass which entity class to use.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00024">CategoryDao.java:24</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_a167c0f3a4a5ec1cb3b0e87b2ff5a7a44"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">at.multiflex.dao.CategoryDao.repository</a></div><div class="ttdeci">at.multiflex.repository.CategoryRepository repository</div><div class="ttdoc">repository for the Category class</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00042">CategoryDao.java:42</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_ae561fa141ea50d1c2fd277a6631a288d"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">at.multiflex.dao.CategoryDao.crudOperations</a></div><div class="ttdeci">CRUDOperations crudOperations</div><div class="ttdoc">all create update delete operations</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00036">CategoryDao.java:36</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_aeb527ded541a109e9c0884af29ed56b9"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">at.multiflex.dao.CategoryDao.type</a></div><div class="ttdeci">Class&lt;?&gt; type</div><div class="ttdoc">type of the class</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00031">CategoryDao.java:31</a></div></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        crudOperations.add(entity);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.CREATED).build();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    @DELETE</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    @Path(<span class="stringliteral">&quot;/delete/{id}&quot;</span>)</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#afa11e87f835e61201e47f2891777f7d0">  127</a></span>&#160;    public Response delete(@PathParam(&quot;<span class="keywordtype">id</span>&quot;) Integer <span class="keywordtype">id</span>) throws <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a> {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        Object entity;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>.class.equals(type)) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            entity = repository.findById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a>(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">if</span>(entity == <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> NotFoundException();</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        crudOperations.delete(entity);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.NO_CONTENT).build();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    @Path(<span class="stringliteral">&quot;/Product&quot;</span>)</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    @GET</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a333dc1c5b757c42bf1dacd581ac14e21">  148</a></span>&#160;    public List&lt;Object&gt; getAllProducts() {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        var entities = repository.loadAllProducts();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    @Path(<span class="stringliteral">&quot;/Material&quot;</span>)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    @GET</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a5f15b7977c3964b3efb136ef3f6588ae">  160</a></span>&#160;    public List&lt;Object&gt; getAllMaterials() {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        var entities = repository.loadAllMaterials();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(entities);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    @PUT</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    @Path(<span class="stringliteral">&quot;/update&quot;</span>)</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    public Response update(<a class="code" href="classat_1_1multiflex_1_1dto_1_1CategoryDto.html">CategoryDto</a> dto) {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        var entity = repository.findByName(dto.getName());</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        var entity2 = <a class="code" href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html">ObjectMapper</a>.<a class="code" href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html#ad95a726b3b5026d1617204a864c3fc74">MAPPER</a>.<a class="code" href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html#af5b296a9bae0f62f838438e8fe196230">fromDto</a>(dto);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">if</span> (entity2.getAcronym() != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            entity.setAcronym(entity2.getAcronym());</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">if</span> (entity2.getType() != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            entity.setType(entity2.getType());</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        crudOperations.update(entity);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.OK).build();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}</div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html">at.multiflex.dao.CategoryDao</a></div><div class="ttdoc">This class includes all json requests for the Category class.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00022">CategoryDao.java:22</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_a082c4574dea04036af0308a3997f3d5b"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b">at.multiflex.dao.CategoryDao.CategoryDao</a></div><div class="ttdeci">CategoryDao()</div><div class="ttdoc">A Constructor that tells the superclass which entity class to use.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00026">CategoryDao.java:26</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_a167c0f3a4a5ec1cb3b0e87b2ff5a7a44"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">at.multiflex.dao.CategoryDao.repository</a></div><div class="ttdeci">at.multiflex.repository.CategoryRepository repository</div><div class="ttdoc">repository for the Category class</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00044">CategoryDao.java:44</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_ae561fa141ea50d1c2fd277a6631a288d"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">at.multiflex.dao.CategoryDao.crudOperations</a></div><div class="ttdeci">CRUDOperations crudOperations</div><div class="ttdoc">all create update delete operations</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00038">CategoryDao.java:38</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_aeb527ded541a109e9c0884af29ed56b9"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">at.multiflex.dao.CategoryDao.type</a></div><div class="ttdeci">Class&lt;?&gt; type</div><div class="ttdoc">type of the class</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00033">CategoryDao.java:33</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1DaoException_html"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1DaoException.html">at.multiflex.dao.DaoException</a></div><div class="ttdoc">A Exception that gets thrown in the DAO classes.</div><div class="ttdef"><b>Definition:</b> <a href="DaoException_8java_source.html#l00005">DaoException.java:5</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dto_1_1CategoryDto_html"><div class="ttname"><a href="classat_1_1multiflex_1_1dto_1_1CategoryDto.html">at.multiflex.dto.CategoryDto</a></div><div class="ttdoc">A Data Transfer Object of the class Category.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDto_8java_source.html#l00020">CategoryDto.java:20</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1mapper_1_1MappingHelper_html"><div class="ttname"><a href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">at.multiflex.mapper.MappingHelper</a></div><div class="ttdoc">A generic method to help with the mapping from dto to entity and vice versa.</div><div class="ttdef"><b>Definition:</b> <a href="MappingHelper_8java_source.html#l00026">MappingHelper.java:26</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1mapper_1_1MappingHelper_html_adc5b612929a46142bf39ffbfcb83e688"><div class="ttname"><a href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">at.multiflex.mapper.MappingHelper.entityDtoTransformation</a></div><div class="ttdeci">static&lt; T &gt; List&lt; Object &gt; entityDtoTransformation(List&lt; T &gt; entities)</div><div class="ttdoc">This method transforms a list of entities to a list of dtos and vice versa.</div><div class="ttdef"><b>Definition:</b> <a href="MappingHelper_8java_source.html#l00033">MappingHelper.java:33</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1model_1_1Category_html"><div class="ttname"><a href="classat_1_1multiflex_1_1model_1_1Category.html">at.multiflex.model.Category</a></div><div class="ttdoc">This Category class gets inserted into the database.</div><div class="ttdef"><b>Definition:</b> <a href="Category_8java_source.html#l00020">Category.java:20</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CRUDOperations_html"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CRUDOperations.html">at.multiflex.repository.CRUDOperations</a></div><div class="ttdoc">This class has all CRUD (Create, Update, Delete) operations.</div><div class="ttdef"><b>Definition:</b> <a href="CRUDOperations_8java_source.html#l00012">CRUDOperations.java:12</a></div></div>
+<div class="ttc" id="ainterfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper_html"><div class="ttname"><a href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html">at.multiflex.mapper.ObjectMapper</a></div><div class="ttdoc">This class creates mapper during the compilation that can be used to map entities to dtos and vice ve...</div><div class="ttdef"><b>Definition:</b> <a href="ObjectMapper_8java_source.html#l00028">ObjectMapper.java:28</a></div></div>
+<div class="ttc" id="ainterfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper_html_ad95a726b3b5026d1617204a864c3fc74"><div class="ttname"><a href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html#ad95a726b3b5026d1617204a864c3fc74">at.multiflex.mapper.ObjectMapper.MAPPER</a></div><div class="ttdeci">ObjectMapper MAPPER</div><div class="ttdoc">Instance of the mapper.</div><div class="ttdef"><b>Definition:</b> <a href="ObjectMapper_8java_source.html#l00032">ObjectMapper.java:32</a></div></div>
+<div class="ttc" id="ainterfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper_html_af5b296a9bae0f62f838438e8fe196230"><div class="ttname"><a href="interfaceat_1_1multiflex_1_1mapper_1_1ObjectMapper.html#af5b296a9bae0f62f838438e8fe196230">at.multiflex.mapper.ObjectMapper.fromDto</a></div><div class="ttdeci">Article fromDto(ArticleDto entity)</div><div class="ttdoc">The dto will be transformed into an entity.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
