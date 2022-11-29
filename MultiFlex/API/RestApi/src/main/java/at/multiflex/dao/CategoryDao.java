@@ -1,7 +1,9 @@
 package at.multiflex.dao;
 
 import at.multiflex.dto.CategoryDto;
+import at.multiflex.dto.wares.ArticleDto;
 import at.multiflex.mapper.MappingHelper;
+import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Category;
 import at.multiflex.repository.CRUDOperations;
 
@@ -160,5 +162,22 @@ public class CategoryDao {
 
         return MappingHelper.entityDtoTransformation(entities);
     }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(CategoryDto dto) {
+        var entity = repository.findByName(dto.getName());
 
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getAcronym() != null) {
+            entity.setAcronym(entity2.getAcronym());
+        }
+        if (entity2.getType() != null) {
+            entity.setType(entity2.getType());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
 }

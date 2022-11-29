@@ -79,6 +79,14 @@ Content-Type: application/json
 "value": 100,
 "minValue": 1000
 }
+###
+PUT http://localhost:9000/Category/update
+Content-Type: application/json
+
+{
+  "name": "TESTWERT",
+  "acronym": "TEST"
+}
 
 ###
 DELETE http://localhost:9000/Size/delete/3

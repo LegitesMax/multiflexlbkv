@@ -153,22 +153,15 @@ public class ArticleDao {
     @Path("/update")
     public Response update(ArticleDto dto) {
         var entity = articleRepository.findByName(dto.getName()).get(0);
-        //var entity = ObjectMapper.MAPPER.fromDto(dto);
+
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
-        //if (entity2.getName() != null){
-            entity.setName(entity2.getName());
-        //}else if (entity2.getMinValue() != null) {
+
+        if (entity2.getMinValue() != null) {
             entity.setMinValue(entity2.getMinValue());
-        //}else if (entity2.getValue() != null) {
-            entity.setValue(entity2.getValue());
-        /*}else if (entity2.getCategory() != null){
-            entity.setCategory(entity2.getCategory());
-        }else if (entity2.getColor() != null) {
-            entity.setColor(entity2.getColor());
-        }else if (entity2.getSize() != null) {
-            entity.setSize(entity2.getSize());
         }
-        */
+        if (entity2.getValue() != null) {
+            entity.setValue(entity2.getValue());
+        }
 
         crudOperations.update(entity);
         return Response.status(Response.Status.OK).build();
