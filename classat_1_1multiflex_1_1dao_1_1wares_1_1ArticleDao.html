@@ -116,8 +116,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f4dc34063bcd00b3e94931b83a23f8d"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#a5f4dc34063bcd00b3e94931b83a23f8d">delete</a> (@PathParam(&quot;id&quot;) Integer id)  throws DaoException </td></tr>
 <tr class="memdesc:a5f4dc34063bcd00b3e94931b83a23f8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a entity by that entities id.  <a href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#a5f4dc34063bcd00b3e94931b83a23f8d">More...</a><br /></td></tr>
 <tr class="separator:a5f4dc34063bcd00b3e94931b83a23f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17b34e7425b9c74fda1cc9f9a0ef73ef"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#a17b34e7425b9c74fda1cc9f9a0ef73ef">update</a> (<a class="el" href="classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html">ArticleDto</a> dto)</td></tr>
-<tr class="memdesc:a17b34e7425b9c74fda1cc9f9a0ef73ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a dto into a entity and updates it.  <a href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#a17b34e7425b9c74fda1cc9f9a0ef73ef">More...</a><br /></td></tr>
+<tr class="memitem:abcbf7396ed677b63e74dc2b3d0afd8aa"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#abcbf7396ed677b63e74dc2b3d0afd8aa">updateByName</a> (<a class="el" href="classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html">ArticleDto</a> dto)</td></tr>
+<tr class="memdesc:abcbf7396ed677b63e74dc2b3d0afd8aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a dto into a entity and updates it.  <a href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#abcbf7396ed677b63e74dc2b3d0afd8aa">More...</a><br /></td></tr>
+<tr class="separator:abcbf7396ed677b63e74dc2b3d0afd8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b34e7425b9c74fda1cc9f9a0ef73ef"><td class="memItemLeft" align="right" valign="top"><a id="a17b34e7425b9c74fda1cc9f9a0ef73ef"></a>
+Response&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (<a class="el" href="classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html">ArticleDto</a> dto)</td></tr>
 <tr class="separator:a17b34e7425b9c74fda1cc9f9a0ef73ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -404,8 +407,8 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a17b34e7425b9c74fda1cc9f9a0ef73ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17b34e7425b9c74fda1cc9f9a0ef73ef">&#9670;&nbsp;</a></span>update()</h2>
+<a id="abcbf7396ed677b63e74dc2b3d0afd8aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcbf7396ed677b63e74dc2b3d0afd8aa">&#9670;&nbsp;</a></span>updateByName()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -414,7 +417,7 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Response at.multiflex.dao.wares.ArticleDao.update </td>
+          <td class="memname">Response at.multiflex.dao.wares.ArticleDao.updateByName </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classat_1_1multiflex_1_1dto_1_1wares_1_1ArticleDto.html">ArticleDto</a>&#160;</td>
           <td class="paramname"><em>dto</em></td><td>)</td>
@@ -438,7 +441,7 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <dl class="section return"><dt>Returns</dt><dd>The JSON Response code </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="ArticleDao_8java_source.html#l00154">154</a> of file <a class="el" href="ArticleDao_8java_source.html">ArticleDao.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                                           {</div>
+<div class="fragment"><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                                                 {</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        var entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1wares_1_1ArticleDao.html#a8fab0ecf611f039578561025c89ea7ec">articleRepository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1wares_1_1ArticleRepository.html#a6d3344823f7ca4e5027c06d67ef4e3c3">findByName</a>(dto.getName()).get(0);</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        var entity2 = ObjectMapper.MAPPER.fromDto(dto);</div>
