@@ -1,8 +1,10 @@
 package at.multiflex.dao;
 
 import at.multiflex.Logic.CRUDLogic;
+import at.multiflex.dto.ColorDto;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.mapper.MappingHelper;
+import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Size;
 import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.SizeRepository;
@@ -117,5 +119,20 @@ public class SizeDao {
 
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(SizeDto dto) {
+        var entity = repository.findBySize(dto.getSize());
+
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getDescription() != null) {
+            entity.setDescription(entity2.getDescription());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
     }
 }

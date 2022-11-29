@@ -1,8 +1,10 @@
 package at.multiflex.dao;
 
 import at.multiflex.Logic.CRUDLogic;
+import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.ColorDto;
 import at.multiflex.mapper.MappingHelper;
+import at.multiflex.mapper.ObjectMapper;
 import at.multiflex.model.Color;
 import at.multiflex.repository.CRUDOperations;
 import at.multiflex.repository.ColorRepository;
@@ -135,5 +137,23 @@ public class ColorDao {
 
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
+    }
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(ColorDto dto) {
+        var entity = repository.findByName(dto.getName());
+
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+
+        if (entity2.getName() != null) {
+            entity.setName(entity2.getName());
+        }
+        if (entity2.getColorCode() != null) {
+            entity.setColorCode(entity2.getColorCode());
+        }
+
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
     }
 }

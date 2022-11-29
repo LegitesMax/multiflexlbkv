@@ -87,7 +87,22 @@ Content-Type: application/json
   "name": "TESTWERT",
   "acronym": "TEST"
 }
+###
+PUT http://localhost:9000/Color/update
+Content-Type: application/json
 
+{
+  "name": "Bambus",
+  "colorCode": "TEST"
+}
+###
+PUT http://localhost:9000/Size/update
+Content-Type: application/json
+
+{
+  "size": 39,
+  "description": "TEST"
+}
 ###
 DELETE http://localhost:9000/Size/delete/3
 ###
