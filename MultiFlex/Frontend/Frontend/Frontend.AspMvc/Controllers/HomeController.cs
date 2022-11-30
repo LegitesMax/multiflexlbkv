@@ -17,7 +17,7 @@ namespace Frontend.AspMvc.Controllers
 {
     public class HomeController : Controller
     {
-
+        public string DataHasCode { get; set; } = string.Empty;
         public static string status { get; set; } = "open";
         public static string indexStatus { get; set; } = "product";
 
@@ -46,12 +46,26 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", Model);
         }
 
+
+        public async void CheckHashCode(HttpClient client)
+        {
+            if(client != null)
+            {
+                Task.Run(() => {
+                    DataHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash").Result;
+                }).Wait();
+            }
+        }
+
         //first index load
         public async Task<IActionResult> IndexAsync()
         {
-            //HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient();
             //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
             //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+
+            CheckHashCode(client);
+
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();

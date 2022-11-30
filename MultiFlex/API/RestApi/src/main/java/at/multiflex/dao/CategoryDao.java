@@ -107,6 +107,7 @@ public class CategoryDao {
     public Response add(CategoryDto input) {
         System.out.println((Object) input.toString());
         var entity = (Category) MappingHelper.entityDtoTransformation(input);
+        entity.setType(input.getType());
         System.out.println( input.toString());
 
         System.out.println( entity.toString());
