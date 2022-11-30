@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MultiFlex: Frontend.AspMvc.Controllers Namespace Reference</title>
+<title>MultiFlex: Frontend.AspMvc.Controllers.HashSingleton Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,29 +61,40 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceFrontend.html">Frontend</a></li><li class="navelem"><a class="el" href="namespaceFrontend_1_1AspMvc.html">AspMvc</a></li><li class="navelem"><a class="el" href="namespaceFrontend_1_1AspMvc_1_1Controllers.html">Controllers</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceFrontend.html">Frontend</a></li><li class="navelem"><a class="el" href="namespaceFrontend_1_1AspMvc.html">AspMvc</a></li><li class="navelem"><a class="el" href="namespaceFrontend_1_1AspMvc_1_1Controllers.html">Controllers</a></li><li class="navelem"><a class="el" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
+<a href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Frontend.AspMvc.Controllers Namespace Reference</div>  </div>
+<div class="title">Frontend.AspMvc.Controllers.HashSingleton Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1AspMvc_1_1Controllers_1_1GenericController.html">GenericController</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic one for the standard CRUD operations.  <a href="classFrontend_1_1AspMvc_1_1Controllers_1_1GenericController.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html">HomeController</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrontend_1_1AspMvc_1_1Controllers_1_1MvcController.html">MvcController</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:afb66902a2b1a3555e5538f36b716c249"><td class="memItemLeft" align="right" valign="top"><a id="afb66902a2b1a3555e5538f36b716c249"></a>
+static async Task&lt; <a class="el" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getInstanceAsync</b> ()</td></tr>
+<tr class="separator:afb66902a2b1a3555e5538f36b716c249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30decbe0233896e2bca9b7a9f429c119"><td class="memItemLeft" align="right" valign="top"><a id="a30decbe0233896e2bca9b7a9f429c119"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckHashCode</b> ()</td></tr>
+<tr class="separator:a30decbe0233896e2bca9b7a9f429c119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a5e72c71aa35f76b00d06396fef11b46e"><td class="memItemLeft" align="right" valign="top"><a id="a5e72c71aa35f76b00d06396fef11b46e"></a>
+static HttpClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b> = new HttpClient()<code> [get, set]</code></td></tr>
+<tr class="separator:a5e72c71aa35f76b00d06396fef11b46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="HashSingleton_8cs_source.html#l00003">3</a> of file <a class="el" href="HashSingleton_8cs_source.html">HashSingleton.cs</a>.</p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>MultiFlex/Frontend/Frontend/Frontend.AspMvc/Controllers/<a class="el" href="HashSingleton_8cs_source.html">HashSingleton.cs</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
