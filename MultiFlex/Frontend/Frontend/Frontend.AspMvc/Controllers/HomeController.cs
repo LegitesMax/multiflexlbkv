@@ -42,15 +42,17 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             Model.Orders = GetOrdereItems();
-            await SetCategoriesAsync();
+            await SetCategoriesAsync(true);
 
             return View(Model);
         }
-        public async Task SetCategoriesAsync()
+        public async Task SetCategoriesAsync(bool firstLoad = false)
         {
             HttpClient client = new HttpClient();
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            if (HashSingleton.CheckHashCode())
+            if (HashSingleton.CheckHashCode() == false || firstLoad == true)
             {
                 if (ViewData["index"] == "material" || indexStatus == "material")
                 {
@@ -67,6 +69,8 @@ namespace Frontend.AspMvc.Controllers
                 if (status == "open")
                     Model.Orders = GetOrdereItems();
             }
+            stopwatch.Stop();
+            Console.WriteLine("SetCategoriesAsync() - " + stopwatch.Elapsed);
         }
 
 
@@ -75,7 +79,7 @@ namespace Frontend.AspMvc.Controllers
         {
             indexStatus = "material";
 
-            Model.Orders = GetOrdereItems();
+            //Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
             return View("Index", Model);
@@ -84,7 +88,7 @@ namespace Frontend.AspMvc.Controllers
         {
             indexStatus = "product";
 
-            Model.Orders = GetOrdereItems();
+            //Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
             return View("Index", Model);
         }
@@ -196,7 +200,7 @@ namespace Frontend.AspMvc.Controllers
             {
                 foreach (var item in result)
                 {
-                    orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+                    orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems!, item.ShippingAddress));
                 }
             }
 
@@ -217,7 +221,7 @@ namespace Frontend.AspMvc.Controllers
             var orderResult = new List<Logic.Entities.Orders.Order>();
             foreach (var item in result)
             {
-                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
+                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems!, item.ShippingAddress));
             }
 
             return orderResult;
@@ -235,9 +239,9 @@ namespace Frontend.AspMvc.Controllers
             var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
 
             var orderResult = new List<Logic.Entities.Orders.Order>();
-            foreach (var item in result)
+            foreach (var item in result!)
             {
-                var order = new OrderItems[] { item.OrderItems[0] };
+                var order = new OrderItems[] { item.OrderItems![0] };
                 item.OrderItems = order;
                 orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
             }

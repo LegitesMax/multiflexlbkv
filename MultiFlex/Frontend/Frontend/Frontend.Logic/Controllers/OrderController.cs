@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Billbee.Api.Client;
 using Billbee.Api.Client.Enums;
 using BillBeeQueries;
 
@@ -19,7 +21,8 @@ namespace Frontend.Logic.Controllers
         {
         }
 
-        private Queries query = new Queries();
+        public Queries query = Queries.getInstanceAsync().Result;
+        protected ApiClient client = Queries.Login();
 
         /// <summary>
         /// Gets all Orders
@@ -27,7 +30,7 @@ namespace Frontend.Logic.Controllers
         /// <returns>returns all Orders in a string</returns>
         public string GetAllOrders()
         {
-            var client = query.Login();
+            //var client = query.Login();
 
             var orders = client.Orders.GetOrderList(pageSize: 100);
             string result = JsonSerializer.Serialize(orders.Data);
@@ -41,13 +44,18 @@ namespace Frontend.Logic.Controllers
         /// <returns>returns all Ordered Orders in a string</returns>
         public string GetOrderedOrders()
         {
-            var client = query.Login();
+            //var client = query.Login();
+            var stopwatch = new Stopwatch();
+
+            stopwatch.Start();
 
             var orderState = new List<OrderStateEnum>() { OrderStateEnum.Zahlung_erhalten};
             var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);
 
             string result = JsonSerializer.Serialize(orders.Data);
 
+            stopwatch.Stop();
+            Console.WriteLine("GetOrderedOrders() - " + stopwatch.Elapsed);
             return result == null ? "Derzeit keine offene Bestellung" : result;
         }
         /// <summary>
@@ -56,7 +64,7 @@ namespace Frontend.Logic.Controllers
         /// <returns>returns all cancled orders in a string</returns>
         public string GetCancledOrders()
         {
-            var client = query.Login();
+            //var client = query.Login();
 
             var orderState = new List<OrderStateEnum>() { OrderStateEnum.Storniert };
             var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-1), maxOrderDate: DateTime.MaxValue);
@@ -71,7 +79,7 @@ namespace Frontend.Logic.Controllers
         /// <returns>Returns all orders that are redy in a string</returns>
         public string GetReadyOrders()
         {
-            var client = query.Login();
+            //var client = query.Login();
 
             var orderState = new List<OrderStateEnum>() { OrderStateEnum.Versendet };
             var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-2), maxOrderDate: DateTime.MaxValue);
