@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfaceFrontend_1_1AspMvc_1_1Modules_1_1Session_1_1ISessionWrapper.html" title=" " alt="" coords="5,5,203,47"/>
-<area shape="rect" id="node2" href="$classFrontend_1_1AspMvc_1_1Modules_1_1Session_1_1SessionWrapper.html" title=" " alt="" coords="251,5,448,47"/>
+<area shape="rect" id="node1" href="$classFrontend_1_1AspMvc_1_1Models_1_1View_1_1SubmitCmd.html" title=" " alt="" coords="5,5,229,47"/>
+<area shape="rect" id="node2" href="$classFrontend_1_1AspMvc_1_1Models_1_1View_1_1SubmitBackCmd.html" title=" " alt="" coords="277,5,501,47"/>
 </map>
