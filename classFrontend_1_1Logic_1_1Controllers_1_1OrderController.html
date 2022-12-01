@@ -67,6 +67,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classFrontend_1_1Logic_1_1Controllers_1_1OrderController-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Frontend.Logic.Controllers.OrderController Class Reference</div>  </div>
@@ -86,8 +88,9 @@ Collaboration diagram for Frontend.Logic.Controllers.OrderController:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFrontend_1_1Logic_1_1Controllers_1_1OrderController__coll__graph.png" border="0" usemap="#aFrontend_8Logic_8Controllers_8OrderController_coll__map" alt="Collaboration graph"/></div>
 <map name="aFrontend_8Logic_8Controllers_8OrderController_coll__map" id="aFrontend_8Logic_8Controllers_8OrderController_coll__map">
-<area shape="rect" title=" " alt="" coords="5,95,201,136"/>
-<area shape="rect" href="classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html" title=" " alt="" coords="15,5,192,47"/>
+<area shape="rect" title=" " alt="" coords="95,109,291,151"/>
+<area shape="rect" href="classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html" title=" " alt="" coords="5,5,183,47"/>
+<area shape="rect" href="classBillBeeQueries_1_1Queries.html" title=" " alt="" coords="207,13,379,39"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -155,6 +158,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a28bde0c712ffc4746230b6058308aaa6 inherit pub_methods_classFrontend_1_1Logic_1_1Controllers_1_1GenericController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves any changes in the underlying persistence.  <a href="classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html#a28bde0c712ffc4746230b6058308aaa6">More...</a><br /></td></tr>
 <tr class="separator:a28bde0c712ffc4746230b6058308aaa6 inherit pub_methods_classFrontend_1_1Logic_1_1Controllers_1_1GenericController"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad7996c82da70d7b1a6a86a22cf336e98"><td class="memItemLeft" align="right" valign="top"><a id="ad7996c82da70d7b1a6a86a22cf336e98"></a>
+<a class="el" href="classBillBeeQueries_1_1Queries.html">Queries</a>&#160;</td><td class="memItemRight" valign="bottom"><b>query</b> = Queries.getInstanceAsync().Result</td></tr>
+<tr class="separator:ad7996c82da70d7b1a6a86a22cf336e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aaebfe77dd1d40706e5a5434fc59d55f8"><td class="memItemLeft" align="right" valign="top"><a id="aaebfe77dd1d40706e5a5434fc59d55f8"></a>
+ApiClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b> = Queries.Login()</td></tr>
+<tr class="separator:aaebfe77dd1d40706e5a5434fc59d55f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classFrontend_1_1Logic_1_1Controllers_1_1GenericController"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classFrontend_1_1Logic_1_1Controllers_1_1GenericController')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html">Frontend.Logic.Controllers.GenericController&lt; Entities.Orders.Order &gt;</a></td></tr>
@@ -176,7 +191,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00012">12</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00014">14</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aab9fe77d59890fe9f554d0cfc261c5e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab9fe77d59890fe9f554d0cfc261c5e4">&#9670;&nbsp;</a></span>GetAllOrders()</h2>
@@ -204,15 +219,15 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets all Orders </p>
 <dl class="section return"><dt>Returns</dt><dd>returns all Orders in a string</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00028">28</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            var client = query.Login();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            var orders = client.Orders.GetOrderList(pageSize: 100);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
+<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00031">31</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="comment">//var client = query.Login();</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Derzeit keine Bestellung&quot;</span> : result;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            var orders = client.Orders.GetOrderList(pageSize: 100);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Derzeit keine Bestellung&quot;</span> : result;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,17 +257,17 @@ Additional Inherited Members</h2></td></tr>
 <p>Get all cancled orders </p>
 <dl class="section return"><dt>Returns</dt><dd>returns all cancled orders in a string</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00057">57</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            var client = query.Login();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            var orderState = <span class="keyword">new</span> List&lt;OrderStateEnum&gt;() { OrderStateEnum.Storniert };</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-1), maxOrderDate: DateTime.MaxValue);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Keine Stornierungen vorhanden&quot;</span> : result;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00065">65</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="comment">//var client = query.Login();</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            var orderState = <span class="keyword">new</span> List&lt;OrderStateEnum&gt;() { OrderStateEnum.Storniert };</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-1), maxOrderDate: DateTime.MaxValue);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Keine Stornierungen vorhanden&quot;</span> : result;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -282,17 +297,22 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets all Ordered Orders </p>
 <dl class="section return"><dt>Returns</dt><dd>returns all Ordered Orders in a string</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00042">42</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            var client = query.Login();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            var orderState = <span class="keyword">new</span> List&lt;OrderStateEnum&gt;() { OrderStateEnum.Zahlung_erhalten};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Derzeit keine offene Bestellung&quot;</span> : result;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
+<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00045">45</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="comment">//var client = query.Login();</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            var stopwatch = <span class="keyword">new</span> Stopwatch();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            stopwatch.Start();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            var orderState = <span class="keyword">new</span> List&lt;OrderStateEnum&gt;() { OrderStateEnum.Zahlung_erhalten};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            stopwatch.Stop();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            Console.WriteLine(<span class="stringliteral">&quot;GetOrderedOrders() - &quot;</span> + stopwatch.Elapsed);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Derzeit keine offene Bestellung&quot;</span> : result;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -322,17 +342,17 @@ Additional Inherited Members</h2></td></tr>
 <p>get all redy Orders </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns all orders that are redy in a string</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00072">72</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            var client = query.Login();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            var orderState = <span class="keyword">new</span> List&lt;OrderStateEnum&gt;() { OrderStateEnum.Versendet };</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-2), maxOrderDate: DateTime.MaxValue);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Derzeit kein Packet fertiggestellt&quot;</span> : result;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<p class="definition">Definition at line <a class="el" href="OrderController_8cs_source.html#l00080">80</a> of file <a class="el" href="OrderController_8cs_source.html">OrderController.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="comment">//var client = query.Login();</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            var orderState = <span class="keyword">new</span> List&lt;OrderStateEnum&gt;() { OrderStateEnum.Versendet };</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-2), maxOrderDate: DateTime.MaxValue);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordtype">string</span> result = JsonSerializer.Serialize(orders.Data);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">return</span> result == <span class="keyword">null</span> ? <span class="stringliteral">&quot;Derzeit kein Packet fertiggestellt&quot;</span> : result;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
