@@ -16,10 +16,10 @@ using Product = Frontend.AspMvc.Models.Product;
 namespace Frontend.AspMvc.Controllers
 {
     public class HomeController : Controller
-    {
-        public string DataHasCode { get; set; } = string.Empty;
+    {   
         public static string status { get; set; } = "open";
         public static string indexStatus { get; set; } = "product";
+        public HttpClient client { get; set; } = new HttpClient();
 
         private readonly ILogger<HomeController> _logger;
         public Model Model { get; set; } = new();
@@ -32,41 +32,15 @@ namespace Frontend.AspMvc.Controllers
         [HttpPost]
         public async Task<IActionResult> SubscribeAsync()
         {
-            //if (ModelState.IsValid)
-            //{
-            //    //TODO: SubscribeUser(model.Email);
-            //    Console.WriteLine(model.sub.Name);
-            //    Console.WriteLine(model.sub.Value);
-            //    Console.WriteLine(model.sub.MinValue);
-            //}
-
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
             return View("Index", Model);
         }
 
-
-        public async void CheckHashCode(HttpClient client)
-        {
-            if(client != null)
-            {
-                Task.Run(() => {
-                    DataHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash").Result;
-                }).Wait();
-            }
-        }
-
         //first index load
         public async Task<IActionResult> IndexAsync()
         {
-            HttpClient client = new HttpClient();
-            //var productJson = await client.GetStringAsync("http://127.0.0.1:8080/Category/");
-            //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-
-            CheckHashCode(client);
-
-
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
@@ -76,20 +50,23 @@ namespace Frontend.AspMvc.Controllers
         {
             HttpClient client = new HttpClient();
 
-            if (ViewData["index"] == "material" || indexStatus == "material")
+            if (HashSingleton.CheckHashCode())
             {
-                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
-                Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                ViewData["index"] = "material";
+                if (ViewData["index"] == "material" || indexStatus == "material")
+                {
+                    var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
+                    Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                    ViewData["index"] = "material";
+                }
+                else if (ViewData["index"] == "product" || indexStatus == "product")
+                {
+                    var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
+                    Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                    ViewData["index"] = "product";
+                }
+                if (status == "open")
+                    Model.Orders = GetOrdereItems();
             }
-            else if (ViewData["index"] == "product" || indexStatus == "product")
-            {
-                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
-                Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                ViewData["index"] = "product";
-            }
-            if (status == "open")
-                Model.Orders = GetOrdereItems();
         }
 
 
@@ -100,6 +77,7 @@ namespace Frontend.AspMvc.Controllers
 
             Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
+
             return View("Index", Model);
         }
         public async Task<IActionResult> GetProducts()
@@ -112,6 +90,7 @@ namespace Frontend.AspMvc.Controllers
         }
 
         //Order loads
+
         /// <summary>
         /// Set Status Open Get All Open Order Items
         /// </summary>
@@ -198,6 +177,9 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", Model);
         }
 
+
+        //BillBee Requests
+
         /// <summary>
         /// Get all orders from the ordered Items
         /// </summary>
@@ -262,6 +244,9 @@ namespace Frontend.AspMvc.Controllers
 
             return orderResult;
         }
+
+
+        //PDF
 
         /// <summary>
         /// Gnererate PDF File for the user with the data
@@ -458,6 +443,7 @@ namespace Frontend.AspMvc.Controllers
             return result;
 
         }
+
 
 
         //Buttons Edit/Add/Remove
