@@ -19,6 +19,7 @@ namespace Frontend.AspMvc.Controllers
     {
         public static string status { get; set; } = "open";
         public static string indexStatus { get; set; } = "product";
+        private string DataJson { get; set; } = string.Empty;
         public HttpClient client { get; set; } = new HttpClient();
 
 
@@ -51,40 +52,50 @@ namespace Frontend.AspMvc.Controllers
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            if (HashSingleton.CheckHashCode() == false || firstLoad == true)
+            if(HashSingleton.CheckPoductHashCode() == false || firstLoad == true)
             {
-                if (ViewData["index"] == "material" || indexStatus == "material")
-                {
-                    var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
-                    //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                    HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                    ViewData["index"] = "material";
-                }
-                if (ViewData["index"] == "product" || indexStatus == "product")
-                {
-                    var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
-                    HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                    ViewData["index"] = "product";
-                }
+                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
+                HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                ViewData["index"] = "product";
             }
-            if (status == "open")
+            if (HashSingleton.CheckMaterialHashCode() == false || firstLoad == true)
             {
-                HashSingleton.Model.Orders = GetOrdereItems();
-                ViewData["pdfStatus"] = "open";
+                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
+                //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                ViewData["index"] = "material";
             }
-            if (status == "canceled")
+            if (HashSingleton.CheckColorHashCode() == false || firstLoad == true)
             {
-                HashSingleton.Model.Orders = GetCanceledItems();
-                ViewData["pdfStatus"] = "canceled";
-            }
-            if (status == "ready")
-            {
-                HashSingleton.Model.Orders = GetReadyItems();
-                ViewData["pdfStatus"] = "canceled";
+                var colorJson = await client.GetStringAsync("http://127.0.0.1:9000/Color");
+                HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
             }
 
             stopwatch.Stop();
             Console.WriteLine("SetCategoriesAsync() - " + stopwatch.Elapsed);
+            stopwatch.Restart();    
+
+            if (OrderSingleton.OrderHashCode != DataJson || OrderSingleton.OrderHashCode == string.Empty)
+            {
+                if (status == "open")
+                {
+                    HashSingleton.Model.Orders = GetOrdereItems();
+                    ViewData["pdfStatus"] = "open";
+                }
+                if (status == "canceled")
+                {
+                    HashSingleton.Model.Orders = GetCanceledItems();
+                    ViewData["pdfStatus"] = "canceled";
+                }
+                if (status == "ready")
+                {
+                    HashSingleton.Model.Orders = GetReadyItems();
+                    ViewData["pdfStatus"] = "canceled";
+                }
+            }
+
+            stopwatch.Stop();
+            Console.WriteLine("GetOrders() - " + stopwatch.Elapsed);
         }
 
 
@@ -204,6 +215,7 @@ namespace Frontend.AspMvc.Controllers
 
             if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
             {
+                DataJson = data;
                 OrderSingleton.OrderHashCode = data;
             }
 
@@ -449,7 +461,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> EditProductAsync(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", model.sub.Product).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/updateByName", model.sub.Product).Result;
 
             await SetCategoriesAsync();
 
@@ -458,10 +470,9 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> AddProduct(Model model)
         {
             //var data = new SubscribeModel { Name = model.sub.Product.Name, Value = (int?)model.sub.Product.Value, MinValue = (int?)model.sub.Product.MinValue,  Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color};
-            var data = new Product { Name = model.sub.Product.Name, Value = model.sub.Product.Value, MinValue = model.sub.Product.MinValue, Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color };
 
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Article/add", model.sub.Product).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Product/add", model.sub.Product).Result;
 
             await SetCategoriesAsync();
 
@@ -471,7 +482,6 @@ namespace Frontend.AspMvc.Controllers
 
         public async Task<IActionResult> AddCategory(Model model)
         {
-            var data = new SubscribeModel { Category = model.sub.Category };
 
             var client = new HttpClient();
             var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Category/add", model.sub.Category).Result;
@@ -483,10 +493,9 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> EditCategory(Model model)
         {
-            var data = new SubscribeModel { Category = model.sub.Category };
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", model.sub.Category).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/updateByName", model.sub.Category).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -494,13 +503,17 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", HashSingleton.Model);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<IActionResult> AddColor(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
+
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Color/add", model.sub.Color).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -509,10 +522,8 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> EditColor(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
-
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Color/updateByName", model.sub.Color).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -520,13 +531,15 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", HashSingleton.Model);
         }
 
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<IActionResult> AddSize(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
-
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Size/add", model.sub.Size).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -535,10 +548,8 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> EditSize(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
-
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000//Size/updateBySize", model.sub.Size).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -549,10 +560,8 @@ namespace Frontend.AspMvc.Controllers
 
         public async Task<IActionResult> AddMaterial(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
-
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Material/add", model.sub.Material).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -561,10 +570,8 @@ namespace Frontend.AspMvc.Controllers
         }
         public async Task<IActionResult> EditMaterial(Model model)
         {
-            var data = new SubscribeModel { Name = model.sub.Name, Value = model.sub.Value, MinValue = model.sub.MinValue, Category = model.sub.Category, Size = model.sub.Size };
-
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/updateByName", model.sub.Material).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
