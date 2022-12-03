@@ -40,6 +40,8 @@ public class Product extends Article {
     @Override
     public String toString() {
         return "Product{" +
+                "productionFormula=" + productionFormula +
+                ", productionLog=" + productionLog +
                 super.toString() +
                 '}';
     }

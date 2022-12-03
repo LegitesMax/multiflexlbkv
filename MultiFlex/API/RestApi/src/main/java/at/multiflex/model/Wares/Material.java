@@ -40,6 +40,7 @@ public class Material extends Article {
     @Override
     public String toString() {
         return "Material{" +
+                "productionFormula=" + productionFormula +
                 super.toString() +
                 '}';
     }

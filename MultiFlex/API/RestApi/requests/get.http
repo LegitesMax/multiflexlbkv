@@ -71,7 +71,7 @@ Content-Type: application/json
   "minValue": 1000
 }
 ###
-PUT http://localhost:9000/Article/updateByName
+PUT http://localhost:9000/Article/update
 Content-Type: application/json
 
 {
@@ -80,7 +80,7 @@ Content-Type: application/json
 "minValue": 1000
 }
 ###
-PUT http://localhost:9000/Category/updateByName
+PUT http://localhost:9000/Category/update
 Content-Type: application/json
 
 {
@@ -88,7 +88,7 @@ Content-Type: application/json
   "acronym": "TEST"
 }
 ###
-PUT http://localhost:9000/Color/updateByName
+PUT http://localhost:9000/Color/update
 Content-Type: application/json
 
 {
@@ -96,7 +96,7 @@ Content-Type: application/json
   "colorCode": "TEST"
 }
 ###
-PUT http://localhost:9000/Size/updateBySize
+PUT http://localhost:9000/Size/update
 Content-Type: application/json
 
 {
