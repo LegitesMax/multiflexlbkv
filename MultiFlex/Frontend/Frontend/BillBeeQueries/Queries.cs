@@ -5,18 +5,24 @@ namespace BillBeeQueries
 {
     public class Queries
     {
+        protected string ApiKey { get; set; } = String.Empty;
+        protected string Username { get; set; } = String.Empty;
+        protected string Password { get; set; } = String.Empty;
 
-        internal string ApiKey { get; set; } = String.Empty;
-        internal string Username { get; set; } = String.Empty;
-        internal string Password { get; set; } = String.Empty;
+        private static Queries? instance = null;
 
-        public ApiClient Login()
+        private Queries() { }
+        public static Task<Queries> getInstanceAsync()
         {
-            //Console.WriteLine("Beware, uncommenting lines may harm your productive data!");
-            //Console.WriteLine("Abort if you are not sure to proceed or press any key to continue.");
-            //Console.ReadKey();
+            if (instance == null)
+            {
+                instance = new Queries();
+            }
+            return Task.FromResult(instance);
+        }
 
-
+        public static ApiClient Login()
+        {
             #region Initialization
 
             // Creating an individual logger, that implements ILogger
@@ -31,13 +37,6 @@ namespace BillBeeQueries
 #elif Windows
         configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
 #endif
-            //string configPath = "/usr/psw.json";
-
-            //loaclfile
-            //string configPath = @"C:\Users\zeili\Desktop\tmp\psw.json";
-            //string configPath = @"C:\Users\fabsc\Desktop\tmp\psw.json";
-            //string configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
-
             ApiClient client;
 
             if (File.Exists(configPath))
@@ -69,8 +68,6 @@ namespace BillBeeQueries
             else
             {
                 logger.LogMsg("Api test failed. Please control your configuration", LogSeverity.Error);
-                //Console.WriteLine("Press any key to continue");
-                //Console.ReadKey();
             }
 
             #endregion

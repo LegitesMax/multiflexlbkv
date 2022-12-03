@@ -1,10 +1,13 @@
-﻿namespace Frontend.AspMvc.Controllers
+﻿using Frontend.AspMvc.Models;
+
+namespace Frontend.AspMvc.Controllers
 {
     public class HashSingleton
     {
         private static HashSingleton? instance = null;
         private static string DataHasCode = "";
         public static HttpClient client { get; set; } = new HttpClient();
+        public static Model Model = new Model();
 
         private HashSingleton() { }
         public static async Task<HashSingleton> getInstanceAsync()
@@ -21,11 +24,19 @@
         {
             bool result = false;
 
-            var test = client.GetStringAsync("http://127.0.0.1:9000/Hash").Result;
-            var test2 = DataHasCode;
+            if (DataHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash").Result) result = true;
 
-            if (test.Equals(test2) == false)
+            if (DataHasCode != client.GetStringAsync("http://127.0.0.1:9000/Hash").Result)
             {
+                Task.Run(() =>
+                {
+                    var categoryJson = client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
+                    Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(categoryJson.Result);
+
+                    var productJson = client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
+                    Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson.Result);
+                }).Wait();
+
                 var resultHash = Task.Run(() =>
                 {
                     return client.GetStringAsync("http://127.0.0.1:9000/Hash");
