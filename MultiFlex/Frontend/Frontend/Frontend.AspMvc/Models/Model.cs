@@ -11,6 +11,5 @@ namespace Frontend.AspMvc.Models
         public List<Size>? Sizes { get; set; } = new();
         public SubscribeModel sub { get; set; } = new();
         public IList<Logic.Entities.Orders.Order>? Orders { get; set; }
-
     }
 }
