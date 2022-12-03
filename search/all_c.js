@@ -5,6 +5,5 @@ var searchData=
   ['order_149',['Order',['../classFrontend_1_1Logic_1_1Entities_1_1Orders_1_1Order.html',1,'Frontend::Logic::Entities::Orders']]],
   ['ordercontroller_150',['OrderController',['../classFrontend_1_1Logic_1_1Controllers_1_1OrderController.html',1,'Frontend::Logic::Controllers']]],
   ['orderitems_151',['OrderItems',['../classFrontend_1_1Logic_1_1Entities_1_1Orders_1_1OrderItems.html',1,'Frontend::Logic::Entities::Orders']]],
-  ['orders_152',['Orders',['../classFrontend_1_1Logic_1_1Entities_1_1Orders_1_1Orders.html',1,'Frontend::Logic::Entities::Orders']]],
-  ['ordersingleton_153',['OrderSingleton',['../classFrontend_1_1AspMvc_1_1Controllers_1_1OrderSingleton.html',1,'Frontend::AspMvc::Controllers']]]
+  ['orders_152',['Orders',['../classFrontend_1_1Logic_1_1Entities_1_1Orders_1_1Orders.html',1,'Frontend::Logic::Entities::Orders']]]
 ];

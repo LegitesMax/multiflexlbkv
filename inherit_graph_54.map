@@ -1,4 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfaceFrontend_1_1AspMvc_1_1Modules_1_1Session_1_1ISessionWrapper.html" title=" " alt="" coords="5,5,203,47"/>
-<area shape="rect" id="node2" href="$classFrontend_1_1AspMvc_1_1Modules_1_1Session_1_1SessionWrapper.html" title=" " alt="" coords="251,5,448,47"/>
+<area shape="rect" id="node1" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IDataAccess.html" title=" " alt="" coords="157,5,343,47"/>
+<area shape="rect" id="node2" href="$classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html" title="This class provides the CRUD operations for an entity type." alt="" coords="396,71,608,112"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,111,104,138"/>
+<area shape="rect" id="node4" href="$interfaceFrontend_1_1Logic_1_1Contracts_1_1IDataAccess.html" title="Generic interface for data access." alt="" coords="157,71,343,112"/>
+<area shape="rect" id="node5" href="$classFrontend_1_1Logic_1_1Controllers_1_1ControllerObject.html" title=" " alt="" coords="152,136,348,177"/>
 </map>
