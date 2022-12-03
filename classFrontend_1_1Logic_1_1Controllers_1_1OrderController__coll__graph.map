@@ -1,5 +1,4 @@
 <map id="Frontend.Logic.Controllers.OrderController" name="Frontend.Logic.Controllers.OrderController">
-<area shape="rect" id="node1" title=" " alt="" coords="95,109,291,151"/>
-<area shape="rect" id="node2" href="$classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html" title=" " alt="" coords="5,5,183,47"/>
-<area shape="rect" id="node3" href="$classBillBeeQueries_1_1Queries.html" title=" " alt="" coords="207,13,379,39"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,95,201,136"/>
+<area shape="rect" id="node2" href="$classFrontend_1_1Logic_1_1Controllers_1_1GenericController.html" title=" " alt="" coords="15,5,192,47"/>
 </map>
