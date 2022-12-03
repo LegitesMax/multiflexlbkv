@@ -44,9 +44,9 @@
                 <hr>
 
                 <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#categoryValue">Kategorie</button>
-                <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#materialValue">Material</button>
-                <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Produkt</button>
-                <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#colorValue">Farbe</button>
+                <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#categoryValue">Material</button>
+                <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#ProductValue">Produkt</button>
+                <button type="button" class="btn btn-dark my-2 w-100" data-bs-toggle="modal" data-bs-target="#ColorValue">Farbe</button>
             </div>
 
 
@@ -113,5 +113,3 @@
 }
 @await Html.PartialAsync("_ChangeValue", Model)
 @await Html.PartialAsync("_ChanceValueCategory", Model)
-@await Html.PartialAsync("_ChangeValueMaterial", Model)
-@await Html.PartialAsync("_ChangeValueColor", Model)

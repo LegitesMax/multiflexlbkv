@@ -6,8 +6,6 @@ namespace Frontend.AspMvc.Controllers
     {
         private static HashSingleton? instance = null;
         private static string DataHasCode = "";
-        private static string ProductHasCode = "";
-        private static string MaterialHasCode = "";
         public static HttpClient client { get; set; } = new HttpClient();
         public static Model Model = new Model();
 
@@ -17,60 +15,9 @@ namespace Frontend.AspMvc.Controllers
             if (instance == null)
             {
                 instance = new HashSingleton();
+                DataHasCode = await client.GetStringAsync("http://127.0.0.1:9000/Hash");
             }
             return instance;
-        }
-
-        public static bool CheckPoductHashCode()
-        {
-            var result = false;
-            if (DataHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash/Product").Result) result = true;
-            else
-            {
-                var resultHash = Task.Run(() =>
-                {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash/Product");
-                });
-                result = true;
-                ProductHasCode = resultHash.Result;
-            }
-            return result;
-        }
-
-        public static bool CheckMaterialHashCode()
-        {
-            var result = false;
-
-            if (DataHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash/Material").Result) result = true;
-            else
-            {
-                var resultHash = Task.Run(() =>
-                {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash/Material");
-                });
-                result = true;
-                MaterialHasCode = resultHash.Result;
-            }
-
-            return result;
-        }
-
-        public static bool CheckColorHashCode()
-        {
-            var result = false;
-
-            if (DataHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash/Color").Result) result = true;
-            else
-            {
-                var resultHash = Task.Run(() =>
-                {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash/Color");
-                });
-                result = true;
-                MaterialHasCode = resultHash.Result;
-            }
-
-            return result;
         }
 
         public static bool CheckHashCode()

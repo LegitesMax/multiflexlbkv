@@ -479,8 +479,6 @@ insert into ProductionFormula(product_id, material_id, amount) values(63, 1103, 
 insert into ProductionFormula(product_id, material_id, amount) values(64, 1000, 0.5);
 insert into ProductionFormula(product_id, material_id, amount) values(64, 1300, 0.5);
 insert into ProductionFormula(product_id, material_id, amount) values(64, 1107, 0.5);
-insert into ProductionFormula(product_id, material_id, amount) values (1, 1000, 0.5);
--- insert into ProductionFormula(product_id, material_id, amount) values (1, he1000, 0.5);
 
 -- ProductionLog
 insert into ProductionLog(id, product_id) values (1, 1);

@@ -9,7 +9,6 @@
         public Category Category { get; set; } = new();
         public Color Color { get; set; } = new();
         public Product Product { get; set; } = new();
-        public Material Material { get; set; } = new();
         public Database.Type Type { get; set; } = new();
     }
 }
