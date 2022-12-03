@@ -82,7 +82,7 @@ namespace Frontend.Logic.Controllers
             //var client = query.Login();
 
             var orderState = new List<OrderStateEnum>() { OrderStateEnum.Versendet };
-            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today.AddDays(-2), maxOrderDate: DateTime.MaxValue);
+            var orders = client.Orders.GetOrderList(orderStateId: orderState, pageSize: 50, minOrderDate: DateTime.Today, maxOrderDate: DateTime.MaxValue);
 
             string result = JsonSerializer.Serialize(orders.Data);
 

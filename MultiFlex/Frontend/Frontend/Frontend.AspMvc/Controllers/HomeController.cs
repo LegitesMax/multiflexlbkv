@@ -16,39 +16,38 @@ using Product = Frontend.AspMvc.Models.Product;
 namespace Frontend.AspMvc.Controllers
 {
     public class HomeController : Controller
-    {   
+    {
         public static string status { get; set; } = "open";
         public static string indexStatus { get; set; } = "product";
         public HttpClient client { get; set; } = new HttpClient();
 
-        private readonly ILogger<HomeController> _logger;
-        public Model Model { get; set; } = new();
 
+        private readonly ILogger<HomeController> _logger;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> SubscribeAsync()
         {
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
         //first index load
         public async Task<IActionResult> IndexAsync()
         {
-            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync(true);
 
-            return View(Model);
+            return View(HashSingleton.Model);
         }
         public async Task SetCategoriesAsync(bool firstLoad = false)
         {
-            HttpClient client = new HttpClient();
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -57,18 +56,33 @@ namespace Frontend.AspMvc.Controllers
                 if (ViewData["index"] == "material" || indexStatus == "material")
                 {
                     var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
-                    Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                    //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                    HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                     ViewData["index"] = "material";
                 }
-                else if (ViewData["index"] == "product" || indexStatus == "product")
+                if (ViewData["index"] == "product" || indexStatus == "product")
                 {
                     var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
-                    Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
+                    HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                     ViewData["index"] = "product";
                 }
-                if (status == "open")
-                    Model.Orders = GetOrdereItems();
             }
+            if (status == "open")
+            {
+                HashSingleton.Model.Orders = GetOrdereItems();
+                ViewData["pdfStatus"] = "open";
+            }
+            if (status == "canceled")
+            {
+                HashSingleton.Model.Orders = GetCanceledItems();
+                ViewData["pdfStatus"] = "canceled";
+            }
+            if (status == "ready")
+            {
+                HashSingleton.Model.Orders = GetReadyItems();
+                ViewData["pdfStatus"] = "canceled";
+            }
+
             stopwatch.Stop();
             Console.WriteLine("SetCategoriesAsync() - " + stopwatch.Elapsed);
         }
@@ -78,19 +92,16 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> GetMaterials()
         {
             indexStatus = "material";
-
-            //Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         public async Task<IActionResult> GetProducts()
         {
             indexStatus = "product";
-
-            //Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
-            return View("Index", Model);
+
+            return View("Index", HashSingleton.Model);
         }
 
         //Order loads
@@ -106,9 +117,8 @@ namespace Frontend.AspMvc.Controllers
             status = "open";
             ViewData["pdfStatus"] = "open";
 
-            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         /// <summary>
         /// Set Status cancled Get All cancled Order Items
@@ -121,9 +131,8 @@ namespace Frontend.AspMvc.Controllers
             status = "canceled";
             ViewData["pdfStatus"] = "canceled";
 
-            Model.Orders = GetCanceledItems();
             await SetCategoriesAsync();
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         /// <summary>
         /// Set Status redy Get All orders that are redy
@@ -136,9 +145,8 @@ namespace Frontend.AspMvc.Controllers
             status = "ready";
             ViewData["pdfStatus"] = "ready";
 
-            Model.Orders = GetReadyItems();
             await SetCategoriesAsync();
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
         /// <summary>
@@ -154,7 +162,7 @@ namespace Frontend.AspMvc.Controllers
             if (status == "open")
             {
                 var data = GetOrdereItems();
-                Model.Orders = data;
+                HashSingleton.Model.Orders = data;
                 if (data != null) done = ExportPdf(data, "Offene Bestellungen");
 
                 else done = false;
@@ -162,14 +170,14 @@ namespace Frontend.AspMvc.Controllers
             if (status == "canceled")
             {
                 var data = GetCanceledItems();
-                Model.Orders = data;
+                HashSingleton.Model.Orders = data;
                 if (data != null) done = ExportPdf(data, "Stornierte Bestellungen");
                 else done = false;
             }
             if (status == "ready")
             {
                 var data = GetReadyItems();
-                Model.Orders = data;
+                HashSingleton.Model.Orders = data;
                 if (data != null) done = ExportPdf(data, "Fertige Bestellungen");
                 else done = false;
             }
@@ -178,7 +186,7 @@ namespace Frontend.AspMvc.Controllers
             else ViewData["pdfStatus"] = "error";
 
             await SetCategoriesAsync();
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
 
@@ -188,18 +196,67 @@ namespace Frontend.AspMvc.Controllers
         /// Get all orders from the ordered Items
         /// </summary>
         /// <returns>returns all ordered items</returns>
-        public IList<Logic.Entities.Orders.Order>? GetOrdereItems()
+        public IList<Logic.Entities.Orders.Order>? GetOrdereItems(bool firstLoad = false)
         {
             var orderController = new OrderController();
             var data = orderController.GetOrderedOrders();
-
-            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
-
             var orderResult = new List<Logic.Entities.Orders.Order>();
+
+            if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
+            {
+                OrderSingleton.OrderHashCode = data;
+            }
+
+            return DeseializeJsonString(data);
+        }
+
+        /// <summary>
+        /// Get all canceled orders from the orders
+        /// </summary>
+        /// <returns>returns canceled order items</returns>
+        public IList<Logic.Entities.Orders.Order>? GetCanceledItems(bool firstLoad = false)
+        {
+            var orderController = new OrderController();
+            var data = orderController.GetCancledOrders();
+            var orderResult = new List<Logic.Entities.Orders.Order>();
+
+            if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
+            {
+                OrderSingleton.OrderHashCode = data;
+            }
+
+            return DeseializeJsonString(data);
+        }
+
+        /// <summary>
+        /// To get the Items for Shipping
+        /// </summary>
+        /// <returns>return List of all Ready for shipping Items</returns>
+        public IList<Logic.Entities.Orders.Order>? GetReadyItems(bool firstLoad = false)
+        {
+            var orderController = new OrderController();
+            var data = orderController.GetReadyOrders();
+            var orderResult = new List<Logic.Entities.Orders.Order>();
+
+            if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
+            {
+                OrderSingleton.OrderHashCode = data;
+            }
+
+            return DeseializeJsonString(data);
+        }
+
+        public List<Logic.Entities.Orders.Order> DeseializeJsonString(string data)
+        {
+            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
+            var orderResult = new List<Logic.Entities.Orders.Order>();
+
             if (result != null)
             {
-                foreach (var item in result)
+                foreach (var item in result!)
                 {
+                    //var order = new OrderItems[] { item.OrderItems![0] };
+                    //item.OrderItems = order;
                     orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems!, item.ShippingAddress));
                 }
             }
@@ -207,51 +264,7 @@ namespace Frontend.AspMvc.Controllers
             return orderResult;
         }
 
-        /// <summary>
-        /// Get all canceled orders from the orders
-        /// </summary>
-        /// <returns>returns canceled order items</returns>
-        public IList<Logic.Entities.Orders.Order>? GetCanceledItems()
-        {
-            var orderController = new OrderController();
-            var data = orderController.GetCancledOrders();
-
-            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
-
-            var orderResult = new List<Logic.Entities.Orders.Order>();
-            foreach (var item in result)
-            {
-                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems!, item.ShippingAddress));
-            }
-
-            return orderResult;
-        }
-
-        /// <summary>
-        /// To get the Items for Shipping
-        /// </summary>
-        /// <returns>return List of all Ready for shipping Items</returns>
-        public IList<Logic.Entities.Orders.Order>? GetReadyItems()
-        {
-            var orderController = new OrderController();
-            var data = orderController.GetReadyOrders();
-
-            var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
-
-            var orderResult = new List<Logic.Entities.Orders.Order>();
-            foreach (var item in result!)
-            {
-                var order = new OrderItems[] { item.OrderItems![0] };
-                item.OrderItems = order;
-                orderResult.Add(new Logic.Entities.Orders.Order(item.OrderItems, item.ShippingAddress));
-            }
-
-            return orderResult;
-        }
-
-
         //PDF
-
         /// <summary>
         /// Gnererate PDF File for the user with the data
         /// </summary>
@@ -277,30 +290,12 @@ namespace Frontend.AspMvc.Controllers
                     foreach (var item2 in item.OrderItems)
                     {
                         shippingadresses.Add(item.ShippingAddress.Country!);
-                        sku.Add(item2.Product.SKU);
+                        sku.Add(item2.Product.SKU!);
                         //quantity.Add(item2.Product.Quantity);
                         quantity.Add("1");
                     }
                 }
             }
-            //quantity.ForEach(x =>
-            //{            
-            //    if (x.IsNullOrEmpty())
-            //    {
-            //        x = "1";
-            //    }
-            //});
-            //int count = 0;
-            //foreach (var item in quantity)
-            //{
-            //    if (item == null)
-            //    {
-            //        quantity[count] = "1";
-            //    }
-            //    count++;
-            //}
-
-
 
             PdfDocument document = new PdfDocument();
             document.Info.Title = "DataPDF";
@@ -456,10 +451,9 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", model.sub.Product).Result;
 
-            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         public async Task<IActionResult> AddProduct(Model model)
         {
@@ -469,10 +463,9 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Article/add", model.sub.Product).Result;
 
-            Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
 
@@ -483,10 +476,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Category/add", model.sub.Category).Result;
 
-            Model.Orders = GetOrdereItems();
+
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         public async Task<IActionResult> EditCategory(Model model)
         {
@@ -495,10 +488,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/update", model.sub.Category).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
 
@@ -509,10 +502,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         public async Task<IActionResult> EditColor(Model model)
         {
@@ -521,10 +514,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
 
@@ -535,10 +528,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         public async Task<IActionResult> EditSize(Model model)
         {
@@ -547,10 +540,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
 
@@ -561,10 +554,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
         public async Task<IActionResult> EditMaterial(Model model)
         {
@@ -573,10 +566,10 @@ namespace Frontend.AspMvc.Controllers
             var client = new HttpClient();
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/add", data).Result;
 
-            Model.Orders = GetOrdereItems();
+            HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
 
-            return View("Index", Model);
+            return View("Index", HashSingleton.Model);
         }
 
 
