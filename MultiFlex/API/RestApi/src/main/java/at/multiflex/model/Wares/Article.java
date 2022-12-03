@@ -62,10 +62,22 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" +
+        var string = "Article{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", value=" + value +
                 ", minValue=" + minValue;
+        if (color != null){
+            string += ", color=" + color.toString();
+        }
+        if (size != null){
+            string += ", size=" + size.toString();
+        }
+        if (category != null){
+            string += ", category=" + category.toString();
+        }
+        string += '}';
+
+        return string;
     }
 }
