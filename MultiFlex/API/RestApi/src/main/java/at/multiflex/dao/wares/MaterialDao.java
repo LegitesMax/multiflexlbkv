@@ -113,7 +113,8 @@ public class MaterialDao {
         entity = crudLogic.setEmptyFields(entity);
 
         crudOperations.add(entity);
-
+        System.out.println(input.toString());
+        System.out.println(entity .toString());
         return Response.status(Response.Status.CREATED).build();
     }
     /**
