@@ -17,9 +17,11 @@ namespace Frontend.AspMvc.Controllers
 {
     public class HomeController : Controller
     {
-        public static string status { get; set; } = "open";
-        public static string indexStatus { get; set; } = "product";
-        private string DataJson { get; set; } = string.Empty;
+        private static string status = "open";
+        private static string indexStatus = "product";
+        private static string DataJsonOpen = "open";
+        private static string DataJsonCacnceled = "canceled";
+        private static string DataJsonReady = "ready";
         public HttpClient client { get; set; } = new HttpClient();
 
 
@@ -43,7 +45,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             HashSingleton.LoadAllDataAsync();
-            await SetCategoriesAsync();
+            //await SetCategoriesAsync();
             SetOrders();
 
             return View(HashSingleton.Model);
@@ -55,46 +57,20 @@ namespace Frontend.AspMvc.Controllers
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            if(HashSingleton.CheckPoductHashCode() == false || ViewData["index"] == "product" || firstLoad == true)
+            if (status == "open" && OrderSingleton.OpenHashCode != DataJsonOpen)
             {
-                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
-                HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                ViewData["index"] = "product";
+                HashSingleton.Model.Orders = GetOrdereItems();
+                ViewData["pdfStatus"] = "open";
             }
-            if (HashSingleton.CheckMaterialHashCode() == false || ViewData["index"] == "material" || firstLoad == true)
+            if (status == "canceled" && OrderSingleton.CanceledHashCode != DataJsonCacnceled)
             {
-                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
-                //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
-                ViewData["index"] = "material";
+                HashSingleton.Model.Orders = GetCanceledItems();
+                ViewData["pdfStatus"] = "canceled";
             }
-            if (HashSingleton.CheckColorHashCode() == false || firstLoad == true)
+            if (status == "ready" && OrderSingleton.ReadyHashCode != DataJsonReady)
             {
-                var colorJson = await client.GetStringAsync("http://127.0.0.1:9000/Color");
-                HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
-            }
-
-            stopwatch.Stop();
-            Console.WriteLine("SetCategoriesAsync() - " + stopwatch.Elapsed);
-            stopwatch.Restart();    
-
-            if (OrderSingleton.OrderHashCode != DataJson || OrderSingleton.OrderHashCode == string.Empty)
-            {
-                if (status == "open")
-                {
-                    HashSingleton.Model.Orders = GetOrdereItems();
-                    ViewData["pdfStatus"] = "open";
-                }
-                if (status == "canceled")
-                {
-                    HashSingleton.Model.Orders = GetCanceledItems();
-                    ViewData["pdfStatus"] = "canceled";
-                }
-                if (status == "ready")
-                {
-                    HashSingleton.Model.Orders = GetReadyItems();
-                    ViewData["pdfStatus"] = "canceled";
-                }
+                HashSingleton.Model.Orders = GetReadyItems();
+                ViewData["pdfStatus"] = "ready";
             }
 
             stopwatch.Stop();
@@ -127,6 +103,7 @@ namespace Frontend.AspMvc.Controllers
             Console.WriteLine("SetCategoriesAsync() - " + stopwatch.Elapsed);
         }
 
+        #region actions
 
         //Index loads / genereal loads
         public async Task<IActionResult> GetMaterials()
@@ -156,7 +133,7 @@ namespace Frontend.AspMvc.Controllers
         /// <param Name="sender">sender</param>
         /// <param Name="e">event</param>
         /// <returns>Return to Index Page</returns>
-        public async Task<IActionResult> OpenOrdersAsync(object sender, EventArgs e)
+        public IActionResult OpenOrdersAsync(object sender, EventArgs e)
         {
             status = "open";
 
@@ -169,7 +146,7 @@ namespace Frontend.AspMvc.Controllers
         /// <param Name="sender">sender</param>
         /// <param Name="e">event</param>
         /// <returns>Return to Index Page</returns>
-        public async Task<IActionResult> CanceledOrdersAsync(object sender, EventArgs e)
+        public ActionResult CanceledOrdersAsync(object sender, EventArgs e)
         {
             status = "canceled";
 
@@ -182,7 +159,7 @@ namespace Frontend.AspMvc.Controllers
         /// <param Name="sender">sender</param>
         /// <param Name="e">event</param>
         /// <returns>Return to Index Page</returns>
-        public async Task<IActionResult> ReadyOrdersAsync(object sender, EventArgs e)
+        public IActionResult ReadyOrdersAsync(object sender, EventArgs e)
         {
             status = "ready";
 
@@ -231,6 +208,7 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", HashSingleton.Model);
         }
 
+        #endregion actions
 
         //BillBee Requests
 
@@ -243,12 +221,11 @@ namespace Frontend.AspMvc.Controllers
             var orderController = new OrderController();
             var data = orderController.GetOrderedOrders();
 
-            if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
+            if (OrderSingleton.OpenHashCode == String.Empty || OrderSingleton.OpenHashCode != DataJsonOpen)
             {
-                DataJson = data;
-                OrderSingleton.OrderHashCode = data;
+                DataJsonOpen = data;
+                OrderSingleton.OpenHashCode = data;
             }
-
             return DeseializeJsonString(data);
         }
 
@@ -261,11 +238,11 @@ namespace Frontend.AspMvc.Controllers
             var orderController = new OrderController();
             var data = orderController.GetCancledOrders();
 
-            if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
+            if (OrderSingleton.CanceledHashCode == String.Empty || OrderSingleton.CanceledHashCode != DataJsonCacnceled)
             {
-                OrderSingleton.OrderHashCode = data;
+                DataJsonCacnceled = data;
+                OrderSingleton.CanceledHashCode = data;
             }
-
             return DeseializeJsonString(data);
         }
 
@@ -278,14 +255,13 @@ namespace Frontend.AspMvc.Controllers
             var orderController = new OrderController();
             var data = orderController.GetReadyOrders();
 
-            if (OrderSingleton.OrderHashCode == String.Empty || OrderSingleton.OrderHashCode != data)
+            if (OrderSingleton.ReadyHashCode == String.Empty || OrderSingleton.ReadyHashCode != DataJsonReady)
             {
-                OrderSingleton.OrderHashCode = data;
+                DataJsonReady = data;
+                OrderSingleton.ReadyHashCode = data;
             }
-
             return DeseializeJsonString(data);
         }
-
         public List<Logic.Entities.Orders.Order> DeseializeJsonString(string data)
         {
             var result = JsonConvert.DeserializeObject<IList<Logic.Entities.Orders.Orders>>(data);
@@ -481,7 +457,7 @@ namespace Frontend.AspMvc.Controllers
 
         }
 
-
+        #region interactions
 
         //Buttons Edit/Add/Remove
         public async Task<IActionResult> EditProductAsync(Model model)
@@ -605,6 +581,7 @@ namespace Frontend.AspMvc.Controllers
             return View("Index", HashSingleton.Model);
         }
 
+        #endregion interactions
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

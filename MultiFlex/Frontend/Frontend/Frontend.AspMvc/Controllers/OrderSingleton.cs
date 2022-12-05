@@ -4,7 +4,9 @@
     {
 
         private static OrderSingleton? instance = null;
-        public static string OrderHashCode = String.Empty;
+        public static string OpenHashCode = String.Empty;
+        public static string CanceledHashCode = String.Empty;
+        public static string ReadyHashCode = String.Empty;
 
         private OrderSingleton() { }
         public static Task<OrderSingleton> getInstance()
