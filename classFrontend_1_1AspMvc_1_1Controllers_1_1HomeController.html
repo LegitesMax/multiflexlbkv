@@ -230,7 +230,7 @@ HttpClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b> = ne
 <div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160; </div>
 <div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160; </div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;            var client = <span class="keyword">new</span> HttpClient();</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;            var response = client.PutAsJsonAsync(<span class="stringliteral">&quot;http://127.0.0.1:9000/Color/add&quot;</span>, model.sub.Color).Result;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;            var response = client.PostAsJsonAsync(<span class="stringliteral">&quot;http://127.0.0.1:9000/Color/add&quot;</span>, model.sub.Color).Result;</div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160; </div>
 <div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;            HashSingleton.Model.Orders = <a class="code" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#a0642e65e44efbb0383699a88eca8d473">GetOrdereItems</a>();</div>
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;            await SetCategoriesAsync();</div>
@@ -277,7 +277,7 @@ HttpClient&#160;</td><td class="memItemRight" valign="bottom"><b>client</b> = ne
 <p class="definition">Definition at line <a class="el" href="HomeController_8cs_source.html#l00539">539</a> of file <a class="el" href="HomeController_8cs_source.html">HomeController.cs</a>.</p>
 <div class="fragment"><div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        {</div>
 <div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;            var client = <span class="keyword">new</span> HttpClient();</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;            var response = client.PutAsJsonAsync(<span class="stringliteral">&quot;http://127.0.0.1:9000/Size/add&quot;</span>, model.sub.Size).Result;</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;            var response = client.PostAsJsonAsync(<span class="stringliteral">&quot;http://127.0.0.1:9000/Size/add&quot;</span>, model.sub.Size).Result;</div>
 <div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160; </div>
 <div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            HashSingleton.Model.Orders = <a class="code" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#a0642e65e44efbb0383699a88eca8d473">GetOrdereItems</a>();</div>
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            await SetCategoriesAsync();</div>
