@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['openordersasync_390',['OpenOrdersAsync',['../classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#aa82cd1015caacc23371f9a971170e990',1,'Frontend::AspMvc::Controllers::HomeController']]]
+  ['openordersasync_390',['OpenOrdersAsync',['../classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#abfc15e241c6e1e13e151c679cbbf04f0',1,'Frontend::AspMvc::Controllers::HomeController']]]
 ];

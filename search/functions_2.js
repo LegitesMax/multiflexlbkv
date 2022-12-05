@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['canceledordersasync_330',['CanceledOrdersAsync',['../classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#a2a9614c4ae4896e4b249b7e8267a4c6e',1,'Frontend::AspMvc::Controllers::HomeController']]],
+  ['canceledordersasync_330',['CanceledOrdersAsync',['../classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#acd3dc3aa334a05f421169fe5659f12a3',1,'Frontend::AspMvc::Controllers::HomeController']]],
   ['categorydao_331',['CategoryDao',['../classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b',1,'at::multiflex::dao::CategoryDao']]],
   ['colordao_332',['ColorDao',['../classat_1_1multiflex_1_1dao_1_1ColorDao.html#a06bd9daf2d89354fcb24904e63592290',1,'at::multiflex::dao::ColorDao']]],
   ['consume_333',['consume',['../classat_1_1multiflex_1_1Logic_1_1ProductionLogic.html#a579368ccc3880b718b97b379af28aad3',1,'at.multiflex.Logic.ProductionLogic.consume(Product product, int amount)'],['../classat_1_1multiflex_1_1Logic_1_1ProductionLogic.html#ab6a4e1bc6d167a5cd23223cbbe940f5c',1,'at.multiflex.Logic.ProductionLogic.consume(Product product)']]],
