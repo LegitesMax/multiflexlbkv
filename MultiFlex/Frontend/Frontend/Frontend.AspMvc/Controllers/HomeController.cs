@@ -52,13 +52,13 @@ namespace Frontend.AspMvc.Controllers
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            if(HashSingleton.CheckPoductHashCode() == false || firstLoad == true)
+            if(HashSingleton.CheckPoductHashCode() == false || ViewData["index"] == "product" || firstLoad == true)
             {
                 var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
-            if (HashSingleton.CheckMaterialHashCode() == false || firstLoad == true)
+            if (HashSingleton.CheckMaterialHashCode() == false || ViewData["index"] == "material" || firstLoad == true)
             {
                 var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Material");
                 //Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
@@ -513,7 +513,7 @@ namespace Frontend.AspMvc.Controllers
 
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Color/add", model.sub.Color).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Color/add", model.sub.Color).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -539,7 +539,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> AddSize(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Size/add", model.sub.Size).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Size/add", model.sub.Size).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -549,7 +549,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> EditSize(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000//Size/updateBySize", model.sub.Size).Result;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Size/updateBySize", model.sub.Size).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -561,7 +561,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> AddMaterial(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Material/add", model.sub.Material).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Material/add", model.sub.Material).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
