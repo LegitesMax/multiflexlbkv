@@ -28,5 +28,6 @@ namespace Frontend.AspMvc.Models
         [JsonProperty("products")]
         [JsonPropertyName("products")]
         public List<Product>? Products { get; set; }
+        
     }
 }
