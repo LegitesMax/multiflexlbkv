@@ -8,8 +8,7 @@ import at.multiflex.dto.CategoryDto;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.dto.logic.Type;
 import at.multiflex.dto.wares.MaterialDto;
-import at.multiflex.model.Wares.Material;
-import at.multiflex.model.Wares.Product;
+import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.repository.CRUDOperations;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
@@ -36,10 +35,10 @@ class DatabaseTest {
     ProductionLogDao productionLogDao;
     @Inject
     SizeDao sizeDao;
+
     @Test
     @TestTransaction
-
-    public void addCategory_addOneProductAndOneMaterialCategory_Success() throws DaoException {
+    public void addCategory_addOneProductAndOneMaterialCategory_Success() {
         var category = new CategoryDto();
         category.setAcronym("TESTM");
         category.setName("TestMaterial");
@@ -59,7 +58,7 @@ class DatabaseTest {
 
     @Test
     @TestTransaction
-    public void addMaterial() throws DaoException {
+    public void addMaterial() {
         var category = new CategoryDto();
         category.setAcronym("TESTM");
         category.setName("TestMaterial");
@@ -73,12 +72,32 @@ class DatabaseTest {
 
         var response2 = materialDao.add(material);
 
-        //System.out.println(response);
-        //Assertions.assertEquals(material, m);
+        Assertions.assertEquals(201, response.getStatus());
+        Assertions.assertEquals(201, response2.getStatus());
+    }
+
+    @Test
+    @TestTransaction
+    public void addProduct_addNewProduct_Success() {
+        var category = new CategoryDto();
+        category.setAcronym("TESTP");
+        category.setName("TestProduct");
+        category.setType(Type.Product);
+        var response = categoryDao.add(category);
+
+        var product = new ProductDto();
+        product.setName("TESTP 39 BA");
+        product.setValue(1.0);
+        product.setMinValue(2.0);
+
+        var response2 = productDao.add(product);
+
+        Assertions.assertEquals(201, response.getStatus());
+        Assertions.assertEquals(201, response2.getStatus());
     }
     @Test
     @TestTransaction
-    public void addSize() throws DaoException {
+    public void addSize() {
         var entity = new SizeDto();
 
         entity.setSize(50);
@@ -86,7 +105,6 @@ class DatabaseTest {
 
         var response = sizeDao.add(entity);
 
-        System.out.println(response);
-        //Assertions.assertEquals(material, m);
+        Assertions.assertEquals(201, response.getStatus());
     }
 }
