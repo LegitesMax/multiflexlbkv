@@ -176,12 +176,12 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p class="definition">Definition at line <a class="el" href="CategoryDao_8java_source.html#l00107">107</a> of file <a class="el" href="CategoryDao_8java_source.html">CategoryDao.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                                           {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        System.out.println((Object) input.toString());</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="comment">//System.out.println((Object) input.toString());</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        var entity = (Category) MappingHelper.entityDtoTransformation(input);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        entity.setType(input.getType());</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        System.out.println( input.toString());</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//System.out.println( input.toString());</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        System.out.println( entity.toString());</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;       <span class="comment">// System.out.println( entity.toString());</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">crudOperations</a>.add(entity);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>

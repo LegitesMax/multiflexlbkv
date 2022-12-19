@@ -139,12 +139,12 @@ $(function() {
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    @Consumes</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    @Path(<span class="stringliteral">&quot;/add&quot;</span>)</div>
 <div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a7640a086174074f3ff16654ca7786677">  107</a></span>&#160;    public Response add(<a class="code" href="classat_1_1multiflex_1_1dto_1_1CategoryDto.html">CategoryDto</a> input) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        System.out.println((Object) input.toString());</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="comment">//System.out.println((Object) input.toString());</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        var entity = (<a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a>) <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(input);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        entity.setType(input.getType());</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        System.out.println( input.toString());</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//System.out.println( input.toString());</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        System.out.println( entity.toString());</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;       <span class="comment">// System.out.println( entity.toString());</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        crudOperations.add(entity);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
