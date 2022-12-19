@@ -159,7 +159,7 @@ insert into Product(id) values(64);
 -- INSERT Material
 insert into Category (id, name, type) values (1000, 'Holz', 'Material');
 
-insert into Article(id, name, value, minValue, category_id) values(1000, 'Holz', 55, 40, 1000);
+#insert into Article(id, name, value, minValue, category_id) values(1000, 'Holz', 55, 40, 1000);
 insert into Article(id, name, value, minValue, category_id,  size_id) values(1000, 'Holz 39', 55, 40, 1000,  1);
 insert into Article(id, name, value, minValue, category_id,  size_id) values(1001, 'Holz 49', 55, 40, 1000,  2);
 insert into Material(id) values(1000);
