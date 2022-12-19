@@ -5,11 +5,11 @@ import at.multiflex.dao.wares.ArticleDao;
 import at.multiflex.dao.wares.MaterialDao;
 import at.multiflex.dao.wares.ProductDao;
 import at.multiflex.dto.CategoryDto;
+import at.multiflex.dto.ColorDto;
 import at.multiflex.dto.SizeDto;
 import at.multiflex.dto.logic.Type;
 import at.multiflex.dto.wares.MaterialDto;
 import at.multiflex.dto.wares.ProductDto;
-import at.multiflex.repository.CRUDOperations;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Assertions;
@@ -19,8 +19,6 @@ import javax.inject.Inject;
 
 @QuarkusTest
 class DatabaseTest {
-    @Inject
-    CRUDOperations crud;
     @Inject
     ArticleDao articleDao;
     @Inject
@@ -58,7 +56,7 @@ class DatabaseTest {
 
     @Test
     @TestTransaction
-    public void addMaterial() {
+    public void addMaterial_addNewMaterial_Success() {
         var category = new CategoryDto();
         category.setAcronym("TESTM");
         category.setName("TestMaterial");
@@ -97,13 +95,26 @@ class DatabaseTest {
     }
     @Test
     @TestTransaction
-    public void addSize() {
+    public void addSize_addNewSize_Success() {
         var entity = new SizeDto();
 
         entity.setSize(50);
         entity.setDescription("Testdesc");
 
         var response = sizeDao.add(entity);
+
+        Assertions.assertEquals(201, response.getStatus());
+    }
+
+    @Test
+    @TestTransaction
+    public void addColor_addNewColor_Success() {
+        var entity = new ColorDto();
+
+        entity.setName("Test");
+        entity.setColorCode("TEST");
+
+        var response = colorDao.add(entity);
 
         Assertions.assertEquals(201, response.getStatus());
     }
