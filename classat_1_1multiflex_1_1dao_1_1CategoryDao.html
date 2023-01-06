@@ -81,9 +81,11 @@ Collaboration diagram for at.multiflex.dao.CategoryDao:</div>
 <div class="dyncontent">
 <div class="center"><img src="classat_1_1multiflex_1_1dao_1_1CategoryDao__coll__graph.png" border="0" usemap="#aat_8multiflex_8dao_8CategoryDao_coll__map" alt="Collaboration graph"/></div>
 <map name="aat_8multiflex_8dao_8CategoryDao_coll__map" id="aat_8multiflex_8dao_8CategoryDao_coll__map">
-<area shape="rect" title="This class includes all json requests for the Category class." alt="" coords="5,199,220,225"/>
-<area shape="rect" href="classat_1_1multiflex_1_1repository_1_1CRUDOperations.html" title="This class has all CRUD (Create, Update, Delete) operations." alt="" coords="28,95,197,136"/>
-<area shape="rect" title=" " alt="" coords="54,5,171,32"/>
+<area shape="rect" title="This class includes all json requests for the Category class." alt="" coords="5,329,220,356"/>
+<area shape="rect" href="classat_1_1multiflex_1_1repository_1_1CRUDOperations.html" title="This class has all CRUD (Create, Update, Delete) operations." alt="" coords="52,160,221,201"/>
+<area shape="rect" title=" " alt="" coords="129,5,246,32"/>
+<area shape="rect" href="classat_1_1multiflex_1_1repository_1_1Repository.html" title="A class where all repositories are inherited from." alt="" coords="208,95,377,136"/>
+<area shape="rect" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html" title="This class has all Database Queries of the Category class." alt="" coords="220,225,389,267"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -234,19 +236,20 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                                                                            {</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        Object entity;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">if</span> (Category.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">type</a>)) {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.findById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#ae816541a0fcadb9238e8642233c4abd4">findById</a>(<span class="keywordtype">id</span>);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        } <span class="keywordflow">else</span>{</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">if</span>(entity == <span class="keyword">null</span>) {</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> NotFoundException();</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="comment">//System.out.println(entity.toString());</span></div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#ae561fa141ea50d1c2fd277a6631a288d">crudOperations</a>.delete(entity);</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.NO_CONTENT).build();</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_a167c0f3a4a5ec1cb3b0e87b2ff5a7a44"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">at.multiflex.dao.CategoryDao.repository</a></div><div class="ttdeci">at.multiflex.repository.CategoryRepository repository</div><div class="ttdoc">repository for the Category class</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00044">CategoryDao.java:44</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1CategoryDao_html_aeb527ded541a109e9c0884af29ed56b9"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">at.multiflex.dao.CategoryDao.type</a></div><div class="ttdeci">Class&lt;?&gt; type</div><div class="ttdoc">type of the class</div><div class="ttdef"><b>Definition:</b> <a href="CategoryDao_8java_source.html#l00033">CategoryDao.java:33</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CategoryRepository_html_ae816541a0fcadb9238e8642233c4abd4"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#ae816541a0fcadb9238e8642233c4abd4">at.multiflex.repository.CategoryRepository.findById</a></div><div class="ttdeci">Category findById(Integer id)</div><div class="ttdoc">Loads a Category entity from the database.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryRepository_8java_source.html#l00050">CategoryRepository.java:50</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -286,13 +289,14 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                                     {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        List&lt;Category&gt; entities;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (Category.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">type</a>)) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.loadAll();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#ab5a9fa8fbb5011547591ec1cd5c9cf72">loadAll</a>();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        } <span class="keywordflow">else</span>{</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entities);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CategoryRepository_html_ab5a9fa8fbb5011547591ec1cd5c9cf72"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#ab5a9fa8fbb5011547591ec1cd5c9cf72">at.multiflex.repository.CategoryRepository.loadAll</a></div><div class="ttdeci">List&lt; Category &gt; loadAll()</div><div class="ttdoc">A Query to load all Category entities from the database.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryRepository_8java_source.html#l00022">CategoryRepository.java:22</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -324,10 +328,11 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p class="definition">Definition at line <a class="el" href="CategoryDao_8java_source.html#l00161">161</a> of file <a class="el" href="CategoryDao_8java_source.html">CategoryDao.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                                          {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        var entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.loadAllMaterials();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        var entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#aedbda069ea7e7b74c06d65cf37a38632">loadAllMaterials</a>();</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entities);</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CategoryRepository_html_aedbda069ea7e7b74c06d65cf37a38632"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#aedbda069ea7e7b74c06d65cf37a38632">at.multiflex.repository.CategoryRepository.loadAllMaterials</a></div><div class="ttdeci">List&lt; Category &gt; loadAllMaterials()</div><div class="ttdoc">Loads all materials categorised by category out of the database.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryRepository_8java_source.html#l00084">CategoryRepository.java:84</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -359,10 +364,11 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p class="definition">Definition at line <a class="el" href="CategoryDao_8java_source.html#l00149">149</a> of file <a class="el" href="CategoryDao_8java_source.html">CategoryDao.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                                         {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        var entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.loadAllProducts();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        var entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#aedb29623fd3428d06390d0886012a674">loadAllProducts</a>();</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entities);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    }</div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CategoryRepository_html_aedb29623fd3428d06390d0886012a674"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#aedb29623fd3428d06390d0886012a674">at.multiflex.repository.CategoryRepository.loadAllProducts</a></div><div class="ttdeci">List&lt; Category &gt; loadAllProducts()</div><div class="ttdoc">Loads all products categorised by category out of the database.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryRepository_8java_source.html#l00071">CategoryRepository.java:71</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -409,7 +415,7 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                                          {</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        Category entity;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span> (Category.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">type</a>)) {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.findById(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#ae816541a0fcadb9238e8642233c4abd4">findById</a>(<span class="keywordtype">id</span>);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        } <span class="keywordflow">else</span>{</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
@@ -461,12 +467,13 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                                             {</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        Category entities;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> (Category.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#aeb527ded541a109e9c0884af29ed56b9">type</a>)) {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.findByName(name);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a167c0f3a4a5ec1cb3b0e87b2ff5a7a44">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#a2d25459b151ea134a04938f2b62cf3a0">findByName</a>(name);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        } <span class="keywordflow">else</span>{</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not have a name, or no available DB request&quot;</span>);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entities);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CategoryRepository_html_a2d25459b151ea134a04938f2b62cf3a0"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html#a2d25459b151ea134a04938f2b62cf3a0">at.multiflex.repository.CategoryRepository.findByName</a></div><div class="ttdeci">Category findByName(String name)</div><div class="ttdoc">Loads all Category entities from the database with the given name.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryRepository_8java_source.html#l00100">CategoryRepository.java:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
