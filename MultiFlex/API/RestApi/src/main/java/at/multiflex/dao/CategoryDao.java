@@ -135,7 +135,7 @@ public class CategoryDao {
         if(entity == null) {
             throw new NotFoundException();
         }
-
+        //System.out.println(entity.toString());
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
     }

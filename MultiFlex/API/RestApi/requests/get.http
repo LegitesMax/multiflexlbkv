@@ -107,3 +107,7 @@ Content-Type: application/json
 DELETE http://localhost:9000/Size/delete/3
 ###
 DELETE http://localhost:9000/Color/delete/1
+###
+DELETE http://localhost:9000/Category/delete/1004
+###
+DELETE http://localhost:9000/Article/delete/1

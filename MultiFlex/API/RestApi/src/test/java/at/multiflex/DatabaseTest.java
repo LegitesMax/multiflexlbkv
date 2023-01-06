@@ -10,15 +10,19 @@ import at.multiflex.dto.SizeDto;
 import at.multiflex.dto.logic.Type;
 import at.multiflex.dto.wares.MaterialDto;
 import at.multiflex.dto.wares.ProductDto;
+import at.multiflex.repository.CategoryRepository;
+import at.multiflex.repository.wares.ArticleRepository;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.Response;
 
 @QuarkusTest
 class DatabaseTest {
+    //region Injects
     @Inject
     ArticleDao articleDao;
     @Inject
@@ -33,7 +37,12 @@ class DatabaseTest {
     ProductionLogDao productionLogDao;
     @Inject
     SizeDao sizeDao;
-
+    @Inject
+    ArticleRepository articleRepo;
+    @Inject
+    CategoryRepository categoryRepo;
+    //endregion
+    //region Add
     @Test
     @TestTransaction
     public void addCategory_addOneProductAndOneMaterialCategory_Success() {
@@ -53,7 +62,6 @@ class DatabaseTest {
         Assertions.assertEquals(201, response.getStatus());
         Assertions.assertEquals(201, response2.getStatus());
     }
-
     @Test
     @TestTransaction
     public void addMaterial_addNewMaterial_Success() {
@@ -118,4 +126,41 @@ class DatabaseTest {
 
         Assertions.assertEquals(201, response.getStatus());
     }
+    //endregion
+    //region Select
+    @Test
+    @TestTransaction
+    public void findCategory_findCategoryByName_Success() {
+        addCategory_addOneProductAndOneMaterialCategory_Success();
+
+        var res = categoryRepo.findByName("TestMaterial");
+
+        Assertions.assertEquals("TestMaterial", res.getName());
+    }
+    @Test
+    @TestTransaction
+    public void findCategory_findCategoryByAcronym_Success() {
+        addCategory_addOneProductAndOneMaterialCategory_Success();
+
+        var res = categoryRepo.findByAcronym("TESTM");
+
+        Assertions.assertEquals("TESTM", res.getAcronym());
+    }
+    //endregion
+    //region Delete
+    @Test
+    @TestTransaction
+    public void deleteCategory_deleteOneProductAndOneMaterialCategory_Success() throws DaoException {
+        addCategory_addOneProductAndOneMaterialCategory_Success();
+
+        var res = categoryRepo.findByAcronym("TESTM");
+        var res2 = categoryRepo.findByAcronym("TESTP");
+
+        var response = categoryDao.delete(res.getId());
+        var response2 = categoryDao.delete(res2.getId());
+
+        Assertions.assertEquals(204, response.getStatus());
+        Assertions.assertEquals(204, response2.getStatus());
+    }
+    //endregion
 }
