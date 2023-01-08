@@ -11,7 +11,11 @@ import at.multiflex.dto.logic.Type;
 import at.multiflex.dto.wares.MaterialDto;
 import at.multiflex.dto.wares.ProductDto;
 import at.multiflex.repository.CategoryRepository;
+import at.multiflex.repository.ColorRepository;
+import at.multiflex.repository.SizeRepository;
 import at.multiflex.repository.wares.ArticleRepository;
+import at.multiflex.repository.wares.MaterialRepository;
+import at.multiflex.repository.wares.ProductRepository;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Assertions;
@@ -40,7 +44,15 @@ class DatabaseTest {
     @Inject
     ArticleRepository articleRepo;
     @Inject
+    ProductRepository productRepo;
+    @Inject
+    MaterialRepository materialRepo;
+    @Inject
     CategoryRepository categoryRepo;
+    @Inject
+    SizeRepository sizeRepo;
+    @Inject
+    ColorRepository colorRepo;
     //endregion
     //region Add
     @Test
@@ -145,6 +157,51 @@ class DatabaseTest {
         var res = categoryRepo.findByAcronym("TESTM");
 
         Assertions.assertEquals("TESTM", res.getAcronym());
+    }
+    @Test
+    @TestTransaction
+    public void findMaterial_findMaterialByName_Success() {
+        addMaterial_addNewMaterial_Success();
+
+        var res = materialRepo.findByName("TestMaterial");
+
+        Assertions.assertEquals("TestMaterial", res.get(0).getName());
+    }
+    @Test
+    @TestTransaction
+    public void findProduct_findProductByName_Success() {
+        addProduct_addNewProduct_Success();
+
+        var res = productRepo.findByName("TESTP 39 BA");
+
+        Assertions.assertEquals("TESTP 39 BA", res.get(0).getName());
+    }
+    @Test
+    @TestTransaction
+    public void findSize_findSize_Success() {
+        addSize_addNewSize_Success();
+
+        var res = sizeRepo.findBySize(50);
+
+        Assertions.assertEquals(50, res.getSize());
+    }
+    @Test
+    @TestTransaction
+    public void findColor_findColorByName_Success() {
+        addColor_addNewColor_Success();
+
+        var res = colorRepo.findByName("Test");
+
+        Assertions.assertEquals("Test", res.getName());
+    }
+    @Test
+    @TestTransaction
+    public void findColor_findColorByColorCode_Success() {
+        addColor_addNewColor_Success();
+
+        var res = colorRepo.findByColorCode("TEST");
+
+        Assertions.assertEquals("TEST", res.getColorCode());
     }
     //endregion
     //region Delete
