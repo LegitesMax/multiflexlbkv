@@ -132,7 +132,7 @@ $(function() {
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    @Path(<span class="stringliteral">&quot;/add&quot;</span>)</div>
 <div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a454c3c12c3e809ebd814915a64a13208">   93</a></span>&#160;    public Response add(<a class="code" href="classat_1_1multiflex_1_1dto_1_1SizeDto.html">SizeDto</a> input) {</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        var entity = (<a class="code" href="classat_1_1multiflex_1_1model_1_1Size.html">Size</a>) <a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html">MappingHelper</a>.<a class="code" href="classat_1_1multiflex_1_1mapper_1_1MappingHelper.html#adc5b612929a46142bf39ffbfcb83e688">entityDtoTransformation</a>(input);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        System.out.println(input.toString());</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        crudOperations.add(entity);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.CREATED).build();</div>
