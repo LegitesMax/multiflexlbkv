@@ -52,6 +52,16 @@ namespace Frontend.Logic.UnitTest
             Assert.AreEqual(HttpStatusCode.InternalServerError, response.StatusCode);
         }
         [TestMethod]
+        public void EditSize_IncorrectSize_ResponseCode500()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Size size = new AspMvc.Models.Size();
+
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Size/updateBySize", size).Result;
+
+            Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.StatusCode);
+        }
+        [TestMethod]
         public void EditSize_CorrectSize_ResponseCode201()
         {
             var client = new HttpClient();
@@ -96,6 +106,17 @@ namespace Frontend.Logic.UnitTest
 
         [TestMethod]
         public void AddCategorie_IncorrectCategorie_ResponseCode500()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Category category = new AspMvc.Models.Category();
+            category.Type = Type.Product;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Category/add", category).Result;
+
+
+            Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.StatusCode);
+        }
+        [TestMethod]
+        public void EditCategorie_IncorrectCategorie_ResponseCode500()
         {
             var client = new HttpClient();
             Frontend.AspMvc.Models.Category category = new AspMvc.Models.Category();
@@ -153,7 +174,6 @@ namespace Frontend.Logic.UnitTest
 
             Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.StatusCode);
         }
-
         [TestMethod]
         public void AddProduct_CorrectProduct_ResponseCode201()
         {
