@@ -92,7 +92,7 @@ public class SizeDao {
     @Path("/add")
     public Response add(SizeDto input) {
         var entity = (Size) MappingHelper.entityDtoTransformation(input);
-        System.out.println(input.toString());
+        //System.out.println(input.toString());
         crudOperations.add(entity);
 
         return Response.status(Response.Status.CREATED).build();
