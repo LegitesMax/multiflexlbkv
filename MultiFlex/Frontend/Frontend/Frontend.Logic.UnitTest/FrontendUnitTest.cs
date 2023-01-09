@@ -175,6 +175,20 @@ namespace Frontend.Logic.UnitTest
             Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.StatusCode);
         }
         [TestMethod]
+        public void EditMaterial_IncorectMaterial_ResponseCode500()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Material material = new AspMvc.Models.Material();
+            material.MinValue = 5;
+            material.Name = "Folie 139 14";
+            material.Value = 5;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/updateByName", material).Result;
+
+
+            Assert.AreEqual(HttpStatusCode.InternalServerError, response.StatusCode);
+        }
+
+        [TestMethod]
         public void AddProduct_CorrectProduct_ResponseCode201()
         {
             var client = new HttpClient();
@@ -214,6 +228,16 @@ namespace Frontend.Logic.UnitTest
             var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Product/add", product).Result;
 
             Assert.AreEqual(HttpStatusCode.InternalServerError, response.StatusCode);
+        }
+        [TestMethod]
+        public void EditProduct_IncorectProduct_ResponseCode500()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Product product = new AspMvc.Models.Product();
+
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Product/updateByName", product).Result;
+
+            Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.StatusCode);
         }
 
     }
