@@ -28,11 +28,6 @@ namespace Frontend.Logic.UnitTest
             Assert.AreEqual("Holz", product);
         }
 
-
-
-
-
-
         [TestMethod]
         public void AddSize_CorrectSize_ResponseCode201()
         {
@@ -51,13 +46,51 @@ namespace Frontend.Logic.UnitTest
             Frontend.AspMvc.Models.Size size = new AspMvc.Models.Size();
 
             size.size = 24;
-            size.Description = "1M";
+            size.Description = "2M";
             var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Size/updateBySize", size).Result;
 
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
-        
+
+
+
+        [TestMethod]
+        public void AddCategorie_CorrectCategorie_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Category category = new AspMvc.Models.Category();
+            category.Name = "UnitTest";
+            category.Acronym = "UT";
+            category.Type = Type.Material;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Category/add", category).Result;
+
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        }
+        [TestMethod]
+        public void EditCategorie_CorrectCategorie_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Category category = new AspMvc.Models.Category();
+            category.Name = "UnitTest";
+            category.Acronym = "UT1";
+            category.Type = Type.Material;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Category/updateByName", category).Result;
+
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }
