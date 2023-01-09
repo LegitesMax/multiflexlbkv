@@ -27,6 +27,37 @@ namespace Frontend.Logic.UnitTest
             string product = (string)result.ViewData.Model;
             Assert.AreEqual("Holz", product);
         }
+
+
+
+
+
+
+        [TestMethod]
+        public void AddSize_CorrectSize_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Size size = new AspMvc.Models.Size();
+            size.size = 24;
+            size.Description = "1M";
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Size/add", size).Result;
+
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        }
+        [TestMethod]
+        public void EditSize_CorrectSize_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Size size = new AspMvc.Models.Size();
+
+            size.size = 24;
+            size.Description = "1M";
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Size/updateBySize", size).Result;
+
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
         
     }
 }
