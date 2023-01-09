@@ -89,22 +89,22 @@ namespace Frontend.Logic.UnitTest
 
 
 
-        //[TestMethod]
-        //public void AddMaterial_CorrectMaterial_ResponseCode201()
-        //{
-        //    var client = new HttpClient();
-        //    Frontend.AspMvc.Models.Material material = new AspMvc.Models.Material();
+        [TestMethod]
+        public void AddMaterial_CorrectMaterial_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Material material = new AspMvc.Models.Material();
 
-        //    material.MinValue = 5;
-        //    material.Name= "UnitTest";
-        //    material.Value= 5;
+            material.MinValue = 5;
+            material.Name = "TESTWERT 49 29";
+            material.Value = 5;
 
 
 
-        //    var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Material/add", material).Result;
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Material/add", material).Result;
 
-        //    Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-        //}
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        }
         [TestMethod]
         public void EditMaterial_CorrectMaterial_ResponseCode201()
         {
