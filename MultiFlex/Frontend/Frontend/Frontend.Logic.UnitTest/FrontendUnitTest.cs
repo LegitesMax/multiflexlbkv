@@ -119,6 +119,36 @@ namespace Frontend.Logic.UnitTest
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
+        [TestMethod]
+        public void AddProduct_CorrectProduct_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Product product = new AspMvc.Models.Product();
+
+            product.Name = "TE 49 34";
+            product.Value= 5;
+            product.MinValue= 5;
+
+
+
+            var response = client.PostAsJsonAsync("http://127.0.0.1:9000/Product/add", product).Result;
+
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        }
+        [TestMethod]
+        public void EditProduct_CorrectProduct_ResponseCode201()
+        {
+            var client = new HttpClient();
+            Frontend.AspMvc.Models.Product product = new AspMvc.Models.Product();
+            product.Name = "TE 49 34";
+            product.Value = 10;
+            product.MinValue = 10;
+            var response = client.PutAsJsonAsync("http://127.0.0.1:9000/Article/updateByName", product).Result;
+
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
 
 
     }
