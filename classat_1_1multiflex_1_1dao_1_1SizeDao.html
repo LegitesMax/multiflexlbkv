@@ -173,7 +173,7 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00093">93</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                       {</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        var entity = (Size) MappingHelper.entityDtoTransformation(input);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        System.out.println(input.toString());</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="comment">//System.out.println(input.toString());</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a1a638b187dbf59f72cd3d2c653468187">crudOperations</a>.add(entity);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.CREATED).build();</div>
