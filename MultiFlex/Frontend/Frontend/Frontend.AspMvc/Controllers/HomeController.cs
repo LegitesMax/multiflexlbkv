@@ -26,11 +26,22 @@ namespace Frontend.AspMvc.Controllers
 
 
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
+        public ActionResult Details()
+        {
+
+            return View("Index");
+        }
+        public ActionResult Details1()
+        {
+
+            return View("Index", "Holz");
+
+        }
 
 
         [HttpPost]

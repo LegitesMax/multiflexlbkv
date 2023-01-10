@@ -9,7 +9,7 @@
         public int? Id { get; set; }
 
         [JsonProperty("size")]
-        public int? Sizes { get; set; }
+        public int? size { get; set; }
 
         [JsonProperty("description")]
         [MaxLength(1024)]
