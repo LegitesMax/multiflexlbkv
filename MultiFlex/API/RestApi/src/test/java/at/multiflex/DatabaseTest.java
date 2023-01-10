@@ -219,6 +219,39 @@ class DatabaseTest {
         Assertions.assertEquals(204, response.getStatus());
         Assertions.assertEquals(204, response2.getStatus());
     }
+    @Test
+    @TestTransaction
+    public void deleteProduct_deleteOneProduct_Success() throws DaoException {
+        addProduct_addNewProduct_Success();
+
+        var res = productRepo.findByName("TESTP 39 BA");
+
+        var response = productDao.delete(res.get(0).getId());
+
+        Assertions.assertEquals(204, response.getStatus());
+    }
+    @Test
+    @TestTransaction
+    public void deleteSize_deleteOneSize_Success() throws DaoException {
+        addSize_addNewSize_Success();
+
+        var res = sizeRepo.findBySize(50);
+
+        var response = sizeDao.delete(res.getId());
+
+        Assertions.assertEquals(204, response.getStatus());
+    }
+    @Test
+    @TestTransaction
+    public void deleteColor_deleteOneColor_Success() throws DaoException {
+        addColor_addNewColor_Success();
+
+        var res = colorRepo.findByName("Test");
+
+        var response = colorDao.delete(res.getId());
+
+        Assertions.assertEquals(204, response.getStatus());
+    }
     //endregion
-    
+
 }
