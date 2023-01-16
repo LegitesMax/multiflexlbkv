@@ -13,7 +13,6 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Size {

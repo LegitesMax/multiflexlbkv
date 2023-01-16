@@ -12,7 +12,6 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class MaterialDto extends ArticleDto {

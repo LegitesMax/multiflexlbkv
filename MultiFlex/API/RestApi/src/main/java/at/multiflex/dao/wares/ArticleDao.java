@@ -102,89 +102,89 @@ public class ArticleDao {
         }
         return MappingHelper.entityDtoTransformation(entity);
     }
-    /**
-     * transforms a given dto to an entity and adds it into the database
-     * @param input A dto to insert into the database
-     * @return The JSON Response code
-     */
-    @POST
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Consumes
-    @Path("/add")
-    public Response add(ArticleDto input) {
-        var entity = (Article) MappingHelper.entityDtoTransformation(input);
+    ///**
+    // * transforms a given dto to an entity and adds it into the database
+    // * @param input A dto to insert into the database
+    // * @return The JSON Response code
+    // */
+    //@POST
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //@Consumes
+    //@Path("/add")
+    //public Response add(ArticleDto input) {
+    //    var entity = (Article) MappingHelper.entityDtoTransformation(input);
 
-        entity = crudLogic.setEmptyFields(entity);
+    //    entity = crudLogic.setEmptyFields(entity);
 
-        crudOperations.add(entity);
+    //    crudOperations.add(entity);
 
-        return Response.status(Response.Status.CREATED).build();
-    }
-    /**
-     * Deletes a entity by that entities id
-     * @param id The id of an entity to delete
-     * @return The JSON Response code
-     * @throws DaoException throws a DaoException
-     */
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/delete/{id}")
-    public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (Article.class.equals(type)) {
-            entity = articleRepository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
+    //    return Response.status(Response.Status.CREATED).build();
+    //}
+    ///**
+    // * Deletes a entity by that entities id
+    // * @param id The id of an entity to delete
+    // * @return The JSON Response code
+    // * @throws DaoException throws a DaoException
+    // */
+    //@DELETE
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //@Path("/delete/{id}")
+    //public Response delete(@PathParam("id") Integer id) throws DaoException {
+    //    Object entity;
+    //    if (Article.class.equals(type)) {
+    //        entity = articleRepository.findById(id);
+    //    } else{
+    //        throw new DaoException("Entity does not exist");
+    //    }
+    //    if(entity == null) {
+    //        throw new NotFoundException();
+    //    }
 
-        crudOperations.delete(entity);
-        return Response.status(Response.Status.NO_CONTENT).build();
-    }
-    /**
-     * Transforms a dto into a entity and updates it
-     * @param dto The dto of the entity
-     * @return The JSON Response code
-     */
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/updateByName")
-    public Response updateByName(ArticleDto dto) {
-        var entity = articleRepository.findByName(dto.getName()).get(0);
+    //    crudOperations.delete(entity);
+    //    return Response.status(Response.Status.NO_CONTENT).build();
+    //}
+    ///**
+    // * Transforms a dto into a entity and updates it
+    // * @param dto The dto of the entity
+    // * @return The JSON Response code
+    // */
+    //@PUT
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //@Path("/updateByName")
+    //public Response updateByName(ArticleDto dto) {
+    //    var entity = articleRepository.findByName(dto.getName()).get(0);
 
-        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+    //    var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
-        if (entity2.getMinValue() != null) {
-            entity.setMinValue(entity2.getMinValue());
-        }
-        if (entity2.getValue() != null) {
-            entity.setValue(entity2.getValue());
-        }
+    //    if (entity2.getMinValue() != null) {
+    //        entity.setMinValue(entity2.getMinValue());
+    //    }
+    //    if (entity2.getValue() != null) {
+    //        entity.setValue(entity2.getValue());
+    //    }
 
-        crudOperations.update(entity);
-        return Response.status(Response.Status.OK).build();
-    }
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    @Path("/update")
-    public Response update(ArticleDto dto) {
-        var entity = articleRepository.findById(dto.getId());
+    //    crudOperations.update(entity);
+    //    return Response.status(Response.Status.OK).build();
+    //}
+    //@PUT
+    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    //@Path("/update")
+    //public Response update(ArticleDto dto) {
+    //    var entity = articleRepository.findById(dto.getId());
 
-        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+    //    var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
-        if (entity2.getName() != null) {
-            entity.setName(entity2.getName());
-        }
-        if (entity2.getMinValue() != null) {
-            entity.setMinValue(entity2.getMinValue());
-        }
-        if (entity2.getValue() != null) {
-            entity.setValue(entity2.getValue());
-        }
+    //    if (entity2.getName() != null) {
+    //        entity.setName(entity2.getName());
+    //    }
+    //    if (entity2.getMinValue() != null) {
+    //        entity.setMinValue(entity2.getMinValue());
+    //    }
+    //    if (entity2.getValue() != null) {
+    //        entity.setValue(entity2.getValue());
+    //    }
 
-        crudOperations.update(entity);
-        return Response.status(Response.Status.OK).build();
-    }
+    //    crudOperations.update(entity);
+    //    return Response.status(Response.Status.OK).build();
+    //}
 }

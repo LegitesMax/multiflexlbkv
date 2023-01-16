@@ -13,7 +13,6 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name = "Material")
 public class Material extends Article {

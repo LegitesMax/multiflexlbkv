@@ -14,7 +14,6 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name = "Product")
 public class Product extends Article {

@@ -14,7 +14,6 @@ import java.io.Serializable;
  */
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode
 @Embeddable
 public class ProductionFormulaId implements Serializable {
