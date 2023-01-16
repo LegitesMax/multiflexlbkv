@@ -15,6 +15,6 @@ var searchData=
   ['productionlogrepository_169',['ProductionLogRepository',['../classat_1_1multiflex_1_1repository_1_1ProductionLogRepository.html',1,'at::multiflex::repository']]],
   ['productionlogrepository_170',['productionLogRepository',['../classat_1_1multiflex_1_1dao_1_1others_1_1HashDao.html#a78366da3b7d5de561e8aafbbae9dccc1',1,'at::multiflex::dao::others::HashDao']]],
   ['productrepository_171',['ProductRepository',['../classat_1_1multiflex_1_1repository_1_1wares_1_1ProductRepository.html',1,'at::multiflex::repository::wares']]],
-  ['productrepository_172',['productRepository',['../classat_1_1multiflex_1_1dao_1_1GenericDao.html#a9ced852d2c2901ba44ab2abd58c0da23',1,'at.multiflex.dao.GenericDao.productRepository()'],['../classat_1_1multiflex_1_1dao_1_1others_1_1HashDao.html#af983a0b2090799d5d8aab0557a03814b',1,'at.multiflex.dao.others.HashDao.productRepository()']]],
+  ['productrepository_172',['productRepository',['../classat_1_1multiflex_1_1dao_1_1others_1_1HashDao.html#af983a0b2090799d5d8aab0557a03814b',1,'at::multiflex::dao::others::HashDao']]],
   ['propertyitem_173',['PropertyItem',['../classCommonBase_1_1Extensions_1_1PropertyItem.html',1,'CommonBase::Extensions']]]
 ];

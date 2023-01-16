@@ -82,39 +82,38 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;@Getter</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;@Setter</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;@AllArgsConstructor</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;@NoArgsConstructor</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;@Entity</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1model_1_1Category.html">   20</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">//&lt;editor-fold desc=&quot;Common Fields&quot;&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    @Id</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    @GeneratedValue(strategy = GenerationType.IDENTITY)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">private</span> Integer id;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    @Column(nullable = <span class="keyword">false</span>, length = 64, unique = <span class="keyword">true</span>)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">private</span> String name;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    @Column(length = 8)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span> String acronym;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    @Enumerated(EnumType.STRING)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span> <a class="code" href="enumat_1_1multiflex_1_1dto_1_1logic_1_1Type.html">Type</a> type;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">//&lt;/editor-fold&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">//&lt;editor-fold desc=&quot;Relation&quot;&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    @OneToMany(fetch = FetchType.EAGER, mappedBy = <span class="stringliteral">&quot;category&quot;</span>, cascade=CascadeType.ALL)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">private</span> Set&lt;Article&gt; products = <span class="keyword">new</span> java.util.LinkedHashSet&lt;&gt;();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">//&lt;/editor-fold&gt;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    @Override</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span> String toString() {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;Category{&quot;</span> +</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="stringliteral">&quot;id=&quot;</span> + <span class="keywordtype">id</span> +</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="stringliteral">&quot;, name=&#39;&quot;</span> + name + <span class="charliteral">&#39;\&#39;&#39;</span> +</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="stringliteral">&quot;, acronym=&#39;&quot;</span> + acronym + <span class="charliteral">&#39;\&#39;&#39;</span> +</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="charliteral">&#39;}&#39;</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1model_1_1Category_html"><div class="ttname"><a href="classat_1_1multiflex_1_1model_1_1Category.html">at.multiflex.model.Category</a></div><div class="ttdoc">This Category class gets inserted into the database.</div><div class="ttdef"><b>Definition:</b> <a href="Category_8java_source.html#l00020">Category.java:20</a></div></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;@NoArgsConstructor</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;@Entity</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1model_1_1Category.html">   19</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classat_1_1multiflex_1_1model_1_1Category.html">Category</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">//&lt;editor-fold desc=&quot;Common Fields&quot;&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    @Id</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    @GeneratedValue(strategy = GenerationType.IDENTITY)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span> Integer id;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    @Column(nullable = <span class="keyword">false</span>, length = 64, unique = <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">private</span> String name;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    @Column(length = 8)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">private</span> String acronym;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    @Enumerated(EnumType.STRING)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span> <a class="code" href="enumat_1_1multiflex_1_1dto_1_1logic_1_1Type.html">Type</a> type;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">//&lt;/editor-fold&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">//&lt;editor-fold desc=&quot;Relation&quot;&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    @OneToMany(fetch = FetchType.EAGER, mappedBy = <span class="stringliteral">&quot;category&quot;</span>, cascade=CascadeType.ALL)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">private</span> Set&lt;Article&gt; products = <span class="keyword">new</span> java.util.LinkedHashSet&lt;&gt;();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//&lt;/editor-fold&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    @Override</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span> String toString() {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;Category{&quot;</span> +</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="stringliteral">&quot;id=&quot;</span> + <span class="keywordtype">id</span> +</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="stringliteral">&quot;, name=&#39;&quot;</span> + name + <span class="charliteral">&#39;\&#39;&#39;</span> +</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="stringliteral">&quot;, acronym=&#39;&quot;</span> + acronym + <span class="charliteral">&#39;\&#39;&#39;</span> +</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="charliteral">&#39;}&#39;</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1model_1_1Category_html"><div class="ttname"><a href="classat_1_1multiflex_1_1model_1_1Category.html">at.multiflex.model.Category</a></div><div class="ttdoc">This Category class gets inserted into the database.</div><div class="ttdef"><b>Definition:</b> <a href="Category_8java_source.html#l00019">Category.java:19</a></div></div>
 <div class="ttc" id="aenumat_1_1multiflex_1_1dto_1_1logic_1_1Type_html"><div class="ttname"><a href="enumat_1_1multiflex_1_1dto_1_1logic_1_1Type.html">at.multiflex.dto.logic.Type</a></div><div class="ttdoc">An enum with all types.</div><div class="ttdef"><b>Definition:</b> <a href="Type_8java_source.html#l00006">Type.java:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

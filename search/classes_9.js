@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_252',['Main',['../classat_1_1multiflex_1_1Main.html',1,'at::multiflex']]],
   ['mappinghelper_253',['MappingHelper',['../classat_1_1multiflex_1_1mapper_1_1MappingHelper.html',1,'at::multiflex::mapper']]],
   ['material_254',['Material',['../classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html',1,'at.multiflex.model.Wares.Material'],['../classFrontend_1_1AspMvc_1_1Models_1_1Material.html',1,'Frontend.AspMvc.Models.Material'],['../classFrontend_1_1Logic_1_1Entities_1_1Materials_1_1Material.html',1,'Frontend.Logic.Entities.Materials.Material']]],
   ['materialdao_255',['MaterialDao',['../classat_1_1multiflex_1_1dao_1_1wares_1_1MaterialDao.html',1,'at::multiflex::dao::wares']]],
