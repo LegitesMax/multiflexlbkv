@@ -90,90 +90,66 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    @Inject</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html">SizeRepository</a> sizeRepository;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#a5ccaf8ef275c3b8260870cf7bcf4ceff">   39</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Article.html">Article</a> <a class="code" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#a5ccaf8ef275c3b8260870cf7bcf4ceff">setEmptyFields</a>(<a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Article.html">Article</a> input){</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">   39</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html">Material</a> <a class="code" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">setEmptyFields</a>(<a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html">Material</a> input){</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        var in = input.getName().split(<span class="stringliteral">&quot; &quot;</span>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (in.length == 3){</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            input.setCategory(categoryRepository.findByAcronym(in[0]));</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            input.setColor(colorRepository.findByColorCode(in[2]));</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (in.length == 1){</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">if</span> (input.getColor().getName() == <span class="keyword">null</span> ) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                input.setColor(colorRepository.findById(999));</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">if</span> (input.getSize().getDescription() == <span class="keyword">null</span> ) {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                input.setColor(colorRepository.findById(999));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;inputValue&quot;</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> input;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">   66</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html">Material</a> <a class="code" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">setEmptyFields</a>(<a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html">Material</a> input){</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        var in = input.getName().split(<span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span> (in.length == 1){</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span> (input.getColor().getName() == <span class="keyword">null</span> ) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                input.setColor(colorRepository.findById(999));</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (input.getSize().getSize() == <span class="keyword">null</span> ) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                input.setSize(sizeRepository.findById(999));</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (in.length == 2){</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (in.length == 1){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">if</span> (input.getColor().getName() == <span class="keyword">null</span> ) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                input.setColor(colorRepository.findById(999));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span> (input.getSize().getSize() == <span class="keyword">null</span> ) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                input.setSize(sizeRepository.findById(999));</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (in.length == 2){</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (input.getColor().getName() == <span class="keyword">null</span> ) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                input.setColor(colorRepository.findById(999));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (in.length == 3){</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            input.setColor(colorRepository.findByColorCode(in[2]));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;inputValue &quot;</span> + in.length);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> input;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#af6b02b675b15c9a4b479002ee29974a3">   75</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html">Product</a> <a class="code" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#af6b02b675b15c9a4b479002ee29974a3">setEmptyFields</a>(<a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html">Product</a> input){</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        var in = input.getName().split(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (in.length == 3){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            input.setCategory(categoryRepository.findByAcronym(in[0]));</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">if</span> (input.getColor().getName() == <span class="keyword">null</span> ) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                input.setColor(colorRepository.findById(999));</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (in.length == 3){</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            input.setCategory(categoryRepository.findByName(in[0]));</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            input.setColor(colorRepository.findByColorCode(in[2]));</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;inputValue &quot;</span> + in.length);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">return</span> input;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#af6b02b675b15c9a4b479002ee29974a3">  102</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html">Product</a> <a class="code" href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#af6b02b675b15c9a4b479002ee29974a3">setEmptyFields</a>(<a class="code" href="classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html">Product</a> input){</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        var in = input.getName().split(<span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">if</span> (in.length == 3){</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            input.setCategory(categoryRepository.findByAcronym(in[0]));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            input.setColor(colorRepository.findByColorCode(in[2]));</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;inputValue&quot;</span>);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> input;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    public &lt;T extends Article&gt; <span class="keywordtype">void</span> checkNullRelations(T obj){</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span> (!(obj.getSize().getSize() == <span class="keyword">null</span> &amp;&amp; obj.getSize().getDescription() == <span class="keyword">null</span>)){</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Size is null&quot;</span>);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">if</span> (!(obj.getCategory().getName() == <span class="keyword">null</span>)){</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Category is null&quot;</span>);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span> (!(obj.getColor().getName() == <span class="keyword">null</span>)){</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Color is null&quot;</span>);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            input.setColor(colorRepository.findByColorCode(in[2]));</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;inputValue&quot;</span>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">return</span> input;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    public &lt;T extends Article&gt; <span class="keywordtype">void</span> checkNullRelations(T obj){</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span> (!(obj.getSize().getSize() == <span class="keyword">null</span> &amp;&amp; obj.getSize().getDescription() == <span class="keyword">null</span>)){</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Size is null&quot;</span>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span> (!(obj.getCategory().getName() == <span class="keyword">null</span>)){</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Category is null&quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span> (!(obj.getColor().getName() == <span class="keyword">null</span>)){</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Color is null&quot;</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html">at.multiflex.Logic.CRUDLogic</a></div><div class="ttdoc">A logic class that handles all regarding insert, update, delete.</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00017">CRUDLogic.java:17</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html_a5ccaf8ef275c3b8260870cf7bcf4ceff"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#a5ccaf8ef275c3b8260870cf7bcf4ceff">at.multiflex.Logic.CRUDLogic.setEmptyFields</a></div><div class="ttdeci">Article setEmptyFields(Article input)</div><div class="ttdoc">sets color, category and size</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00039">CRUDLogic.java:39</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html_aef983071ccb8c43e61754008b8b371cb"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">at.multiflex.Logic.CRUDLogic.setEmptyFields</a></div><div class="ttdeci">Material setEmptyFields(Material input)</div><div class="ttdoc">sets color, category and size</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00066">CRUDLogic.java:66</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html_af6b02b675b15c9a4b479002ee29974a3"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#af6b02b675b15c9a4b479002ee29974a3">at.multiflex.Logic.CRUDLogic.setEmptyFields</a></div><div class="ttdeci">Product setEmptyFields(Product input)</div><div class="ttdoc">sets color, category and size</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00102">CRUDLogic.java:102</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1model_1_1Wares_1_1Article_html"><div class="ttname"><a href="classat_1_1multiflex_1_1model_1_1Wares_1_1Article.html">at.multiflex.model.Wares.Article</a></div><div class="ttdoc">This Article class gets inserted into the database.</div><div class="ttdef"><b>Definition:</b> <a href="Article_8java_source.html#l00020">Article.java:20</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html_aef983071ccb8c43e61754008b8b371cb"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">at.multiflex.Logic.CRUDLogic.setEmptyFields</a></div><div class="ttdeci">Material setEmptyFields(Material input)</div><div class="ttdoc">sets color, category and size</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00039">CRUDLogic.java:39</a></div></div>
+<div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html_af6b02b675b15c9a4b479002ee29974a3"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#af6b02b675b15c9a4b479002ee29974a3">at.multiflex.Logic.CRUDLogic.setEmptyFields</a></div><div class="ttdeci">Product setEmptyFields(Product input)</div><div class="ttdoc">sets color, category and size</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00075">CRUDLogic.java:75</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1model_1_1Wares_1_1Material_html"><div class="ttname"><a href="classat_1_1multiflex_1_1model_1_1Wares_1_1Material.html">at.multiflex.model.Wares.Material</a></div><div class="ttdoc">This Material class gets inserted into the database.</div><div class="ttdef"><b>Definition:</b> <a href="Material_8java_source.html#l00018">Material.java:18</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1model_1_1Wares_1_1Product_html"><div class="ttname"><a href="classat_1_1multiflex_1_1model_1_1Wares_1_1Product.html">at.multiflex.model.Wares.Product</a></div><div class="ttdoc">This Product class gets inserted into the database.</div><div class="ttdef"><b>Definition:</b> <a href="Product_8java_source.html#l00019">Product.java:19</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1CategoryRepository_html"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1CategoryRepository.html">at.multiflex.repository.CategoryRepository</a></div><div class="ttdoc">This class has all Database Queries of the Category class.</div><div class="ttdef"><b>Definition:</b> <a href="CategoryRepository_8java_source.html#l00016">CategoryRepository.java:16</a></div></div>
