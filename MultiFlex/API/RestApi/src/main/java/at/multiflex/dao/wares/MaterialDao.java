@@ -52,13 +52,9 @@ public class MaterialDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
-        List<Material> entities;
-        if (Material.class.equals(type)) {
-            entities = repository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+    public List<Object> getAll()  {
+
+        List<Material> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
     }
@@ -71,13 +67,13 @@ public class MaterialDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/name/{name}")
-    public List<Object> getByName(String name) throws DaoException {
-        List<Material> entities;
-        if (Material.class.equals(type)) {
-            entities = repository.findByName(name);
-        } else{
-            throw new DaoException("Entity does not have a name, or no available DB request");
+    public List<Object> getByName(String name) {
+        if(name == null) {
+            throw new IllegalArgumentException("input is null");
         }
+
+        List<Material> entities = repository.findByName(name);
+
         return MappingHelper.entityDtoTransformation(entities);
     }
     /**
@@ -89,13 +85,12 @@ public class MaterialDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
-        Material entity;
-        if (Material.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Object getById(Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        Material entity = repository.findById(id);
+
         return MappingHelper.entityDtoTransformation(entity);
     }
     /**
@@ -108,13 +103,15 @@ public class MaterialDao {
     @Consumes
     @Path("/add")
     public Response add(MaterialDto input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Material) MappingHelper.entityDtoTransformation(input);
 
         entity = crudLogic.setEmptyFields(entity);
 
         crudOperations.add(entity);
-        //System.out.println(input.toString());
-        //System.out.println(entity .toString());
+
         return Response.status(Response.Status.CREATED).build();
     }
     /**
@@ -126,16 +123,11 @@ public class MaterialDao {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
-    public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (Material.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Response delete(@PathParam("id") Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
+        var entity = repository.findById(id);
 
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();

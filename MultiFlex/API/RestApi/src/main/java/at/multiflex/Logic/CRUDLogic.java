@@ -36,33 +36,6 @@ public class CRUDLogic {
      * @param input the input to set the fields
      * @return returns the input with the set values
      */
-    public Article setEmptyFields(Article input){
-        var in = input.getName().split(" ");
-
-        if (in.length == 3){
-            input.setCategory(categoryRepository.findByAcronym(in[0]));
-            input.setSize(sizeRepository.findBySize(Integer.parseInt(in[1])));
-            input.setColor(colorRepository.findByColorCode(in[2]));
-        } else if (in.length == 1){
-            input.setCategory(categoryRepository.findByName(in[0]));
-            if (input.getColor().getName() == null ) {
-                input.setColor(colorRepository.findById(999));
-            }
-            if (input.getSize().getDescription() == null ) {
-                input.setColor(colorRepository.findById(999));
-            }
-        }
-        else {
-            throw new IllegalArgumentException("inputValue");
-        }
-
-        return input;
-    }
-    /**
-     * sets color, category and size
-     * @param input the input to set the fields
-     * @return returns the input with the set values
-     */
     public Material setEmptyFields(Material input){
         var in = input.getName().split(" ");
 

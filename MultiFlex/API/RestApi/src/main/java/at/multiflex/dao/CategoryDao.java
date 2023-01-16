@@ -49,13 +49,8 @@ public class CategoryDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
-        List<Category> entities;
-        if (Category.class.equals(type)) {
-            entities = repository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+    public List<Object> getAll() {
+        List<Category> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
     }
@@ -68,13 +63,12 @@ public class CategoryDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/name/{name}")
-    public Object getByName(String name) throws DaoException {
-        Category entities;
-        if (Category.class.equals(type)) {
-            entities = repository.findByName(name);
-        } else{
-            throw new DaoException("Entity does not have a name, or no available DB request");
+    public Object getByName(String name) {
+        if(name == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        Category entities = repository.findByName(name);
+
         return MappingHelper.entityDtoTransformation(entities);
     }
     /**
@@ -86,13 +80,12 @@ public class CategoryDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
-        Category entity;
-        if (Category.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Object getById(Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        Category entity = repository.findById(id);
+
         return MappingHelper.entityDtoTransformation(entity);
     }
     /**
@@ -105,12 +98,11 @@ public class CategoryDao {
     @Consumes
     @Path("/add")
     public Response add(CategoryDto input) {
-        //System.out.println((Object) input.toString());
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Category) MappingHelper.entityDtoTransformation(input);
         entity.setType(input.getType());
-        //System.out.println( input.toString());
-
-       // System.out.println( entity.toString());
 
         crudOperations.add(entity);
 
@@ -125,17 +117,12 @@ public class CategoryDao {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
-    public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (Category.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Response delete(@PathParam("id") Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
-        //System.out.println(entity.toString());
+        Object entity  = repository.findById(id);
+
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
@@ -167,6 +154,9 @@ public class CategoryDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/updateByName")
     public Response updateByName(CategoryDto dto) {
+        if(dto == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = repository.findByName(dto.getName());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
@@ -185,6 +175,9 @@ public class CategoryDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(CategoryDto dto) {
+        if(dto == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = repository.findById(dto.getId());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);

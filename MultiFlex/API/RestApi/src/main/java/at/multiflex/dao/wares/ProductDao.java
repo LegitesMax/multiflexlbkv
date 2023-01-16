@@ -52,12 +52,7 @@ public class ProductDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     public List<Object> getAll() throws DaoException {
-        List<Product> entities;
-        if (Product.class.equals(type)) {
-            entities = repository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+        List<Product> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
     }
@@ -71,12 +66,11 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/name/{name}")
     public List<Object> getByName(String name) throws DaoException {
-        List<Product> entities;
-        if (Product.class.equals(type)) {
-            entities = repository.findByName(name);
-        } else{
-            throw new DaoException("Entity does not have a name, or no available DB request");
+        if(name == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        List<Product> entities = repository.findByName(name);
+
         return MappingHelper.entityDtoTransformation(entities);
     }
     /**
@@ -89,12 +83,11 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
     public Object getById(Integer id) throws DaoException {
-        Product entity;
-        if (Product.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        Product entity = repository.findById(id);
+
         return MappingHelper.entityDtoTransformation(entity);
     }
     /**
@@ -107,6 +100,9 @@ public class ProductDao {
     @Consumes
     @Path("/add")
     public Response add(ProductDto input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Product) MappingHelper.entityDtoTransformation(input);
 
         entity = crudLogic.setEmptyFields(entity);
@@ -125,15 +121,10 @@ public class ProductDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
     public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (Product.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
+        Object entity = repository.findById(id);
 
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();

@@ -53,13 +53,8 @@ public class ArticleDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
-        List<Article> entities;
-        if (Article.class.equals(type)) {
-            entities = articleRepository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+    public List<Object> getAll() {
+        List<Article> entities = articleRepository.loadAll();
 
         var dtos = MappingHelper.entityDtoTransformation(entities);
         hashing.hash(dtos.toString());
@@ -75,13 +70,12 @@ public class ArticleDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/name/{name}")
-    public List<Object> getByName(String name) throws DaoException {
-        List<Article> entities;
-        if (Article.class.equals(type)) {
-            entities = articleRepository.findByName(name);
-        } else{
-            throw new DaoException("Entity does not have a name, or no available DB request");
+    public List<Object> getByName(String name) {
+        if (name == null){
+            throw new IllegalArgumentException("input is null");
         }
+        List<Article> entities = articleRepository.findByName(name);
+
         return MappingHelper.entityDtoTransformation(entities);
     }
     /**
@@ -93,13 +87,13 @@ public class ArticleDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
-        Article entity;
-        if (Article.class.equals(type)) {
-            entity = articleRepository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Object getById(Integer id) {
+        if (id == null){
+            throw new IllegalArgumentException("input is null");
         }
+
+        var entity = articleRepository.findById(id);
+
         return MappingHelper.entityDtoTransformation(entity);
     }
     ///**
@@ -166,25 +160,29 @@ public class ArticleDao {
     //    crudOperations.update(entity);
     //    return Response.status(Response.Status.OK).build();
     //}
-    //@PUT
-    //@Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    //@Path("/update")
-    //public Response update(ArticleDto dto) {
-    //    var entity = articleRepository.findById(dto.getId());
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
+    @Path("/update")
+    public Response update(ArticleDto dto) {
+        if (dto == null){
+            throw new IllegalArgumentException("input is null");
+        }
+        var entity = articleRepository.findById(dto.getId());
 
-    //    var entity2 = ObjectMapper.MAPPER.fromDto(dto);
+        var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
-    //    if (entity2.getName() != null) {
-    //        entity.setName(entity2.getName());
-    //    }
-    //    if (entity2.getMinValue() != null) {
-    //        entity.setMinValue(entity2.getMinValue());
-    //    }
-    //    if (entity2.getValue() != null) {
-    //        entity.setValue(entity2.getValue());
-    //    }
+        if (entity2.getName() != null) {
+            entity.setName(entity2.getName());
+        }
+        if (entity2.getMinValue() != null) {
+            entity.setMinValue(entity2.getMinValue());
+        }
+        if (entity2.getValue() != null) {
+            entity.setValue(entity2.getValue());
+        }
 
-    //    crudOperations.update(entity);
-    //    return Response.status(Response.Status.OK).build();
-    //}
+        crudOperations.update(entity);
+        return Response.status(Response.Status.OK).build();
+    }
+
 }
