@@ -182,10 +182,10 @@ public class CategoryDao {
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
-        if (entity2.getName() != null) {
+        if (dto.getName() != null) {
             entity.setName(entity2.getName());
         }
-        if (entity2.getAcronym() != null) {
+        if (dto.getAcronym() != null) {
             entity.setAcronym(entity2.getAcronym());
         }
         if (entity2.getType() != null) {
