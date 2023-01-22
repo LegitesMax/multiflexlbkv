@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCommonBase_1_1Extensions_1_1TagInfo.html" title=" " alt="" coords="5,13,244,39"/>
-<area shape="rect" id="node2" href="$classCommonBase_1_1Extensions_1_1StringExtensions_1_1DivideInfo.html" title=" " alt="" coords="292,5,523,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node2" href="$classBillBeeQueries_1_1Logger.html" title="Very simple logger, for writing data from the api to the console." alt="" coords="124,5,291,32"/>
 </map>

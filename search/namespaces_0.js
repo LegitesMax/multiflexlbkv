@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['billbeequeries_305',['BillBeeQueries',['../namespaceBillBeeQueries.html',1,'']]]
+  ['billbeequeries_311',['BillBeeQueries',['../namespaceBillBeeQueries.html',1,'']]]
 ];

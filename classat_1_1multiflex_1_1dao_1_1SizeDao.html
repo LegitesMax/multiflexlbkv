@@ -98,10 +98,10 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#aa4a4c1cd83f61e6443415c93cb455a41">SizeDao</a> ()</td></tr>
 <tr class="memdesc:aa4a4c1cd83f61e6443415c93cb455a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Constructor that tells the superclass which entity class to use. <br /></td></tr>
 <tr class="separator:aa4a4c1cd83f61e6443415c93cb455a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53ef85e7944f9efc1cdc7a0c1de39299"><td class="memItemLeft" align="right" valign="top">List&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a53ef85e7944f9efc1cdc7a0c1de39299">getAll</a> ()  throws DaoException </td></tr>
+<tr class="memitem:a53ef85e7944f9efc1cdc7a0c1de39299"><td class="memItemLeft" align="right" valign="top">List&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a53ef85e7944f9efc1cdc7a0c1de39299">getAll</a> ()</td></tr>
 <tr class="memdesc:a53ef85e7944f9efc1cdc7a0c1de39299"><td class="mdescLeft">&#160;</td><td class="mdescRight">This gets all entities with this type from the Database and returns a list with them.  <a href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a53ef85e7944f9efc1cdc7a0c1de39299">More...</a><br /></td></tr>
 <tr class="separator:a53ef85e7944f9efc1cdc7a0c1de39299"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd6eb08e4553e3f48827cb9155eca133"><td class="memItemLeft" align="right" valign="top">Object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#acd6eb08e4553e3f48827cb9155eca133">getById</a> (Integer id)  throws DaoException </td></tr>
+<tr class="memitem:acd6eb08e4553e3f48827cb9155eca133"><td class="memItemLeft" align="right" valign="top">Object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#acd6eb08e4553e3f48827cb9155eca133">getById</a> (Integer id)</td></tr>
 <tr class="memdesc:acd6eb08e4553e3f48827cb9155eca133"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets an entity from this class by its id  <a href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#acd6eb08e4553e3f48827cb9155eca133">More...</a><br /></td></tr>
 <tr class="separator:acd6eb08e4553e3f48827cb9155eca133"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a454c3c12c3e809ebd814915a64a13208"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a454c3c12c3e809ebd814915a64a13208">add</a> (<a class="el" href="classat_1_1multiflex_1_1dto_1_1SizeDto.html">SizeDto</a> input)</td></tr>
@@ -170,14 +170,17 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The JSON Response code </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00093">93</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                       {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        var entity = (Size) MappingHelper.entityDtoTransformation(input);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="comment">//System.out.println(input.toString());</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a1a638b187dbf59f72cd3d2c653468187">crudOperations</a>.add(entity);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.CREATED).build();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00086">86</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                       {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span>(input == <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;input is null&quot;</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        var entity = (Size) MappingHelper.entityDtoTransformation(input);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a1a638b187dbf59f72cd3d2c653468187">crudOperations</a>.add(entity);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.CREATED).build();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1SizeDao_html_a1a638b187dbf59f72cd3d2c653468187"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a1a638b187dbf59f72cd3d2c653468187">at.multiflex.dao.SizeDao.crudOperations</a></div><div class="ttdeci">CRUDOperations crudOperations</div><div class="ttdoc">all create update delete operations</div><div class="ttdef"><b>Definition:</b> <a href="SizeDao_8java_source.html#l00040">SizeDao.java:40</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -221,23 +224,17 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00109">109</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                                                            {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        Object entity;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">if</span> (Size.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a62bda40035bb8d3e83861bc6ffaa57d4">type</a>)) {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#a67311cdab9efa5439982ae7839d798a4">findById</a>(<span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">if</span>(entity == <span class="keyword">null</span>) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> NotFoundException();</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a1a638b187dbf59f72cd3d2c653468187">crudOperations</a>.delete(entity);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.NO_CONTENT).build();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00105">105</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                                                            {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">if</span>(<span class="keywordtype">id</span> == <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;input is null&quot;</span>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        Object entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#a67311cdab9efa5439982ae7839d798a4">findById</a>(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a1a638b187dbf59f72cd3d2c653468187">crudOperations</a>.delete(entity);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">return</span> Response.status(Response.Status.NO_CONTENT).build();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1SizeDao_html_a11995ea4fac69574ed96cc70ff4c1090"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">at.multiflex.dao.SizeDao.repository</a></div><div class="ttdeci">SizeRepository repository</div><div class="ttdoc">repository for the Size class</div><div class="ttdef"><b>Definition:</b> <a href="SizeDao_8java_source.html#l00048">SizeDao.java:48</a></div></div>
-<div class="ttc" id="aclassat_1_1multiflex_1_1dao_1_1SizeDao_html_a62bda40035bb8d3e83861bc6ffaa57d4"><div class="ttname"><a href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a62bda40035bb8d3e83861bc6ffaa57d4">at.multiflex.dao.SizeDao.type</a></div><div class="ttdeci">Class&lt;?&gt; type</div><div class="ttdoc">type of the class</div><div class="ttdef"><b>Definition:</b> <a href="SizeDao_8java_source.html#l00035">SizeDao.java:35</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1SizeRepository_html_a67311cdab9efa5439982ae7839d798a4"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#a67311cdab9efa5439982ae7839d798a4">at.multiflex.repository.SizeRepository.findById</a></div><div class="ttdeci">Size findById(Integer id)</div><div class="ttdoc">Loads a Size entity from the database.</div><div class="ttdef"><b>Definition:</b> <a href="SizeRepository_8java_source.html#l00028">SizeRepository.java:28</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -255,7 +252,7 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
           <td class="memname">List&lt;Object&gt; at.multiflex.dao.SizeDao.getAll </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> throws <a class="el" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a></td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -275,16 +272,11 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00056">56</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                                     {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        List&lt;Size&gt; entities;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">if</span> (Size.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a62bda40035bb8d3e83861bc6ffaa57d4">type</a>)) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#ac21117b472b16accdfe572c4516191d2">loadAll</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entities);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                 {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        List&lt;Size&gt; entities = <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#ac21117b472b16accdfe572c4516191d2">loadAll</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entities);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1repository_1_1SizeRepository_html_ac21117b472b16accdfe572c4516191d2"><div class="ttname"><a href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#ac21117b472b16accdfe572c4516191d2">at.multiflex.repository.SizeRepository.loadAll</a></div><div class="ttdeci">List&lt; Size &gt; loadAll()</div><div class="ttdoc">A Query to load all Size entities from the database.</div><div class="ttdef"><b>Definition:</b> <a href="SizeRepository_8java_source.html#l00019">SizeRepository.java:19</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -303,7 +295,7 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
           <td>(</td>
           <td class="paramtype">Integer&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
-          <td> throws <a class="el" href="classat_1_1multiflex_1_1dao_1_1DaoException.html">DaoException</a></td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -328,16 +320,14 @@ Class&lt;?&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00075">75</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                                          {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        Size entity;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span> (Size.class.equals(<a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a62bda40035bb8d3e83861bc6ffaa57d4">type</a>)) {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#a67311cdab9efa5439982ae7839d798a4">findById</a>(<span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        } <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> DaoException(<span class="stringliteral">&quot;Entity does not exist&quot;</span>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entity);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="SizeDao_8java_source.html#l00070">70</a> of file <a class="el" href="SizeDao_8java_source.html">SizeDao.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                      {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span>(<span class="keywordtype">id</span> == <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;input is null&quot;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        Size entity = <a class="code" href="classat_1_1multiflex_1_1dao_1_1SizeDao.html#a11995ea4fac69574ed96cc70ff4c1090">repository</a>.<a class="code" href="classat_1_1multiflex_1_1repository_1_1SizeRepository.html#a67311cdab9efa5439982ae7839d798a4">findById</a>(<span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> MappingHelper.entityDtoTransformation(entity);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
