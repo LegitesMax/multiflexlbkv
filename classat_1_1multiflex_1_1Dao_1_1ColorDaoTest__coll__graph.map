@@ -1,0 +1,11 @@
+<map id="at.multiflex.Dao.ColorDaoTest" name="at.multiflex.Dao.ColorDaoTest">
+<area shape="rect" id="node1" title=" " alt="" coords="1524,15,1741,41"/>
+<area shape="rect" id="node2" href="$classat_1_1multiflex_1_1dao_1_1ColorDao.html" title="This class includes all json requests for the Color class." alt="" coords="1257,55,1447,81"/>
+<area shape="rect" id="node3" href="$classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html" title="A logic class that handles all regarding insert, update, delete." alt="" coords="932,97,1143,124"/>
+<area shape="rect" id="node4" href="$classat_1_1multiflex_1_1repository_1_1ColorRepository.html" title="This class has all Database Queries of the Category class." alt="" coords="583,18,752,59"/>
+<area shape="rect" id="node5" href="$classat_1_1multiflex_1_1repository_1_1Repository.html" title="A class where all repositories are inherited from." alt="" coords="196,119,365,161"/>
+<area shape="rect" id="node7" href="$classat_1_1multiflex_1_1repository_1_1CategoryRepository.html" title="This class has all Database Queries of the Category class." alt="" coords="583,83,752,125"/>
+<area shape="rect" id="node8" href="$classat_1_1multiflex_1_1repository_1_1SizeRepository.html" title="This class has all Database Queries of the Size class." alt="" coords="583,149,752,190"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,167,123,193"/>
+<area shape="rect" id="node9" href="$classat_1_1multiflex_1_1repository_1_1CRUDOperations.html" title="This class has all CRUD (Create, Update, Delete) operations." alt="" coords="389,190,559,231"/>
+</map>
