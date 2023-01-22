@@ -78,14 +78,14 @@ public class ColorDaoTest {
     }
     @Test
     @TestTransaction
-    public void updateColorByName_giveNull_throwsIllegalArgumentException() throws DaoException {
+    public void updateColorByName_giveNull_throwsIllegalArgumentException()  {
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             dao.updateByName(null);
         });
     }
     @Test
     @TestTransaction
-    public void updateColorByName_updateOneColor_Success() throws DaoException {
+    public void updateColorByName_updateOneColor_Success()  {
         addColor_addNewColor_Success();
 
         var res = (ColorDto) MappingHelper.entityDtoTransformation(repo.findByName("TestColor"));
@@ -96,7 +96,7 @@ public class ColorDaoTest {
     }
     @Test
     @TestTransaction
-    public void updateColorByName_updateOneColor2_Success() throws DaoException {
+    public void updateColorByName_updateOneColor2_Success()  {
         addColor_addNewColor_Success();
 
         var res = (ColorDto) MappingHelper.entityDtoTransformation(repo.findByName("TestColor"));
@@ -109,14 +109,14 @@ public class ColorDaoTest {
     }
     @Test
     @TestTransaction
-    public void updateColorById_giveNull_throwsIllegalArgumentException() throws DaoException {
+    public void updateColorById_giveNull_throwsIllegalArgumentException()  {
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             dao.update(null);
         });
     }
     @Test
     @TestTransaction
-    public void updateColorById_updateOneColor_Success() throws DaoException {
+    public void updateColorById_updateOneColor_Success()  {
         addColor_addNewColor_Success();
 
         var res = (ColorDto) MappingHelper.entityDtoTransformation(repo.findByName("TestColor"));
@@ -130,7 +130,7 @@ public class ColorDaoTest {
     }
     @Test
     @TestTransaction
-    public void updateColorById_updateOneColor2_Success() throws DaoException {
+    public void updateColorById_updateOneColor2_Success()  {
         addColor_addNewColor_Success();
 
         var res = (ColorDto) MappingHelper.entityDtoTransformation(repo.findByName("TestColor"));

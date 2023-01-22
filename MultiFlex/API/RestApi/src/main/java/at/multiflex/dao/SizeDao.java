@@ -53,13 +53,8 @@ public class SizeDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
-        List<Size> entities;
-        if (Size.class.equals(type)) {
-            entities = repository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+    public List<Object> getAll() {
+        List<Size> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
     }
@@ -72,13 +67,11 @@ public class SizeDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
-        Size entity;
-        if (Size.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Object getById(Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        Size entity = repository.findById(id);
         return MappingHelper.entityDtoTransformation(entity);
     }
     /**
@@ -91,8 +84,11 @@ public class SizeDao {
     @Consumes
     @Path("/add")
     public Response add(SizeDto input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Size) MappingHelper.entityDtoTransformation(input);
-        //System.out.println(input.toString());
+
         crudOperations.add(entity);
 
         return Response.status(Response.Status.CREATED).build();
@@ -107,15 +103,10 @@ public class SizeDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
     public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (Size.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
+        Object entity = repository.findById(id);
 
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
@@ -124,6 +115,9 @@ public class SizeDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/updateBySize")
     public Response updateBySize(SizeDto dto) {
+        if(dto == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = repository.findBySize(dto.getSize());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
@@ -139,6 +133,9 @@ public class SizeDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(SizeDto dto) {
+        if(dto == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = repository.findById(dto.getId());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);

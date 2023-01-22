@@ -51,7 +51,7 @@ public class ProductDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
+    public List<Object> getAll() {
         List<Product> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
@@ -65,7 +65,7 @@ public class ProductDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/name/{name}")
-    public List<Object> getByName(String name) throws DaoException {
+    public List<Object> getByName(String name) {
         if(name == null) {
             throw new IllegalArgumentException("input is null");
         }
@@ -82,7 +82,7 @@ public class ProductDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
+    public Object getById(Integer id) {
         if(id == null) {
             throw new IllegalArgumentException("input is null");
         }
@@ -120,7 +120,7 @@ public class ProductDao {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
-    public Response delete(@PathParam("id") Integer id) throws DaoException {
+    public Response delete(@PathParam("id") Integer id) {
         if(id == null) {
             throw new IllegalArgumentException("input is null");
         }
