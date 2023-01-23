@@ -135,17 +135,17 @@ $(function() {
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">return</span> input;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    public &lt;T extends Article&gt; <span class="keywordtype">void</span> checkNullRelations(T obj){</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">if</span> (!(obj.getSize().getSize() == <span class="keyword">null</span> &amp;&amp; obj.getSize().getDescription() == <span class="keyword">null</span>)){</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Size is null&quot;</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span> (!(obj.getCategory().getName() == <span class="keyword">null</span>)){</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Category is null&quot;</span>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span> (!(obj.getColor().getName() == <span class="keyword">null</span>)){</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="stringliteral">&quot;Color is null&quot;</span>);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">/*public &lt;T extends Article&gt; void checkNullRelations(T obj){</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">        if (!(obj.getSize().getSize() == null &amp;&amp; obj.getSize().getDescription() == null)){</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">            throw new IllegalArgumentException(&quot;Size is null&quot;);</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">        if (!(obj.getCategory().getName() == null)){</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">            throw new IllegalArgumentException(&quot;Category is null&quot;);</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">        if (!(obj.getColor().getName() == null)){</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">            throw new IllegalArgumentException(&quot;Color is null&quot;);</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">    }*/</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html">at.multiflex.Logic.CRUDLogic</a></div><div class="ttdoc">A logic class that handles all regarding insert, update, delete.</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00017">CRUDLogic.java:17</a></div></div>
 <div class="ttc" id="aclassat_1_1multiflex_1_1Logic_1_1CRUDLogic_html_aef983071ccb8c43e61754008b8b371cb"><div class="ttname"><a href="classat_1_1multiflex_1_1Logic_1_1CRUDLogic.html#aef983071ccb8c43e61754008b8b371cb">at.multiflex.Logic.CRUDLogic.setEmptyFields</a></div><div class="ttdeci">Material setEmptyFields(Material input)</div><div class="ttdoc">sets color, category and size</div><div class="ttdef"><b>Definition:</b> <a href="CRUDLogic_8java_source.html#l00039">CRUDLogic.java:39</a></div></div>
