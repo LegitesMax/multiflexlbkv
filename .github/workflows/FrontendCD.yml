@@ -50,12 +50,6 @@ jobs:
             user: ${{ secrets.REMOTE_USER }}
             server: ${{ secrets.REMOTE_HOST }}
             alias: server
-
-      - name: test connection
-        run: |
-          echo "this is a test" > ~/test.txt
-          scp ~/test.txt server:~/
-          ssh server "ls -l ~"
           
       - name: Install ssh key
         uses: caberger/install-ssh-key@v1.0
