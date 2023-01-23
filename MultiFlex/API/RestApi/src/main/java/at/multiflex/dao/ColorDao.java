@@ -53,13 +53,8 @@ public class ColorDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
-        List<Color> entities;
-        if (Color.class.equals(type)) {
-            entities = repository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+    public List<Object> getAll() {
+        List<Color> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
     }
@@ -72,13 +67,11 @@ public class ColorDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/name/{name}")
-    public Object getByName(String name) throws DaoException {
-        Color entities;
-        if (Color.class.equals(type)) {
-            entities = repository.findByName(name);
-        } else{
-            throw new DaoException("Entity does not have a name, or no available DB request");
+    public Object getByName(String name) {
+        if(name == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        Color entities = repository.findByName(name);
         return MappingHelper.entityDtoTransformation(entities);
     }
     /**
@@ -90,13 +83,13 @@ public class ColorDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
-        Color entity;
-        if (Color.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Object getById(Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
+
+        Color entity = repository.findById(id);
+
         return MappingHelper.entityDtoTransformation(entity);
     }
     /**
@@ -109,6 +102,9 @@ public class ColorDao {
     @Consumes
     @Path("/add")
     public Response add(ColorDto input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Color) MappingHelper.entityDtoTransformation(input);
 
         crudOperations.add(entity);
@@ -124,17 +120,11 @@ public class ColorDao {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
-    public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (Color.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Response delete(@PathParam("id") Integer id) {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
-
+        Object entity = repository.findById(id);
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
@@ -142,13 +132,13 @@ public class ColorDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/updateByName")
     public Response updateByName(ColorDto dto) {
+        if(dto == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = repository.findByName(dto.getName());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
 
-        if (entity2.getName() != null) {
-            entity.setName(entity2.getName());
-        }
         if (entity2.getColorCode() != null) {
             entity.setColorCode(entity2.getColorCode());
         }
@@ -160,6 +150,9 @@ public class ColorDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/update")
     public Response update(ColorDto dto) {
+        if(dto == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = repository.findById(dto.getId());
 
         var entity2 = ObjectMapper.MAPPER.fromDto(dto);
