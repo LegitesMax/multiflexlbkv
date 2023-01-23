@@ -26,18 +26,18 @@ public class ProductDaoTest {
     @Inject
     CategoryDao categoryDao;
     @Test
-    public void getAllTest() throws DaoException {
+    public void getAllTest() {
         dao.getAll();
     }
     @Test
-    public void getByNameTest() throws DaoException {
+    public void getByNameTest() {
         dao.getByName("BL 39 34");
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             dao.getByName(null);
         });
     }
     @Test
-    public void getByIdTest() throws DaoException {
+    public void getByIdTest() {
         dao.getById(1);
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             dao.getById(null);
@@ -78,7 +78,7 @@ public class ProductDaoTest {
     }
     @Test
     @TestTransaction
-    public void deleteProduct_deleteOneProduct_Success() throws DaoException {
+    public void deleteProduct_deleteOneProduct_Success() {
         addProduct_addNewProduct_Success();
 
         var res = repo.findByName("TESTP 39 BA");

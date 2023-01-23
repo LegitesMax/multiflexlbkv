@@ -53,13 +53,8 @@ public class ProductionLogDao {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
-    public List<Object> getAll() throws DaoException {
-        List<ProductionLog> entities;
-        if (ProductionLog.class.equals(type)) {
-            entities = repository.loadAll();
-        } else{
-            throw new DaoException("Entity does not exist");
-        }
+    public List<Object> getAll() {
+        List<ProductionLog> entities = repository.loadAll();
 
         return MappingHelper.entityDtoTransformation(entities);
     }
@@ -72,13 +67,12 @@ public class ProductionLogDao {
     @GET
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/{id}")
-    public Object getById(Integer id) throws DaoException {
-        ProductionLog entity;
-        if (ProductionLog.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Object getById(Integer id)  {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        ProductionLog entity = repository.findById(id);
+
         return MappingHelper.entityDtoTransformation(entity);
     }
     /**
@@ -90,16 +84,11 @@ public class ProductionLogDao {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Path("/delete/{id}")
-    public Response delete(@PathParam("id") Integer id) throws DaoException {
-        Object entity;
-        if (ProductionLog.class.equals(type)) {
-            entity = repository.findById(id);
-        } else{
-            throw new DaoException("Entity does not exist");
+    public Response delete(@PathParam("id") Integer id)  {
+        if(id == null) {
+            throw new IllegalArgumentException("input is null");
         }
-        if(entity == null) {
-            throw new NotFoundException();
-        }
+        Object entity = repository.findById(id);
 
         crudOperations.delete(entity);
         return Response.status(Response.Status.NO_CONTENT).build();
@@ -114,11 +103,14 @@ public class ProductionLogDao {
     @Consumes
     @Path("/produce")
     public Response produce(Production input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Product) MappingHelper.entityDtoTransformation(input.getProduct());
 
         logic.produce(entity, input.getAmount().intValue());
 
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
     /**
      * transforms a given dto to an entity and adds it into the database
@@ -129,13 +121,13 @@ public class ProductionLogDao {
     @Produces(MediaType.APPLICATION_JSON_PATCH_JSON)
     @Consumes
     @Path("/consume")
-    public Response add(ProductionLogDto input) {
-        var entity = (ProductionLog) MappingHelper.entityDtoTransformation(input);
-
-        if (repository.findById(input.getId()) == null){
-            crudOperations.add(entity);
-            logic.consume(entity.getProduct());
+    public Response consume(Production input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
         }
+        var entity = (Product) MappingHelper.entityDtoTransformation(input.getProduct());
+
+        logic.consume(entity, input.getAmount().intValue());
 
         return Response.status(Response.Status.CREATED).build();
     }
@@ -150,6 +142,9 @@ public class ProductionLogDao {
     @Consumes
     @Path("/fixStock")
     public Response fixStock(Production input) {
+        if(input == null) {
+            throw new IllegalArgumentException("input is null");
+        }
         var entity = (Product) MappingHelper.entityDtoTransformation(input.getProduct());
 
         logic.fixStock(entity, input.getAmount());

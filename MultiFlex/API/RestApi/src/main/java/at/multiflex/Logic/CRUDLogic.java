@@ -91,7 +91,7 @@ public class CRUDLogic {
      * @param obj the input object
      * @param <T> a generic value that extends article
      */
-    public <T extends Article> void checkNullRelations(T obj){
+    /*public <T extends Article> void checkNullRelations(T obj){
         if (!(obj.getSize().getSize() == null && obj.getSize().getDescription() == null)){
             throw new IllegalArgumentException("Size is null");
         }
@@ -101,5 +101,5 @@ public class CRUDLogic {
         if (!(obj.getColor().getName() == null)){
             throw new IllegalArgumentException("Color is null");
         }
-    }
+    }*/
 }
