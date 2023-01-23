@@ -10,6 +10,7 @@ namespace Frontend.AspMvc.Controllers
         public static string ProductHasCode = "";
         public static string MaterialHasCode = "";
         public static string ColorHasCode = "";
+        private static string host = "multiflex-backend";
 
         public static HttpClient client { get; set; } = new HttpClient();
         public static Model Model = new Model();
@@ -24,19 +25,19 @@ namespace Frontend.AspMvc.Controllers
             return instance;
         }
 
-
         public static async void LoadAllDataAsync()
         {
-            ProductHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash/Product").Result;
-            MaterialHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash/Material").Result;
-            ColorHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash/Color").Result;
+
+            ProductHasCode = client.GetStringAsync("http://"+ host +":9000/Hash/Product").Result;
+            MaterialHasCode = client.GetStringAsync("http://"+ host + ":9000/Hash/Material").Result;
+            ColorHasCode = client.GetStringAsync("http://"+ host + ":9000/Hash/Color").Result;
 
             if (FirstLoad == false || CheckHashCode() == false)
             {
-                var productJson = await client.GetStringAsync("http://127.0.0.1:9000/Category/Product");
+                var productJson = await client.GetStringAsync("http://multiflex-backend:9000/Category/Product");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
 
-                var colorJson = await client.GetStringAsync("http://127.0.0.1:9000/Color");
+                var colorJson = await client.GetStringAsync("http://multiflex-backend:9000/Color");
                 HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
             }
             FirstLoad = true;
@@ -45,12 +46,12 @@ namespace Frontend.AspMvc.Controllers
         public static bool CheckPoductHashCode()
         {
             var result = false;
-            if (ProductHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash/Product").Result) result = true;
+            if (ProductHasCode == client.GetStringAsync("http://multiflex-backend:9000/Hash/Product").Result) result = true;
             else
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash/Product");
+                    return client.GetStringAsync("http://multiflex-backend:9000/Hash/Product");
                 });
                 result = false;
                 ProductHasCode = resultHash.Result;
@@ -62,12 +63,12 @@ namespace Frontend.AspMvc.Controllers
         {
             var result = false;
 
-            if (MaterialHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash/Material").Result) result = true;
+            if (MaterialHasCode == client.GetStringAsync("http://multiflex-backend:9000/Hash/Material").Result) result = true;
             else
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash/Material");
+                    return client.GetStringAsync("http://multiflex-backend:9000/Hash/Material");
                 });
                 result = false;
                 MaterialHasCode = resultHash.Result;
@@ -80,12 +81,12 @@ namespace Frontend.AspMvc.Controllers
         {
             var result = false;
 
-            if (MaterialHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash/Color").Result) result = true;
+            if (MaterialHasCode == client.GetStringAsync("http://multiflex-backend:9000/Hash/Color").Result) result = true;
             else
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash/Color");
+                    return client.GetStringAsync("http://multiflex-backend:9000/Hash/Color");
                 });
                 result = false;
                 MaterialHasCode = resultHash.Result;
@@ -98,13 +99,13 @@ namespace Frontend.AspMvc.Controllers
         {
             bool result = false;
 
-            if (DataHasCode == client.GetStringAsync("http://127.0.0.1:9000/Hash").Result) result = true;
+            if (DataHasCode == client.GetStringAsync("http://multiflex-backend:9000/Hash").Result) result = true;
 
-            if (DataHasCode != client.GetStringAsync("http://127.0.0.1:9000/Hash").Result)
+            if (DataHasCode != client.GetStringAsync("http://multiflex-backend:9000/Hash").Result)
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://127.0.0.1:9000/Hash");
+                    return client.GetStringAsync("http://multiflex-backend:9000/Hash");
                 });
                 result = false;
                 DataHasCode = resultHash.Result;
