@@ -27,7 +27,7 @@ namespace Frontend.AspMvc.Controllers
 
         public static async void LoadAllDataAsync()
         {
-            ProductHasCode = client.GetStringAsync("http://multiflex-backend:9000/Hash/Product").Result;
+            ProductHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash/Product").Result;
             MaterialHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash/Material").Result;
             ColorHasCode = client.GetStringAsync("http://127.0.0.1:9000/Hash/Color").Result;
 
