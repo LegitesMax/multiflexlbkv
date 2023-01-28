@@ -94,19 +94,19 @@ namespace Frontend.AspMvc.Controllers
 
             if (/*HashSingleton.CheckPoductHashCode() == false &&*/ indexStatus == "product")
             {
-                var productJson = await client.GetStringAsync("http://127.17.0.2:9000/Category/Product");
+                var productJson = await client.GetStringAsync("http://172.17.0.3:9000/Category/Product");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
             if (/*HashSingleton.CheckMaterialHashCode() == false &&*/ indexStatus == "material")
             {
-                var productJson = await client.GetStringAsync("http://127.17.0.2:9000/Category/Material");
+                var productJson = await client.GetStringAsync("http://172.17.0.3:9000/Category/Material");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "material";
             }
             if (HashSingleton.CheckColorHashCode() == false)
             {
-                var colorJson = await client.GetStringAsync("http://127.17.0.2:9000/Color");
+                var colorJson = await client.GetStringAsync("http://172.17.0.3:9000/Color");
                 HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
             }
 
@@ -474,7 +474,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> EditProductAsync(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.17.0.2:9000/Article/updateByName", model.sub.Product).Result;
+            var response = client.PutAsJsonAsync("http://172.17.0.3:9000/Article/updateByName", model.sub.Product).Result;
 
             await SetCategoriesAsync();
 
@@ -485,7 +485,7 @@ namespace Frontend.AspMvc.Controllers
             //var data = new SubscribeModel { Name = model.sub.Product.Name, Value = (int?)model.sub.Product.Value, MinValue = (int?)model.sub.Product.MinValue,  Category = model.sub.Category, Size = model.sub.Size, Color = model.sub.Color};
 
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.17.0.2:9000/Product/add", model.sub.Product).Result;
+            var response = client.PostAsJsonAsync("http://172.17.0.3:9000/Product/add", model.sub.Product).Result;
 
             await SetCategoriesAsync();
 
@@ -497,7 +497,7 @@ namespace Frontend.AspMvc.Controllers
         {
 
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.17.0.2:9000/Category/add", model.sub.Category).Result;
+            var response = client.PostAsJsonAsync("http://172.17.0.3:9000/Category/add", model.sub.Category).Result;
 
 
             await SetCategoriesAsync();
@@ -508,7 +508,7 @@ namespace Frontend.AspMvc.Controllers
         {
 
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.17.0.2:9000/Article/updateByName", model.sub.Category).Result;
+            var response = client.PutAsJsonAsync("http://172.17.0.3:9000/Article/updateByName", model.sub.Category).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -526,7 +526,7 @@ namespace Frontend.AspMvc.Controllers
 
 
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.17.0.2:9000/Color/add", model.sub.Color).Result;
+            var response = client.PostAsJsonAsync("http://172.17.0.3:9000/Color/add", model.sub.Color).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -536,7 +536,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> EditColor(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.17.0.2:9000/Color/updateByName", model.sub.Color).Result;
+            var response = client.PutAsJsonAsync("http://172.17.0.3:9000/Color/updateByName", model.sub.Color).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -552,7 +552,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> AddSize(Model model)
         {
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.17.0.2:9000/Size/add", model.sub.Size).Result;
+            var response = client.PostAsJsonAsync("http://172.17.0.3:9000/Size/add", model.sub.Size).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -562,7 +562,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> EditSize(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.17.0.2:9000/Size/updateBySize", model.sub.Size).Result;
+            var response = client.PutAsJsonAsync("http://172.17.0.3:9000/Size/updateBySize", model.sub.Size).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -574,7 +574,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> AddMaterial(Model model)
         {
             var client = new HttpClient();
-            var response = client.PostAsJsonAsync("http://127.17.0.2:9000/Material/add", model.sub.Material).Result;
+            var response = client.PostAsJsonAsync("http://172.17.0.3:9000/Material/add", model.sub.Material).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
@@ -584,7 +584,7 @@ namespace Frontend.AspMvc.Controllers
         public async Task<IActionResult> EditMaterial(Model model)
         {
             var client = new HttpClient();
-            var response = client.PutAsJsonAsync("http://127.17.0.2:9000/Article/updateByName", model.sub.Material).Result;
+            var response = client.PutAsJsonAsync("http://172.17.0.3:9000/Article/updateByName", model.sub.Material).Result;
 
             HashSingleton.Model.Orders = GetOrdereItems();
             await SetCategoriesAsync();
