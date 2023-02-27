@@ -165,19 +165,19 @@ $(function() {
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">if</span> (<span class="comment">/*HashSingleton.CheckPoductHashCode() == false &amp;&amp;*/</span> indexStatus == <span class="stringliteral">&quot;product&quot;</span>)</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                var productJson = await client.GetStringAsync(<span class="stringliteral">&quot;http://172.17.0.3:9000/Category/Product&quot;</span>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                var productJson = await client.GetStringAsync(<span class="stringliteral">&quot;http://multiflex2.ddns.net/api/Category/Product&quot;</span>);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <a class="code" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a>.Model.Categories = JsonConvert.DeserializeObject&lt;List&lt;Models.Category&gt;&gt;(productJson);</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                ViewData[<span class="stringliteral">&quot;index&quot;</span>] = <span class="stringliteral">&quot;product&quot;</span>;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            }</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">if</span> (<span class="comment">/*HashSingleton.CheckMaterialHashCode() == false &amp;&amp;*/</span> indexStatus == <span class="stringliteral">&quot;material&quot;</span>)</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                var productJson = await client.GetStringAsync(<span class="stringliteral">&quot;http://172.17.0.3:9000/Category/Material&quot;</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                var productJson = await client.GetStringAsync(<span class="stringliteral">&quot;http://multiflex2.ddns.net/api/Category/Material&quot;</span>);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <a class="code" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a>.Model.Categories = JsonConvert.DeserializeObject&lt;List&lt;Models.Category&gt;&gt;(productJson);</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                ViewData[<span class="stringliteral">&quot;index&quot;</span>] = <span class="stringliteral">&quot;material&quot;</span>;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            }</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a>.CheckColorHashCode() == <span class="keyword">false</span>)</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                var colorJson = await client.GetStringAsync(<span class="stringliteral">&quot;http://172.17.0.3:9000/Color&quot;</span>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                var colorJson = await client.GetStringAsync(<span class="stringliteral">&quot;http://multiflex2.ddns.net/api/Color&quot;</span>);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <a class="code" href="classFrontend_1_1AspMvc_1_1Controllers_1_1HashSingleton.html">HashSingleton</a>.Model.Colors = JsonConvert.DeserializeObject&lt;List&lt;Models.Color&gt;&gt;(colorJson);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            }</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
