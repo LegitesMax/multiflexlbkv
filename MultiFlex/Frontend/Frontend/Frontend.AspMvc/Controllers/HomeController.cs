@@ -94,19 +94,19 @@ namespace Frontend.AspMvc.Controllers
 
             if (/*HashSingleton.CheckPoductHashCode() == false &&*/ indexStatus == "product")
             {
-                var productJson = await client.GetStringAsync("http://172.17.0.3:9000/Category/Product");
+                var productJson = await client.GetStringAsync("http://multiflex2.ddns.net/api/Category/Product");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "product";
             }
             if (/*HashSingleton.CheckMaterialHashCode() == false &&*/ indexStatus == "material")
             {
-                var productJson = await client.GetStringAsync("http://172.17.0.3:9000/Category/Material");
+                var productJson = await client.GetStringAsync("http://multiflex2.ddns.net/api/Category/Material");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
                 ViewData["index"] = "material";
             }
             if (HashSingleton.CheckColorHashCode() == false)
             {
-                var colorJson = await client.GetStringAsync("http://172.17.0.3:9000/Color");
+                var colorJson = await client.GetStringAsync("http://multiflex2.ddns.net/api/Color");
                 HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
             }
 
