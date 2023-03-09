@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['canceledordersasync_17',['CanceledOrdersAsync',['../classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#acd3dc3aa334a05f421169fe5659f12a3',1,'Frontend::AspMvc::Controllers::HomeController']]],
+  ['canceledordersasync_17',['CanceledOrdersAsync',['../classFrontend_1_1AspMvc_1_1Controllers_1_1HomeController.html#ab7ff0a85a50a9c40cede5569ee80730c',1,'Frontend::AspMvc::Controllers::HomeController']]],
   ['category_18',['Category',['../classat_1_1multiflex_1_1model_1_1Category.html',1,'at.multiflex.model.Category'],['../enumat_1_1multiflex_1_1dto_1_1logic_1_1Type.html#a0affc3dc24dcefa1d4e3fd328bb00d78',1,'at.multiflex.dto.logic.Type.Category()'],['../classFrontend_1_1AspMvc_1_1Models_1_1Category.html',1,'Frontend.AspMvc.Models.Category']]],
   ['categorydao_19',['CategoryDao',['../classat_1_1multiflex_1_1dao_1_1CategoryDao.html',1,'at.multiflex.dao.CategoryDao'],['../classat_1_1multiflex_1_1dao_1_1CategoryDao.html#a082c4574dea04036af0308a3997f3d5b',1,'at.multiflex.dao.CategoryDao.CategoryDao()']]],
   ['categorydaotest_20',['CategoryDaoTest',['../classat_1_1multiflex_1_1Dao_1_1CategoryDaoTest.html',1,'at::multiflex::Dao']]],
