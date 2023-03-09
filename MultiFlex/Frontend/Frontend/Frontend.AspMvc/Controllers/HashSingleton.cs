@@ -11,7 +11,11 @@ namespace Frontend.AspMvc.Controllers
         public static string MaterialHasCode = "";
         public static string ColorHasCode = "";
 
-        public static HttpClient client { get; set; } = new HttpClient();
+        static string conPathLocalhost = "http://127.0.0.1:9000";
+        static string conPathServer = "http://multiflex2.ddns.net/api";
+
+
+		public static HttpClient client { get; set; } = new HttpClient();
         public static Model Model = new Model();
 
         private HashSingleton() { }
@@ -27,16 +31,16 @@ namespace Frontend.AspMvc.Controllers
 
         public static async void LoadAllDataAsync()
         {
-            ProductHasCode = client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Product").Result;
-            MaterialHasCode = client.GetStringAsync("http://multiflex2.ddns.net/api/Material").Result;
-            ColorHasCode = client.GetStringAsync("http://multiflex2.ddns.net/api/Color").Result;
+			ProductHasCode = client.GetStringAsync(conPathLocalhost + "/Hash/Product").Result;
+            MaterialHasCode = client.GetStringAsync(conPathLocalhost + "/Material").Result;
+            ColorHasCode = client.GetStringAsync(conPathLocalhost + "/Color").Result;
 
             if (FirstLoad == false || CheckHashCode() == false)
             {
-                var productJson = await client.GetStringAsync("http://multiflex2.ddns.net/api/Category/Product");
+                var productJson = await client.GetStringAsync(conPathLocalhost + "/Category/Product");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
 
-                var colorJson = await client.GetStringAsync("http://multiflex2.ddns.net/api/Color");
+                var colorJson = await client.GetStringAsync(conPathLocalhost + "/Color");
                 HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
             }
             FirstLoad = true;
@@ -45,12 +49,12 @@ namespace Frontend.AspMvc.Controllers
         public static bool CheckPoductHashCode()
         {
             var result = false;
-            if (ProductHasCode == client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Product").Result) result = true;
+            if (ProductHasCode == client.GetStringAsync(conPathLocalhost + "/Hash/Product").Result) result = true;
             else
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Product");
+                    return client.GetStringAsync(conPathLocalhost + "/Hash/Product");
                 });
                 result = false;
                 ProductHasCode = resultHash.Result;
@@ -62,12 +66,12 @@ namespace Frontend.AspMvc.Controllers
         {
             var result = false;
 
-            if (MaterialHasCode == client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Material").Result) result = true;
+            if (MaterialHasCode == client.GetStringAsync(conPathLocalhost + "/Hash/Material").Result) result = true;
             else
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Material");
+                    return client.GetStringAsync(conPathLocalhost + "/Hash/Material");
                 });
                 result = false;
                 MaterialHasCode = resultHash.Result;
@@ -80,12 +84,12 @@ namespace Frontend.AspMvc.Controllers
         {
             var result = false;
 
-            if (MaterialHasCode == client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Color").Result) result = true;
+            if (MaterialHasCode == client.GetStringAsync(conPathLocalhost + "/Hash/Color").Result) result = true;
             else
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://multiflex2.ddns.net/api/Hash/Color");
+                    return client.GetStringAsync(conPathLocalhost + "/Hash/Color");
                 });
                 result = false;
                 MaterialHasCode = resultHash.Result;
@@ -98,13 +102,13 @@ namespace Frontend.AspMvc.Controllers
         {
             bool result = false;
 
-            if (DataHasCode == client.GetStringAsync("http://multiflex2.ddns.net/api/Hash").Result) result = true;
+            if (DataHasCode == client.GetStringAsync(conPathLocalhost + "/Hash").Result) result = true;
 
-            if (DataHasCode != client.GetStringAsync("http://multiflex2.ddns.net/api/Hash").Result)
+            if (DataHasCode != client.GetStringAsync(conPathLocalhost + "/Hash").Result)
             {
                 var resultHash = Task.Run(() =>
                 {
-                    return client.GetStringAsync("http://multiflex2.ddns.net/api/Hash");
+                    return client.GetStringAsync(conPathLocalhost + "/Hash");
                 });
                 result = false;
                 DataHasCode = resultHash.Result;
