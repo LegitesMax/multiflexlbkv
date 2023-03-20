@@ -23,8 +23,9 @@ namespace Frontend.AspMvc.Controllers
         private static string DataJsonCacnceled = "canceled";
         private static string DataJsonReady = "ready";
 
-		private static string conPathLocalhost = "http://127.0.0.1:9000";
-		private string conPathServer = "http://multiflex2.ddns.net/api";
+		private static string conPathLocalhost = "http://multiflex2.ddns.net/api";
+		//private static string conPathLocalhost = "http://127.0.0.1:9000";
+		//private string conPathServer = "http://multiflex2.ddns.net/api";
 
 		public HttpClient client { get; set; } = new HttpClient();
 

@@ -31,16 +31,16 @@ namespace Frontend.AspMvc.Controllers
 
         public static async void LoadAllDataAsync()
         {
-			ProductHasCode = client.GetStringAsync(conPathLocalhost + "/Hash/Product").Result;
-            MaterialHasCode = client.GetStringAsync(conPathLocalhost + "/Material").Result;
-            ColorHasCode = client.GetStringAsync(conPathLocalhost + "/Color").Result;
+			ProductHasCode = client.GetStringAsync(conPathServer + "/Hash/Product").Result;
+            MaterialHasCode = client.GetStringAsync(conPathServer + "/Material").Result;
+            ColorHasCode = client.GetStringAsync(conPathServer + "/Color").Result;
 
             if (FirstLoad == false || CheckHashCode() == false)
             {
-                var productJson = await client.GetStringAsync(conPathLocalhost + "/Category/Product");
+                var productJson = await client.GetStringAsync(conPathServer + "/Category/Product");
                 HashSingleton.Model.Categories = JsonConvert.DeserializeObject<List<Models.Category>>(productJson);
 
-                var colorJson = await client.GetStringAsync(conPathLocalhost + "/Color");
+                var colorJson = await client.GetStringAsync(conPathServer + "/Color");
                 HashSingleton.Model.Colors = JsonConvert.DeserializeObject<List<Models.Color>>(colorJson);
             }
             FirstLoad = true;

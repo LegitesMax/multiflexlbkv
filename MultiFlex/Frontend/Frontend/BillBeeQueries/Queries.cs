@@ -30,12 +30,12 @@ namespace BillBeeQueries
 
             // Creating new instance of ApiClient
 
-            string configPath = "/usr/psw.json";
-            configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
+            // string configPath = "/usr/psw.json";
+            //configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
 
 
             //#if Linux
-            //        configPath = "/usr/psw.json";
+            var configPath = "/usr/psw.json";
             //#elif Windows
             //        configPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Desktop\tmp\psw.json";
             //#endif
@@ -85,7 +85,7 @@ namespace BillBeeQueries
             string jsonString = JsonSerializer.Serialize(products.Data);
             string jsonString2 = JsonSerializer.Serialize(customFields.Data);
 
-           // File.WriteAllText(@"products.json", jsonString, Encoding.UTF8);
+            // File.WriteAllText(@"products.json", jsonString, Encoding.UTF8);
             //File.WriteAllText(@"customFields.json", jsonString2, Encoding.UTF8);
 
             //File.WriteAllLines(path, createText, Encoding.UTF8);
